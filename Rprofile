@@ -148,6 +148,9 @@ set.seed(.env$seed)
             devtools.name = "Michael Steinbaugh",
             devtools.desc.author = 'person("Michael", "Steinbaugh", email = "mike@steinbaugh.com", role = c("aut", "cre"))',
             devtools.desc.license = "MIT",
+            # Enable OAuth token generation using httr on a remote R server.
+            # This is used by googlesheets, for example.
+            httr_oob_default = TRUE,
             max.print = 1000L,
             repos = try(BiocManager::repositories())
         )
