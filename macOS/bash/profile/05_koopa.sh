@@ -1,5 +1,9 @@
-koopa_dir="${HOME}/koopa"
-if [[ -d "$koopa_dir" ]]; then
-    . "$koopa_dir/koopa.sh"
+export CONDA_DIR="${HOME}/anaconda3/bin"
+
+# koopa shell
+# https://github.com/steinbaugh/koopa
+if [[ -n "$PS1" ]] && [[ -f ~/koopa/koopa.sh ]]; then
+    source ~/koopa/koopa.sh
 fi
-unset -v koopa_dir
+
+conda activate steinbaugh

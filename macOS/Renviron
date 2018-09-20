@@ -25,6 +25,9 @@ PATH="/Applications/RStudio.app/Contents/MacOS/pandoc:${PATH}"
 # Neither this nor the conda curl-config seem to work (1.95-4.11).
 # PATH="/usr/local/opt/curl/bin:${PATH}"
 
+# Required to run UMAP.
+RETICULATE_PYTHON="~/anaconda3/envs/steinbaugh/bin/python"
+
 # Package configuration ========================================================
 # imagemagick
 PKG_CONFIG_PATH="/usr/local/opt/imagemagick/lib/pkgconfig:${PKG_CONFIG_PATH}"
