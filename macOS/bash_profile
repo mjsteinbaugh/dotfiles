@@ -1,0 +1,11 @@
+# Source public profile scripts.
+for file in "${HOME}/.dotfiles/macOS/bash/profile/"*; do
+    . "$file"
+done
+
+# Source private profile scripts.
+for file in "${HOME}/.dotfiles-private/macOS/bash/profile/"*; do
+    . "$file"
+done
+
+unset -v file
