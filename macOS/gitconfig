@@ -1,0 +1,37 @@
+[user]
+	name = Michael Steinbaugh
+	email = mike@steinbaugh.com
+	signingkey = C1BB2E4A7C4FF992
+[core]
+	editor = vim 
+	excludesfile = ~/.gitignore_global
+[commit]
+	gpgsign = true
+[push]
+	default = simple
+[color]
+	ui = true
+[credential]
+	helper = osxkeychain
+[alias]
+	a = add --all
+	c = commit -m
+	cleanup = !git remote prune origin && git gc && git clean -dfx && git stash clear
+	grog = log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\"
+	pr = !sh -c 'git fetch origin pull/$1/head:pr$1' -
+	shorty = status --short --branch
+	st = status -sb
+	trash = checkout --
+	up = !sh -c 'git pull --rebase --prune && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
+	who = shortlog -n -s --no-merges
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[transfer] 
+	fsckobjects = true
+[fetch] 
+	fsckobjects = true
+[receive] 
+	fsckobjects = true
