@@ -1,0 +1,76 @@
+# Graylist ====
+# *.html
+# *.pdf
+# *.png
+# *.rda
+# *.rds
+# bcbio/
+# bcbio-*/
+# data/
+# data-*/
+
+# Temporary files ====
+xxx_*
+
+# File system ====
+._*
+.*~
+.DS_Store
+*~
+~*
+
+# Codes and keys ====
+token.rds
+
+# Large files ====
+*.bz2
+*.err
+*.fa
+*.fasta
+*.fastq
+*.fq
+*.gtf
+*.gz
+*.gz.*
+*.log
+*.out
+*.RData
+*.rdb
+*.rdx
+*.tar
+*.xz
+*.zip
+
+# Large directories ====
+annotations/
+basespace/
+figures/
+links/
+
+# GitHub Pages ====
+_drafts/
+_site/
+.jekyll-metadata
+.sass-cache
+Gemfile.lock
+
+# R And RStudio ====
+.httr-oauth
+.Rapp.history
+.RData
+.Rhistory
+.Rproj.user
+*_cache
+*_draft.Rmd
+*_files
+*-Ex.R
+*.knit.md
+*.Rcheck
+*.utf8.md
+# *.Rproj
+cache/
+results/
+revdep/
+vignettes/.build.timestamp
+vignettes/*.html
+vignettes/*.pdf
