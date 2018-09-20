@@ -1,0 +1,5 @@
+# https://bioconda.github.io/#set-up-channels
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
