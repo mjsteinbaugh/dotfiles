@@ -1,3 +1,5 @@
+# https://thecoatlessprofessor.com/programming/openmp-in-r-on-os-x/
+
 # The following statements are required to use the clang6 binary
 LDFLAGS=  -L/usr/local/clang6/lib
 # End clang6 inclusion statements
