@@ -4,4 +4,6 @@ export CONDA_DIR="${HOME}/anaconda3/bin"
 # https://github.com/steinbaugh/koopa
 source ~/koopa/bin/koopa activate
 
-conda activate steinbaugh
+if [[ -n "$( command -v conda 2>/dev/null )" ]]; then
+    conda activate steinbaugh
+fi

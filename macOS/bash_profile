@@ -1,11 +1,19 @@
+public_dir="${HOME}/.dotfiles"
+private_dir="${HOME}/.dotfiles-private"
+subdirs="macOS/bash/login"
+
 # Source public profile scripts.
-for file in "${HOME}/.dotfiles/macOS/bash/login/"*; do
-    source "$file"
-done
+if [[ -d "$public_dir" ]]; then
+    for file in "${public_dir}/${subdirs}/"*; do
+        source "$file"
+    done
+    unset -v file
+fi
 
 # Source private profile scripts.
-for file in "${HOME}/.dotfiles-private/macOS/bash/login/"*; do
-    source "$file"
-done
-
-unset -v file
+if [[ -d "$private_dir" ]]; then
+    for file in "${private_dir}/${subdirs}/"*; do
+        source "$file"
+    done
+    unset -v file
+fi
