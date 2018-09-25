@@ -75,8 +75,8 @@ if (identical(Sys.info()[["sysname"]], "Darwin")) {
 }
 
 .env$install <- function(..., dependencies = FALSE) {
-    # BiocManager::install()
-    devtools::install(..., dependencies = dependencies)
+    # devtools::install(..., dependencies = dependencies)
+    BiocManager::install(..., dependencies = dependencies)
 }
 
 .env$load_all <- function() {
