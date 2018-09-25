@@ -37,5 +37,5 @@ XML_CONFIG="/usr/local/opt/libxml2/bin/xml2-config"
 
 # User package library =========================================================
 # https://www.bioconductor.org/developers/how-to/useDevel/
-# R_LIBS_USER="~/R/library/3.5-bioc-3.7-release"
-R_LIBS_USER="~/R/library/3.5-bioc-3.8-devel"
+# R_LIBS_USER="~/R/library/bioc-release"
+R_LIBS_USER="~/R/library/bioc-devel"
