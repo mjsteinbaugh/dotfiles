@@ -142,6 +142,7 @@ set.seed(.env$seed)
             # prompt = "> "
             # readr.num_columns = 0L
             # readr.show_progress = FALSE
+            # repos = try(BiocManager::repositories())
             # width = 100
             basejump.save.ext = "rds",
             continue = " ",  # Kill annoying "+".
@@ -151,8 +152,7 @@ set.seed(.env$seed)
             # Enable OAuth token generation using httr on a remote R server.
             # This is used by googlesheets, for example.
             httr_oob_default = TRUE,
-            max.print = 1000L,
-            repos = try(BiocManager::repositories())
+            max.print = 1000L
         )
         if (identical(
             x = normalizePath(getwd()),
