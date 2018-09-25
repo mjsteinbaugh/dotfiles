@@ -1,5 +1,5 @@
 # R Environment
-# Last modified 2018-09-20
+# Last modified 2018-09-25
 # Using Homebrew Cask r-app installation method.
 # `Sys.getenv()`
 
@@ -37,5 +37,5 @@ XML_CONFIG="/usr/local/opt/libxml2/bin/xml2-config"
 
 # User package library =========================================================
 # https://www.bioconductor.org/developers/how-to/useDevel/
-# R_LIBS_USER="~/R/library/3.5-bioc-devel/library"
-R_LIBS_USER="~/R/library/3.5-bioc-release/library"
+# R_LIBS_USER="~/R/library/3.5-bioc-devel"
+R_LIBS_USER="~/R/library/3.5-bioc-release"
