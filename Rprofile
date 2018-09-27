@@ -101,6 +101,10 @@ if (identical(Sys.info()[["sysname"]], "Darwin")) {
     devtools::run_examples(...)
 }
 
+.env$script_path <- function() {
+    rstudioapi::getSourceEditorContext()$path
+}
+
 .env$test <- function(...) {
     devtools::test(...)
 }
