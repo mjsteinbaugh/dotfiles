@@ -74,9 +74,8 @@ if (identical(Sys.info()[["sysname"]], "Darwin")) {
     system(paste("open", path))
 }
 
-.env$install <- function(..., dependencies = FALSE) {
-    # devtools::install(..., dependencies = dependencies)
-    BiocManager::install(..., dependencies = dependencies)
+.env$install <- function(...) {
+    BiocManager::install(...)
 }
 
 .env$load_all <- function() {
@@ -88,6 +87,10 @@ if (identical(Sys.info()[["sysname"]], "Darwin")) {
 .env$pbcopy <- function(x) {
     stopifnot(Sys.info()[[1L]] == "Darwin")
     capture.output(x, file = pipe("pbcopy"))
+}
+
+.env$pkginstall <- function(..., dependencies = FALSE) {
+    devtools::install(..., dependencies = dependencies)
 }
 
 .env$report <- function(...) {
