@@ -157,6 +157,8 @@ set.seed(.env$seed)
             httr_oob_default = TRUE,
             max.print = 1000L
         )
+
+        # Enable automatic package updates.
         if (identical(
             x = normalizePath(getwd()),
             y = normalizePath("~")
@@ -164,6 +166,11 @@ set.seed(.env$seed)
             # Automatically update packages.
             # try(BiocManager::install(ask = TRUE))
             # suppressWarnings(utils::update.packages(ask = TRUE))
+        }
+
+        # Require developer library in git repos.
+        if (grepl("/git/", getwd())) {
+            stopifnot(grepl("-devel$", Sys.getenv("R_LIBS_USER")))
         }
 
         # Turn on completion of installed package names.
