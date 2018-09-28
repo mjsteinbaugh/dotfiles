@@ -106,6 +106,8 @@ if (identical(Sys.info()[["sysname"]], "Darwin")) {
 }
 
 .env$test <- function(...) {
+    require(testthat)
+    require(patrick)
     devtools::test(...)
 }
 
