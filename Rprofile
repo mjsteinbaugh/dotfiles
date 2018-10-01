@@ -176,7 +176,7 @@ set.seed(.env$seed)
 
         # Require developer library in git repos.
         if (grepl("/git/", getwd())) {
-            stopifnot(grepl("-devel$", Sys.getenv("R_LIBS_USER")))
+            # stopifnot(grepl("-devel$", Sys.getenv("R_LIBS_USER")))
         }
 
         # Turn on completion of installed package names.
