@@ -10,4 +10,5 @@ CXX98=/usr/local/clang6/bin/clang++
 LDFLAGS=-L/usr/local/clang6/lib
 
 # Mojave CPP headers fix.
+# xcode-select --install
 # sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
