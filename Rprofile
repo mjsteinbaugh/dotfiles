@@ -44,6 +44,7 @@ if (identical(Sys.info()[["sysname"]], "Darwin")) {
 }
 
 .env$build_site <- function(...) {
+    unlink("docs", recursive = TRUE)
     pkgdown::build_site(...)
 }
 
