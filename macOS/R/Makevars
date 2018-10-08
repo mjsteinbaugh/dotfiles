@@ -1,5 +1,6 @@
 # https://thecoatlessprofessor.com/programming/r-compiler-tools-for-rcpp-on-macos/
 # https://thecoatlessprofessor.com/programming/openmp-in-r-on-os-x/
+
 CC=/usr/local/clang6/bin/clang
 CXX=/usr/local/clang6/bin/clang++
 CXX11=/usr/local/clang6/bin/clang++
