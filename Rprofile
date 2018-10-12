@@ -1,5 +1,5 @@
 # R Startup Profile
-# Last modified 2018-10-11
+# Last modified 2018-10-12
 # Tested on Linux, macOS, and Windows
 #
 # Stephen Turner's profile:
@@ -141,18 +141,19 @@ set.seed(.env$seed)
 .First <- function() {
     options(
         author = "Michael Steinbaugh",
+        basejump.save.ext = "rds",
         browserNLdisabled = TRUE,
         email = "mike@steinbaugh.com",
         menu.graphics = FALSE,  # Graphics dialogs can crash R.
         showErrorCalls = TRUE,
         showWarnCalls = TRUE,
-        warn = 1L,
-        warnPartialMatchAttr = TRUE,
-        warnPartialMatchDollar = TRUE,
-        warning.length = 8170L  # 8170 is the maximum.
+        warn = 1L
     )
+    
     if (interactive()) {
         attach(.env)
+        
+        # Set general interactive options.
         options(
             # crayon.enabled = TRUE
             # crayon.colors = 256L
@@ -163,9 +164,7 @@ set.seed(.env$seed)
             # prompt = "> "
             # readr.num_columns = 0L
             # readr.show_progress = FALSE
-            # repos = try(BiocManager::repositories())
             # width = 100L
-            basejump.save.ext = "rds",
             continue = " ",  # Kill annoying "+" in console.
             devtools.name = "Michael Steinbaugh",
             devtools.desc.author = 'person("Michael", "Steinbaugh", email = "mike@steinbaugh.com", role = c("aut", "cre"))',
@@ -173,26 +172,39 @@ set.seed(.env$seed)
             # Enable OAuth token generation using httr on a remote R server.
             # This is used by googlesheets, for example.
             httr_oob_default = TRUE,
-            max.print = 1000L
+            max.print = 1000L,
+            repos = try(BiocManager::repositories())
         )
-
-        # Enable automatic package updates.
-        if (identical(
-            x = normalizePath(getwd()),
-            y = normalizePath("~")
-        )) {
-            # Automatically update packages.
-            # try(BiocManager::install(ask = TRUE))
-            # suppressWarnings(utils::update.packages(ask = TRUE))
-        }
-
-        # Require developer library in git repos.
-        if (grepl("/git/", getwd())) {
-            stopifnot(grepl("-devel$", Sys.getenv("R_LIBS_USER")))
-        }
-
+        
         # Turn on completion of installed package names.
         utils::rc.settings(ipck = TRUE)
+        
+        # Check for developer environment.
+        devel <- grepl("-devel$", Sys.getenv("R_LIBS_USER"))
+        
+        # Set developer-specific profile.
+        if (isTRUE(devel)) {
+            options(
+                warnPartialMatchAttr = TRUE,
+                warnPartialMatchDollar = TRUE,
+                warning.length = 8170L  # 8170 is the maximum.
+            )
+            
+            # Enable automatic package updates from home directory.
+            if (identical(
+                x = normalizePath(getwd()),
+                y = normalizePath("~")
+            )) {
+                # Automatically update packages.
+                try(BiocManager::install(ask = TRUE))
+                suppressWarnings(utils::update.packages(ask = TRUE))
+            }
+        }
+        
+        # Require developer library in git repos.
+        if (grepl("/git/", getwd())) {
+            stopifnot(devel)
+        }
 
         cat(paste(
             "User Library:",
