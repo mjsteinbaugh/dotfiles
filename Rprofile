@@ -1,5 +1,5 @@
 # R Startup Profile
-# Last modified 2018-09-18
+# Last modified 2018-10-11
 # Tested on Linux, macOS, and Windows
 #
 # Stephen Turner's profile:
@@ -19,6 +19,7 @@
 
 # Check compilers are installed ================================================
 if (identical(Sys.info()[["sysname"]], "Darwin")) {
+    # macOS.
     stopifnot(file.exists("/usr/local/clang6/bin/clang"))
     stopifnot(file.exists("/usr/local/gfortran/bin/gfortran"))
 }
@@ -43,8 +44,14 @@ if (identical(Sys.info()[["sysname"]], "Darwin")) {
     pkgdown::build_reference(...)
 }
 
-.env$build_site <- function(...) {
-    pkgdown::build_site(...)
+.env$build_reference_index <- function(...) {
+    pkgdown::build_reference_index(...)
+}
+
+# `devtools::document()` is erroring out in RStudio on Azure, so disable.
+.env$build_site <- function(..., document = FALSE) {
+    unlink("docs", recursive = TRUE)
+    pkgdown::build_site(..., document = document)
 }
 
 .env$check <- function(...) {
@@ -112,6 +119,10 @@ if (identical(Sys.info()[["sysname"]], "Darwin")) {
     devtools::test(...)
 }
 
+.env$valid <- function(...) {
+    BiocManager::valid(...)
+}
+
 # Set seed for reproducibility =================================================
 .env$seed <- 1454944673L
 set.seed(.env$seed)
@@ -132,19 +143,19 @@ set.seed(.env$seed)
         author = "Michael Steinbaugh",
         browserNLdisabled = TRUE,
         email = "mike@steinbaugh.com",
-        menu.graphics = FALSE,  # Graphics dialogs always seem to crash R.
+        menu.graphics = FALSE,  # Graphics dialogs can crash R.
         showErrorCalls = TRUE,
         showWarnCalls = TRUE,
-        warn = 1,
+        warn = 1L,
         warnPartialMatchAttr = TRUE,
         warnPartialMatchDollar = TRUE,
-        warning.length = 8170  # 8170 is the maximum.
+        warning.length = 8170L  # 8170 is the maximum.
     )
     if (interactive()) {
         attach(.env)
         options(
             # crayon.enabled = TRUE
-            # crayon.colors = 256
+            # crayon.colors = 256L
             # deparse.max.lines = 2L
             # install.packages.check.source = "no"
             # install.packages.compile.from.source = "binary"
@@ -153,9 +164,9 @@ set.seed(.env$seed)
             # readr.num_columns = 0L
             # readr.show_progress = FALSE
             # repos = try(BiocManager::repositories())
-            # width = 100
+            # width = 100L
             basejump.save.ext = "rds",
-            continue = " ",  # Kill annoying "+".
+            continue = " ",  # Kill annoying "+" in console.
             devtools.name = "Michael Steinbaugh",
             devtools.desc.author = 'person("Michael", "Steinbaugh", email = "mike@steinbaugh.com", role = c("aut", "cre"))',
             devtools.desc.license = "MIT",
@@ -177,7 +188,7 @@ set.seed(.env$seed)
 
         # Require developer library in git repos.
         if (grepl("/git/", getwd())) {
-            # stopifnot(grepl("-devel$", Sys.getenv("R_LIBS_USER")))
+            stopifnot(grepl("-devel$", Sys.getenv("R_LIBS_USER")))
         }
 
         # Turn on completion of installed package names.
