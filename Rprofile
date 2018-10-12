@@ -49,6 +49,7 @@ if (identical(Sys.info()[["sysname"]], "Darwin")) {
 
 .env$check <- function(...) {
     devtools::check(...)
+    BiocCheck::BiocCheck(".")
 }
 
 .env$cd <- function(...) {
