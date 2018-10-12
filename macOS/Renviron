@@ -1,5 +1,5 @@
 # R Environment
-# Last modified 2018-09-25
+# Last modified 2018-10-12
 # Using Homebrew Cask r-app installation method.
 # `Sys.getenv()`
 
@@ -11,16 +11,16 @@
 TZ="America/New_York"
 
 # Path =========================================================================
-# clang 6 (from CRAN)
+# clang 6 (CRAN).
 PATH="/usr/local/clang6/bin:${PATH}"
 
-# Use gfortran 6.1 (from CRAN)
+# gfortran 6.1 (CRAN).
 PATH="/usr/local/gfortran/bin:${PATH}"
 
-# pandoc bundled with RStudio
+# pandoc (RStudio).
 PATH="/Applications/RStudio.app/Contents/MacOS/pandoc:${PATH}"
 
-# homebrew curl
+# curl (homebrew).
 # Try using this if RCurl fails to compile with conda curl.
 # Neither this nor the conda curl-config seem to work (1.95-4.11).
 # PATH="/usr/local/opt/curl/bin:${PATH}"
@@ -29,7 +29,14 @@ PATH="/Applications/RStudio.app/Contents/MacOS/pandoc:${PATH}"
 RETICULATE_PYTHON="~/anaconda3/envs/steinbaugh/bin/python"
 
 # Package configuration ========================================================
+# LAPACK
+PKG_CONFIG_PATH="/usr/local/opt/lapack/lib/pkgconfig:${PKG_CONFIG_PATH}"
+
+# OpenBLAS
+PKG_CONFIG_PATH="/usr/local/opt/openblas/lib/pkgconfig:${PKG_CONFIG_PATH}"
+
 # imagemagick
+# PKG_CONFIG_PATH="/usr/local/opt/imagemagick@6/lib/pkgconfig:${PKG_CONFIG_PATH}"
 PKG_CONFIG_PATH="/usr/local/opt/imagemagick/lib/pkgconfig:${PKG_CONFIG_PATH}"
 
 # XML (libxml2)
