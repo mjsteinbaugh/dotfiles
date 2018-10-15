@@ -86,6 +86,10 @@ if (identical(Sys.info()[["sysname"]], "Darwin")) {
     BiocManager::install(...)
 }
 
+.env$lint_package <- function(...) {
+    lintr::lint_package(...)
+}
+
 .env$load_all <- function() {
     # pkgload::load_all(helpers = FALSE, attach_testthat = FALSE)
     devtools::load_all()
