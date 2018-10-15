@@ -1,5 +1,5 @@
 # R Startup Profile
-# Last modified 2018-10-12
+# Last modified 2018-10-15
 # Tested on Linux, macOS, and Windows
 #
 # Stephen Turner's profile:
@@ -196,8 +196,8 @@ set.seed(.env$seed)
                 y = normalizePath("~")
             )) {
                 # Automatically update packages.
-                try(BiocManager::install(ask = TRUE))
-                suppressWarnings(utils::update.packages(ask = TRUE))
+                # try(BiocManager::install(ask = TRUE))
+                # suppressWarnings(utils::update.packages(ask = TRUE))
             }
         }
         
