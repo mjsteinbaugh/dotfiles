@@ -196,8 +196,8 @@ set.seed(.env$seed)
                 y = normalizePath("~")
             )) {
                 # Automatically update packages.
-                try(BiocManager::install(ask = TRUE))
-                suppressWarnings(utils::update.packages(ask = TRUE))
+                # try(BiocManager::install(ask = TRUE))
+                # suppressWarnings(utils::update.packages(ask = TRUE))
             }
         }
         
