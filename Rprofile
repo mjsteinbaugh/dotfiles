@@ -1,5 +1,5 @@
 # R Startup Profile
-# Last modified 2018-10-12
+# Last modified 2018-10-15
 # Tested on Linux, macOS, and Windows
 #
 # Stephen Turner's profile:
@@ -84,6 +84,10 @@ if (identical(Sys.info()[["sysname"]], "Darwin")) {
 
 .env$install <- function(...) {
     BiocManager::install(...)
+}
+
+.env$lint_package <- function(...) {
+    lintr::lint_package(...)
 }
 
 .env$load_all <- function() {
