@@ -1,14 +1,15 @@
 # R Environment
-# Last modified 2018-10-12
-# Using Homebrew Cask r-app installation method.
-# `Sys.getenv()`
+# 2018-10-18
 
-# Miscellaneous variables ======================================================
-# Increase this for large single-cell RNA-seq projects.
-# R_MAX_NUM_DLLS=153
+# Using Homebrew cask to install CRAN R.
+# brew cask install r-app
 
-# R 3.5 can sometimes error due to time zone, unless this is set.
-TZ="America/New_York"
+# Check environment with `Sys.getenv()` in R.
+
+# User package library =========================================================
+# https://www.bioconductor.org/developers/how-to/useDevel/
+# R_LIBS_USER="~/R/library/bioc-release"
+R_LIBS_USER="~/R/library/bioc-devel"
 
 # Path =========================================================================
 # clang 6 (CRAN).
@@ -42,7 +43,9 @@ PKG_CONFIG_PATH="/usr/local/opt/imagemagick/lib/pkgconfig:${PKG_CONFIG_PATH}"
 # XML (libxml2)
 XML_CONFIG="/usr/local/opt/libxml2/bin/xml2-config"
 
-# User package library =========================================================
-# https://www.bioconductor.org/developers/how-to/useDevel/
-# R_LIBS_USER="~/R/library/bioc-release"
-R_LIBS_USER="~/R/library/bioc-devel"
+# Miscellaneous variables ======================================================
+# Increase this for large single-cell RNA-seq projects.
+# R_MAX_NUM_DLLS=153
+
+# R 3.5 can sometimes error due to time zone, unless this is set.
+TZ="America/New_York"

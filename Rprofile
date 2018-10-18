@@ -56,7 +56,8 @@ if (identical(Sys.info()[["sysname"]], "Darwin")) {
 
 .env$check <- function(...) {
     devtools::check(...)
-    BiocCheck::BiocCheck(".")
+    # This will error if directory doesn't match package name.
+    # BiocCheck::BiocCheck(".")
 }
 
 .env$cd <- function(...) {
