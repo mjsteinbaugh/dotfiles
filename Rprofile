@@ -1,6 +1,7 @@
-# R Startup Profile
-# Last modified 2018-10-15
-# Tested on Linux, macOS, and Windows
+# R startup profile
+# 2018-10-18
+# 
+# Tested on Linux, macOS, and Windows.
 #
 # Stephen Turner's profile:
 # http://gettinggeneticsdone.blogspot.com/2013/07/customize-rprofile.html
@@ -18,10 +19,27 @@
 # unzip = "/usr/bin/unzip"
 
 # Check compilers are installed ================================================
-if (identical(Sys.info()[["sysname"]], "Darwin")) {
+if (Sys.info()[["sysname"]] == "Darwin") {
     # macOS.
-    stopifnot(file.exists("/usr/local/clang6/bin/clang"))
-    stopifnot(file.exists("/usr/local/gfortran/bin/gfortran"))
+    # Using recommended CRAN compiler settings.
+    stopifnot(identical(
+        x = Sys.which(c("clang", "clang++", "gfortran")),
+        y = c(
+            "clang" = "/usr/local/clang6/bin/clang",
+            "clang++" = "/usr/local/clang6/bin/clang++",
+            "gfortran" = "/usr/local/gfortran/bin/gfortran"
+        )
+    ))
+} else if (Sys.info()[["sysname"]] == "Linux") {
+    # Linux.
+    stopifnot(identical(
+        x = Sys.which(c("gcc", "g++", "gfortran")),
+        y = c(
+            "gcc" = "/usr/bin/gcc",
+            "g++" = "/usr/bin/g++",
+            "gfortran" = "/usr/bin/gfortran"
+        )
+    ))
 }
 
 # Invisible utility functions ==================================================
@@ -48,7 +66,6 @@ if (identical(Sys.info()[["sysname"]], "Darwin")) {
     pkgdown::build_reference_index(...)
 }
 
-# `devtools::document()` is erroring out in RStudio on Azure, so disable.
 .env$build_site <- function(..., document = FALSE) {
     unlink("docs", recursive = TRUE)
     pkgdown::build_site(..., document = document)
@@ -76,7 +93,7 @@ if (identical(Sys.info()[["sysname"]], "Darwin")) {
     devtools::document(...)
 }
 
-# macOS: Open Finder to the current directory on mac
+# macOS: Open Finder to the current directory.
 .env$finder <- function(path = ".") {
     stopifnot(Sys.info()[[1L]] == "Darwin")
     stopifnot(is.character(path) && length(character) == 1L)
@@ -91,12 +108,12 @@ if (identical(Sys.info()[["sysname"]], "Darwin")) {
     lintr::lint_package(...)
 }
 
+# pkgload::load_all(helpers = FALSE, attach_testthat = FALSE)
 .env$load_all <- function() {
-    # pkgload::load_all(helpers = FALSE, attach_testthat = FALSE)
     devtools::load_all()
 }
 
-# macOS: Copy to clipboard
+# macOS: Copy to clipboard.
 .env$pbcopy <- function(x) {
     stopifnot(Sys.info()[[1L]] == "Darwin")
     capture.output(x, file = pipe("pbcopy"))
@@ -110,8 +127,8 @@ if (identical(Sys.info()[["sysname"]], "Darwin")) {
     covr::report(...)
 }
 
-.env$run_examples <- function(...) {
-    devtools::run_examples(...)
+.env$run_examples <- function(..., fresh = TRUE) {
+    devtools::run_examples(..., fresh = fresh)
 }
 
 .env$script_path <- function() {
@@ -133,13 +150,11 @@ if (identical(Sys.info()[["sysname"]], "Darwin")) {
 set.seed(.env$seed)
 
 # R 3.5.1
-# cat(head(.Random.seed), sep = "\n")
+# cat(head(.Random.seed, n = 3L), sep = "\n")
 # 403
-# 10
-# 533838267
-# 264765273
-# -811729688
-# 904799510
+# 624
+# 1853863629
+# -1353004246
 
 # Initilization at start of an R session =======================================
 # help(topic = "Startup", package = "base")
@@ -154,10 +169,10 @@ set.seed(.env$seed)
         showWarnCalls = TRUE,
         warn = 1L
     )
-    
+
     if (interactive()) {
         attach(.env)
-        
+
         # Set general interactive options.
         options(
             # crayon.enabled = TRUE
@@ -169,6 +184,7 @@ set.seed(.env$seed)
             # prompt = "> "
             # readr.num_columns = 0L
             # readr.show_progress = FALSE
+            # repos = BiocManager::repositories()
             # width = 100L
             continue = " ",  # Kill annoying "+" in console.
             devtools.name = "Michael Steinbaugh",
@@ -177,16 +193,15 @@ set.seed(.env$seed)
             # Enable OAuth token generation using httr on a remote R server.
             # This is used by googlesheets, for example.
             httr_oob_default = TRUE,
-            max.print = 1000L,
-            repos = try(BiocManager::repositories())
+            max.print = 1000L
         )
-        
+
         # Turn on completion of installed package names.
         utils::rc.settings(ipck = TRUE)
-        
+
         # Check for developer environment.
         devel <- grepl("-devel$", Sys.getenv("R_LIBS_USER"))
-        
+
         # Set developer-specific profile.
         if (isTRUE(devel)) {
             options(
@@ -194,7 +209,7 @@ set.seed(.env$seed)
                 warnPartialMatchDollar = TRUE,
                 warning.length = 8170L  # 8170 is the maximum.
             )
-            
+
             # Enable automatic package updates from home directory.
             if (identical(
                 x = normalizePath(getwd()),
@@ -205,7 +220,7 @@ set.seed(.env$seed)
                 # suppressWarnings(utils::update.packages(ask = TRUE))
             }
         }
-        
+
         # Require developer library in git repos.
         if (grepl("/git/", getwd())) {
             stopifnot(devel)
