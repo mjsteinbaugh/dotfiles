@@ -1,5 +1,5 @@
 # R startup profile
-# 2018-10-18
+# 2018-10-22
 # 
 # Tested on Linux, macOS, and Windows.
 #
@@ -199,7 +199,7 @@ set.seed(.env$seed)
         utils::rc.settings(ipck = TRUE)
 
         # Check for developer environment.
-        devel <- grepl("-devel$", Sys.getenv("R_LIBS_USER"))
+        devel <- grepl("devel$", Sys.getenv("R_LIBS_USER"))
 
         # Set developer-specific profile.
         if (isTRUE(devel)) {
