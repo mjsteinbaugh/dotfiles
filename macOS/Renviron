@@ -1,7 +1,14 @@
 # R Environment
-# Last modified 2018-10-12
+# Last modified 2018-10-22
 # Using Homebrew Cask r-app installation method.
 # `Sys.getenv()`
+
+# User package library =========================================================
+# https://www.bioconductor.org/developers/how-to/useDevel/
+# Use $R_PLATFORM in path.
+# Symlink release and devel libraries.
+# R_LIBS_USER="~/R/library/release"
+R_LIBS_USER="~/R/library/devel"
 
 # Miscellaneous variables ======================================================
 # Increase this for large single-cell RNA-seq projects.
@@ -41,8 +48,3 @@ PKG_CONFIG_PATH="/usr/local/opt/imagemagick/lib/pkgconfig:${PKG_CONFIG_PATH}"
 
 # XML (libxml2)
 XML_CONFIG="/usr/local/opt/libxml2/bin/xml2-config"
-
-# User package library =========================================================
-# https://www.bioconductor.org/developers/how-to/useDevel/
-# R_LIBS_USER="~/R/library/bioc-release"
-R_LIBS_USER="~/R/library/bioc-devel"
