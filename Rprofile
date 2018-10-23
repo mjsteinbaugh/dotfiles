@@ -1,6 +1,6 @@
 # R startup profile
-# 2018-10-18
-# 
+# 2018-10-21
+#
 # Tested on Linux, macOS, and Windows.
 #
 # Stephen Turner's profile:
@@ -69,6 +69,10 @@ if (Sys.info()[["sysname"]] == "Darwin") {
 .env$build_site <- function(..., document = FALSE) {
     unlink("docs", recursive = TRUE)
     pkgdown::build_site(..., document = document)
+}
+
+.env$build_vignettes <- function(...) {
+    devtools::build_vignettes(...)
 }
 
 .env$check <- function(...) {
@@ -204,11 +208,11 @@ set.seed(.env$seed)
 
         # Set developer-specific profile.
         if (isTRUE(devel)) {
-            options(
-                warnPartialMatchAttr = TRUE,
-                warnPartialMatchDollar = TRUE,
-                warning.length = 8170L  # 8170 is the maximum.
-            )
+            # options(
+            #     warnPartialMatchAttr = TRUE  # edgeR and pheatmap fail this.
+            #     warnPartialMatchDollar = TRUE,
+            #     warning.length = 8170L  # 8170 is the maximum.
+            # )
 
             # Enable automatic package updates from home directory.
             if (identical(
