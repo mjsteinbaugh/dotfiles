@@ -1,15 +1,17 @@
 # R Environment
-# 2018-10-18
+# 2018-10-23
 
-# Using Homebrew cask to install CRAN R.
+# Use Homebrew cask to install CRAN R:
 # brew cask install r-app
 
-# Check environment with `Sys.getenv()` in R.
+# Use `Sys.getenv()` to check environment in R.
 
 # User package library =========================================================
 # https://www.bioconductor.org/developers/how-to/useDevel/
-# R_LIBS_USER="~/R/library/bioc-release"
-R_LIBS_USER="~/R/library/bioc-devel"
+# Use $R_PLATFORM in path.
+# Symlink release and devel libraries.
+# R_LIBS_USER="~/R/library/release"
+R_LIBS_USER="~/R/library/devel"
 
 # Path =========================================================================
 # clang 6 (CRAN).
@@ -25,9 +27,6 @@ PATH="/Applications/RStudio.app/Contents/MacOS/pandoc:${PATH}"
 # Try using this if RCurl fails to compile with conda curl.
 # Neither this nor the conda curl-config seem to work (1.95-4.11).
 # PATH="/usr/local/opt/curl/bin:${PATH}"
-
-# Required to run UMAP.
-RETICULATE_PYTHON="~/anaconda3/envs/steinbaugh/bin/python"
 
 # Package configuration ========================================================
 # LAPACK
@@ -46,6 +45,9 @@ XML_CONFIG="/usr/local/opt/libxml2/bin/xml2-config"
 # Miscellaneous variables ======================================================
 # Increase this for large single-cell RNA-seq projects.
 # R_MAX_NUM_DLLS=153
+
+# Required to run UMAP.
+RETICULATE_PYTHON="~/anaconda3/envs/steinbaugh/bin/python"
 
 # R 3.5 can sometimes error due to time zone, unless this is set.
 TZ="America/New_York"
