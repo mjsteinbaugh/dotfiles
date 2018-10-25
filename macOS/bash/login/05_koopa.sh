@@ -1,4 +1,7 @@
 # koopa shell
 # https://github.com/steinbaugh/koopa
-export CONDA_DIR="${HOME}/anaconda3/bin"
-source ~/koopa/bin/koopa activate
+CONDA_EXE="${HOME}/anaconda3/bin/conda"
+KOOPA_EXE="${HOME}/koopa/bin/koopa"
+source "${KOOPA_EXE}" activate
+conda activate steinbaugh
+
