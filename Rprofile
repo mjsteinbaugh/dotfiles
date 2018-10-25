@@ -1,5 +1,5 @@
 # R startup profile
-# 2018-10-23
+# 2018-10-24
 #
 # Tested on Linux, macOS, and Windows.
 #
@@ -226,9 +226,9 @@ set.seed(.env$seed)
         }
 
         # Require developer library in git repos.
-        if (grepl("/git/", getwd())) {
-            stopifnot(devel)
-        }
+        # if (grepl("/git/", getwd())) {
+        #     stopifnot(devel)
+        # }
 
         cat(paste(
             "User Library:",
