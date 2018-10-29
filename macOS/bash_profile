@@ -17,3 +17,5 @@ if [[ -d "$private_dir" ]]; then
     done
     unset -v file
 fi
+
+alias bioc="git push public bioconductor"
