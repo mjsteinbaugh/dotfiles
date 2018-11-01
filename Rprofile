@@ -1,5 +1,5 @@
 # R startup profile
-# 2018-10-25
+# 2018-11-01
 #
 # Tested on Linux, macOS, and Windows.
 #
@@ -9,7 +9,7 @@
 # Jim Hester's profile:
 # https://github.com/jimhester/dotfiles/blob/master/R/Rprofile
 #
-# # Efficient R programming
+# Efficient R programming:
 # https://csgillespie.github.io/efficientR/set-up.html
 
 # Notes ========================================================================
@@ -104,8 +104,8 @@ if (Sys.info()[["sysname"]] == "Darwin") {
     system(paste("open", path))
 }
 
-.env$install <- function(...) {
-    BiocManager::install(...)
+.env$install <- function(..., update = FALSE) {
+    BiocManager::install(..., update = update)
 }
 
 .env$lint_package <- function(...) {
