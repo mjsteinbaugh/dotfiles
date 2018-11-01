@@ -51,6 +51,3 @@ RETICULATE_PYTHON="~/anaconda3/envs/steinbaugh/bin/python"
 
 # R 3.5 can sometimes error due to time zone, unless this is set.
 TZ="America/New_York"
-
-# Tokens =======================================================================
-GITHUB_PAT="~/R/GITHUB_PAT.rds"
