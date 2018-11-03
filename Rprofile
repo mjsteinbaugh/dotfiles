@@ -1,5 +1,5 @@
 # R startup profile
-# 2018-10-25
+# 2018-11-03
 #
 # Tested on Linux, macOS, and Windows.
 #
@@ -75,10 +75,18 @@ if (Sys.info()[["sysname"]] == "Darwin") {
     devtools::build_vignettes(...)
 }
 
-.env$check <- function(...) {
-    devtools::check(...)
+.env$check <- function(
+    ...,
+    document = FALSE,
+    vignettes = FALSE
+) {
+    devtools::check(
+        ...,
+        document = document,
+        vignettes = vignettes
+    )
     # This will error if directory doesn't match package name.
-    # BiocCheck::BiocCheck(".")
+    BiocCheck::BiocCheck(".")
 }
 
 .env$cd <- function(...) {
