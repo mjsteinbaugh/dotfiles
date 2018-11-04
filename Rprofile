@@ -86,7 +86,7 @@ if (Sys.info()[["sysname"]] == "Darwin") {
         vignettes = vignettes
     )
     # This will error if directory doesn't match package name.
-    BiocCheck::BiocCheck(".")
+    # BiocCheck::BiocCheck(".")
 }
 
 .env$cd <- function(...) {
