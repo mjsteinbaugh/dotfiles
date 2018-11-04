@@ -1,5 +1,5 @@
 # R Environment
-# 2018-11-01
+# 2018-11-04
 
 # Use Homebrew cask to install CRAN R:
 # brew cask install r-app
@@ -10,8 +10,8 @@
 # https://www.bioconductor.org/developers/how-to/useDevel/
 # Use $R_PLATFORM in path.
 # Symlink release and devel libraries.
-# R_LIBS_USER="~/R/library/release"
-R_LIBS_USER="~/R/library/devel"
+R_LIBS_USER="~/R/library/release"
+# R_LIBS_USER="~/R/library/devel"
 
 # Path =========================================================================
 # clang 6 (CRAN).

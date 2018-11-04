@@ -1,5 +1,5 @@
 # R startup profile
-# 2018-11-03
+# 2018-11-04
 #
 # Tested on Linux, macOS, and Windows.
 #
