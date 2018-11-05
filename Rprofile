@@ -52,38 +52,48 @@ if (Sys.getenv("HPC_NAME") == "Harvard HMS O2") {
 
 # Invisible utility functions ==================================================
 # Assign shortcuts to a hidden environment.
-.env <- new.env()
+.bb8 <- new.env()
 
-.env$BiocCheck <- function(package = ".", ...) {
+.bb8$bb8 <- function(...) {
+    bb8::bb8(...)
+}
+
+.bb8$BiocCheck <- function(package = ".", ...) {
     BiocCheck::BiocCheck(package = package, ...)
 }
 
-.env$build_home <- function(...) {
+.bb8$build_home <- function(...) {
     pkgdown::build_home(...)
 }
 
-.env$build_news <- function(...) {
+.bb8$build_news <- function(...) {
     pkgdown::build_news(...)
 }
 
-.env$build_reference <- function(...) {
+.bb8$build_reference <- function(...) {
     pkgdown::build_reference(...)
 }
 
-.env$build_reference_index <- function(...) {
+.bb8$build_reference_index <- function(...) {
     pkgdown::build_reference_index(...)
 }
 
-.env$build_site <- function(..., document = FALSE) {
+.bb8$build_site <- function(..., document = FALSE) {
     unlink("docs", recursive = TRUE)
     pkgdown::build_site(..., document = document)
 }
 
-.env$build_vignettes <- function(...) {
+.bb8$build_vignettes <- function(...) {
     devtools::build_vignettes(...)
 }
 
-.env$check <- function(
+.bb8$catVec <- function(x) {
+    x <- paste0("\"", x, "\"")
+    x <- paste(x, collapse = ",\n")
+    cat(x)
+}
+
+.bb8$check <- function(
     ...,
     document = FALSE,
     vignettes = FALSE
@@ -97,77 +107,77 @@ if (Sys.getenv("HPC_NAME") == "Harvard HMS O2") {
     # BiocCheck::BiocCheck(".")
 }
 
-.env$cd <- function(...) {
+.bb8$cd <- function(...) {
     base::setwd(...)
 }
 
-.env$clear <- function() {
+.bb8$clear <- function() {
     cat("\f")
 }
 
-.env$dev <- function(...) {
-    bb8::dev(...)
+.bb8$clearWarnings <- function() {
+    assign("last.warning", NULL, envir = baseenv())
 }
 
-.env$document <- function(...) {
+.bb8$document <- function(...) {
     devtools::document(...)
 }
 
 # macOS: Open Finder to the current directory.
-.env$finder <- function(path = ".") {
+.bb8$finder <- function(path = ".") {
     stopifnot(Sys.info()[[1L]] == "Darwin")
     stopifnot(is.character(path) && length(character) == 1L)
     system(paste("open", path))
 }
 
-.env$install <- function(..., update = FALSE) {
+.bb8$install <- function(..., update = FALSE) {
     BiocManager::install(..., update = update)
 }
 
-.env$lint_package <- function(...) {
+.bb8$lint_package <- function(...) {
     lintr::lint_package(...)
 }
 
 # pkgload::load_all(helpers = FALSE, attach_testthat = FALSE)
-.env$load_all <- function() {
+.bb8$load_all <- function() {
     devtools::load_all()
 }
 
 # macOS: Copy to clipboard.
-.env$pbcopy <- function(x) {
+.bb8$pbcopy <- function(x) {
     stopifnot(Sys.info()[[1L]] == "Darwin")
     capture.output(x, file = pipe("pbcopy"))
 }
 
-.env$pkginstall <- function(..., dependencies = FALSE) {
+.bb8$pkginstall <- function(..., dependencies = FALSE) {
     devtools::install(..., dependencies = dependencies)
 }
 
-.env$report <- function(...) {
+.bb8$report <- function(...) {
     covr::report(...)
 }
 
-.env$run_examples <- function(..., fresh = TRUE) {
+.bb8$run_examples <- function(..., fresh = TRUE) {
     devtools::run_examples(..., fresh = fresh)
 }
 
-.env$script_path <- function() {
+.bb8$script_path <- function() {
     rstudioapi::getSourceEditorContext()$path
 }
 
-.env$test <- function(...) {
+.bb8$test <- function(...) {
     require(testthat)
     require(patrick)
     devtools::test(...)
 }
 
-.env$valid <- function(...) {
+.bb8$valid <- function(...) {
     BiocManager::valid(...)
 }
 
 # Set seed for reproducibility =================================================
-.env$seed <- 1454944673L
-set.seed(.env$seed)
+.bb8$seed <- 1454944673L
+set.seed(.bb8$seed)
 
 # R 3.5.1
 # cat(head(.Random.seed, n = 3L), sep = "\n")
@@ -191,7 +201,7 @@ set.seed(.env$seed)
     )
 
     if (interactive()) {
-        attach(.env)
+        attach(.bb8)
 
         # Set general interactive options.
         options(
