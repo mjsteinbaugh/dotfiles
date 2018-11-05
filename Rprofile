@@ -19,9 +19,18 @@
 # unzip = "/usr/bin/unzip"
 
 # Check compilers are installed ================================================
-if (Sys.info()[["sysname"]] == "Darwin") {
-    # macOS.
-    # Using recommended CRAN compiler settings.
+if (Sys.getenv("HPC_NAME") == "Harvard HMS O2") {
+    # Use conda GCC instead of GCC 6 module.
+    stopifnot(identical(
+        x = Sys.which(c("gcc", "g++", "gfortran")),
+        y = c(
+            "gcc" = "/home/mjs65/miniconda3/envs/R-3.5.1-20181104/bin/gcc",
+            "g++" = "/home/mjs65/miniconda3/envs/R-3.5.1-20181104/bin/g++",
+            "gfortran" = "/home/mjs65/miniconda3/envs/R-3.5.1-20181104/bin/gfortran"
+        )
+    ))
+} else if (Sys.info()[["sysname"]] == "Darwin") {
+    # Use recommended CRAN compiler settings.
     stopifnot(identical(
         x = Sys.which(c("clang", "clang++", "gfortran")),
         y = c(
@@ -31,7 +40,6 @@ if (Sys.info()[["sysname"]] == "Darwin") {
         )
     ))
 } else if (Sys.info()[["sysname"]] == "Linux") {
-    # Linux.
     stopifnot(identical(
         x = Sys.which(c("gcc", "g++", "gfortran")),
         y = c(
@@ -260,3 +268,4 @@ set.seed(.env$seed)
         message("Goodbye at ", date(), "\n")
     }
 }
+
