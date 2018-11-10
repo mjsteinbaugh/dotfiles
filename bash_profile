@@ -1,6 +1,6 @@
 public_dir="${HOME}/.dotfiles"
 private_dir="${HOME}/.dotfiles-private"
-subdirs="macOS/bash/login"
+subdirs="login"
 
 # Source public profile scripts.
 if [[ -d "$public_dir" ]]; then

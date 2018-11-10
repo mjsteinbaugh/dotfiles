@@ -10,8 +10,8 @@
 # https://www.bioconductor.org/developers/how-to/useDevel/
 # Use $R_PLATFORM in path.
 # Symlink release and devel libraries.
-# R_LIBS_USER="~/R/library/release"
-R_LIBS_USER="~/R/library/devel"
+R_LIBS_USER="~/R/library/release"
+# R_LIBS_USER="~/R/library/devel"
 
 # Path =========================================================================
 PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/usr/local/MacGPG2/bin:/opt/X11/bin"
