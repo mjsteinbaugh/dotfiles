@@ -302,7 +302,7 @@
 	AAAZAAAAAAAAAAAAAAAAAAAA2Q==
 	</data>
 	<key>UseBrightBold</key>
-	<true/>
+	<false/>
 	<key>name</key>
 	<string>Panic</string>
 	<key>type</key>

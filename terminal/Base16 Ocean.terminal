@@ -128,7 +128,7 @@
 	AAAZAAAAAAAAAAAAAAAAAAAA2Q==
 	</data>
 	<key>UseBrightBold</key>
-	<true/>
+	<false/>
 	<key>name</key>
 	<string>Base16 Ocean</string>
 	<key>rowCount</key>
