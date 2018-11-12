@@ -191,6 +191,7 @@ set.seed(.bb8$seed)
 .First <- function() {
     options(
         author = "Michael Steinbaugh",
+        basejump.save.dir = file.path("data", Sys.Date()),
         basejump.save.ext = "rds",
         browserNLdisabled = TRUE,
         email = "mike@steinbaugh.com",
