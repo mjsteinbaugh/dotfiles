@@ -1,1 +1,67 @@
+# http://man.openbsd.org/OpenBSD-current/man1/tmux.1
+# https://github.com/dariomanesku/.tmux/blob/master/.tmux.conf
+
+# Set terminal defaults.
+set status-utf8 on
+set utf8 on
+set -g default-terminal "screen-256color"
+
+# Enable vim keys mode.
 setw -g mode-keys vi
+
+# Enable mouse mode.
+setw -g mode-mouse on
+setw -g mouse-select-pane on
+
+# Start at 1 instead of using zero index for windows.
+set -g base-index 1
+
+# Set fast response time.
+set -s escape-time 0
+
+
+# Colors =======================================================================
+# Status bar colors.
+set -g status-fg white
+set -g status-bg black
+set -g status-attr bright
+
+# Default window title colors.
+set-window-option -g window-status-fg white
+set-window-option -g window-status-bg default
+set-window-option -g window-status-attr dim
+
+# Active window title colors.
+set-window-option -g window-status-current-fg black
+set-window-option -g window-status-current-bg green
+set-window-option -g window-status-current-attr bright
+
+
+# Disabled, but potentially useful =============================================
+# Allow renaming of window title.
+# set-window-option -g automatic-rename on
+
+# Set titles.
+# set -g set-titles on
+# set -g set-titles-string '#W' #T
+
+# Notify if other windows have activity.
+# setw -g monitor-activity on
+# set -g visual-activity on
+
+# Set default directory path.
+# set-option default-path "$PWD"
+
+# Set screen-like prefix.
+# set -g prefix ^t
+# bind-key ^t last-window
+
+# Use ZSH instead of bash.
+# set -g default-shell /bin/zsh
+# set -g default-command /bin/zsh
+
+# Don't erase terminal contents on editor exit.
+# set-window-option -g alternate-screen on
+
+# Don't hold the size of the smallest client bounds.
+# setw -g aggressive-resize on
