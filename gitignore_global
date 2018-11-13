@@ -10,6 +10,7 @@
 # data-*/
 
 # Temporary files ====
+tmp_*
 xxx_*
 
 # File system ====
@@ -23,6 +24,8 @@ xxx_*
 token.rds
 
 # Large files ====
+*.bam
+*.bed
 *.bz2
 *.err
 *.fa
@@ -37,6 +40,7 @@ token.rds
 *.RData
 *.rdb
 *.rdx
+*.sam
 *.tar
 *.xz
 *.zip
