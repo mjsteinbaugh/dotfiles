@@ -2,13 +2,14 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
-;; Configuration guides
+;; Configuration guides:
 ;; https://github.com/syl20bnr/spacemacs/blob/master/doc/BEGINNERS_TUTORIAL.org
 ;; https://github.com/roryk/dotfiles/blob/master/spacemacs
 
 (defun dotspacemacs/layers ()
-  "Layer configuration:
-This function should only modify configuration layer settings."
+  "Configuration Layers declaration.
+You should not put any user code in this function besides modifying the variable
+values."
   (setq-default
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
@@ -34,36 +35,45 @@ This function should only modify configuration layer settings."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     themes-megapack
-     html
-     csv
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
-     ;; `M-m f e R' (Emacs style) to install them.
+     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
+     ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; julia (https://github.com/mgxm/julia-layer)
-     themes-megapack
-     ivy
-     osx
-     auto-completion
-     ess
-     python
-     yaml
+     ;; auto-completion
+     ;; better-defaults
+     csv
      emacs-lisp
+     ess
      git
+     ;; helm (can use instead of ivy)
+     html
+     ivy
+     ;; julia (https://github.com/mgxm/julia-layer)
      markdown
      org
+     osx
+     python
+     ;; (shell :variables
+     ;;        shell-default-height 30
+     ;;        shell-default-position 'bottom)
      spell-checking
      syntax-checking
+     themes-megapack
      version-control
-     )
+     yaml
+   )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(tramp-term polymode poly-R poly-markdown
-                                                 poly-noweb)
+   dotspacemacs-additional-packages '(
+     poly-markdown
+     poly-noweb
+     poly-R
+     polymode
+     tramp-term
+   )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -78,10 +88,11 @@ This function should only modify configuration layer settings."
    dotspacemacs-install-packages 'used-only))
 
 (defun dotspacemacs/init ()
-  "Initialization:
-This function is called at the very beginning of Spacemacs startup,
-before layer configuration.
-It should only modify the values of Spacemacs settings."
+  "Initialization function.
+This function is called at the very startup of Spacemacs initialization
+before layers configuration.
+You should not put any user code in there besides modifying the variable
+values."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
@@ -287,7 +298,7 @@ It should only modify the values of Spacemacs settings."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers t
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -365,13 +376,20 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  ;; this makes using tramp very nice
+
+  ;; Disable highlighting of current line, which doesn't play well with tmux
+  ;; and terminal on Windows.
+  ;; (spacemacs/toggle-highlight-current-line-globally-off)
+  ;; (global-hl-line-mode -1)
+  (global-hl-line-mode -1)
+
+  ;; This makes using tramp very nice.
   (setq tramp-default-method "ssh")
 
-  ;; this is necessary to get ess-remote to work, i dont understand why
+  ;; This is necessary to get ess-remote to work, (@roryk).
   (require 'ess-site)
 
-  ;; don't auto-indent R comments
+  ;; Don't auto-indent R comments.
   (setq ess-fancy-comments nil)
 
   (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
