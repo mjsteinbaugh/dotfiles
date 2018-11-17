@@ -1,5 +1,5 @@
 # R startup profile
-# 2018-11-04
+# 2018-11-14
 #
 # Tested on Linux, macOS, and Windows.
 #
@@ -141,6 +141,29 @@ if (Sys.getenv("HPC_NAME") == "Harvard HMS O2") {
 # pkgload::load_all(helpers = FALSE, attach_testthat = FALSE)
 .bb8$load_all <- function() {
     devtools::load_all()
+}
+
+# Get free memory statistics.
+# Currently this only works for Linux.
+# help(topic = "Memory", package = "base")
+# help(topic = "Memory-limits", package = "base")
+# https://stackoverflow.com/a/6457769
+# https://stackoverflow.com/a/29787527
+# https://stat.ethz.ch/R-manual/R-devel/library/base/html/Memory-limits.html
+# http://adv-r.had.co.nz/memory.html
+# `utils:::format.object_size()``
+# `print:::print.bytes()`
+.bb8$memfree <- function() {
+    message("Running garbage collection first with base::gc().")
+    print(gc(verbose = TRUE, full = TRUE))
+    mem_used <- capture.output(print(pryr::mem_used()))
+    mem_free <- utils:::format.object_size(as.numeric(
+        system("awk '/MemFree/ {print $2}' /proc/meminfo", intern = TRUE)
+    ), "auto")
+    message(paste0(
+        "Memory used: ", mem_used, " (pryr::mem_used)\n",
+        "Memory free: ", mem_free, " (awk MemFree)"
+    ))
 }
 
 # macOS: Copy to clipboard.
