@@ -1,0 +1,55 @@
+# R Environment
+# 2018-11-11
+
+# Use Homebrew cask to install CRAN R:
+# brew cask install r-app
+
+# Use `Sys.getenv()` to check environment in R.
+
+# User package library =========================================================
+# https://www.bioconductor.org/developers/how-to/useDevel/
+# Use $R_PLATFORM in path.
+# Symlink release and devel libraries.
+R_LIBS_USER="~/R/x86_64-apple-darwin15.6.0-library/3.5/bioc-3.8-release"
+# R_LIBS_USER="~/R/x86_64-apple-darwin15.6.0-library/3.6/bioc-3.9-devel"
+
+# Path =========================================================================
+PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/usr/local/MacGPG2/bin:/opt/X11/bin"
+
+# clang 6 (CRAN).
+PATH="/usr/local/clang6/bin:${PATH}"
+
+# gfortran 6.1 (CRAN).
+PATH="/usr/local/gfortran/bin:${PATH}"
+
+# pandoc (RStudio).
+PATH="/Applications/RStudio.app/Contents/MacOS/pandoc:${PATH}"
+
+# curl (homebrew).
+# Try using this if RCurl fails to compile with conda curl.
+# Neither this nor the conda curl-config seem to work (1.95-4.11).
+# PATH="/usr/local/opt/curl/bin:${PATH}"
+
+# Package configuration ========================================================
+# LAPACK
+PKG_CONFIG_PATH="/usr/local/opt/lapack/lib/pkgconfig:${PKG_CONFIG_PATH}"
+
+# OpenBLAS
+PKG_CONFIG_PATH="/usr/local/opt/openblas/lib/pkgconfig:${PKG_CONFIG_PATH}"
+
+# imagemagick
+# PKG_CONFIG_PATH="/usr/local/opt/imagemagick@6/lib/pkgconfig:${PKG_CONFIG_PATH}"
+PKG_CONFIG_PATH="/usr/local/opt/imagemagick/lib/pkgconfig:${PKG_CONFIG_PATH}"
+
+# XML (libxml2)
+XML_CONFIG="/usr/local/opt/libxml2/bin/xml2-config"
+
+# Miscellaneous variables ======================================================
+# Increase this for large single-cell RNA-seq projects.
+# R_MAX_NUM_DLLS=153
+
+# Required to run UMAP.
+RETICULATE_PYTHON="~/anaconda3/envs/steinbaugh/bin/python"
+
+# R 3.5 can sometimes error due to time zone, unless this is set.
+TZ="America/New_York"

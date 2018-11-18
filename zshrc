@@ -1,34 +1,49 @@
-#
 # .zshrc is sourced in interactive shells.
 # It should contain commands to set up aliases,
 # functions, options, key bindings, etc.
-#
 
-autoload -U compinit
+
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+bindkey -e
+# End of lines configured by zsh-newuser-install
+
+
+# The following lines were added by compinstall
+zstyle :compinstall filename '~/.zshrc'
+autoload -Uz compinit
 compinit
+# End of lines added by compinstall
 
-#allow tab completion in the middle of a word
+
+# Allow tab completion in the middle of a word
 setopt COMPLETE_IN_WORD
 
-## keep background processes at full speed
-#setopt NOBGNICE
-## restart running processes on exit
-#setopt HUP
+# Keep background processes at full speed
+# setopt NOBGNICE
 
-## history
-#setopt APPEND_HISTORY
-## for sharing history between zsh processes
-#setopt INC_APPEND_HISTORY
-#setopt SHARE_HISTORY
+# Restart running processes on exit
+# setopt HUP
 
-## never ever beep ever
-#setopt NO_BEEP
+# History
+# setopt APPEND_HISTORY
 
-## automatically decide when to page a list of completions
-#LISTMAX=0
+# For sharing history between zsh processes
+# setopt INC_APPEND_HISTORY
+# setopt SHARE_HISTORY
 
-## disable mail checking
-#MAILCHECK=0
+# Never ever beep
+# setopt NO_BEEP
 
+# Automatically decide when to page a list of completions
+# LISTMAX=0
+
+# Disable mail checking
+# MAILCHECK=0
+
+# Autoload colors
 # autoload -U colors
-#colors
+# colors
+
