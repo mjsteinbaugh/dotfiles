@@ -1,5 +1,5 @@
 # R startup profile
-# 2018-11-04
+# 2018-11-21
 #
 # Tested on Linux, macOS, and Windows.
 #
@@ -253,12 +253,12 @@ set.seed(.bb8$seed)
         }
 
         # Check for developer library in git repos.
-        if (
-            grepl("/git/", getwd()) &&
-            !isTRUE(devel)
-        ) {
-            warning("Developer library not detected.")
-        }
+        # if (
+        #     grepl("/git/", getwd()) &&
+        #     !isTRUE(devel)
+        # ) {
+        #     warning("Developer library not detected.")
+        # }
 
         cat(paste(
             "User Library:",
