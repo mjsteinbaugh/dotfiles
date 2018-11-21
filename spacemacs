@@ -57,9 +57,9 @@ values."
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
-     spell-checking
+     ;; spell-checking
      syntax-checking
-     themes-megapack
+     ;; themes-megapack
      version-control
      yaml
    )
@@ -394,11 +394,11 @@ before packages are loaded."
 
   (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
 
-  ;; needed for X11 working properl
+  ;; Needed for X11 forwarding to work properly.
   ;; (add-to-list 'tramp-remote-process-environment
   ;;              (format "DISPLAY=%s" (getenv "DISPLAY")))
 
-  ;; default ess to use R (via https://gist.github.com/benmarwick/ee0f400b14af87a57e4a)
+  ;; Default ess to use R (via https://gist.github.com/benmarwick/ee0f400b14af87a57e4a)
   (defun ess-set-language ()
     (setq-default ess-language "R")
     (setq ess-language "R")
@@ -416,7 +416,7 @@ before packages are loaded."
 
   (add-hook 'ess-post-run-hook 'ess-set-language t)
 
-  ;; render rmarkdown (via https://gist.github.com/benmarwick/ee0f400b14af87a57e4a)
+  ;; Render rmarkdown (via https://gist.github.com/benmarwick/ee0f400b14af87a57e4a)
   (defun ess-rmarkdown ()
     "Compile R markdown (.Rmd). Should work for any output type."
     (interactive)

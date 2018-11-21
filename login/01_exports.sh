@@ -17,6 +17,11 @@ export RSYNC_FLAGS_APFS="${RSYNC_FLAGS} --iconv=utf-8,utf-8-mac"
 # Ruby gems
 export GEM_HOME="${HOME}/.gem"
 
+# Homebrew now supports a global variable to force bottle installations.
+# https://github.com/Homebrew/brew/pull/4520/files
+# https://github.com/Homebrew/brew/pull/4542/files
+export HOMEBREW_FORCE_BOTTLE="1"
+
 # PATH =========================================================================
 # Use .Renviron for R-specific PATH
 export PATH="/usr/local/sbin:${PATH}"

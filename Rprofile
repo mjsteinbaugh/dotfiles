@@ -1,5 +1,4 @@
 # R startup profile
-# 2018-11-21
 #
 # Tested on Linux, macOS, and Windows.
 #
@@ -143,6 +142,29 @@ if (Sys.getenv("HPC_NAME") == "Harvard HMS O2") {
     devtools::load_all()
 }
 
+# Get free memory statistics.
+# Currently this only works for Linux.
+# help(topic = "Memory", package = "base")
+# help(topic = "Memory-limits", package = "base")
+# https://stackoverflow.com/a/6457769
+# https://stackoverflow.com/a/29787527
+# https://stat.ethz.ch/R-manual/R-devel/library/base/html/Memory-limits.html
+# http://adv-r.had.co.nz/memory.html
+# `utils:::format.object_size()``
+# `print:::print.bytes()`
+.bb8$memfree <- function() {
+    message("Running garbage collection first with base::gc().")
+    print(gc(verbose = TRUE, full = TRUE))
+    mem_used <- capture.output(print(pryr::mem_used()))
+    mem_free <- utils:::format.object_size(as.numeric(
+        system("awk '/MemFree/ {print $2}' /proc/meminfo", intern = TRUE)
+    ), "auto")
+    message(paste0(
+        "Memory used: ", mem_used, " (pryr::mem_used)\n",
+        "Memory free: ", mem_free, " (awk MemFree)"
+    ))
+}
+
 # macOS: Copy to clipboard.
 .bb8$pbcopy <- function(x) {
     stopifnot(Sys.info()[[1L]] == "Darwin")
@@ -154,6 +176,8 @@ if (Sys.getenv("HPC_NAME") == "Harvard HMS O2") {
 }
 
 .bb8$report <- function(...) {
+    # covr doesn't currently install DT but requires it for this function...
+    library(DT)
     covr::report(...)
 }
 
@@ -279,4 +303,3 @@ set.seed(.bb8$seed)
         message("Goodbye at ", date(), "\n")
     }
 }
-
