@@ -177,6 +177,8 @@ if (Sys.getenv("HPC_NAME") == "Harvard HMS O2") {
 }
 
 .bb8$report <- function(...) {
+    # covr doesn't currently install DT but requires it for this function...
+    library(DT)
     covr::report(...)
 }
 
