@@ -1,9 +1,17 @@
+# Set Builtin ==================================================================
+# NOTE: Don't attempt to enable strict mode in login scripts.
+
+# Use vi mode instead of emacs by default.
+set -o vi
+
+
 # Aliases ======================================================================
 alias autofs="sudo automount -vc"
 alias emacs="emacs --no-window-system"
 alias icloud="brctl log --wait --shorten"
 alias public="git push public develop"
 alias rstudio="open -a rstudio"
+
 
 # Exports ======================================================================
 # Environment variables
@@ -35,7 +43,8 @@ export HOMEBREW_FORCE_BOTTLE="1"
 # Note that on macOS bash will fail if `set -e` is set and this isn't exported.
 export HISTTIMEFORMAT="%Y%m%d %T  "
 
-# etc includes =================================================================
+
+# Includes =====================================================================
 # Enable bash completion.
 # This will fail if `set -u` is enabled.
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
