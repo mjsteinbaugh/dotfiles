@@ -35,17 +35,6 @@ export HOMEBREW_FORCE_BOTTLE="1"
 # Note that on macOS bash will fail if `set -e` is set and this isn't exported.
 export HISTTIMEFORMAT="%Y%m%d %T  "
 
-# PATH =========================================================================
-# Use .Renviron for R-specific PATH
-export PATH="/usr/local/sbin:${PATH}"
-
-# We're using conda python instead of homebrew version (see koopa).
-# Homebrew Python 3
-# https://docs.brew.sh/Homebrew-and-Python
-# brew info python
-# python -V
-# export PATH="/usr/local/opt/python/libexec/bin:${PATH}"
-
 # etc includes =================================================================
 # Enable bash completion.
 # This will fail if `set -u` is enabled.
