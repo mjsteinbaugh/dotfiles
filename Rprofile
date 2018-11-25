@@ -18,7 +18,7 @@
 # unzip = "/usr/bin/unzip"
 
 # Check compilers are installed ================================================
-if (Sys.getenv("HPC_NAME") == "Harvard HMS O2") {
+if (Sys.getenv("HMS_CLUSTER") == "o2") {
     # Use conda GCC instead of GCC 6 module.
     stopifnot(identical(
         x = Sys.which(c("gcc", "g++", "gfortran")),
