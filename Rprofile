@@ -122,6 +122,29 @@ if (Sys.getenv("HPC_NAME") == "Harvard HMS O2") {
     devtools::document(...)
 }
 
+# Find and replace across a directory.
+.bb8$findAndReplace <- function(
+    pattern,
+    replacement,
+    dir = ".",
+    recursive = FALSE
+) {
+    files <- list.files(
+        path = dir,
+        pattern = "(r|R)$",
+        full.names = TRUE,
+        recursive = recursive
+    )
+    invisible(parallel::mclapply(
+        X = files,
+        FUN = function(file) {
+            x <- readr::read_lines(file)
+            x <- gsub(pattern = pattern, replacement = replacement, x = x)
+            readr::write_lines(x, path = file)
+        }
+    ))
+}
+
 # macOS: Open Finder to the current directory.
 .bb8$finder <- function(path = ".") {
     stopifnot(Sys.info()[[1L]] == "Darwin")
