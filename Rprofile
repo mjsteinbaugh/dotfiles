@@ -133,6 +133,10 @@ if (Sys.getenv("HPC_NAME") == "Harvard HMS O2") {
     BiocManager::install(..., update = update)
 }
 
+.bb8$install_github <- function(..., upgrade = "never") {
+    remotes::install_github(..., upgrade = upgrade)
+}
+
 .bb8$lint_package <- function(...) {
     lintr::lint_package(...)
 }
