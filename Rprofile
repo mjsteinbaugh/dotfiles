@@ -17,6 +17,9 @@
 # If devtools runs into an unzip error, set this:
 # unzip = "/usr/bin/unzip"
 
+# Check installed packages
+# update.packages(ask = FALSE, checkBuilt = TRUE)
+
 # Check compilers are installed ================================================
 if (Sys.getenv("HMS_CLUSTER") == "o2") {
     # Use conda GCC instead of GCC 6 module.
