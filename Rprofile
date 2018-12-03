@@ -56,6 +56,10 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
 # Assign shortcuts to a hidden environment.
 .bb8 <- new.env()
 
+.bb8$available <- function(...) {
+    available::available(...)
+}
+
 .bb8$bb8 <- function(...) {
     bb8::bb8(...)
 }
