@@ -17,8 +17,11 @@
 # If devtools runs into an unzip error, set this:
 # unzip = "/usr/bin/unzip"
 
+# Check installed packages
+# update.packages(ask = FALSE, checkBuilt = TRUE)
+
 # Check compilers are installed ================================================
-if (Sys.getenv("HPC_NAME") == "Harvard HMS O2") {
+if (Sys.getenv("HMS_CLUSTER") == "o2") {
     # Use conda GCC instead of GCC 6 module.
     stopifnot(identical(
         x = Sys.which(c("gcc", "g++", "gfortran")),
@@ -53,12 +56,20 @@ if (Sys.getenv("HPC_NAME") == "Harvard HMS O2") {
 # Assign shortcuts to a hidden environment.
 .bb8 <- new.env()
 
+.bb8$available <- function(...) {
+    available::available(...)
+}
+
 .bb8$bb8 <- function(...) {
     bb8::bb8(...)
 }
 
 .bb8$BiocCheck <- function(package = ".", ...) {
     BiocCheck::BiocCheck(package = package, ...)
+}
+
+.bb8$build <- function(..., vignettes = FALSE) {
+    devtools::build(..., vignettes = vignettes)
 }
 
 .bb8$build_home <- function(...) {
@@ -158,6 +169,10 @@ if (Sys.getenv("HPC_NAME") == "Harvard HMS O2") {
 
 .bb8$install <- function(..., update = FALSE) {
     BiocManager::install(..., update = update)
+}
+
+.bb8$install_github <- function(..., upgrade = "never") {
+    remotes::install_github(..., upgrade = upgrade)
 }
 
 .bb8$lint_package <- function(...) {

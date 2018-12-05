@@ -48,6 +48,7 @@ token.rds
 # Large directories ====
 annotations/
 basespace/
+fastq/
 figures/
 links/
 

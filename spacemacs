@@ -376,9 +376,13 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  ;; Disable mouse mode, which doesn't play nice with PuTTY on Windows.
+  ;; With this disabled, we can select and copy text to the system clipboard
+  ;; using the mouse, which is fairly crippled otherwise on Windows.
+  (xterm-mouse-mode -1)
 
   ;; Disable highlighting of current line, which doesn't play well with tmux
-  ;; and terminal on Windows.
+  ;; and/or emacs from the command line (instead of window system).
   ;; (spacemacs/toggle-highlight-current-line-globally-off)
   ;; (global-hl-line-mode -1)
   (global-hl-line-mode -1)
