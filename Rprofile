@@ -68,6 +68,10 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
     BiocCheck::BiocCheck(package = package, ...)
 }
 
+.bb8$build <- function(..., vignettes = FALSE) {
+    devtools::build(..., vignettes = vignettes)
+}
+
 .bb8$build_home <- function(...) {
     pkgdown::build_home(...)
 }
