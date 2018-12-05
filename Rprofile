@@ -118,6 +118,10 @@ if (Sys.getenv("HPC_NAME") == "Harvard HMS O2") {
     assign("last.warning", NULL, envir = baseenv())
 }
 
+.bb8$devinstall <- function(..., dependencies = FALSE) {
+    devtools::install(..., dependencies = dependencies)
+}
+
 .bb8$document <- function(...) {
     devtools::document(...)
 }
@@ -194,14 +198,18 @@ if (Sys.getenv("HPC_NAME") == "Harvard HMS O2") {
     capture.output(x, file = pipe("pbcopy"))
 }
 
-.bb8$pkginstall <- function(..., dependencies = FALSE) {
-    devtools::install(..., dependencies = dependencies)
+.bb8$rcmdcheck <- function(...) {
+    rcmdcheck::rcmdcheck(...)
 }
 
 .bb8$report <- function(...) {
     # covr doesn't currently install DT but requires it for this function...
     library(DT)
     covr::report(...)
+}
+
+.bb8$roxygenize <- function(...) {
+    roxygen2::roxygenise(...)
 }
 
 .bb8$run_examples <- function(..., fresh = TRUE) {
