@@ -10,3 +10,5 @@ My configuration files shared between machines running [macOS](https://www.apple
   Renviron, Rprofile.
 - [Rory Kirchner](https://github.com/roryk/dotfiles):
   gitconfig, spacemacs, tmux.conf
+
+Use [shellcheck](https://www.shellcheck.net/) to check shell scripts.
