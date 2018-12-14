@@ -149,7 +149,6 @@ export HISTTIMEFORMAT="%Y%m%d %T  "
 #     --acls --xattrs
 #     --iconv=utf-8,utf-8-mac
 export RSYNC_FLAGS="--archive --copy-links --delete-before --human-readable --progress"
-export RSYNC_FLAGS_APFS="${RSYNC_FLAGS} --iconv=utf-8,utf-8-mac"
 
 
 # Conditional configuration ====================================================
@@ -168,6 +167,9 @@ if [ "$MACOS" ]; then
     export CLICOLOR=1
     # `man ls`: see LSCOLORS section for color designators.
     # export LSCOLORS="Gxfxcxdxbxegedabagacad"
+    
+    # rsync improvements for APFS.
+    export RSYNC_FLAGS_APFS="${RSYNC_FLAGS} --iconv=utf-8,utf-8-mac"
     
     # Include sbin in PATH.
     add_to_path_start "/usr/local/sbin"
