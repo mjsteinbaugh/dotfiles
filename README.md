@@ -6,7 +6,7 @@ My configuration files shared between machines running:
 - [Ubuntu](https://www.ubuntu.com)
 - [Azure](https://azure.microsoft.com/)
 - [Amazon Linux 2 AMI](https://aws.amazon.com/amazon-linux-2/)
-- [CentOS](https://www.centos.org/).
+- [CentOS](https://www.centos.org/)
 
 ## See also
 
