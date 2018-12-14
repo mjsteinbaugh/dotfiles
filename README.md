@@ -5,6 +5,7 @@ My configuration files shared between machines running:
 - [macOS](https://www.apple.com/macos/)
 - [Azure](https://azure.microsoft.com/)
 - [Amazon Linux 2 AMI](https://aws.amazon.com/amazon-linux-2/)
+- [Bioconductor Cloud AMI](https://www.bioconductor.org/help/bioconductor-cloud-ami/)
 - [CentOS](https://www.centos.org/)
 - [Ubuntu](https://www.ubuntu.com/)
 - [Raspbian](https://www.raspbian.org/)
