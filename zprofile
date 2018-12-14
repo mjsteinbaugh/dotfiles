@@ -1,4 +1,4 @@
-# https://github.com/MikeMcQuaid/dotfiles/blob/master/zprofile.sh
+export ZPROFILE=1
 
 # Load shared shell configuration.
 source ~/.shprofile
