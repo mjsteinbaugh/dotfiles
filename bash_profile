@@ -90,11 +90,11 @@ then
 elif [ -n "$MACOS" ]
 then
     export CONDA_EXE="${HOME}/anaconda3/bin/conda"
-elif [ -n "O2" ]
+elif [ -n "$O2" ]
 then
     export BCBIO_EXE="/n/app/bcbio/tools/bin/bcbio_nextgen.py"
     export CONDA_EXE="${HOME}/miniconda3/bin/conda"
-elif [ -n "ODYSSEY" ]
+elif [ -n "$ODYSSEY" ]
 then
     export BCBIO_EXE="/n/regal/hsph_bioinfo/bcbio_nextgen/bin/bcbio_nextgen.py"
     export CONDA_EXE="${HOME}/miniconda3/bin/conda"
