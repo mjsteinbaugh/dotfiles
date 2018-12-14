@@ -1,14 +1,11 @@
 # .zshrc is sourced in interactive shells.
-# It should contain commands to set up aliases,
-# functions, options, key bindings, etc.
+# It should contain commands to set up aliases, functions, bindings, etc.
+# https://unix.stackexchange.com/a/71258
 
-# https://github.com/MikeMcQuaid/dotfiles/blob/master/zshrc.sh
+export ZSHRC=1
 
 # Check if this is a login shell.
 [ "$0" = "-zsh" ] && export LOGIN_ZSH=1
-
-# Source zprofile if this is not a login shell.
-[ -n "$LOGIN_ZSH" ] && source ~/.zprofile
 
 # Source shared shell configuration.
 source ~/.shrc
@@ -46,9 +43,6 @@ setopt COMPLETE_IN_WORD
 # For sharing history between zsh processes.
 # setopt INC_APPEND_HISTORY
 # setopt SHARE_HISTORY
-
-# # Never ever beep.
-# setopt NO_BEEP
 
 # Automatically decide when to page a list of completions.
 # LISTMAX=0

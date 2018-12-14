@@ -1,4 +1,4 @@
-# https://github.com/MikeMcQuaid/dotfiles/blob/master/shprofile.sh
+export SHPROFILE=1
 
 # 077 would be more secure, but 022 is more useful.
 # umask 022

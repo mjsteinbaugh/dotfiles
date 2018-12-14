@@ -1,6 +1,8 @@
 #!/bin/sh
 # shellcheck disable=SC2155
 
+export SHRC=1
+
 
 # Functions ====================================================================
 quiet_which() {
@@ -261,22 +263,19 @@ elif [ "$LINUX" ]; then
     # https://www.funtoo.org/Keychain
     # https://github.com/funtoo/keychain
     # Note that macOS can handle this automatically using SSH config file.
-    if quiet_which keychain
-    then
-        eval "$(keychain -q --eval --agents ssh id_rsa)"
-    else
-        # Load an SSH key automatically, using SSH_KEY global variable.
-        # SCP can fail unless this is interactive only.
-        # To change SSH key passphrase:
-        # ssh-keygen -p
-        export SSH_KEY="${HOME}/.ssh/id_rsa"
-        if [ -r "$SSH_KEY" ]; then
-            # This step is necessary to start the ssh agent.
-            eval "$(ssh-agent -s)"
-            # Now we're ready to add the key.
-            ssh-add "$SSH_KEY"
-        fi
-    fi  
+    quiet_which keychain && eval "$(keychain -q --eval --agents ssh id_rsa)"
+    
+    # Otherwise, load an SSH key automatically, using SSH_KEY global variable.
+    # SCP can fail unless this is interactive only.
+    # To change SSH key passphrase:
+    # ssh-keygen -p
+    # export SSH_KEY="${HOME}/.ssh/id_rsa"
+    # if [ -r "$SSH_KEY" ]; then
+    #     # This step is necessary to start the ssh agent.
+    #     eval "$(ssh-agent -s)"
+    #     # Now we're ready to add the key.
+    #     ssh-add "$SSH_KEY"
+    # fi
    
     # Aliases
     alias ls="ls -F --color=auto"
