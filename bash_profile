@@ -13,7 +13,7 @@ echo "$-" | grep -q "i" && export INTERACTIVE_BASH=1
 # Run bashrc if this is a login, interactive shell.
 if [ -n "$LOGIN_BASH" ] && [ -n "$INTERACTIVE_BASH" ]
 then
-  source ~/.bashrc
+    source ~/.bashrc
 fi
 
 # Set HOST for ZSH compatibility.
@@ -119,4 +119,20 @@ then
     fi
     
     unset -v conda_env
+fi
+
+# Load an SSH key automatically, using SSH_KEY global variable.
+# SCP can fail unless this is interactive only.
+# To change SSH key passphrase:
+# ssh-keygen -p
+if [ -n "$INTERACTIVE_BASH" ] && \
+   [ -n "$LINUX" ]
+then
+    export SSH_KEY="${HOME}/.ssh/id_rsa"
+    if [ -r "$SSH_KEY" ]; then
+        # This step is necessary to start the ssh agent.
+        eval "$(ssh-agent -s)"
+        # Now we're ready to add the key.
+        ssh-add "$SSH_KEY"
+    fi
 fi
