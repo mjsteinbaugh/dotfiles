@@ -3,10 +3,11 @@
 My configuration files shared between machines running:
 
 - [macOS](https://www.apple.com/macos/)
-- [Ubuntu](https://www.ubuntu.com)
 - [Azure](https://azure.microsoft.com/)
 - [Amazon Linux 2 AMI](https://aws.amazon.com/amazon-linux-2/)
 - [CentOS](https://www.centos.org/)
+- [Ubuntu](https://www.ubuntu.com/)
+- [Raspbian](https://www.raspbian.org/)
 
 ## See also
 
