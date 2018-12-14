@@ -254,6 +254,9 @@ if [ "$MACOS" ]; then
         . "${HOME}/git/bash/${script}.sh" $*
     }
     
+    # Create the TODAY directory in bucket automatically.
+    mjs bucket
+    
     # Aliases
     alias autofs="sudo automount -vc"
     alias finder-hide="setfile -a V"
