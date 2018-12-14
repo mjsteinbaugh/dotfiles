@@ -110,14 +110,6 @@ then
     elif [ -n "$MACOS" ]
     then
         conda_env="steinbaugh"
-    elif [ -n "$O2" ] && \
-         [[ SLURM_JOB_PARTITION == "interactive" ]];
-    then
-        conda_env="R-3.5.1-20181104"
-    elif [ -n "$ODYSSEY" ] && \
-         [[ SLURM_JOB_PARTITION == "test" ]];
-    then
-        conda_env="R-3.4.1"
     fi
     
     if [ -n "$conda_env" ]
