@@ -1,0 +1,7 @@
+R_LIBS_USER="~/R/library"
+
+# Enable this if necessary when working with single-cell packages.
+# R_MAX_NUM_DLLS=200
+
+# XML (libxml2)
+XML_CONFIG="/n/app/libxml2/2.9.4/bin/xml2-config"
