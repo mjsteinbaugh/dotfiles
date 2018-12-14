@@ -261,24 +261,27 @@ if [ "$MACOS" ]; then
     alias locate="mdfind -name"
     alias rstudio="open -a rstudio"
 elif [ "$LINUX" ]; then
-    # Use keychain to manage ssh-agent.
+    # Attempt to use keychain to manage ssh-agent.
+    # https://www.funtoo.org/Keychain
+    # https://github.com/funtoo/keychain
     # Note that macOS can handle this automatically using SSH config file.
-    quiet_which keychain && eval "$(keychain -q --eval --agents ssh id_rsa)"
-    
-    # Load an SSH key automatically, using SSH_KEY global variable.
-    # SCP can fail unless this is interactive only.
-    # To change SSH key passphrase:
-    # ssh-keygen -p
-    # export SSH_KEY="${HOME}/.ssh/id_rsa"
-    # if [[ -n ${SSH_KEY+x} ]]; then
-    #     # Check that path is valid.
-    #     if [[ ! -f "$SSH_KEY" ]]; then
-    #         printf "SSH key does not exist at:\n${SSH_KEY}\n"
-    #     fi
-    #     eval "$(ssh-agent -s)"
-    #     ssh-add "$SSH_KEY"
-    # fi
-    
+    if quiet_which keychain
+    then
+        eval "$(keychain -q --eval --agents ssh id_rsa)"
+    else
+        # Load an SSH key automatically, using SSH_KEY global variable.
+        # SCP can fail unless this is interactive only.
+        # To change SSH key passphrase:
+        # ssh-keygen -p
+        export SSH_KEY="${HOME}/.ssh/id_rsa"
+        if [ -r "$SSH_KEY" ]; then
+            # This step is necessary to start the ssh agent.
+            eval "$(ssh-agent -s)"
+            # Now we're ready to add the key.
+            ssh-add "$SSH_KEY"
+        fi
+    fi  
+   
     # Aliases
     alias ls="ls -F --color=auto"
     alias open="xdg-open"
