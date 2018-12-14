@@ -79,9 +79,19 @@ fi
 
 # koopa
 # https://github.com/steinbaugh/koopa/
-CONDA_EXE="${HOME}/anaconda3/bin/conda"
+if [ -n "$AZURE" ]; then
+    CONDA_EXE="/usr/local/bin/miniconda3/bin/conda"
+else
+    CONDA_EXE="${HOME}/anaconda3/bin/conda"
+fi
 KOOPA_EXE="${HOME}/koopa/bin/koopa"
 source "${KOOPA_EXE}" activate
 if [ -n $(command -v conda) ]; then
-    conda activate steinbaugh
+    if [ -n "$AZURE" ]; then
+        conda_env="bioinfo"
+    else
+        conda_env="steinbaugh"
+    fi
+    conda activate "$conda_env"
+    unset -v conda_env
 fi

@@ -159,6 +159,7 @@ fi
 # SSH keychain =================================================================
 # Load an SSH key automatically, using SSH_KEY global variable.
 # SCP can fail unless this is interactive only.
+export SSH_KEY="${HOME}/.ssh/id_rsa"
 if [[ -n ${SSH_KEY+x} ]]; then
     # Check that path is valid.
     if [[ ! -f "$SSH_KEY" ]]; then
