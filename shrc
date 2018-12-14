@@ -66,8 +66,8 @@ force_add_to_path_start() {
 # Quick exit.
 alias e="exit"
 
-# Make copy/move/remove more verbose.
-alias cp="cp -irv"
+# Improve common file system command defaults.
+alias cp="cp -iruv"
 alias mkdir="mkdir -vp"
 alias mv="mv -iv"
 alias rm="rm -iv"
