@@ -86,17 +86,18 @@ fi
 # https://github.com/steinbaugh/koopa/
 if [ -n "$AZURE" ]
 then
-    CONDA_EXE="/usr/local/bin/miniconda3/bin/conda"
+    export CONDA_EXE="/usr/local/bin/miniconda3/bin/conda"
 elif [ -n "$MACOS" ]
 then
-    CONDA_EXE="${HOME}/anaconda3/bin/conda"
+    export CONDA_EXE="${HOME}/anaconda3/bin/conda"
 elif [ -n "O2" ]
 then
-    BCBIO_EXE="/n/app/bcbio/tools/bin/bcbio_nextgen.py"
-    CONDA_EXE="${HOME}/miniconda3/bin/conda"
+    export BCBIO_EXE="/n/app/bcbio/tools/bin/bcbio_nextgen.py"
+    export CONDA_EXE="${HOME}/miniconda3/bin/conda"
 elif [ -n "ODYSSEY" ]
 then
-    CONDA_EXE="${HOME}/miniconda3/bin/conda"
+    export BCBIO_EXE="/n/regal/hsph_bioinfo/bcbio_nextgen/bin/bcbio_nextgen.py"
+    export CONDA_EXE="${HOME}/miniconda3/bin/conda"
 fi
 KOOPA_EXE="${HOME}/koopa/bin/koopa"
 source "${KOOPA_EXE}" activate
