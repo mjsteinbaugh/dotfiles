@@ -54,6 +54,14 @@ force_add_to_path_start() {
 # alias ls="ls --color=auto"
 # alias vdir="vdir --color=auto"
 
+# How to copy to Azure shares without error.
+# Note that timestamps and permissions are not maintained.
+# -R, --recursive
+# -L, --dereference
+# -u, --update
+# -v, --verbose
+# cp -RLuv data seq01
+
 # Quick exit.
 alias e="exit"
 
@@ -159,6 +167,8 @@ fi
 # SSH keychain =================================================================
 # Load an SSH key automatically, using SSH_KEY global variable.
 # SCP can fail unless this is interactive only.
+# To change SSH key passphrase:
+# ssh-keygen -p
 export SSH_KEY="${HOME}/.ssh/id_rsa"
 if [[ -n ${SSH_KEY+x} ]]; then
     # Check that path is valid.

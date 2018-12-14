@@ -11,7 +11,8 @@ source ~/.shprofile
 echo "$-" | grep -q "i" && export INTERACTIVE_BASH=1
 
 # Source bashrc if this is a login, interactive shell.
-if [ -n "$LOGIN_BASH" ] && [ -n "$INTERACTIVE_BASH" ]; then
+if [ -n "$LOGIN_BASH" ] && [ -n "$INTERACTIVE_BASH" ]
+then
     source ~/.bashrc
 fi
 
@@ -53,14 +54,17 @@ user="\u@\h"
 history="[\!; \#]"
 wd="\w"
 prompt="\$"
-if [ "$USER" = "root" ]; then
+if [ "$USER" = "root" ]
+then
     user_color="35"
-elif [ -n "${SSH_CONNECTION}" ]; then
+elif [ -n "${SSH_CONNECTION}" ]
+then
     user_color="36"
 else
     user_color="32"
 fi
-if [ $TERM = "xterm-256color" ]; then
+if [ $TERM = "xterm-256color" ]
+then
     user="\[\033[01;${user_color}m\]${user}\[\033[00m\]"
     wd="\[\033[01;34m\]${wd}\[\033[00m\]"
 fi
@@ -68,7 +72,8 @@ export PS1="${user} ${history}\n${wd}\n${prompt} "
 unset -v user wd
 
 # Only set key bindings on interactive shell.
-if [ -n "$INTERACTIVE_BASH" ]; then
+if [ -n "$INTERACTIVE_BASH" ]
+then
     # fix delete key on macOS
     [ "$MACOS" ] && bind '"\e[3~" delete-char'
 
@@ -79,25 +84,46 @@ fi
 
 # koopa
 # https://github.com/steinbaugh/koopa/
-if [ -n "$AZURE" ]; then
+if [ -n "$AZURE" ]
+then
     CONDA_EXE="/usr/local/bin/miniconda3/bin/conda"
-elif [ -n "$MACOS" ]; then
+elif [ -n "$MACOS" ]
+then
     CONDA_EXE="${HOME}/anaconda3/bin/conda"
-elif [ -n "O2" ]; then
+elif [ -n "O2" ]
+then
+    BCBIO_EXE="/n/app/bcbio/tools/bin/bcbio_nextgen.py"
+    CONDA_EXE="${HOME}/miniconda3/bin/conda"
+elif [ -n "ODYSSEY" ]
+then
     CONDA_EXE="${HOME}/miniconda3/bin/conda"
 fi
 KOOPA_EXE="${HOME}/koopa/bin/koopa"
 source "${KOOPA_EXE}" activate
-if [ -n $(command -v conda) ]; then
-    if [ -n "$AZURE" ]; then
+
+# Activate conda, if environment is defined.
+if [ -n $(command -v conda) ]
+then
+    if [ -n "$AZURE" ]
+    then
         conda_env="bioinfo"
-    elif [ -n "$MACOS" ]; then
+    elif [ -n "$MACOS" ]
+    then
         conda_env="steinbaugh"
-    elif [ -n "$O2" ]; then
+    elif [ -n "$O2" ] && \
+         [[ SLURM_JOB_PARTITION == "interactive" ]];
+    then
         conda_env="R-3.5.1-20181104"
+    elif [ -n "$ODYSSEY" ] && \
+         [[ SLURM_JOB_PARTITION == "test" ]];
+    then
+        conda_env="R-3.4.1"
     fi
-    if [ -n "$conda_env" ]; then
+    
+    if [ -n "$conda_env" ]
+    then
         conda activate "$conda_env"
     fi
+    
     unset -v conda_env
 fi
