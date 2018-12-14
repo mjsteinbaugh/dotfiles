@@ -1,6 +1,12 @@
 # Dot Files
 
-My configuration files shared between machines running [macOS](https://www.apple.com/macos/), [CentOS](https://www.centos.org/), [Azure](https://azure.microsoft.com/), and [Amazon Linux 2 AMI](https://aws.amazon.com/amazon-linux-2/).
+My configuration files shared between machines running:
+
+- [macOS](https://www.apple.com/macos/)
+- [Ubuntu](https://www.ubuntu.com)
+- [Azure](https://azure.microsoft.com/)
+- [Amazon Linux 2 AMI](https://aws.amazon.com/amazon-linux-2/)
+- [CentOS](https://www.centos.org/).
 
 ## See also
 
