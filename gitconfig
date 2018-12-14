@@ -1,9 +1,18 @@
 [user]
+    # Name used in commit messages.
 	name = Michael Steinbaugh
+	# Email used in commit messages.
 	email = mike@steinbaugh.com
+	# Public PGP key used for commit signing.
 	signingkey = C1BB2E4A7C4FF992
+[shell]
+    # Default SSH username.
+    username = mike
+[github]
+    # GitHub username for command line tools.
+    user = mjsteinbaugh
 [core]
-	editor = vim 
+	editor = vim
 	excludesfile = ~/.gitignore_global
 [commit]
 	gpgsign = true

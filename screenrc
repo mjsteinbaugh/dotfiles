@@ -1,0 +1,4 @@
+# https://github.com/MikeMcQuaid/dotfiles/blob/master/screenrc
+
+# Configure Terminal.app scrolling.
+termcapinfo xterm* ti@:te@
