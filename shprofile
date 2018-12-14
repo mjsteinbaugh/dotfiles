@@ -8,11 +8,29 @@ export HISTSIZE="100000"
 export SAVEHIST="100000"
 
 # OS variables.
+# Apple macOS
 [ "$(uname -s)" = "Darwin" ] && export MACOS=1 && export UNIX=1
+# Linux
 [ "$(uname -s)" = "Linux" ] && export LINUX=1 && export UNIX=1
+# Microsoft Windows
 uname -s | grep -q "_NT-" && export WINDOWS=1
+# Ubuntu on Windows
 grep -q "Microsoft" /proc/version 2>/dev/null && export UBUNTU_ON_WINDOWS=1
+# Microsoft Azure VM
 [[ $HOSTNAME =~ "azlabapp" ]] && export AZURE=1
+# Harvard O2 cluster
+if   [[ $HMS_CLUSTER == "o2" ]] && \
+     [[ $HOSTNAME =~ ".o2.rc.hms.harvard.edu" ]] && \
+     [[ -d /n/data1/ ]]
+then
+    export O2=1
+fi
+# Harvard Odyssey cluster
+if [[ $HOSTNAME =~ ".rc.fas.harvard.edu" ]] && \
+     [[ -d /n/regal/ ]]
+then
+    export ODYSSEY=1
+fi
 
 # Fix systems missing $USER.
 [ -z "$USER" ] && export USER="$(whoami)"

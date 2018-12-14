@@ -4,7 +4,7 @@
 	# Email used in commit messages.
 	email = mike@steinbaugh.com
 	# Public PGP key used for commit signing.
-	signingkey = C1BB2E4A7C4FF992
+	# signingkey = C1BB2E4A7C4FF992
 [shell]
     # Default SSH username.
     username = mike
@@ -15,7 +15,7 @@
 	editor = vim
 	excludesfile = ~/.gitignore_global
 [commit]
-	gpgsign = true
+	# gpgsign = true
 [push]
 	default = simple
 [color]

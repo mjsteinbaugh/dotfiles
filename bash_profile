@@ -81,17 +81,23 @@ fi
 # https://github.com/steinbaugh/koopa/
 if [ -n "$AZURE" ]; then
     CONDA_EXE="/usr/local/bin/miniconda3/bin/conda"
-else
+elif [ -n "$MACOS" ]; then
     CONDA_EXE="${HOME}/anaconda3/bin/conda"
+elif [ -n "O2" ]; then
+    CONDA_EXE="${HOME}/miniconda3/bin/conda"
 fi
 KOOPA_EXE="${HOME}/koopa/bin/koopa"
 source "${KOOPA_EXE}" activate
 if [ -n $(command -v conda) ]; then
     if [ -n "$AZURE" ]; then
         conda_env="bioinfo"
-    else
+    elif [ -n "$MACOS" ]; then
         conda_env="steinbaugh"
+    elif [ -n "$O2" ]; then
+        conda_env="R-3.5.1-20181104"
     fi
-    conda activate "$conda_env"
+    if [ -n "$conda_env" ]; then
+        conda activate "$conda_env"
+    fi
     unset -v conda_env
 fi
