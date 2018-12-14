@@ -1,11 +1,6 @@
 #!/bin/sh
 # shellcheck disable=SC2155
 
-# https://www.shellcheck.net/
-# https://github.com/koalaman/shellcheck/
-
-# https://github.com/MikeMcQuaid/dotfiles/blob/master/shrc.sh
-
 
 # Functions ====================================================================
 quiet_which() {

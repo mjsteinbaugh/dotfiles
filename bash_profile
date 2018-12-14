@@ -3,12 +3,17 @@
 
 export BASH_PROFILE=1
 
-# Load shared shell configuration.
-source ~/.shprofile
-
 # Check if this is a login and/or interactive shell.
 [ "$0" = "-bash" ] && export LOGIN_BASH=1
 echo "$-" | grep -q "i" && export INTERACTIVE_BASH=1
+
+# Load shared shell configuration.
+source ~/.shprofile
+
+# History
+export HISTCONTROL="ignoredups"
+export HISTFILE="$HOME/.bash_history"
+export PROMPT_COMMAND="history -a"
 
 # Set HOST for ZSH compatibility.
 export HOST="$HOSTNAME"
@@ -68,10 +73,10 @@ unset -v user wd
 # Only set key bindings on interactive shell.
 if [ -n "$INTERACTIVE_BASH" ]
 then
-    # fix delete key on macOS
+    # Fix delete key on macOS.
     [ "$MACOS" ] && bind '"\e[3~" delete-char'
 
-    # alternate mappings for Ctrl-U/V to search the history
+    # Alternate mappings for Ctrl-U/V to search the history.
     bind '"^u" history-search-backward'
     bind '"^v" history-search-forward'
 fi
