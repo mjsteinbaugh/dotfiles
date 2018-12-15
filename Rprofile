@@ -72,6 +72,10 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
     devtools::build(..., vignettes = vignettes)
 }
 
+.bb8$build_articles <- function(...) {
+    pkgdown::build_articles(...)
+}
+
 .bb8$build_home <- function(...) {
     pkgdown::build_home(...)
 }
