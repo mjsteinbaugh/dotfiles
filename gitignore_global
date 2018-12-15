@@ -1,32 +1,52 @@
-# Graylist ====
+# Sensitive files ====
+*_rsa
+*.pem
+.secrets
+secrets
+token.*
+
+
+# File system ====
+._*
+.*~
+*~
+~*
+
+
+# macOS ===
+.AppleDouble
+.DS_Store
+.LSOverride
+Icon
+
+# Files that might appear in the root of a volume.
+.DocumentRevisions-V100
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.fseventsd
+
+# Directories potentially created on a remote AFP share.
+.AppleDB
+.AppleDesktop
+.apdisk
+Network Trash Folder
+Temporary Items
+
+
+# Large files ====
 # *.html
 # *.pdf
 # *.png
 # *.rda
 # *.rds
-# bcbio/
-# bcbio-*/
-# data/
-# data-*/
-
-# Temporary files ====
-tmp_*
-xxx_*
-
-# File system ====
-._*
-.*~
-.DS_Store
-*~
-~*
-
-# Codes and keys ====
-token.rds
-
-# Large files ====
+*.RData
 *.bam
 *.bed
 *.bz2
+*.db
 *.err
 *.fa
 *.fasta
@@ -37,7 +57,6 @@ token.rds
 *.gz.*
 *.log
 *.out
-*.RData
 *.rdb
 *.rdx
 *.sam
@@ -45,37 +64,48 @@ token.rds
 *.xz
 *.zip
 
+
 # Large directories ====
+# bcbio-*/
+# bcbio/
+# data-*/
+# data/
 annotations/
-basespace/
 fastq/
 figures/
 links/
+reference/
+tmp/
+tmp_*/
+
 
 # GitHub Pages ====
-_drafts/
-_site/
 .jekyll-metadata
 .sass-cache
 Gemfile.lock
+_drafts/
+_site/
 
-# R And RStudio ====
-.httr-oauth
-.Rapp.history
-.RData
-.Rhistory
-.Rproj.user
+
+# R/RStudio ====
+# *.Rproj
+# *_cache/
+# *_files/
+*-Ex.R
+*.Rcheck
+*.knit.md
+*.utf8.md
 *_cache
 *_draft.Rmd
 *_files
-*-Ex.R
-*.knit.md
-*.Rcheck
-*.utf8.md
-# *.Rproj
+.RData
+.Rapp.history
+.Rhistory
+.Rproj.user
+.httr-oauth
 cache/
 results/
 revdep/
-vignettes/.build.timestamp
 vignettes/*.html
 vignettes/*.pdf
+vignettes/.build.timestamp
