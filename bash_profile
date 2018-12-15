@@ -1,6 +1,3 @@
-# NOTE: Don't attempt to enable strict mode (i.e. set -euo pipefail) here.
-# Otherwise, you can get locked out of a remote SSH server.
-
 export BASH_PROFILE=1
 
 # Load shared shell configuration.
@@ -57,7 +54,7 @@ prompt="\$"
 if [ "$USER" = "root" ]
 then
     user_color="35"
-elif [ -n "${SSH_CONNECTION}" ]
+elif [ -n "$SSH_CONNECTION" ]
 then
     user_color="36"
 else
@@ -75,35 +72,15 @@ unset -v user wd
 if [ -n "$INTERACTIVE_BASH" ]
 then
     # Fix delete key on macOS.
-    [ "$MACOS" ] && bind '"\e[3~" delete-char'
+    [ -n "$MACOS" ] && bind '"\e[3~" delete-char'
 
     # Alternate mappings for Ctrl-U/V to search the history.
     bind '"^u" history-search-backward'
     bind '"^v" history-search-forward'
 fi
 
-# koopa
-# https://github.com/steinbaugh/koopa/
-if [ -n "$AZURE" ]
-then
-    export CONDA_EXE="/usr/local/bin/miniconda3/bin/conda"
-elif [ -n "$MACOS" ]
-then
-    export CONDA_EXE="${HOME}/anaconda3/bin/conda"
-elif [ -n "$O2" ]
-then
-    export BCBIO_EXE="/n/app/bcbio/tools/bin/bcbio_nextgen.py"
-    export CONDA_EXE="${HOME}/miniconda3/bin/conda"
-elif [ -n "$ODYSSEY" ]
-then
-    export BCBIO_EXE="/n/regal/hsph_bioinfo/bcbio_nextgen/bin/bcbio_nextgen.py"
-    export CONDA_EXE="${HOME}/miniconda3/bin/conda"
-fi
-KOOPA_EXE="${HOME}/koopa/bin/koopa"
-source "${KOOPA_EXE}" activate
-
-# Activate conda, if environment is defined.
-if [ -n $(command -v conda) ]
+# Activate conda environment.
+if quiet_which conda
 then
     if [ -n "$AZURE" ]
     then
@@ -112,27 +89,9 @@ then
     then
         conda_env="steinbaugh"
     fi
-    
     if [ -n "$conda_env" ]
     then
         conda activate "$conda_env"
     fi
-    
     unset -v conda_env
-fi
-
-# Load an SSH key automatically, using SSH_KEY global variable.
-# SCP can fail unless this is interactive only.
-# To change SSH key passphrase:
-# ssh-keygen -p
-if [ -n "$INTERACTIVE_BASH" ] && \
-   [ -n "$LINUX" ]
-then
-    export SSH_KEY="${HOME}/.ssh/id_rsa"
-    if [ -r "$SSH_KEY" ]; then
-        # This step is necessary to start the ssh agent.
-        eval "$(ssh-agent -s)"
-        # Now we're ready to add the key.
-        ssh-add "$SSH_KEY"
-    fi
 fi

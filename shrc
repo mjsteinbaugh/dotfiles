@@ -4,33 +4,10 @@
 export SHRC=1
 
 
-# Functions ====================================================================
-quiet_which() {
-    which "$1" &>/dev/null
-}
-
-remove_from_path() {
-    [ -d "$1" ] || return
-    # Doesn't work for first item in the PATH.
-    export PATH=${PATH//:$1/}
-}
-
-add_to_path_start() {
-    [ -d "$1" ] || return
-    remove_from_path "$1"
-    export PATH="$1:$PATH"
-}
-
-add_to_path_end() {
-    [ -d "$1" ] || return
-    remove_from_path "$1"
-    export PATH="$PATH:$1"
-}
-
-force_add_to_path_start() {
-    remove_from_path "$1"
-    export PATH="$1:$PATH"
-}
+# koopa bootloader =============================================================
+# https://github.com/steinbaugh/koopa/
+KOOPA_EXE="${HOME}/koopa/bin/koopa"
+source "${KOOPA_EXE}" activate
 
 
 # Aliases ======================================================================
@@ -181,11 +158,6 @@ if [ "$MACOS" ]; then
         export HOMEBREW_REPOSITORY="$(brew --repo)"
         # export HOMEBREW_INSTALL_CLEANUP=1
     fi
-    
-    # Homebrew now supports a global variable to force bottle installations.
-    # https://github.com/Homebrew/brew/pull/4520/files
-    # https://github.com/Homebrew/brew/pull/4542/files
-    export HOMEBREW_FORCE_BOTTLE="1"
     
     # Use exa instead of ls, if installed.
     # It has better color support.
