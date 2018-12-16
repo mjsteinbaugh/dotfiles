@@ -1,4 +1,11 @@
-# On login:
+# What goes in here:
+# Bash-specific settings that inherit in sub-shells.
+# - History configuration
+# - Completions
+# - Prompt string (PS1)
+# - Key bindings
+
+# Script order on login:
 # 1. bash_profile
 # 2. shprofile
 # 3. bashrc

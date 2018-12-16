@@ -1,3 +1,8 @@
+# What goes in here:
+# Bash-specific settings that don't inherit in sub-shells.
+# - set
+# - shopt
+
 export BASHRC=1
 
 # Load shared shell configuration.

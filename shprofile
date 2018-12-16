@@ -1,17 +1,23 @@
+# What goes in here:
+# Settings that inherit/persist in sub-shells.
+# - koopa bootloader
+# - umask
+# - Exports, including PATH
+# - conda environment activation
+
+# NOTE: The OS variables are exported by koopa.
+
 export SHPROFILE=1
 
-
-# 077 is more secure, but 022 is more useful.
-# umask 022
-
-
-# koopa ========================================================================
+# Load koopa.
 # https://github.com/steinbaugh/koopa/
 KOOPA_EXE="${HOME}/koopa/bin/koopa"
 source "${KOOPA_EXE}" activate
 
+# umask
+# 077 is more secure, but 022 is more useful.
+# umask 022
 
-# Exports ======================================================================
 # Set up text editor.
 # Using vi mode instead of emacs by default.
 if quiet_which vim; then
@@ -67,8 +73,7 @@ export HISTTIMEFORMAT="%Y%m%d %T  "
 #     --iconv=utf-8,utf-8-mac
 export RSYNC_FLAGS="--archive --copy-links --delete-before --human-readable --progress"
 
-
-# conda environment ============================================================
+# Activate conda environment.
 if quiet_which conda
 then
     if [ -n "$AZURE" ]
@@ -85,10 +90,11 @@ then
     unset -v conda_env
 fi
 
-
-# Platform-specific ============================================================
 if [ -n "$MACOS" ]
 then
+    # Include sbin in PATH.
+    add_to_path_start "/usr/local/sbin"
+    
     export GREP_OPTIONS="--color=auto"
     export CLICOLOR=1
     # `man ls`: see LSCOLORS section for color designators.
@@ -96,9 +102,6 @@ then
     
     # rsync flags for APFS.
     export RSYNC_FLAGS_APFS="${RSYNC_FLAGS} --iconv=utf-8,utf-8-mac"
-    
-    # Include sbin in PATH.
-    add_to_path_start "/usr/local/sbin"
     
     # Homebrew
     if quiet_which brew
