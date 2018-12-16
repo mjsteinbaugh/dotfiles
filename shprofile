@@ -7,5 +7,24 @@ export SHPROFILE=1
 export HISTSIZE="100000"
 export SAVEHIST="100000"
 
-# Load secrets.
-[ -f "${HOME}/.secrets" ] && source "${HOME}/.secrets"
+# Load koopa.
+# https://github.com/steinbaugh/koopa/
+KOOPA_EXE="${HOME}/koopa/bin/koopa"
+source "${KOOPA_EXE}" activate
+
+# Activate conda environment.
+if quiet_which conda
+then
+    if [ -n "$AZURE" ]
+    then
+        conda_env="bioinfo"
+    elif [ -n "$MACOS" ]
+    then
+        conda_env="steinbaugh"
+    fi
+    if [ -n "$conda_env" ]
+    then
+        conda activate "$conda_env"
+    fi
+    unset -v conda_env
+fi

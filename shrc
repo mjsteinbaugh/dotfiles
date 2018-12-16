@@ -4,10 +4,8 @@
 export SHRC=1
 
 
-# koopa bootloader =============================================================
-# https://github.com/steinbaugh/koopa/
-KOOPA_EXE="${HOME}/koopa/bin/koopa"
-source "${KOOPA_EXE}" activate
+# Load secrets.
+[ -f "${HOME}/.secrets" ] && source "${HOME}/.secrets"
 
 
 # Aliases ======================================================================
