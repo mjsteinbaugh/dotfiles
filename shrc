@@ -8,6 +8,10 @@
 
 export SHRC=1
 
+quiet_which() {
+    which "$1" &>/dev/null
+}
+
 # alias be="noglob bundle exec"
 # alias gist="gist --open --copy"
 # alias ls="ls -Fhlo --color"
