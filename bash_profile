@@ -1,3 +1,9 @@
+# On login:
+# 1. bash_profile
+# 2. shprofile
+# 3. bashrc
+# 4. shrc
+
 export BASH_PROFILE=1
 
 # Load shared shell configuration.
