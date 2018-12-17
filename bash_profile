@@ -1,9 +1,11 @@
 # What goes in here:
 # Bash-specific settings that inherit in sub-shells.
+# - koopa bootloader
 # - History configuration
 # - Completions
 # - Prompt string (PS1)
 # - Key bindings
+# - conda environment activation
 
 # Script order on login:
 # 1. bash_profile

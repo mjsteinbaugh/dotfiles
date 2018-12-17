@@ -1,9 +1,7 @@
 # What goes in here:
 # Settings that inherit/persist in sub-shells.
-# - koopa bootloader
 # - umask
 # - Exports, including PATH
-# - conda environment activation
 
 # NOTE: The OS variables are exported by koopa.
 
