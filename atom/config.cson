@@ -8,10 +8,6 @@
       "autocomplete-plus"
     ]
     telemetryConsent: "limited"
-    themes: [
-      "one-dark-ui"
-      "base16-tomorrow-dark-theme"
-    ]
   editor:
     fontFamily: "SFMono-Regular, Menlo, Consolas, DejaVu Sans Mono, monospace"
     fontSize: 16
@@ -23,5 +19,9 @@
     userId: "db23d899-2407-a099-e1a7-cbf07f341873"
   "line-ending-selector":
     defaultLineEnding: "LF"
+  "seti-ui":
+    compactView: true
+    disableAnimations: true
+    themeColor: "Purple"
   welcome:
     showOnStartup: false
