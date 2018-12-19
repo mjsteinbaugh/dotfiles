@@ -5,16 +5,18 @@
 
 # NOTE: The OS variables are exported by koopa.
 
-export SHPROFILE=1
-
-# Load koopa.
-# https://github.com/steinbaugh/koopa/
-KOOPA_EXE="${HOME}/koopa/bin/koopa"
-source "${KOOPA_EXE}" activate
+# Enable for debugging:
+# echo "SHPROFILE"
+# export SHPROFILE=1
 
 # umask
 # 077 is more secure, but 022 is more useful.
 # umask 022
+
+# Export OS variables.
+[ "$(uname -s)" = "Darwin" ] && export MACOS=1 && export UNIX=1
+[ "$(uname -s)" = "Linux" ] && export LINUX=1 && export UNIX=1
+[[ $HOSTNAME =~ "azlabapp" ]] && export AZURE=1
 
 # Set up text editor.
 # Using vi mode instead of emacs by default.
@@ -46,7 +48,8 @@ export LESS_TERMEND=$'\E[0m'
 export PROMPT_DIRTRIM=3
 
 # Ruby gems.
-if [[ -d "${HOME}/.gem" ]]; then
+if [ -d "${HOME}/.gem" ]
+then
     export GEM_HOME="${HOME}/.gem"
 fi
 
@@ -70,23 +73,6 @@ export HISTTIMEFORMAT="%Y%m%d %T  "
 #     --acls --xattrs
 #     --iconv=utf-8,utf-8-mac
 export RSYNC_FLAGS="--archive --copy-links --delete-before --human-readable --progress"
-
-# Activate conda environment.
-if quiet_which conda
-then
-    if [ -n "$AZURE" ]
-    then
-        conda_env="bioinfo"
-    elif [ -n "$MACOS" ]
-    then
-        conda_env="steinbaugh"
-    fi
-    if [ -n "$conda_env" ]
-    then
-        conda activate "$conda_env"
-    fi
-    unset -v conda_env
-fi
 
 if [ -n "$MACOS" ]
 then

@@ -3,7 +3,9 @@
 # - set
 # - shopt
 
-export BASHRC=1
+# Enable for debugging:
+# echo "BASHRC"
+# export BASHRC=1
 
 # Load shared shell configuration.
 source ~/.shrc

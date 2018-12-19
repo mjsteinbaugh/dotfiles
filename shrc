@@ -4,9 +4,12 @@
 # - Functions
 # - Options that can be set across bash and zsh.
 
-# NOTE: OS variables are exported by koopa, which is sourced in shprofile.
+# NOTE: OS variables are exported by koopa. This is defined in shprofile, which
+# should get sourced before this file.
 
-export SHRC=1
+# Enable for debugging:
+# echo "SHRC"
+# export SHRC=1
 
 quiet_which() {
     which "$1" &>/dev/null
@@ -77,7 +80,8 @@ alias R="R --no-restore --no-save"
 quiet_which dircolors && eval "$(dircolors -b)"
 
 # Fake realpath support, if necessary.
-if [ -z $(quiet_which realpath) ]; then
+if [ -z $(quiet_which realpath) ]
+then
     alias realpath="readlink -f"
 fi
 
@@ -101,7 +105,7 @@ then
         . "${HOME}/git/bash/${script}.sh" $*
     }
     
-    # Create the TODAY directory in bucket automatically.
+    # Create the today directory in bucket automatically.
     mjs bucket
     
     # Aliases

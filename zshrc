@@ -2,7 +2,9 @@
 # It should contain commands to set up aliases, functions, bindings, etc.
 # https://unix.stackexchange.com/a/71258
 
-export ZSHRC=1
+# Enable for debugging:
+# echo "ZSHRC"
+# export ZSHRC=1
 
 # Check if this is a login shell.
 [ "$0" = "-zsh" ] && export LOGIN_ZSH=1

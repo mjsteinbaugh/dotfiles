@@ -1,4 +1,6 @@
-export ZPROFILE=1
+# Enable for debugging:
+# echo "ZPROFILE"
+# export ZPROFILE=1
 
 # Load shared shell configuration.
 source ~/.shprofile

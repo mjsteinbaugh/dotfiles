@@ -13,10 +13,9 @@
 # 3. bashrc
 # 4. shrc
 
-export BASH_PROFILE=1
-
-# Load shared shell configuration.
-source ~/.shprofile
+# Enable for debugging:
+# echo "BASH_PROFILE"
+# export BASH_PROFILE=1
 
 # Check if this is a login and/or interactive shell.
 [ "$0" = "-bash" ] && export LOGIN_BASH=1
@@ -27,6 +26,9 @@ if [ -n "$LOGIN_BASH" ] && [ -n "$INTERACTIVE_BASH" ]
 then
     source ~/.bashrc
 fi
+
+# Load shared shell configuration.
+source ~/.shprofile
 
 # Set HOST for ZSH compatibility.
 export HOST="$HOSTNAME"
@@ -85,3 +87,16 @@ then
     bind '"^u" history-search-backward'
     bind '"^v" history-search-forward'
 fi
+
+# Load koopa.
+# https://github.com/steinbaugh/koopa/
+# Note that this currently only works with bash.
+if [ -n "$AZURE" ]
+then
+    export CONDA_DEFAULT_ENV="bioinfo"
+elif [ -n "$MACOS" ]
+then
+    export CONDA_DEFAULT_ENV="steinbaugh"
+fi
+export KOOPA_EXE="${HOME}/koopa/bin/koopa"
+source "${KOOPA_EXE}" activate
