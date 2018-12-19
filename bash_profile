@@ -91,6 +91,7 @@ fi
 # Load koopa.
 # https://github.com/steinbaugh/koopa/
 # Note that this currently only works with bash.
+# Source this after we've defined the prompt string.
 if [ -n "$AZURE" ]
 then
     export CONDA_DEFAULT_ENV="bioinfo"
