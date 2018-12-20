@@ -17,15 +17,12 @@
 # echo "BASH_PROFILE"
 # export BASH_PROFILE=1
 
+# Ensure bashrc gets sourced.
+source ~/.bashrc
+
 # Check if this is a login and/or interactive shell.
 [ "$0" = "-bash" ] && export LOGIN_BASH=1
 echo "$-" | grep -q "i" && export INTERACTIVE_BASH=1
-
-# Run bashrc if this is a login, interactive shell.
-if [ -n "$LOGIN_BASH" ] && [ -n "$INTERACTIVE_BASH" ]
-then
-    source ~/.bashrc
-fi
 
 # Load shared shell configuration.
 source ~/.shprofile

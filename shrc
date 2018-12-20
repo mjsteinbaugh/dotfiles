@@ -96,7 +96,7 @@ then
     else
         alias ls="ls -F"
     fi
-    
+
     # Call personal scripts prefixed with "mjs".
     # Currently this is macOS-specific.
     function mjs {
@@ -104,10 +104,10 @@ then
         shift 1
         . "${HOME}/git/bash/${script}.sh" $*
     }
-    
+
     # Create the today directory in bucket automatically.
     mjs bucket
-    
+
     # Aliases
     alias autofs="sudo automount -vc"
     alias finder-hide="setfile -a V"

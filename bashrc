@@ -7,9 +7,6 @@
 # echo "BASHRC"
 # export BASHRC=1
 
-# Load shared shell configuration.
-source ~/.shrc
-
 # Set up text editor.
 # Using vi mode instead of emacs by default.
 set -o vi

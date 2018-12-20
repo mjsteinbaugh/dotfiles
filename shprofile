@@ -9,6 +9,9 @@
 # echo "SHPROFILE"
 # export SHPROFILE=1
 
+# Load shared shell configuration.
+source ~/.shrc
+
 # umask
 # 077 is more secure, but 022 is more useful.
 # umask 022
@@ -78,15 +81,15 @@ if [ -n "$MACOS" ]
 then
     # Include sbin in PATH.
     add_to_path_start "/usr/local/sbin"
-    
+
     export GREP_OPTIONS="--color=auto"
     export CLICOLOR=1
     # `man ls`: see LSCOLORS section for color designators.
     # export LSCOLORS="Gxfxcxdxbxegedabagacad"
-    
+
     # rsync flags for APFS.
     export RSYNC_FLAGS_APFS="${RSYNC_FLAGS} --iconv=utf-8,utf-8-mac"
-    
+
     # Homebrew
     if quiet_which brew
     then
@@ -94,35 +97,35 @@ then
         export HOMEBREW_REPOSITORY="$(brew --repo)"
         # export HOMEBREW_INSTALL_CLEANUP=1
     fi
-    
+
     # Enable more colors with grc.
     # shellcheck disable=SC1090
     [ -f "$HOMEBREW_PREFIX/etc/grc.bashrc" ] && source "$HOMEBREW_PREFIX/etc/grc.bashrc"
-    
+
     # Python
     # Using Conda Python instead of Homebrew version (see koopa).
     # https://docs.brew.sh/Homebrew-and-Python
     # brew info python
     # python -V
     # export PATH="/usr/local/opt/python/libexec/bin:${PATH}"
-    
+
     # Ruby (rbenv)
     # https://github.com/rbenv/rbenv
     # export PATH="~/.rbenv/shims:${PATH}"
     # eval "$(rbenv init -)"
     quiet_which rbenv && add_to_path_start "$(rbenv root)/shims"
-    
+
     # Perl (perlbrew)
     # https://perlbrew.pl
     # if [ -f "${HOME}/perl5/perlbrew/etc/bashrc" ]; then
     #     . "${HOME}/perl5/perlbrew/etc/bashrc"
     # fi
-    
+
     # Ensembl Perl API
     # ensembl="${HOME}/GitHub/ensembl/75"
     # if [ -d "$ensembl" ]; then
     #     export PATH="${ensembl}/ensembl-git-tools/bin:${PATH}"
-    #    
+    #
     #     # perlbrew switch perl-5.14.4
     #     PERL5LIB="${PERL5LIB}:${ensembl}/bioperl-1.6.1"
     #     PERL5LIB="${PERL5LIB}:${ensembl}/ensembl/modules"
@@ -132,7 +135,7 @@ then
     #     export PERL5LIB
     # fi
     # unset -v ensembl
-    
+
     # Google Cloud SDK
     # Install using Homebrew Cask:
     # brew cask install google-cloud-sdk
