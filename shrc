@@ -57,7 +57,7 @@ quiet_which() {
 alias e="exit"
 
 # Improve common file system command defaults.
-alias cp="cp -iruv"
+alias cp="cp -irv"
 alias mkdir="mkdir -vp"
 alias mv="mv -iv"
 alias rm="rm -iv"
