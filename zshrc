@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # .zshrc is sourced in interactive shells.
 # It should contain commands to set up aliases, functions, bindings, etc.
 # https://unix.stackexchange.com/a/71258

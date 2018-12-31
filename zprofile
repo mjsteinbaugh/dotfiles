@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # Enable for debugging:
 # echo "ZPROFILE"
 # export ZPROFILE=1

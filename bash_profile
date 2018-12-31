@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # What goes in here:
 # Bash-specific settings that inherit in sub-shells.
 # - koopa bootloader
@@ -18,14 +20,15 @@
 # export BASH_PROFILE=1
 
 # Ensure bashrc gets sourced.
-source ~/.bashrc
+# shellcheck source=/dev/null
+. ~/.bashrc
 
 # Check if this is a login and/or interactive shell.
 [ "$0" = "-bash" ] && export LOGIN_BASH=1
 echo "$-" | grep -q "i" && export INTERACTIVE_BASH=1
 
 # Load shared shell configuration.
-source ~/.shprofile
+. ~/.shprofile
 
 # Set HOST for ZSH compatibility.
 export HOST="$HOSTNAME"
@@ -42,8 +45,8 @@ then
     [ -r /etc/bashrc ] && . /etc/bashrc
 
     # Source Bash completions.
-    [ -r /etc/profile.d/bash-completion ] && source /etc/profile.d/bash-completion
-    [ -r /usr/local/etc/bash_completion ] && source /usr/local/etc/bash_completion
+    [ -r /etc/profile.d/bash-completion ] && . /etc/profile.d/bash-completion
+    [ -r /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
     # Define the prompt string and make colorful.
     # \!: the history number of this command
@@ -69,7 +72,7 @@ then
     else
         user_color="32"
     fi
-    if [ $TERM = "xterm-256color" ]
+    if [ "$TERM" = "xterm-256color" ]
     then
         user="\[\033[01;${user_color}m\]${user}\[\033[00m\]"
         wd="\[\033[01;34m\]${wd}\[\033[00m\]"
@@ -97,4 +100,4 @@ then
     export CONDA_DEFAULT_ENV="steinbaugh"
 fi
 export KOOPA_EXE="${HOME}/koopa/bin/koopa"
-source "${KOOPA_EXE}" activate
+. "${KOOPA_EXE}" activate

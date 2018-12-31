@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # What goes in here:
 # Things that are not inherited in sub-shells.
 # - Aliases
@@ -11,20 +13,27 @@
 # echo "SHRC"
 # export SHRC=1
 
-remove_from_path() {
-    [[ -d "$1" ]] || return
-    # Doesn't work for first item in the PATH.
-    export PATH=${PATH//:$1/}
-}
-
 add_to_path_start() {
-    [[ -d "$1" ]] || return
-    remove_from_path "$1"
+    [ -d "$1" ] || return
     export PATH="$1:$PATH"
 }
 
+# Regular expression matching that is POSIX compliant
+# https://stackoverflow.com/questions/21115121
+# Avoid using `[[ =~ ]]` in sh config files.
+# expr is faster than using case
+quiet_expr() {
+    expr "$1" : "$2" 1>/dev/null
+}
+
+# Don't use `&>` here, which isn't POSIX
+# https://unix.stackexchange.com/a/80632
+# POSIX:
+# ls good bad >/dev/null 2>&1
+# bash/zsh
+# ls good bad &>/dev/null
 quiet_which() {
-    which "$1" &>/dev/null
+    command -v "$1" >/dev/null 2>&1
 }
 
 # alias be="noglob bundle exec"
@@ -92,12 +101,12 @@ alias R="R --no-restore --no-save"
 quiet_which dircolors && eval "$(dircolors -b)"
 
 # Fake realpath support, if necessary.
-if [ -z $(quiet_which realpath) ]
+if [ -z "$(quiet_which realpath)" ]
 then
     alias realpath="readlink -f"
 fi
 
-if [ -n "$MACOS" ]
+if [ "$(uname -s)" = "Darwin" ]
 then
     # Use exa instead of ls, if installed.
     # It has better color support.
@@ -111,10 +120,13 @@ then
 
     # Call personal scripts prefixed with "mjs".
     # Currently this is macOS-specific.
-    function mjs {
-        local script="$1"
+    mjs() {
+        script="$1"
         shift 1
-        . "${HOME}/git/bash/${script}.sh" $*
+        # shellcheck source=/dev/null
+        # shellcheck disable=SC2240
+        . "${HOME}/git/bash/${script}.sh" "$@"
+        unset -v script
     }
 
     # Create the today directory in bucket automatically.

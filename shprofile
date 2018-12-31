@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # What goes in here:
 # Settings that inherit/persist in sub-shells.
 # - umask
@@ -10,7 +12,8 @@
 # export SHPROFILE=1
 
 # Load shared shell configuration.
-source ~/.shrc
+# shellcheck source=/dev/null
+. ~/.shrc
 
 # umask
 # 077 is more secure, but 022 is more useful.
@@ -19,13 +22,20 @@ source ~/.shrc
 # Export OS variables.
 [ "$(uname -s)" = "Darwin" ] && export MACOS=1 && export UNIX=1
 [ "$(uname -s)" = "Linux" ] && export LINUX=1 && export UNIX=1
-[[ $HOSTNAME =~ "azlabapp" ]] && export AZURE=1
+
+# Accessible as $HOSTNAME in bash.
+if quiet_expr "$(uname -n)" "azlabapp"
+then
+    export AZURE=1
+fi
 
 # Set up text editor.
 # Using vi mode instead of emacs by default.
-if quiet_which vim; then
+if quiet_which vim
+then
     export EDITOR="vim"
-elif  quiet_which vi; then
+elif quiet_which vi
+then
     export EDITOR="vi"
 fi
 
@@ -34,16 +44,16 @@ export HISTSIZE="100000"
 export SAVEHIST="100000"
 
 # Enable colorful manpages.
-export LESS_TERMCAP_mb=$'\E[01;31m'
-export LESS_TERMCAP_md=$'\E[01;31m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;44;33m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;32m'
+# export LESS_TERMCAP_mb=$'\E[01;31m'
+# export LESS_TERMCAP_md=$'\E[01;31m'
+# export LESS_TERMCAP_me=$'\E[0m'
+# export LESS_TERMCAP_se=$'\E[0m'
+# export LESS_TERMCAP_so=$'\E[01;44;33m'
+# export LESS_TERMCAP_ue=$'\E[0m'
+# export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Set to avoid `env` output from changing console color.
-export LESS_TERMEND=$'\E[0m'
+# export LESS_TERMEND=$'\E[0m'
 
 # Trim the number of directories in prompt (PS1).
 # Supported in bash 4.
@@ -57,7 +67,8 @@ then
 fi
 
 # GnuPGP. Enable passphrase prompting in terminal.
-export GPG_TTY=$(tty)
+GPG_TTY=$(tty)
+export GPG_TTY
 
 # Add the date/time to `history` command output.
 # Note that on macOS bash will fail if `set -e` is set and this isn't exported.
@@ -93,14 +104,16 @@ then
     # Homebrew
     if quiet_which brew
     then
-        export HOMEBREW_PREFIX="$(brew --prefix)"
-        export HOMEBREW_REPOSITORY="$(brew --repo)"
+        HOMEBREW_PREFIX="$(brew --prefix)"
+        export HOMEBREW_PREFIX
+        HOMEBREW_REPOSITORY="$(brew --repo)"
+        export HOMEBREW_REPOSITORY
         # export HOMEBREW_INSTALL_CLEANUP=1
     fi
 
     # Enable more colors with grc.
     # shellcheck disable=SC1090
-    [ -f "$HOMEBREW_PREFIX/etc/grc.bashrc" ] && source "$HOMEBREW_PREFIX/etc/grc.bashrc"
+    [ -f "$HOMEBREW_PREFIX/etc/grc.bashrc" ] && . "$HOMEBREW_PREFIX/etc/grc.bashrc"
 
     # Python
     # Using Conda Python instead of Homebrew version (see koopa).

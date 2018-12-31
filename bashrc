@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # What goes in here:
 # Bash-specific settings that don't inherit in sub-shells.
 # - set
