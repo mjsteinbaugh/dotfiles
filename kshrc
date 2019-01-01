@@ -1,11 +1,10 @@
-# .kshrc
+#!/usr/bin/env ksh
 
 # Source global definitions
-if [ -f /etc/kshrc ]; then
-	. /etc/kshrc
-fi
+# shellcheck source=/dev/null
+[ -f /etc/kshrc ] && . /etc/kshrc
 
-# use emacs editing mode by default
+# Use emacs editing mode by default
 set -o emacs
 
 # User specific aliases and functions
