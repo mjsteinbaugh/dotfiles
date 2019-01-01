@@ -44,9 +44,9 @@ then
     [ -r /etc/profile.d/bash-completion ] && source /etc/profile.d/bash-completion
     [ -r /usr/local/etc/bash_completion ] && source /usr/local/etc/bash_completion
 
-    # Define the prompt string and make colorful.
-    # \!: the history number of this command
+    # Define the prompt string.
     # \#: the command number of this command
+    # \!: the history number of this command
     # \H: hostname
     # \W: working directory basename
     # \h: hostname up to the first `.`
@@ -55,11 +55,13 @@ then
     # \s: shell name, the basename of `$0`
     # \u: username
     # \w: working directory
-    user="\u@\h"
-    history="[\!; \#]"
-    wd="\w"
+    
+    history="[c\#; h\!]"
     # prompt="\$"
     prompt="❯"
+    # Only show the user/host for SSH.
+    user="\u@\h"
+    wd="\w"
     
     # Foreground colors (text)
     # https://misc.flogisoft.com/bash/tip_colors_and_formatting
@@ -81,17 +83,8 @@ then
     # 96 light cyan
     # 97 white
     
+    user_color="33"
     wd_color="39"
-    
-    if [ "$USER" = "root" ]
-    then
-        user_color="31"
-    elif [ -n "$SSH_CONNECTION" ]
-    then
-        user_color="32"
-    else
-        user_color="33"
-    fi
     
     if [ "$TERM" = "xterm-256color" ]
     then
@@ -99,8 +92,19 @@ then
         wd="\[\033[01;${wd_color}m\]${wd}\[\033[00m\]"
     fi
     
-    export PS1="\n${user} ${history}\n${wd}\n${prompt} "
-    unset -v user user_color wd wd_color
+    PS1="${wd} ${history}\n${prompt} "
+    
+    # Only include the user and hostname for SSH/root.
+    if [ -n "$SSH_CONNECTION" ] || [ "$USER" = "root" ]
+    then
+        PS1="${user}\n${PS1}"
+    fi
+    
+    # Add an extra line break for improved legibility.
+    PS1="\n${PS1}"
+    export PS1
+    
+    unset -v history prompt user user_color wd wd_color
 
     # Fix delete key on macOS.
     [ -n "$MACOS" ] && bind '"\e[3~" delete-char'

@@ -298,7 +298,9 @@ set.seed(.bb8$seed)
             # Enable OAuth token generation using httr on a remote R server.
             # This is used by googlesheets, for example.
             httr_oob_default = TRUE,
-            max.print = 1000L
+            max.print = 1000L,
+            # Unicode character has improved legibility (see zsh pure).
+            prompt = "❯ "
         )
 
         # Turn on completion of installed package names.
