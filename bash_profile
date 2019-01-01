@@ -15,20 +15,16 @@
 # 3. bashrc
 # 4. shrc
 
-# Enable for debugging:
-# echo "BASH_PROFILE"
+# Enable for debugging.
 # export BASH_PROFILE=1
 
 # Ensure bashrc gets sourced.
 # shellcheck source=/dev/null
-. ~/.bashrc
+source ~/.bashrc
 
 # Check if this is a login and/or interactive shell.
 [ "$0" = "-bash" ] && export LOGIN_BASH=1
 echo "$-" | grep -q "i" && export INTERACTIVE_BASH=1
-
-# Load shared shell configuration.
-. ~/.shprofile
 
 # Set HOST for ZSH compatibility.
 export HOST="$HOSTNAME"
@@ -45,8 +41,8 @@ then
     [ -r /etc/bashrc ] && . /etc/bashrc
 
     # Source Bash completions.
-    [ -r /etc/profile.d/bash-completion ] && . /etc/profile.d/bash-completion
-    [ -r /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+    [ -r /etc/profile.d/bash-completion ] && source /etc/profile.d/bash-completion
+    [ -r /usr/local/etc/bash_completion ] && source /usr/local/etc/bash_completion
 
     # Define the prompt string and make colorful.
     # \!: the history number of this command
@@ -62,23 +58,49 @@ then
     user="\u@\h"
     history="[\!; \#]"
     wd="\w"
-    prompt="\$"
+    # prompt="\$"
+    prompt="❯"
+    
+    # Foreground colors (text)
+    # https://misc.flogisoft.com/bash/tip_colors_and_formatting
+    # 39 default
+    # 30 black
+    # 31 red
+    # 32 green
+    # 33 yellow
+    # 34 blue
+    # 35 magenta
+    # 36 cyan
+    # 37 light gray
+    # 90 dark gray
+    # 91 light red
+    # 92 light green
+    # 93 light yellow
+    # 94 light blue
+    # 95 light magenta
+    # 96 light cyan
+    # 97 white
+    
+    wd_color="39"
+    
     if [ "$USER" = "root" ]
     then
-        user_color="35"
+        user_color="31"
     elif [ -n "$SSH_CONNECTION" ]
     then
-        user_color="36"
-    else
         user_color="32"
+    else
+        user_color="33"
     fi
+    
     if [ "$TERM" = "xterm-256color" ]
     then
         user="\[\033[01;${user_color}m\]${user}\[\033[00m\]"
-        wd="\[\033[01;34m\]${wd}\[\033[00m\]"
+        wd="\[\033[01;${wd_color}m\]${wd}\[\033[00m\]"
     fi
-    export PS1="${user} ${history}\n${wd}\n${prompt} "
-    unset -v user wd
+    
+    export PS1="\n${user} ${history}\n${wd}\n${prompt} "
+    unset -v user user_color wd wd_color
 
     # Fix delete key on macOS.
     [ -n "$MACOS" ] && bind '"\e[3~" delete-char'
@@ -88,16 +110,5 @@ then
     bind '"^v" history-search-forward'
 fi
 
-# Load koopa.
-# https://github.com/steinbaugh/koopa/
-# Note that this currently only works with bash.
-# Source this after we've defined the prompt string.
-if [ -n "$AZURE" ]
-then
-    export CONDA_DEFAULT_ENV="bioinfo"
-elif [ -n "$MACOS" ]
-then
-    export CONDA_DEFAULT_ENV="steinbaugh"
-fi
-export KOOPA_EXE="${HOME}/koopa/bin/koopa"
-. "${KOOPA_EXE}" activate
+# Load shared shell configuration.
+source ~/.shprofile

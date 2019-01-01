@@ -5,8 +5,7 @@
 # - set
 # - shopt
 
-# Enable for debugging:
-# echo "BASHRC"
+# Enable for debugging.
 # export BASHRC=1
 
 # Set up text editor.

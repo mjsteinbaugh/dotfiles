@@ -1,14 +1,14 @@
 #!/usr/bin/env zsh
 
-# Enable for debugging:
-# echo "ZPROFILE"
+# Enable for debugging.
 # export ZPROFILE=1
 
 # Load shared shell configuration.
 source ~/.shprofile
 
 # Enable completions.
-autoload -U compinit && compinit
+# zsh compinit: insecure directories and files, run compaudit for list.
+# autoload -U compinit && compinit
 
 # Enable regex moving.
 autoload -U zmv

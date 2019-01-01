@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # What goes in here:
 # Things that are not inherited in sub-shells.
@@ -9,9 +9,8 @@
 # NOTE: OS variables are exported by koopa. This is defined in shprofile, which
 # should get sourced before this file.
 
-# Enable for debugging:
-# echo "SHRC"
-# export SHRC=1
+# Enable for debugging.
+export SHRC=1
 
 add_to_path_start() {
     [ -d "$1" ] || return
@@ -26,12 +25,8 @@ quiet_expr() {
     expr "$1" : "$2" 1>/dev/null
 }
 
-# Don't use `&>` here, which isn't POSIX
+# Don't use `&>` here, it isn't POSIX.
 # https://unix.stackexchange.com/a/80632
-# POSIX:
-# ls good bad >/dev/null 2>&1
-# bash/zsh
-# ls good bad &>/dev/null
 quiet_which() {
     command -v "$1" >/dev/null 2>&1
 }

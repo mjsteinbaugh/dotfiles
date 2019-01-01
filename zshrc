@@ -4,12 +4,14 @@
 # It should contain commands to set up aliases, functions, bindings, etc.
 # https://unix.stackexchange.com/a/71258
 
-# Enable for debugging:
-# echo "ZSHRC"
+# Enable for debugging.
 # export ZSHRC=1
 
 # Check if this is a login shell.
 [ "$0" = "-zsh" ] && export LOGIN_ZSH=1
+
+# Source zprofile configuration if necessary.
+[ -n "$LOGIN_ZSH" ] && source ~/.zprofile
 
 # Source shared shell configuration.
 source ~/.shrc

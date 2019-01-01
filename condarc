@@ -1,3 +1,6 @@
+# Don't change the command prompt (PS1)
+changeps1: False
+
 # https://bioconda.github.io/#set-up-channels
 channels:
   - conda-forge
