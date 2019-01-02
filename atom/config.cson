@@ -8,6 +8,10 @@
       "autocomplete-plus"
     ]
     telemetryConsent: "limited"
+    themes: [
+      "dracula-ui"
+      "dracula-syntax"
+    ]
   editor:
     fontFamily: "SFMono-Regular, Menlo, Consolas, DejaVu Sans Mono, monospace"
     fontSize: 16
