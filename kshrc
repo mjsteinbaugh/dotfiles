@@ -5,6 +5,4 @@
 [ -f /etc/kshrc ] && . /etc/kshrc
 
 # Use emacs editing mode by default
-set -o emacs
-
-# User specific aliases and functions
+# set -o emacs
