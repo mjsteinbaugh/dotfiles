@@ -84,8 +84,15 @@ then
     # 96 light cyan
     # 97 white
     
-    user_color="33"
-    prompt_color="35"  # Match zsh pure prompt.
+    # Change the user color for SSH session.
+    if [ -n "$SSH_CONNECTION" ]
+    then
+        user_color="33"
+    else
+        user_color="36"
+    fi
+    
+    prompt_color="35"  # Matching zsh pure prompt.
     wd_color="34"
     
     if [ "$TERM" = "xterm-256color" ]
@@ -94,16 +101,7 @@ then
         wd="\[\033[01;${wd_color}m\]${wd}\[\033[00m\]"
     fi
     
-    PS1="${wd} ${history}\n${prompt} "
-    
-    # Only include the user and hostname for SSH/root.
-    if [ -n "$SSH_CONNECTION" ] || [ "$USER" = "root" ]
-    then
-        PS1="${user}\n${PS1}"
-    fi
-    
-    # Add an extra line break for improved legibility.
-    PS1="\n${PS1}"
+    PS1="\n${user} ${history}\n${wd}\n${prompt} "
     export PS1
     
     unset -v history prompt user user_color wd wd_color
