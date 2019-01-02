@@ -16,7 +16,7 @@
 # 4. shrc
 
 # Enable for debugging.
-# export BASH_PROFILE=1
+export BASH_PROFILE=1
 
 # Ensure bashrc gets sourced.
 # shellcheck source=/dev/null
@@ -84,7 +84,8 @@ then
     # 97 white
     
     user_color="33"
-    wd_color="39"
+    prompt_color="35"  # Match zsh pure prompt.
+    wd_color="34"
     
     if [ "$TERM" = "xterm-256color" ]
     then
