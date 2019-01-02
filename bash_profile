@@ -93,7 +93,7 @@ then
         wd="\[\033[01;${wd_color}m\]${wd}\[\033[00m\]"
     fi
     
-    PS1="${wd}  ${history}\n${prompt} "
+    PS1="${wd} ${history}\n${prompt} "
     
     # Only include the user and hostname for SSH/root.
     if [ -n "$SSH_CONNECTION" ] || [ "$USER" = "root" ]
