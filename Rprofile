@@ -300,7 +300,8 @@ set.seed(.bb8$seed)
             httr_oob_default = TRUE,
             max.print = 1000L,
             # Unicode character has improved legibility (see zsh pure).
-            prompt = "❯ "
+            # prompt = "❯ "
+            prompt = "> "
         )
 
         # Turn on completion of installed package names.
