@@ -71,10 +71,15 @@ Temporary Items
 # data-*/
 # data/
 annotations/
+bam/
+bed/
+bigwig/
 fastq/
 figures/
 links/
+rds/
 reference/
+sam/
 tmp/
 tmp_*/
 
