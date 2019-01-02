@@ -57,8 +57,9 @@ then
     # \w: working directory
     
     history="[c\#; h\!]"
-    # prompt="\$"
-    prompt="❯"
+    prompt="\$"
+    # Unicode doesn't work with PuTTY on Windows.
+    # prompt="❯"
     # Only show the user/host for SSH.
     user="\u@\h"
     wd="\w"
