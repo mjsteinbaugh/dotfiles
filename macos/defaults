@@ -1,0 +1,2 @@
+# Stop asking me about Time Machine backup.
+defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
