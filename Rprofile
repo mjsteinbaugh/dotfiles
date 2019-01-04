@@ -54,60 +54,60 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
 
 # Invisible utility functions ==================================================
 # Assign shortcuts to a hidden environment.
-.bb8 <- new.env()
+.env <- new.env()
 
-.bb8$available <- function(...) {
+.env$available <- function(...) {
     available::available(...)
 }
 
-.bb8$bb8 <- function(...) {
+.env$bb8 <- function(...) {
     bb8::bb8(...)
 }
 
-.bb8$BiocCheck <- function(package = ".", ...) {
+.env$BiocCheck <- function(package = ".", ...) {
     BiocCheck::BiocCheck(package = package, ...)
 }
 
-.bb8$build <- function(..., vignettes = FALSE) {
+.env$build <- function(..., vignettes = FALSE) {
     devtools::build(..., vignettes = vignettes)
 }
 
-.bb8$build_articles <- function(...) {
+.env$build_articles <- function(...) {
     pkgdown::build_articles(...)
 }
 
-.bb8$build_home <- function(...) {
+.env$build_home <- function(...) {
     pkgdown::build_home(...)
 }
 
-.bb8$build_news <- function(...) {
+.env$build_news <- function(...) {
     pkgdown::build_news(...)
 }
 
-.bb8$build_reference <- function(...) {
+.env$build_reference <- function(...) {
     pkgdown::build_reference(...)
 }
 
-.bb8$build_reference_index <- function(...) {
+.env$build_reference_index <- function(...) {
     pkgdown::build_reference_index(...)
 }
 
-.bb8$build_site <- function(..., document = FALSE) {
+.env$build_site <- function(..., document = FALSE) {
     unlink("docs", recursive = TRUE)
     pkgdown::build_site(..., document = document)
 }
 
-.bb8$build_vignettes <- function(...) {
+.env$build_vignettes <- function(...) {
     devtools::build_vignettes(...)
 }
 
-.bb8$catVec <- function(x) {
+.env$catVec <- function(x) {
     x <- paste0("\"", x, "\"")
     x <- paste(x, collapse = ",\n")
     cat(x)
 }
 
-.bb8$check <- function(
+.env$check <- function(
     ...,
     document = FALSE,
     vignettes = FALSE
@@ -121,28 +121,28 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
     # BiocCheck::BiocCheck(".")
 }
 
-.bb8$cd <- function(...) {
+.env$cd <- function(...) {
     base::setwd(...)
 }
 
-.bb8$clear <- function() {
+.env$clear <- function() {
     cat("\f")
 }
 
-.bb8$clearWarnings <- function() {
+.env$clearWarnings <- function() {
     assign("last.warning", NULL, envir = baseenv())
 }
 
-.bb8$devinstall <- function(..., dependencies = FALSE) {
+.env$devinstall <- function(..., dependencies = FALSE) {
     devtools::install(..., dependencies = dependencies)
 }
 
-.bb8$document <- function(...) {
+.env$document <- function(...) {
     devtools::document(...)
 }
 
 # Find and replace across a directory.
-.bb8$findAndReplace <- function(
+.env$findAndReplace <- function(
     pattern,
     replacement,
     dir = ".",
@@ -165,26 +165,26 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
 }
 
 # macOS: Open Finder to the current directory.
-.bb8$finder <- function(path = ".") {
+.env$finder <- function(path = ".") {
     stopifnot(Sys.info()[[1L]] == "Darwin")
     stopifnot(is.character(path) && length(character) == 1L)
     system(paste("open", path))
 }
 
-.bb8$install <- function(..., update = FALSE) {
+.env$install <- function(..., update = FALSE) {
     BiocManager::install(..., update = update)
 }
 
-.bb8$install_github <- function(..., upgrade = "never") {
+.env$install_github <- function(..., upgrade = "never") {
     remotes::install_github(..., upgrade = upgrade)
 }
 
-.bb8$lint_package <- function(...) {
+.env$lint_package <- function(...) {
     lintr::lint_package(...)
 }
 
 # pkgload::load_all(helpers = FALSE, attach_testthat = FALSE)
-.bb8$load_all <- function() {
+.env$load_all <- function() {
     devtools::load_all()
 }
 
@@ -198,7 +198,7 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
 # http://adv-r.had.co.nz/memory.html
 # `utils:::format.object_size()``
 # `print:::print.bytes()`
-.bb8$memfree <- function() {
+.env$memfree <- function() {
     message("Running garbage collection first with base::gc().")
     print(gc(verbose = TRUE, full = TRUE))
     mem_used <- capture.output(print(pryr::mem_used()))
@@ -212,46 +212,46 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
 }
 
 # macOS: Copy to clipboard.
-.bb8$pbcopy <- function(x) {
+.env$pbcopy <- function(x) {
     stopifnot(Sys.info()[[1L]] == "Darwin")
     capture.output(x, file = pipe("pbcopy"))
 }
 
-.bb8$rcmdcheck <- function(...) {
+.env$rcmdcheck <- function(...) {
     rcmdcheck::rcmdcheck(...)
 }
 
-.bb8$report <- function(...) {
+.env$report <- function(...) {
     # covr doesn't currently install DT but requires it for this function...
     library(DT)
     covr::report(...)
 }
 
-.bb8$roxygenize <- function(...) {
+.env$roxygenize <- function(...) {
     roxygen2::roxygenise(...)
 }
 
-.bb8$run_examples <- function(..., fresh = TRUE) {
+.env$run_examples <- function(..., fresh = TRUE) {
     devtools::run_examples(..., fresh = fresh)
 }
 
-.bb8$script_path <- function() {
+.env$script_path <- function() {
     rstudioapi::getSourceEditorContext()$path
 }
 
-.bb8$test <- function(...) {
+.env$test <- function(...) {
     require(testthat)
     require(patrick)
     devtools::test(...)
 }
 
-.bb8$valid <- function(...) {
+.env$valid <- function(...) {
     BiocManager::valid(...)
 }
 
 # Set seed for reproducibility =================================================
-.bb8$seed <- 1454944673L
-set.seed(.bb8$seed)
+.env$seed <- 1454944673L
+set.seed(.env$seed)
 
 # R 3.5.1
 # cat(head(.Random.seed, n = 3L), sep = "\n")
@@ -276,7 +276,7 @@ set.seed(.bb8$seed)
     )
 
     if (interactive()) {
-        attach(.bb8)
+        attach(.env)
 
         # Set general interactive options.
         options(
