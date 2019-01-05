@@ -1,16 +1,22 @@
+# oh-my-zsh repo will fail to clone unless these are set.
+# git config --global fetch.fsck.zeroPaddedFilemode warn
+# git config --global receive.fsck.zeroPaddedFilemode warn
+# git config --global transfer.fsck.zeroPaddedFilemode warn
+# git config --global fsck.zeroPaddedFilemode warn
+
 [user]
-    # Name used in commit messages.
+	# Name used in commit messages.
 	name = Michael Steinbaugh
 	# Email used in commit messages.
 	email = mike@steinbaugh.com
 	# Public PGP key used for commit signing.
 	# signingkey = C1BB2E4A7C4FF992
 [shell]
-    # Default SSH username.
-    username = mike
+	# Default SSH username.
+	username = mike
 [github]
-    # GitHub username for command line tools.
-    user = mjsteinbaugh
+	# GitHub username for command line tools.
+	user = mjsteinbaugh
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global
@@ -38,9 +44,18 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
-[transfer] 
-	fsckobjects = true
 [fetch] 
 	fsckobjects = true
+	zeroPaddedFilemode = ignore
 [receive] 
 	fsckobjects = true
+[transfer] 
+	fsckobjects = true
+[fetch "fsck"]
+	zeroPaddedFilemode = warn
+[receive "fsck"]
+	zeroPaddedFilemode = warn
+[transfer "fsck"]
+	zeroPaddedFilemode = warn
+[fsck]
+	zeroPaddedFilemode = warn
