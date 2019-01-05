@@ -199,6 +199,12 @@ setopt HIST_REDUCE_BLANKS
 #
 # Quick install using node:
 # npm install --global pure-prompt
+# Note that npm method requires write access into /usr/local (elevated).
+# Let's configure manually instead, which also works on remote servers.
+
+# .zshenv or .zshrc
+fpath=( "$HOME/.zfunctions" $fpath )
+
 autoload -U promptinit; promptinit
 prompt pure
 
