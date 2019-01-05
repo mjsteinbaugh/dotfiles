@@ -18,10 +18,13 @@
 # unzip = "/usr/bin/unzip"
 
 # Check for secret environment variables =======================================
-if (Sys.getenv("GITHUB_PAT") == "") {
-    message(paste(
-        "GITHUB_PAT is not defined in envronment.\n",
-        "Launch RStudio using the command line to fix this."
+if (interactive() && Sys.getenv("GITHUB_PAT") == "") {
+    cat(paste(
+        "GITHUB_PAT is not defined in envronment.",
+        "Launch RStudio using the command line to fix this.",
+        "",
+        "",
+        sep = "\n"
     ))
 }
 
