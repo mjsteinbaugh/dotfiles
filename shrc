@@ -10,7 +10,7 @@
 # should get sourced before this file.
 
 # Enable for debugging.
-export SHRC=1
+# export SHRC=1
 
 add_to_path_start() {
     [ -d "$1" ] || return

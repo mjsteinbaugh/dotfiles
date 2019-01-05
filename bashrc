@@ -6,7 +6,7 @@
 # - shopt
 
 # Enable for debugging.
-export BASHRC=1
+# export BASHRC=1
 
 # Set up text editor.
 # Using vi mode instead of emacs by default.

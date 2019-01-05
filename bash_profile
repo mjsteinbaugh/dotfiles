@@ -16,7 +16,7 @@
 # 4. shrc
 
 # Enable for debugging.
-export BASH_PROFILE=1
+# export BASH_PROFILE=1
 
 # Ensure bashrc gets sourced.
 # shellcheck source=/dev/null

@@ -8,7 +8,7 @@
 # NOTE: The OS variables are exported by koopa.
 
 # Enable for debugging.
-export SHPROFILE=1
+# export SHPROFILE=1
 
 # Load shared shell configuration.
 # shellcheck source=/dev/null
