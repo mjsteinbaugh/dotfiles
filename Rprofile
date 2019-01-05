@@ -17,8 +17,13 @@
 # If devtools runs into an unzip error, set this:
 # unzip = "/usr/bin/unzip"
 
-# Check installed packages
-# update.packages(ask = FALSE, checkBuilt = TRUE)
+# Check for secret environment variables =======================================
+if (Sys.getenv("GITHUB_PAT") == "") {
+    message(paste(
+        "GITHUB_PAT is not defined in envronment.\n",
+        "Launch RStudio using the command line to fix this."
+    ))
+}
 
 # Check compilers are installed ================================================
 if (Sys.getenv("HMS_CLUSTER") == "o2") {
@@ -243,6 +248,13 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
     require(testthat)
     require(patrick)
     devtools::test(...)
+}
+
+# Check installed packages
+.env$update_packages <- function() {
+    BiocManager::install()
+    update.packages(ask = TRUE, checkBuilt = TRUE)
+    devtools::update_packages()
 }
 
 .env$valid <- function(...) {
