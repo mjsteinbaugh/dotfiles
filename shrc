@@ -150,7 +150,10 @@ fi
 [ "$(uname -s)" = "Darwin" ] && export MACOS=1 && export UNIX=1
 [ "$(uname -s)" = "Linux" ] && export LINUX=1 && export UNIX=1
 
-# Alternatively, can use $HOSTNAME in bash.
+# This is defined automatically in bash.
+HOSTNAME=$(uname -n)
+export HOSTNAME
+
 if quiet_expr "$(uname -n)" "azlabapp"
 then
     export AZURE=1
@@ -283,9 +286,12 @@ fi
 # koopa ========================================================================
 # Load koopa.
 # https://github.com/steinbaugh/koopa/
-if [ -n "$AZURE" ]
+if [ "$HOSTNAME" = "azlabapp35" ]
 then
     export CONDA_DEFAULT_ENV="bioinfo"
+elif [ "$HOSTNAME" = "azlabapp45" ]
+then
+    export CONDA_DEFAULT_ENV="base"
 elif [ -n "$MACOS" ]
 then
     export CONDA_DEFAULT_ENV="steinbaugh"
