@@ -1,17 +1,22 @@
-#!/usr/bin/env sh
+#!/usr/bin/sh
 
-# What goes in here:
-# Things that are not inherited in sub-shells.
-# - Aliases
-# - Functions
-# - Options that can be set across bash and zsh.
-
-# NOTE: OS variables are exported by koopa. This is defined in shprofile, which
-# should get sourced before this file.
+# Shared POSIX-compatible shell configuration
+# Intended for bash and zsh.
+# Don't attempt to use with fish or tcsh.
 
 # Enable for debugging.
 # export SHRC=1
 
+
+
+# File permissions =============================================================
+# Set default file permissions with umask.
+# 077 is more secure, but 022 is more useful.
+# umask 022
+
+
+
+# Functions ====================================================================
 add_to_path_start() {
     [ -d "$1" ] || return
     export PATH="$1:$PATH"
@@ -31,6 +36,9 @@ quiet_which() {
     command -v "$1" >/dev/null 2>&1
 }
 
+
+
+# Aliases ======================================================================
 # alias be="noglob bundle exec"
 # alias gist="gist --open --copy"
 # alias ls="ls -Fhlo --color"
@@ -134,3 +142,153 @@ then
     alias locate="mdfind -name"
     alias rstudio="open -a rstudio"
 fi
+
+
+
+# Environmental variables ======================================================
+# Export useful OS variables.
+[ "$(uname -s)" = "Darwin" ] && export MACOS=1 && export UNIX=1
+[ "$(uname -s)" = "Linux" ] && export LINUX=1 && export UNIX=1
+
+# Alternatively, can use $HOSTNAME in bash.
+if quiet_expr "$(uname -n)" "azlabapp"
+then
+    export AZURE=1
+fi
+
+# Set up text editor.
+# Using vi mode instead of emacs by default.
+if quiet_which vim
+then
+    export EDITOR="vim"
+elif quiet_which vi
+then
+    export EDITOR="vi"
+fi
+
+# Save more history.
+export HISTSIZE="100000"
+export SAVEHIST="100000"
+
+# Trim the maximum number of directories in prompt (PS1).
+# For bash, requires >= v4.
+export PROMPT_DIRTRIM=3
+
+# Ruby gems.
+if [ -d "${HOME}/.gem" ]
+then
+    export GEM_HOME="${HOME}/.gem"
+fi
+
+# GnuPGP. Enable passphrase prompting in terminal.
+GPG_TTY=$(tty)
+export GPG_TTY
+
+# Add the date/time to `history` command output.
+# Note that on macOS bash will fail if `set -e` is set and this isn't exported.
+export HISTTIMEFORMAT="%Y%m%d %T  "
+
+# rsync
+# -a, --archive               archive mode; equals -rlptgoD (no -H,-A,-X)
+# -z, --compress              compress file data during the transfer
+# -L, --copy-links            transform symlink into referent file/dir
+#     --delete-before         receiver deletes before xfer, not during
+# -h, --human-readable        output numbers in a human-readable format
+#     --iconv=CONVERT_SPEC    request charset conversion of filenames
+#     --progress              show progress during transfer
+#     --dry-run
+#     --one-file-system
+#     --acls --xattrs
+#     --iconv=utf-8,utf-8-mac
+export RSYNC_FLAGS="--archive --copy-links --delete-before --human-readable --progress"
+
+
+
+# Platform-specific ============================================================
+if [ -n "$MACOS" ]
+then    
+    # Include sbin in PATH.
+    add_to_path_start "/usr/local/sbin"
+
+    export GREP_OPTIONS="--color=auto"
+    export CLICOLOR=1
+    # `man ls`: see LSCOLORS section for color designators.
+    # export LSCOLORS="Gxfxcxdxbxegedabagacad"
+
+    # rsync flags for APFS.
+    export RSYNC_FLAGS_APFS="${RSYNC_FLAGS} --iconv=utf-8,utf-8-mac"
+
+    # Homebrew
+    if quiet_which brew
+    then
+        HOMEBREW_PREFIX="$(brew --prefix)"
+        export HOMEBREW_PREFIX
+        HOMEBREW_REPOSITORY="$(brew --repo)"
+        export HOMEBREW_REPOSITORY
+        # export HOMEBREW_INSTALL_CLEANUP=1
+    fi
+
+    # Enable more colors with grc.
+    # shellcheck disable=SC1090
+    [ -f "$HOMEBREW_PREFIX/etc/grc.bashrc" ] && . "$HOMEBREW_PREFIX/etc/grc.bashrc"
+
+    # Python
+    # Using Conda Python instead of Homebrew version (see koopa).
+    # https://docs.brew.sh/Homebrew-and-Python
+    # brew info python
+    # python -V
+    # export PATH="/usr/local/opt/python/libexec/bin:${PATH}"
+
+    # Ruby (rbenv)
+    # https://github.com/rbenv/rbenv
+    # export PATH="~/.rbenv/shims:${PATH}"
+    # eval "$(rbenv init -)"
+    quiet_which rbenv && add_to_path_start "$(rbenv root)/shims"
+
+    # Perl (perlbrew)
+    # https://perlbrew.pl
+    # if [ -f "${HOME}/perl5/perlbrew/etc/bashrc" ]; then
+    #     . "${HOME}/perl5/perlbrew/etc/bashrc"
+    # fi
+
+    # Ensembl Perl API
+    # ensembl="${HOME}/GitHub/ensembl/75"
+    # if [ -d "$ensembl" ]; then
+    #     export PATH="${ensembl}/ensembl-git-tools/bin:${PATH}"
+    #
+    #     # perlbrew switch perl-5.14.4
+    #     PERL5LIB="${PERL5LIB}:${ensembl}/bioperl-1.6.1"
+    #     PERL5LIB="${PERL5LIB}:${ensembl}/ensembl/modules"
+    #     PERL5LIB="${PERL5LIB}:${ensembl}/ensembl-compara/modules"
+    #     PERL5LIB="${PERL5LIB}:${ensembl}/ensembl-variation/modules"
+    #     PERL5LIB="${PERL5LIB}:${ensembl}/ensembl-funcgen/modules"
+    #     export PERL5LIB
+    # fi
+    # unset -v ensembl
+
+    # Google Cloud SDK
+    # Install using Homebrew Cask:
+    # brew cask install google-cloud-sdk
+    # dir="${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
+    # if [ -d $dir ]
+    # then
+    #     . "${dir}/path.bash.inc"
+    #     . "${dir}/completion.bash.inc"
+    # fi
+    # unset -v dir
+fi
+
+
+
+# koopa ========================================================================
+# Load koopa.
+# https://github.com/steinbaugh/koopa/
+if [ -n "$AZURE" ]
+then
+    export CONDA_DEFAULT_ENV="bioinfo"
+elif [ -n "$MACOS" ]
+then
+    export CONDA_DEFAULT_ENV="steinbaugh"
+fi
+export KOOPA_EXE="${HOME}/.koopa/bin/koopa"
+. "${KOOPA_EXE}" activate

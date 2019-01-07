@@ -1,8 +1,16 @@
 #!/usr/bin/env ksh
 
-# Source global definitions
+# Enable for debugging.
+# export KSHRC=1
+
+# Source global definitions.
 # shellcheck source=/dev/null
 [ -f /etc/kshrc ] && . /etc/kshrc
 
-# Use emacs editing mode by default
-# set -o emacs
+# Set up text editor.
+# Using vi mode instead of emacs by default.
+set -o vi
+
+# Source shared shell configuration.
+# shellcheck source=/dev/null
+. ~/.shrc

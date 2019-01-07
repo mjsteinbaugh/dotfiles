@@ -210,6 +210,6 @@ prompt pure
 
 
 
-# Load shared shell configuration.
-# Ensure this is sourced last. It includes the koopa load step.
-source ~/.shprofile
+# Source shared shell configuration.
+# Ensure this is sourced last.
+. ~/.shrc
