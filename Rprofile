@@ -179,8 +179,8 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
     system(paste("open", path))
 }
 
-.env$install <- function(..., update = FALSE) {
-    BiocManager::install(..., update = update)
+.env$install <- function(...) {
+    BiocManager::install(...)
 }
 
 .env$install_github <- function(..., upgrade = "never") {
@@ -255,9 +255,8 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
 
 # Check installed packages
 .env$update_packages <- function() {
-    BiocManager::install()
-    update.packages(ask = TRUE, checkBuilt = TRUE)
     devtools::update_packages()
+    # update.packages(ask = TRUE, checkBuilt = TRUE)
 }
 
 .env$valid <- function(...) {
