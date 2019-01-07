@@ -21,7 +21,6 @@
 if (interactive() && Sys.getenv("GITHUB_PAT") == "") {
     cat(paste(
         "GITHUB_PAT is not defined in envronment.",
-        "Launch RStudio using the command line to fix this.",
         "",
         "",
         sep = "\n"
@@ -306,9 +305,6 @@ set.seed(.env$seed)
             # repos = BiocManager::repositories()
             # width = 100L
             continue = " ",  # Kill annoying "+" in console.
-            devtools.name = "Michael Steinbaugh",
-            devtools.desc.author = 'person("Michael", "Steinbaugh", email = "mike@steinbaugh.com", role = c("aut", "cre"))',
-            devtools.desc.license = "MIT",
             # Enable OAuth token generation using httr on a remote R server.
             # This is used by googlesheets, for example.
             httr_oob_default = TRUE,
