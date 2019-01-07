@@ -289,7 +289,7 @@ fi
 if [ ! -z "$AZURE" ] && [ "$USER" = "michael.steinbaugh" ]
 then
     export CONDA_DEFAULT_ENV="bioinfo"
-elif [ ! -z "$MACOS" ]
+elif [ ! -z "$MACOS" ] && [ "$USER" = "mike" ]
 then
     export CONDA_DEFAULT_ENV="steinbaugh"
 fi
