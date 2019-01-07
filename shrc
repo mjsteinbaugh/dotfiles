@@ -120,7 +120,7 @@ then
         shift 1
         # shellcheck source=/dev/null
         # shellcheck disable=SC2240
-        . "${HOME}/git/bash/${script}.sh" "$@"
+        bash "${HOME}/git/bash/${script}.sh" "$@"
         unset -v script
     }
 
