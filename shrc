@@ -208,7 +208,7 @@ export RSYNC_FLAGS="--archive --copy-links --delete-before --human-readable --pr
 
 
 # Platform-specific ============================================================
-if [ -n "$MACOS" ]
+if [ ! -z "$MACOS" ]
 then    
     # Include sbin in PATH.
     add_to_path_start "/usr/local/sbin"
@@ -286,13 +286,10 @@ fi
 # koopa ========================================================================
 # Load koopa.
 # https://github.com/steinbaugh/koopa/
-if [ "$HOSTNAME" = "azlabapp35" ]
+if [ ! -z "$AZURE" ] && [ "$USER" = "michael.steinbaugh" ]
 then
     export CONDA_DEFAULT_ENV="bioinfo"
-elif [ "$HOSTNAME" = "azlabapp45" ]
-then
-    export CONDA_DEFAULT_ENV="bioinfo"
-elif [ -n "$MACOS" ]
+elif [ ! -z "$MACOS" ]
 then
     export CONDA_DEFAULT_ENV="steinbaugh"
 fi
