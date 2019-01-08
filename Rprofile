@@ -21,7 +21,6 @@
 if (interactive() && Sys.getenv("GITHUB_PAT") == "") {
     cat(paste(
         "GITHUB_PAT is not defined in envronment.",
-        "Launch RStudio using the command line to fix this.",
         "",
         "",
         sep = "\n"
