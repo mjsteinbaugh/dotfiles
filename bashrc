@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
-# Enable for debugging.
-# export BASHRC=1
+[ -n "$BASHRC" ] && return
+export BASHRC=1
+
+
 
 # Source global definitions.
 [ -f /etc/bashrc ] && . /etc/bashrc

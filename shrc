@@ -4,8 +4,7 @@
 # Intended for bash and zsh.
 # Don't attempt to use with fish or tcsh.
 
-# Enable for debugging.
-# export SHRC=1
+export SHRC=1
 
 
 
