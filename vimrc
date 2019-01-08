@@ -1,4 +1,6 @@
-# https://github.com/MikeMcQuaid/dotfiles/blob/master/vimrc
+" Modified from these dot files:
+" https://github.com/MikeMcQuaid/dotfiles/blob/master/vimrc
+
 
 " Switch syntax highlighting on.
 syntax on
