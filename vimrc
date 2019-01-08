@@ -1,5 +1,12 @@
-" Modified from these dot files:
-" https://github.com/MikeMcQuaid/dotfiles/blob/master/vimrc
+" Vim configuration
+" https://www.vim.org
+"
+" Consider using Neovim
+" https://neovim.io
+"
+" References:
+" - https://github.com/MikeMcQuaid/dotfiles/blob/master/vimrc
+
 
 
 " Switch syntax highlighting on.
@@ -36,3 +43,9 @@ endif
 
 " Disable mouse integration.
 set mouse=
+
+" Enable copy to clipboard (macOS).
+" https://stackoverflow.com/questions/677986
+" Now Vy will work.
+" :w !pbcopy
+set clipboard=unnamed
