@@ -17,16 +17,6 @@
 # If devtools runs into an unzip error, set this:
 # unzip = "/usr/bin/unzip"
 
-# Check for secret environment variables =======================================
-if (interactive() && Sys.getenv("GITHUB_PAT") == "") {
-    cat(paste(
-        "GITHUB_PAT is not defined in envronment.",
-        "",
-        "",
-        sep = "\n"
-    ))
-}
-
 # Check compilers are installed ================================================
 if (Sys.getenv("HMS_CLUSTER") == "o2") {
     # Use conda GCC instead of GCC 6 module.
@@ -290,6 +280,9 @@ set.seed(.env$seed)
 
     if (interactive()) {
         attach(.env)
+
+        # Load secret variables that we don't want in Renviron.
+        source("~/.Rsecrets")
 
         # Set general interactive options.
         options(
