@@ -300,22 +300,19 @@ set.seed(.env$seed)
             # install.packages.check.source = "no"
             # install.packages.compile.from.source = "binary"
             # Ncpus = 8L
-            # prompt = "> "
             # readr.num_columns = 0L
             # readr.show_progress = FALSE
             # repos = BiocManager::repositories()
             # width = 100L
             continue = " ",  # Kill annoying "+" in console.
-            devtools.name = "Michael Steinbaugh",
-            devtools.desc.author = 'person("Michael", "Steinbaugh", email = "mike@steinbaugh.com", role = c("aut", "cre"))',
-            devtools.desc.license = "MIT",
             # Enable OAuth token generation using httr on a remote R server.
             # This is used by googlesheets, for example.
             httr_oob_default = TRUE,
             max.print = 1000L,
             # Unicode character has improved legibility (see zsh pure).
             # prompt = "❯ "
-            prompt = "> "
+            prompt = "R> ",
+            show.signif.stars = FALSE
         )
 
         # Turn on completion of installed package names.
