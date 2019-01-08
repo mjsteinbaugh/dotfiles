@@ -303,7 +303,8 @@ set.seed(.env$seed)
             max.print = 1000L,
             # Unicode character has improved legibility (see zsh pure).
             # prompt = "❯ "
-            prompt = "R> ",
+            # prompt = "R> ",
+	    # prompt = "> ",
             show.signif.stars = FALSE
         )
 
