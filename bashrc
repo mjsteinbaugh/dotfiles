@@ -30,8 +30,8 @@ shopt -s cdspell
 
 
 # Check if this is a login and/or interactive shell.
-[ "$0" = "-bash" ] && export LOGIN_BASH=1
-echo "$-" | grep -q "i" && export INTERACTIVE_BASH=1
+[ "$0" = "-bash" ] && export LOGIN=1
+echo "$-" | grep -q "i" && export INTERACTIVE=1
 
 # Set HOST for ZSH compatibility.
 export HOST="$HOSTNAME"
