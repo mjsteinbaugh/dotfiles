@@ -362,6 +362,13 @@ set.seed(.env$seed)
 
 # Initilization at end of an R session =========================================
 .Last <- function() {
+    # Here's how to write out R history to a file.
+    # https://stackoverflow.com/a/1357432
+    # In shell config:
+    # export R_HISTFILE=~/.Rhistory
+    # if (!any(commandArgs() == "--no-readline") && interactive()) {
+    #     try(utils::savehistory(Sys.getenv("R_HISTFILE")))
+    # }
     if (interactive()) {
         message("Goodbye at ", date(), "\n")
     }
