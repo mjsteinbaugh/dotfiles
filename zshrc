@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
-# Enable for debugging.
-# export ZSHRC=1
+[[ -n "$ZSHRC" ]] && return
+export ZSHRC=1
 
 
 

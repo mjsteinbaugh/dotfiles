@@ -4,6 +4,7 @@
 # Intended for bash and zsh.
 # Don't attempt to use with fish or tcsh.
 
+[ ! -z "$BASHRC" ] && return
 export SHRC=1
 
 
