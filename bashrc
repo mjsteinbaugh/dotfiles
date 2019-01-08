@@ -3,20 +3,14 @@
 [ -n "$BASHRC" ] && return
 export BASHRC=1
 
-
+# Check if this is a login and/or interactive shell.
+[ "$0" = "-bash" ] && export LOGIN=1
+echo "$-" | grep -q "i" && export INTERACTIVE=1
 
 # Source global definitions.
 [ -f /etc/bashrc ] && . /etc/bashrc
 
 
-
-# Set up text editor.
-# Using vi mode instead of emacs by default.
-set -o vi
-
-# Check the window size after each command and, if necessary, update the values
-# of LINES and COLUMNS.
-shopt -s checkwinsize
 
 # Enable history appending instead of overwriting.
 shopt -s histappend
@@ -24,20 +18,10 @@ shopt -s histappend
 # Save multiline commands.
 shopt -s cmdhist
 
-# Correct minor directory changing spelling mistakes.
-shopt -s cdspell
 
-
-
-# Check if this is a login and/or interactive shell.
-[ "$0" = "-bash" ] && export LOGIN=1
-echo "$-" | grep -q "i" && export INTERACTIVE=1
 
 # Set HOST for ZSH compatibility.
 export HOST="$HOSTNAME"
-
-# Uncomment if you don't like systemcl's auto-paging feature.
-# export SYSTEMD_PAGER=
 
 # History
 # export HISTCONTROL="ignoredups"
@@ -45,8 +29,24 @@ export HOST="$HOSTNAME"
 # export PROMPT_COMMAND="history -a"
 export HISTFILE="$HOME/.bash_history"
 
-if [ -n "$INTERACTIVE_BASH" ]
+# Uncomment if you don't like systemcl's auto-paging feature.
+# export SYSTEMD_PAGER=
+
+
+
+if [ -n "$INTERACTIVE" ]
 then
+    # Set up text editor.
+    # Using vi mode instead of emacs by default.
+    set -o vi
+
+    # Check the window size after each command.
+    # If necessary, update the values of LINES and COLUMNS.
+    shopt -s checkwinsize
+
+    # Correct minor directory changing spelling mistakes.
+    shopt -s cdspell
+
     # Source Bash completions.
     [ -f /etc/profile.d/bash-completion ] && . /etc/profile.d/bash-completion
     [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
