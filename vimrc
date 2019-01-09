@@ -9,7 +9,6 @@
 " - https://gist.github.com/nerdalert/5f80853b4e195204bc6d
 
 
-
 " Enable syntax highlighting.
 syntax on
 
@@ -53,7 +52,6 @@ set backspace=indent,eol,start
 set clipboard=unnamed
 
 
-
 " Indentation ====
 " Prefer spaces over tabs.
 " Sorry, Richard Hendricks.
@@ -62,9 +60,9 @@ set clipboard=unnamed
 " - https://stackoverflow.com/questions/234564
 set smarttab
 if has("autocmd")
-  filetype on
-  filetype indent on
-  filetype plugin on
+    filetype on
+    filetype indent on
+    filetype plugin on
 endif
 " filetype plugin indent on
 " Display tab (\t) visually as 4 spaces.
@@ -89,15 +87,13 @@ set expandtab
 " :%retab
 
 
-
 " Whitespace ====
 if has("multi_byte")
-  set encoding=utf-8
-  set list listchars=tab:»·,trail:·
+    set encoding=utf-8
+    set list listchars=tab:»·,trail:·
 else
-  set list listchars=tab:>-,trail:.
+    set list listchars=tab:>-,trail:.
 endif
-
 
 
 " Searching ====
@@ -108,7 +104,13 @@ set incsearch
 
 
 
-" Colors ====
+" VIM 8+ specific ==============================================================
+" These settings require the new built-in package manager.
+if v:version < 800
+    finish
+endif
+
+" Color ====
 color dracula
 let g:airline_theme='dracula'
 
