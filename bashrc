@@ -62,7 +62,7 @@ then
     # \s: shell name, the basename of `$0`
     # \u: username
     # \w: working directory
-    
+
     history="[c\#; h\!]"
     prompt="\$"
     # Unicode doesn't work with PuTTY on Windows.
@@ -70,7 +70,7 @@ then
     # Only show the user/host for SSH.
     user="\u@\h"
     wd="\w"
-    
+
     # Enable colorful prompt.
     if [ "$TERM" = "xterm-256color" ]
     then
@@ -110,10 +110,10 @@ then
         prompt_color="35" 
         prompt="\[\033[01;${prompt_color}m\]${prompt}\[\033[00m\]"
     fi
-    
+
     PS1="\n${user} ${history}\n${wd}\n${prompt} "
     export PS1
-    
+
     unset -v history prompt prompt_color user user_color wd wd_color
 
     # Fix delete key on macOS.
