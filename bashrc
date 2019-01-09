@@ -3,9 +3,18 @@
 [ -n "$BASHRC" ] && return
 export BASHRC=1
 
-# Check if this is a login and/or interactive shell.
+
+
+# Check if this is a login shell.
 [ "$0" = "-bash" ] && export LOGIN=1
-echo "$-" | grep -q "i" && export INTERACTIVE=1
+
+# Check if this is an interactive shell.
+if [ -n "$PS1" ] || [[ "$-" =~ i ]]
+then
+    export INTERACTIVE=1
+fi
+
+
 
 # Source global definitions.
 [ -f /etc/bashrc ] && . /etc/bashrc

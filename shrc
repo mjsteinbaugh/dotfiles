@@ -41,7 +41,6 @@ quiet_expr() {
     expr "$1" : "$2" 1>/dev/null
 }
 
-# FIXME This isn't working for bash 5 for subshells?.
 # Don't use `&>` here, it isn't POSIX.
 # https://unix.stackexchange.com/a/80632
 quiet_which() {
@@ -217,7 +216,7 @@ export RSYNC_FLAGS="--archive --copy-links --delete-before --human-readable --pr
 
 # Platform-specific ============================================================
 if [ ! -z "$MACOS" ]
-then    
+then
     # Include sbin in PATH.
     add_to_path_start "/usr/local/sbin"
 
@@ -241,7 +240,8 @@ then
 
     # Enable more colors with grc.
     # shellcheck disable=SC1090
-    [ -f "$HOMEBREW_PREFIX/etc/grc.bashrc" ] && . "$HOMEBREW_PREFIX/etc/grc.bashrc"
+    [ -f "$HOMEBREW_PREFIX/etc/grc.bashrc" ] && \
+        . "$HOMEBREW_PREFIX/etc/grc.bashrc"
 
     # Python
     # Using Conda Python instead of Homebrew version (see koopa).
