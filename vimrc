@@ -10,10 +10,11 @@
 
 
 
-
-
-" Switch syntax highlighting on.
+" Enable syntax highlighting.
 syntax on
+
+" Set line wrapping (text width).
+set textwidth=80
 
 " Show line numbers.
 set number
@@ -23,6 +24,10 @@ set showcmd
 
 " Highlight current line.
 set cursorline
+
+" Always show status line.
+" Disable with `=0`.
+set laststatus=2
 
 " Always show ruler at bottom.
 set ruler
@@ -49,7 +54,7 @@ set clipboard=unnamed
 
 
 
-" Indentation
+" Indentation ====
 " Prefer spaces over tabs.
 " Sorry, Richard Hendricks.
 " See also:
@@ -85,7 +90,7 @@ set expandtab
 
 
 
-" Whitespace
+" Whitespace ====
 if has("multi_byte")
   set encoding=utf-8
   set list listchars=tab:»·,trail:·
@@ -95,9 +100,27 @@ endif
 
 
 
-" Searching
+" Searching ====
 set ignorecase
 set smartcase
 set hlsearch
 set incsearch
+
+
+
+" Colors ====
+" Use dracula theme.
+" https://github.com/dracula/vim/blob/master/colors/dracula.vim
+" ~/.vim/colors/dracula.vim
+color dracula
+
+" airline (powerbar) for status line.
+" Run these commands in shell:
+" git clone https://github.com/vim-airline/vim-airline \
+"     ~/.vim/pack/dist/start/vim-airline
+" git clone https://github.com/vim-airline/vim-airline-themes \
+"     ~/.vim/pack/dist/start/vim-airline-themes
+
+" Dracula airline theme.
+let g:airline_theme='dracula'
 

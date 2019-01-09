@@ -303,3 +303,17 @@ then
 fi
 export KOOPA_EXE="${HOME}/.koopa/bin/koopa"
 . "${KOOPA_EXE}" activate
+
+
+
+# Powerline ===================================================================
+if [ ! -z "$CONDA_PREFIX" ]
+then
+    powerline="${CONDA_PREFIX}/lib/python3.6/site-packages/powerline"
+    if [ -d "$powerline" ]
+    then
+        export POWERLINE_ROOT="$powerline"
+        unset -v powerline
+    fi
+fi
+

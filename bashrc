@@ -126,3 +126,8 @@ fi
 # Source shared shell configuration.
 # shellcheck source=/dev/null
 . ~/.shrc
+
+
+
+# Powerline
+# . "${POWERLINE_ROOT}/bindings/bash/powerline.sh"
