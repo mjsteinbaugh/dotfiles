@@ -109,18 +109,6 @@ set incsearch
 
 
 " Colors ====
-" Use dracula theme.
-" https://github.com/dracula/vim/blob/master/colors/dracula.vim
-" ~/.vim/colors/dracula.vim
 color dracula
-
-" airline (powerbar) for status line.
-" Run these commands in shell:
-" git clone https://github.com/vim-airline/vim-airline \
-"     ~/.vim/pack/dist/start/vim-airline
-" git clone https://github.com/vim-airline/vim-airline-themes \
-"     ~/.vim/pack/dist/start/vim-airline-themes
-
-" Dracula airline theme.
 let g:airline_theme='dracula'
 
