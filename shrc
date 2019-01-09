@@ -4,8 +4,19 @@
 # Intended for bash and zsh.
 # Don't attempt to use with fish or tcsh.
 
+# Here's how to list all functions defined:
+# declare -F
+
 [ ! -z "$SHRC" ] && return
 export SHRC=1
+
+# Export general OS variables.
+[ "$(uname -s)" = "Darwin" ] && export MACOS=1 && export UNIX=1
+[ "$(uname -s)" = "Linux" ] && export LINUX=1 && export UNIX=1
+
+# Host name is defined automatically in bash, but not all shells.
+HOSTNAME=$(uname -n)
+export HOSTNAME
 
 
 
@@ -22,17 +33,19 @@ add_to_path_start() {
     export PATH="$1:$PATH"
 }
 
-# Regular expression matching that is POSIX compliant
+# Regular expression matching that is POSIX compliant.
 # https://stackoverflow.com/questions/21115121
 # Avoid using `[[ =~ ]]` in sh config files.
-# expr is faster than using case
+# expr is faster than using case.
 quiet_expr() {
     expr "$1" : "$2" 1>/dev/null
 }
 
+# FIXME This isn't working for bash 5 for subshells?.
 # Don't use `&>` here, it isn't POSIX.
 # https://unix.stackexchange.com/a/80632
 quiet_which() {
+    # command -v "$1" >/dev/null
     command -v "$1" >/dev/null 2>&1
 }
 
@@ -104,12 +117,12 @@ alias R="R --no-restore --no-save"
 quiet_which dircolors && eval "$(dircolors -b)"
 
 # Fake realpath support, if necessary.
-if [ -z "$(quiet_which realpath)" ]
+if ! quiet_which realpath
 then
     alias realpath="readlink -f"
 fi
 
-if [ "$(uname -s)" = "Darwin" ]
+if [ ! -z "$MACOS" ]
 then
     # Use exa instead of ls, if installed.
     # It has better color support.
@@ -121,8 +134,11 @@ then
         alias ls="ls -F"
     fi
 
-    # Call personal scripts prefixed with "mjs".
+    # Call personal bash scripts using "mjs" prefix function.
     # Currently this is macOS-specific.
+    # Note that functions don't propagate to isolated shells called by name
+    # (e.g. using "bash" here), so don't attempt to use "mjs" function in the
+    # bash script repo.
     mjs() {
         script="$1"
         shift 1
@@ -146,15 +162,7 @@ fi
 
 
 # Environmental variables ======================================================
-# Export useful OS variables.
-[ "$(uname -s)" = "Darwin" ] && export MACOS=1 && export UNIX=1
-[ "$(uname -s)" = "Linux" ] && export LINUX=1 && export UNIX=1
-
-# This is defined automatically in bash.
-HOSTNAME=$(uname -n)
-export HOSTNAME
-
-if quiet_expr "$(uname -n)" "azlabapp"
+if quiet_expr "$HOSTNAME" "azlabapp"
 then
     export AZURE=1
 fi
