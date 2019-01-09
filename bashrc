@@ -99,7 +99,8 @@ then
         user_color="36"
     fi
     
-    prompt_color="35"  # Matching zsh pure prompt.
+    # Match the color of zsh pure prompt.
+    prompt_color="35" 
     wd_color="34"
     
     if [ "$TERM" = "xterm-256color" ]
