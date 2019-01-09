@@ -10,14 +10,28 @@
 
 
 
+
+
 " Switch syntax highlighting on.
 syntax on
 
-" Disable mouse integration.
-set mouse=
+" Show line numbers.
+set number
+
+" Show command in bottom bar.
+set showcmd
+
+" Highlight current line.
+set cursorline
 
 " Always show ruler at bottom.
 set ruler
+
+" Highlight matches
+set showmatch
+
+" Disable mouse integration.
+set mouse=
 
 " Don't make foo~ files.
 " These are annoying and create file system cruft.
