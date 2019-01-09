@@ -236,7 +236,7 @@ then
         export HOMEBREW_PREFIX
         HOMEBREW_REPOSITORY="$(brew --repo)"
         export HOMEBREW_REPOSITORY
-        # export HOMEBREW_INSTALL_CLEANUP=1
+        export HOMEBREW_INSTALL_CLEANUP=1
     fi
 
     # Enable more colors with grc.
