@@ -244,7 +244,7 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
 
 # Check installed packages
 .env$update_packages <- function() {
-    devtools::update_packages()
+    remotes::update_packages()
     # update.packages(ask = TRUE, checkBuilt = TRUE)
 }
 
@@ -272,7 +272,8 @@ set.seed(.env$seed)
         basejump.save.ext = "rds",
         browserNLdisabled = TRUE,
         email = "mike@steinbaugh.com",
-        menu.graphics = FALSE,  # Graphics dialogs can crash R.
+        # Menu graphics can crash R.
+        menu.graphics = FALSE,
         showErrorCalls = TRUE,
         showWarnCalls = TRUE,
         warn = 1L
@@ -296,15 +297,16 @@ set.seed(.env$seed)
             # readr.show_progress = FALSE
             # repos = BiocManager::repositories()
             # width = 100L
-            continue = " ",  # Kill annoying "+" in console.
+            # Kill annoying "+" in console output.
+            continue = " ",
             # Enable OAuth token generation using httr on a remote R server.
             # This is used by googlesheets, for example.
             httr_oob_default = TRUE,
             max.print = 1000L,
             # Unicode character has improved legibility (see zsh pure).
-            # prompt = "❯ "
-            # prompt = "R> ",
-	    # prompt = "> ",
+            # However it doesn't work well in Putty, so disable.
+            # prompt = "❯ ",
+            prompt = "> ",
             show.signif.stars = FALSE
         )
 
