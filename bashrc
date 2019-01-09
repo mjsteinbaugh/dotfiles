@@ -130,4 +130,9 @@ fi
 
 
 # Powerline
-# . "${POWERLINE_ROOT}/bindings/bash/powerline.sh"
+# Disabled at the moment in favor of simply using airline in vim.
+# Need to source this after shrc so we can get the powerline install path from conda.
+# if [ -n "$POWERLINE_ROOT" ]
+# then
+#     . "${POWERLINE_ROOT}/bindings/bash/powerline.sh"
+# fi
