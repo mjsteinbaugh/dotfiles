@@ -71,48 +71,50 @@ then
     user="\u@\h"
     wd="\w"
     
-    # Foreground colors (text)
-    # https://misc.flogisoft.com/bash/tip_colors_and_formatting
-    # 39 default
-    # 30 black
-    # 31 red
-    # 32 green
-    # 33 yellow
-    # 34 blue
-    # 35 magenta
-    # 36 cyan
-    # 37 light gray
-    # 90 dark gray
-    # 91 light red
-    # 92 light green
-    # 93 light yellow
-    # 94 light blue
-    # 95 light magenta
-    # 96 light cyan
-    # 97 white
-    
-    # Change the user color for SSH session.
-    if [ -n "$SSH_CONNECTION" ]
-    then
-        user_color="33"
-    else
-        user_color="36"
-    fi
-    
-    # Match the color of zsh pure prompt.
-    prompt_color="35" 
-    wd_color="34"
-    
+    # Enable colorful prompt.
     if [ "$TERM" = "xterm-256color" ]
     then
+        # Foreground colors (text)
+        # https://misc.flogisoft.com/bash/tip_colors_and_formatting
+        # 39 default
+        # 30 black
+        # 31 red
+        # 32 green
+        # 33 yellow
+        # 34 blue
+        # 35 magenta
+        # 36 cyan
+        # 37 light gray
+        # 90 dark gray
+        # 91 light red
+        # 92 light green
+        # 93 light yellow
+        # 94 light blue
+        # 95 light magenta
+        # 96 light cyan
+        # 97 white
+
+        # Dynamically change the user color based on connection type.
+        if [ -n "$SSH_CONNECTION" ]
+        then
+            user_color="33"
+        else
+            user_color="36"
+        fi
         user="\[\033[01;${user_color}m\]${user}\[\033[00m\]"
+
+        wd_color="34"
         wd="\[\033[01;${wd_color}m\]${wd}\[\033[00m\]"
+
+        # Match the color of zsh pure prompt.
+        prompt_color="35" 
+        prompt="\[\033[01;${prompt_color}m\]${prompt}\[\033[00m\]"
     fi
     
     PS1="\n${user} ${history}\n${wd}\n${prompt} "
     export PS1
     
-    unset -v history prompt user user_color wd wd_color
+    unset -v history prompt prompt_color user user_color wd wd_color
 
     # Fix delete key on macOS.
     [ -n "$MACOS" ] && bind '"\e[3~" delete-char'
