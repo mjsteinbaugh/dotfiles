@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-[ -n "$BASHRC" ] && return
 export BASHRC=1
 
 

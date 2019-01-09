@@ -7,7 +7,6 @@
 # Here's how to list all functions defined:
 # declare -F
 
-[ ! -z "$SHRC" ] && return
 export SHRC=1
 
 # Export general OS variables.
