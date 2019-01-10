@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-[[ -n "$ZSHRC" ]] && return
 export ZSHRC=1
 
 
@@ -82,7 +81,7 @@ plugins=(
   zsh-syntax-highlighting
 )
 
-source $ZSH/oh-my-zsh.sh
+source "${ZSH}/oh-my-zsh.sh"
 
 # User configuration
 
@@ -172,7 +171,7 @@ setopt NO_HUP
 
 # History ======================================================================
 # Set the history file path.
-export HISTFILE=~/.zsh_history
+export HISTFILE="${HOME}/.zsh_history"
 
 # Append history file.
 setopt APPEND_HISTORY
@@ -203,7 +202,7 @@ setopt HIST_REDUCE_BLANKS
 # Let's configure manually instead, which also works on remote servers.
 
 # .zshenv or .zshrc
-fpath=( "$HOME/.zfunctions" $fpath )
+fpath=( "${HOME}/.zfunctions" $fpath )
 
 autoload -U promptinit; promptinit
 prompt pure
@@ -212,4 +211,4 @@ prompt pure
 
 # Source shared shell configuration.
 # Ensure this is sourced last.
-. ~/.shrc
+source ~/.shrc
