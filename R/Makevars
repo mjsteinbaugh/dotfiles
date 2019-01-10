@@ -1,6 +1,10 @@
-# https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-FAQ.pdf
-# https://thecoatlessprofessor.com/programming/r-compiler-tools-for-rcpp-on-macos/
-# https://thecoatlessprofessor.com/programming/openmp-in-r-on-os-x/
+# R for macOS Makevars configuration
+# Necessary for building packages from source.
+#
+# See also:
+# - https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-FAQ.pdf
+# - https://thecoatlessprofessor.com/programming/r-compiler-tools-for-rcpp-on-macos/
+# - https://thecoatlessprofessor.com/programming/openmp-in-r-on-os-x/
 
 # Mojave CPP headers fix.
 # xcode-select --install
