@@ -8,6 +8,7 @@ export BASHRC=1
 [ "$0" = "-bash" ] && export LOGIN=1
 
 # Check if this is an interactive shell.
+# https://www.gnu.org/software/bash/manual/html_node/Is-this-Shell-Interactive_003f.html
 if [ -n "$PS1" ] || [[ "$-" =~ i ]]
 then
     export INTERACTIVE=1

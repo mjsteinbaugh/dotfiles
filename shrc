@@ -299,6 +299,8 @@ then
 elif [ ! -z "$MACOS" ] && [ "$USER" = "mike" ]
 then
     export CONDA_DEFAULT_ENV="steinbaugh"
+else
+    export CONDA_DEFAULT_ENV="base"
 fi
 export KOOPA_EXE="${HOME}/.koopa/bin/koopa"
 . "${KOOPA_EXE}" activate
