@@ -1,32 +1,35 @@
 #!/usr/bin/sh
 
-# Shared POSIX-compatible shell configuration
+# shellcheck disable=SC2236
+# SC2236: Use -n instead of ! -z
+# zsh doesn't interpret `-n` correctly in POSIX mode.
+
+
+
+# Shared POSIX-compatible shell configuration.
 # Intended for bash and zsh.
 # Don't attempt to use with fish or tcsh.
-
-# Here's how to list all functions defined:
+#
+# Put all preferences that don't persist in subshells (e.g. functions, aliases)
+# above the `$BASHRC` variable export step (see below). These need to always be
+# re-sourced, but we don't want to double export variables, such as `$PATH`.
+#
+# Here's how to list all functions defined.
 # declare -F
 
-export SHRC=1
-
-# Export general OS variables.
-[ "$(uname -s)" = "Darwin" ] && export MACOS=1 && export UNIX=1
-[ "$(uname -s)" = "Linux" ] && export LINUX=1 && export UNIX=1
-
-# Host name is defined automatically in bash, but not all shells.
-HOSTNAME=$(uname -n)
-export HOSTNAME
 
 
+# ==============================================================================
+# Need to re-source in subshells
+# ==============================================================================
 
-# File permissions =============================================================
 # Set default file permissions with umask.
 # 077 is more secure, but 022 is more useful.
 # umask 022
 
 
 
-# Functions ====================================================================
+# Functions --------------------------------------------------------------------
 add_to_path_start() {
     [ -d "$1" ] || return
     export PATH="$1:$PATH"
@@ -49,7 +52,7 @@ quiet_which() {
 
 
 
-# Aliases ======================================================================
+# Aliases ----------------------------------------------------------------------
 # alias be="noglob bundle exec"
 # alias gist="gist --open --copy"
 # alias ls="ls -Fhlo --color"
@@ -149,7 +152,7 @@ then
     # Create the today directory in bucket automatically.
     mjs bucket
 
-    # Aliases
+    # Aliases.
     alias autofs="sudo automount -vc"
     alias finder-hide="setfile -a V"
     alias icloud-status="brctl log --wait --shorten"
@@ -159,7 +162,24 @@ fi
 
 
 
-# Environmental variables ======================================================
+# ==============================================================================
+# Persistent in sub-shells
+# ==============================================================================
+
+[ ! -z "$SHRC" ] && return
+export SHRC=1
+
+# Detect operating system environment.
+OSNAME=$(uname -s)
+export OSNAME
+
+# Host name is defined automatically in bash, but not all shells.
+HOSTNAME=$(uname -n)
+export HOSTNAME
+
+[ "$OSNAME" = "Darwin" ] && export MACOS=1 && export UNIX=1
+[ "$OSNAME" = "Linux" ] && export LINUX=1 && export UNIX=1
+
 if quiet_expr "$HOSTNAME" "azlabapp"
 then
     export AZURE=1
@@ -184,10 +204,7 @@ export SAVEHIST="100000"
 export PROMPT_DIRTRIM=3
 
 # Ruby gems.
-if [ -d "${HOME}/.gem" ]
-then
-    export GEM_HOME="${HOME}/.gem"
-fi
+[ -d "${HOME}/.gem" ] && export GEM_HOME="${HOME}/.gem"
 
 # GnuPGP. Enable passphrase prompting in terminal.
 GPG_TTY=$(tty)
@@ -216,15 +233,16 @@ export RSYNC_FLAGS="--archive --copy-links --delete-before --human-readable --pr
 # Platform-specific ============================================================
 if [ ! -z "$MACOS" ]
 then
-    # Include sbin in PATH.
+    # Ensure sbin is in `$PATH` (for Homebrew).
     add_to_path_start "/usr/local/sbin"
 
-    export GREP_OPTIONS="--color=auto"
+    # Improve terminal colors.
     export CLICOLOR=1
+    export GREP_OPTIONS="--color=auto"
     # `man ls`: see LSCOLORS section for color designators.
     # export LSCOLORS="Gxfxcxdxbxegedabagacad"
 
-    # rsync flags for APFS.
+    # Set rsync flags for APFS.
     export RSYNC_FLAGS_APFS="${RSYNC_FLAGS} --iconv=utf-8,utf-8-mac"
 
     # Homebrew
@@ -303,7 +321,10 @@ else
     export CONDA_DEFAULT_ENV="base"
 fi
 export KOOPA_EXE="${HOME}/.koopa/bin/koopa"
-. "${KOOPA_EXE}" activate
+# SC2240 The dot command does not support arguments in sh/dash.
+# Set them as variables.
+# shellcheck source=/dev/null
+cmd="activate" . "${KOOPA_EXE}"
 
 
 
