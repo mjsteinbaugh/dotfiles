@@ -7,6 +7,7 @@
       "bracket-matcher"
       "language-gfm"
       "snippets"
+      "sync-settings"
     ]
     telemetryConsent: "no"
     themes: [
@@ -32,5 +33,6 @@
     themeColor: "Purple"
   "sync-settings":
     _lastBackupHash: "97fe7665e888bbe8401b46d17c60c0adc3a84e3e"
+    checkForUpdatedBackup: false
   welcome:
     showOnStartup: false
