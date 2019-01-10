@@ -12,3 +12,8 @@ git submodule add --force \
 git submodule init
 git submodule update
 # git submodule update --recursive
+
+# How to update submodules.
+git submodule update --remote --merge
+git commit -m "Submodule update"
+git push
