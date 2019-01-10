@@ -2,13 +2,13 @@
   core:
     audioBeep: false
     disabledPackages: [
+      "autocomplete-plus"
+      "autocomplete-snippets"
+      "bracket-matcher"
       "language-gfm"
       "snippets"
-      "autocomplete-snippets"
-      "autocomplete-plus"
-      "bracket-matcher"
     ]
-    telemetryConsent: "limited"
+    telemetryConsent: "no"
     themes: [
       "dracula-ui"
       "dracula-syntax"
@@ -16,10 +16,12 @@
   editor:
     fontFamily: "SFMono-Regular, Menlo, Consolas, DejaVu Sans Mono, monospace"
     fontSize: 16
+    showIndentGuide: true
     showInvisibles: true
     softWrap: true
     softWrapAtPreferredLineLength: true
     tabLength: 4
+    tabType: "soft"
   "exception-reporting":
     userId: "db23d899-2407-a099-e1a7-cbf07f341873"
   "line-ending-selector":
