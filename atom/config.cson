@@ -1,14 +1,18 @@
 "*":
   core:
     audioBeep: false
+    closeDeletedFileTabs: true
     disabledPackages: [
       "autocomplete-plus"
       "autocomplete-snippets"
-      "bracket-matcher"
       "language-gfm"
+      "language-mustache"
+      "language-toml"
+      "language-typescript"
       "snippets"
       "sync-settings"
     ]
+    projectHome: "/Users/mike/git"
     telemetryConsent: "no"
     themes: [
       "dracula-ui"
