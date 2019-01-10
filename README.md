@@ -12,6 +12,7 @@ My configuration files shared between machines running:
 
 ## See also
 
+- [Dracula Theme](https://draculatheme.com/)
 - [Mike McQuaid](https://github.com/MikeMcQuaid/dotfiles):
   bash_profile, bashrc, zprofile, zshrc.
 - [Jim Hester](https://github.com/jimhester/dotfiles):
