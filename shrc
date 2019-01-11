@@ -316,20 +316,23 @@ fi
 # koopa ========================================================================
 # Load koopa.
 # https://github.com/steinbaugh/koopa/
-if [ ! -z "$AZURE" ] && [ "$USER" = "michael.steinbaugh" ]
-then
-    export CONDA_DEFAULT_ENV="bioinfo"
-elif [ ! -z "$MACOS" ] && [ "$USER" = "mike" ]
-then
-    export CONDA_DEFAULT_ENV="steinbaugh"
-else
-    export CONDA_DEFAULT_ENV="base"
-fi
 export KOOPA_EXE="${HOME}/.koopa/bin/koopa"
-# SC2240 The dot command does not support arguments in sh/dash.
-# Set them as variables.
-# shellcheck source=/dev/null
-cmd="activate" . "${KOOPA_EXE}"
+if [ -f "$KOOPA_EXE" ]
+then
+    if [ ! -z "$AZURE" ] && [ "$USER" = "michael.steinbaugh" ]
+    then
+        export CONDA_DEFAULT_ENV="bioinfo"
+    elif [ ! -z "$MACOS" ] && [ "$USER" = "mike" ]
+    then
+        export CONDA_DEFAULT_ENV="steinbaugh"
+    else
+        export CONDA_DEFAULT_ENV="base"
+    fi
+    # SC2240 The dot command does not support arguments in sh/dash.
+    # Set them as variables.
+    # shellcheck source=/dev/null
+    cmd="activate" . "${KOOPA_EXE}"
+fi
 
 
 
