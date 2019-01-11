@@ -319,8 +319,15 @@ fi
 export KOOPA_EXE="${HOME}/.koopa/bin/koopa"
 if [ -f "$KOOPA_EXE" ]
 then
-    # Can also use "base" here, which will load the system conda env.
-    export CONDA_DEFAULT_ENV="default"
+    if [ ! -z "$SLURM_CONF" ]
+    then
+        # Simply load the base environment on an HPC (e.g. O2).
+        CONDA_DEFAULT_ENV="base"
+    else
+        # Otherwise, load the recommended default environment.
+        CONDA_DEFAULT_ENV="default"
+    fi
+    export CONDA_DEFAULT_ENV
     # SC2240 The dot command does not support arguments in sh/dash.
     # Set them as variables.
     # shellcheck source=/dev/null
