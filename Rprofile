@@ -283,7 +283,9 @@ set.seed(.env$seed)
         attach(.env)
 
         # Load secret variables that we don't want in Renviron.
-        source("~/.Rsecrets")
+        if (file.exists("~/.Rsecrets")) {
+            source("~/.Rsecrets")
+        }
 
         # Set general interactive options.
         options(
