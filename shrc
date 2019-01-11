@@ -19,6 +19,19 @@
 
 
 
+# Detect operating system environment.
+OSNAME=$(uname -s)
+export OSNAME
+
+# Host name is defined automatically in bash, but not all shells.
+HOSTNAME=$(uname -n)
+export HOSTNAME
+
+[ "$OSNAME" = "Darwin" ] && export MACOS=1 && export UNIX=1
+[ "$OSNAME" = "Linux" ] && export LINUX=1 && export UNIX=1
+
+
+
 # ==============================================================================
 # Need to re-source in subshells
 # ==============================================================================
@@ -168,17 +181,6 @@ fi
 
 [ ! -z "$SHRC" ] && return
 export SHRC=1
-
-# Detect operating system environment.
-OSNAME=$(uname -s)
-export OSNAME
-
-# Host name is defined automatically in bash, but not all shells.
-HOSTNAME=$(uname -n)
-export HOSTNAME
-
-[ "$OSNAME" = "Darwin" ] && export MACOS=1 && export UNIX=1
-[ "$OSNAME" = "Linux" ] && export LINUX=1 && export UNIX=1
 
 if quiet_expr "$HOSTNAME" "azlabapp"
 then
