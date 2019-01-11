@@ -1,14 +1,19 @@
 "*":
   core:
     audioBeep: false
+    closeDeletedFileTabs: true
     disabledPackages: [
-      "language-gfm"
-      "snippets"
-      "autocomplete-snippets"
       "autocomplete-plus"
-      "bracket-matcher"
+      "autocomplete-snippets"
+      "language-gfm"
+      "language-mustache"
+      "language-toml"
+      "language-typescript"
+      "snippets"
+      "sync-settings"
     ]
-    telemetryConsent: "limited"
+    projectHome: "/Users/mike/git"
+    telemetryConsent: "no"
     themes: [
       "dracula-ui"
       "dracula-syntax"
@@ -16,10 +21,12 @@
   editor:
     fontFamily: "SFMono-Regular, Menlo, Consolas, DejaVu Sans Mono, monospace"
     fontSize: 16
+    showIndentGuide: true
     showInvisibles: true
     softWrap: true
     softWrapAtPreferredLineLength: true
     tabLength: 4
+    tabType: "soft"
   "exception-reporting":
     userId: "db23d899-2407-a099-e1a7-cbf07f341873"
   "line-ending-selector":
@@ -28,5 +35,8 @@
     compactView: true
     disableAnimations: true
     themeColor: "Purple"
+  "sync-settings":
+    _lastBackupHash: "97fe7665e888bbe8401b46d17c60c0adc3a84e3e"
+    checkForUpdatedBackup: false
   welcome:
     showOnStartup: false

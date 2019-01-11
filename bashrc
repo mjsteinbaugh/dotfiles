@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-[ -n "$BASHRC" ] && return
 export BASHRC=1
 
 
 
 # Check if this is a login shell.
-[ "$0" = "-bash" ] && export LOGIN=1
+[[ "$0" = "-bash" ]] && export LOGIN=1
 
 # Check if this is an interactive shell.
-if [ -n "$PS1" ] || [[ "$-" =~ i ]]
+# https://www.gnu.org/software/bash/manual/html_node/Is-this-Shell-Interactive_003f.html
+if [[ -n "$PS1" ]] || [[ "$-" =~ i ]]
 then
     export INTERACTIVE=1
 fi
@@ -17,7 +17,8 @@ fi
 
 
 # Source global definitions.
-[ -f /etc/bashrc ] && . /etc/bashrc
+# shellcheck source=/dev/null
+[[ -f /etc/bashrc ]] && source /etc/bashrc
 
 
 
@@ -43,7 +44,7 @@ export HISTFILE="$HOME/.bash_history"
 
 
 
-if [ -n "$INTERACTIVE" ]
+if [[ -n "$INTERACTIVE" ]]
 then
     # Set up text editor.
     # Using vi mode instead of emacs by default.
@@ -57,8 +58,12 @@ then
     shopt -s cdspell
 
     # Source Bash completions.
-    [ -f /etc/profile.d/bash-completion ] && . /etc/profile.d/bash-completion
-    [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+    # shellcheck source=/dev/null
+    [[ -f /etc/profile.d/bash-completion ]] && \
+        source /etc/profile.d/bash-completion
+    # shellcheck source=/dev/null
+    [[ -f /usr/local/etc/bash_completion ]] && \
+        source /usr/local/etc/bash_completion
 
     # Define the prompt string.
     # \#: the command number of this command
@@ -81,7 +86,7 @@ then
     wd="\w"
 
     # Enable colorful prompt.
-    if [ "$TERM" = "xterm-256color" ]
+    if [[ "$TERM" = "xterm-256color" ]]
     then
         # Foreground colors (text)
         # https://misc.flogisoft.com/bash/tip_colors_and_formatting
@@ -104,7 +109,7 @@ then
         # 97 white
 
         # Dynamically change the user color based on connection type.
-        if [ -n "$SSH_CONNECTION" ]
+        if [[ -n "$SSH_CONNECTION" ]]
         then
             user_color="33"
         else
@@ -126,7 +131,7 @@ then
     unset -v history prompt prompt_color user user_color wd wd_color
 
     # Fix delete key on macOS.
-    [ -n "$MACOS" ] && bind '"\e[3~" delete-char'
+    [[ -n "$MACOS" ]] && bind '"\e[3~" delete-char'
 
     # Alternate mappings for Ctrl-U/V to search the history.
     bind '"^u" history-search-backward'
@@ -137,14 +142,14 @@ fi
 
 # Source shared shell configuration.
 # shellcheck source=/dev/null
-. ~/.shrc
+source ~/.shrc
 
 
 
 # Powerline
 # Disabled at the moment in favor of simply using airline in vim.
 # Need to source this after shrc so we can get the powerline install path from conda.
-# if [ -n "$POWERLINE_ROOT" ]
+# if [[ -n "$POWERLINE_ROOT" ]]
 # then
-#     . "${POWERLINE_ROOT}/bindings/bash/powerline.sh"
+#     source "${POWERLINE_ROOT}/bindings/bash/powerline.sh"
 # fi

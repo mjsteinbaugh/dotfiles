@@ -284,6 +284,10 @@
 	OAFAEqwSrhKzEr4SxxLVEtkS4BLpEu4S+xL+EwsTEBMYExsTLRMwEzUAAAAAAAACAQAA
 	AAAAAAA8AAAAAAAAAAAAAAAAAAATNw==
 	</data>
+	<key>ShowCommandKeyInTitle</key>
+	<true/>
+	<key>ShowRepresentedURLPathInTitle</key>
+	<true/>
 	<key>TextBoldColor</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGFRZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
@@ -305,6 +309,8 @@
 	<false/>
 	<key>name</key>
 	<string>Panic</string>
+	<key>rowCount</key>
+	<integer>30</integer>
 	<key>type</key>
 	<string>Window Settings</string>
 </dict>
