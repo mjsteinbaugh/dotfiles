@@ -91,6 +91,9 @@ alias la="ls -a"
 alias lF="ls -F"
 alias ll="ls -AFGlh"
 
+# Shortcut for listing tmux sessions.
+alias tls="tmux ls"
+
 # Set more sensible defaults for size commands.
 alias df="df -H"
 alias du="du -sh"
