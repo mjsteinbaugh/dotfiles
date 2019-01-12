@@ -151,22 +151,23 @@ then
         alias ls="ls -F"
     fi
 
+    # FIXME Rework this idea -- export scripts in PATH instead.
     # Call personal bash scripts using "mjs" prefix function.
     # Currently this is macOS-specific.
     # Note that functions don't propagate to isolated shells called by name
     # (e.g. using "bash" here), so don't attempt to use "mjs" function in the
     # bash script repo.
-    mjs() {
-        script="$1"
-        shift 1
-        # shellcheck source=/dev/null
-        # shellcheck disable=SC2240
-        bash "${HOME}/git/bash/${script}.sh" "$@"
-        unset -v script
-    }
+    # mjs() {
+    #     script="$1"
+    #     shift 1
+    #     # shellcheck source=/dev/null
+    #     # shellcheck disable=SC2240
+    #     bash "${HOME}/git/bash/${script}.sh" "$@"
+    #     unset -v script
+    # }
 
-    # Create the today directory in bucket automatically.
-    mjs bucket
+    # # Create the today directory in bucket automatically.
+    # mjs bucket
 
     # Aliases.
     alias autofs="sudo automount -vc"
