@@ -285,6 +285,13 @@ set.seed(.env$seed)
         # Load secret variables that we don't want in Renviron.
         if (file.exists("~/.Rsecrets")) {
             source("~/.Rsecrets")
+        } else {
+            cat(
+                "Failed to detect `~/.Rsecrets` file.",
+                "GitHub package installs will be rate limited.",
+                "",
+                sep = "\n"
+            )
         }
 
         # Set general interactive options.
@@ -345,16 +352,15 @@ set.seed(.env$seed)
         #     warning("Developer library not detected.")
         # }
 
-        cat(paste(
+        cat(
             "User Library:",
             normalizePath(Sys.getenv("R_LIBS_USER")),
             "",
             "Working Directory:",
             normalizePath(getwd()),
             "",
-            "",
             sep = "\n"
-        ))
+        )
     }
 }
 
