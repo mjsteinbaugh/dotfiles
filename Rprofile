@@ -141,6 +141,10 @@ stopifnot(Sys.which("conda") == "")
     devtools::document(...)
 }
 
+.env$export <- function(...) {
+    basejump::export(...)
+}
+
 # Find and replace across a directory.
 .env$findAndReplace <- function(
     pattern,
@@ -171,6 +175,10 @@ stopifnot(Sys.which("conda") == "")
     system(paste("open", path))
 }
 
+.env$import <- function(...) {
+    basejump::import(...)
+}
+
 .env$install <- function(...) {
     BiocManager::install(...)
 }
@@ -181,6 +189,10 @@ stopifnot(Sys.which("conda") == "")
 
 .env$lint_package <- function(...) {
     lintr::lint_package(...)
+}
+
+.env$loadData <- function(...) {
+    basejump::loadData(...)
 }
 
 # pkgload::load_all(helpers = FALSE, attach_testthat = FALSE)
@@ -233,6 +245,10 @@ stopifnot(Sys.which("conda") == "")
 
 .env$run_examples <- function(..., fresh = TRUE) {
     devtools::run_examples(..., fresh = fresh)
+}
+
+.env$saveData <- function(...) {
+    basejump::saveData(...)
 }
 
 .env$script_path <- function() {

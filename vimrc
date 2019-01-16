@@ -146,10 +146,13 @@ set wildmode=list:longest,full
 
 " These settings require the new built-in package manager.
 
-if v:version < 800
-    finish
-endif
+" if v:version < 800
+"     finish
+" endif
 
+" Note that this is handled automatically by dracula plugin- now.
 " Airline powerbar theme colors.
-let g:airline_theme='dracula'
+" Seems to be breaking inside tmux?
+" https://github.com/vim-airline/vim-airline/issues/829
+" let g:airline_theme='dracula'
 
