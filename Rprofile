@@ -138,6 +138,10 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
     devtools::document(...)
 }
 
+.env$export <- function(...) {
+    basejump::export(...)
+}
+
 # Find and replace across a directory.
 .env$findAndReplace <- function(
     pattern,
@@ -168,6 +172,10 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
     system(paste("open", path))
 }
 
+.env$import <- function(...) {
+    basejump::import(...)
+}
+
 .env$install <- function(...) {
     BiocManager::install(...)
 }
@@ -178,6 +186,10 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
 
 .env$lint_package <- function(...) {
     lintr::lint_package(...)
+}
+
+.env$loadData <- function(...) {
+    basejump::loadData(...)
 }
 
 # pkgload::load_all(helpers = FALSE, attach_testthat = FALSE)
@@ -230,6 +242,10 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
 
 .env$run_examples <- function(..., fresh = TRUE) {
     devtools::run_examples(..., fresh = fresh)
+}
+
+.env$saveData <- function(...) {
+    basejump::saveData(...)
 }
 
 .env$script_path <- function() {
