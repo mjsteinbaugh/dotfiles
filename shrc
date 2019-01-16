@@ -195,6 +195,9 @@ fi
 # Add bash scripts to PATH.
 add_to_path_start "${HOME}/bash/general"
 
+# Set up the today bucket and symlink.
+bash bucket.sh
+
 # Set up text editor.
 # Using vi mode instead of emacs by default.
 if quiet_which vim
