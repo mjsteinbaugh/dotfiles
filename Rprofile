@@ -49,6 +49,9 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
     ))
 }
 
+# No conda allowed! Can cause compilation issues.
+stopifnot(Sys.which("conda") == "")
+
 # Invisible utility functions ==================================================
 # Assign shortcuts to a hidden environment.
 .env <- new.env()
