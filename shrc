@@ -139,6 +139,7 @@ then
     alias realpath="readlink -f"
 fi
 
+# Platform-specific settings.
 if [ ! -z "$MACOS" ]
 then
     # Use exa instead of ls, if installed.
@@ -191,6 +192,9 @@ then
     export AZURE=1
 fi
 
+# Add bash scripts to PATH.
+add_to_path_start "${HOME}/bash/general"
+
 # Set up text editor.
 # Using vi mode instead of emacs by default.
 if quiet_which vim
@@ -234,13 +238,17 @@ export HISTTIMEFORMAT="%Y%m%d %T  "
 #     --iconv=utf-8,utf-8-mac
 export RSYNC_FLAGS="--archive --copy-links --delete-before --human-readable --progress"
 
-
-
-# Platform-specific ============================================================
-if [ ! -z "$MACOS" ]
+# Platform-specific.
+if [ ! -z "$AZURE" ]
+then
+    add_to_path_start "${HOME}/bash/azure"
+elif [ ! -z "$MACOS" ]
 then
     # Ensure sbin is in `$PATH` (for Homebrew).
     add_to_path_start "/usr/local/sbin"
+
+    # Add macOS-specific bash scripts.
+    add_to_path_start "${HOME}/bash/macos"
 
     # Improve terminal colors.
     export CLICOLOR=1
