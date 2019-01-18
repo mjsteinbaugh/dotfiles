@@ -9,6 +9,14 @@
 " - https://gist.github.com/nerdalert/5f80853b4e195204bc6d
 
 
+" Enable 256 color support (in PuTTY)
+" https://gist.github.com/limingjie/4975c36d13d0927613e6
+if &term == "screen"
+  set t_Co=256
+endif
+
+set background=dark
+
 
 " Enable syntax highlighting.
 syntax on
