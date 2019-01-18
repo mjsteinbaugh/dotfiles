@@ -121,8 +121,8 @@ alias sha256="shasum -a 256"
 
 # Emacs.
 # Use terminal (console) mode by default instead of window system.
-# alias emacs="emacs --no-window-system"
 # alias emacs="emacs -nw"
+# alias emacs="emacs --no-window-system"
 
 # Disable R prompt to save workspace.
 # --no-environ
