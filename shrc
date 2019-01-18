@@ -184,7 +184,8 @@ fi
 # Persistent in sub-shells
 # ==============================================================================
 
-[ ! -z "$SHRC" ] && return
+# This step causes conda to not work correctly in subshells for slurm on O2...
+# [ ! -z "$SHRC" ] && return
 export SHRC=1
 
 if quiet_expr "$HOSTNAME" "azlabapp"

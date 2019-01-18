@@ -153,3 +153,4 @@ source ~/.shrc
 # then
 #     source "${POWERLINE_ROOT}/bindings/bash/powerline.sh"
 # fi
+
