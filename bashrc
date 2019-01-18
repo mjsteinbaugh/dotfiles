@@ -86,7 +86,8 @@ then
     wd="\w"
 
     # Enable colorful prompt.
-    if [[ "$TERM" = "xterm-256color" ]]
+    # Match either "xterm-256color" or "screen-256color" here.
+    if [[ "$TERM" =~ -256color ]]
     then
         # Foreground colors (text)
         # https://misc.flogisoft.com/bash/tip_colors_and_formatting

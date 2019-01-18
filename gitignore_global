@@ -1,16 +1,9 @@
-# Sensitive files ====
-*_rsa
-*.pem
-.secrets
-secrets
-token.*
-
-
-# File system ====
+# File system (general) ====
 ._*
 .*~
 *~
 ~*
+*.swp
 
 
 # macOS ===
@@ -34,6 +27,14 @@ Icon
 .apdisk
 Network Trash Folder
 Temporary Items
+
+
+# Sensitive files ====
+*_rsa
+*.pem
+.secrets
+secrets
+token.*
 
 
 # Large files ====
@@ -70,6 +71,7 @@ Temporary Items
 # bcbio/
 # data-*/
 # data/
+# reference/
 annotations/
 bam/
 bed/
@@ -78,7 +80,6 @@ fastq/
 figures/
 links/
 rds/
-reference/
 sam/
 tmp/
 tmp_*/

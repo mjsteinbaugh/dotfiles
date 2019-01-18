@@ -119,8 +119,10 @@ alias less="less --ignore-case --raw-control-chars"
 # Easier checksum calculation.
 alias sha256="shasum -a 256"
 
-# Emacs. Use terminal mode by default instead of window system.
-alias emacs="emacs --no-window-system"
+# Emacs.
+# Use terminal (console) mode by default instead of window system.
+# alias emacs="emacs --no-window-system"
+# alias emacs="emacs -nw"
 
 # Disable R prompt to save workspace.
 # --no-environ
