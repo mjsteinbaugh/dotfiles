@@ -4,6 +4,7 @@
 
 ;; Configuration guides:
 ;; https://github.com/syl20bnr/spacemacs/blob/master/doc/BEGINNERS_TUTORIAL.org
+;; https://github.com/syl20bnr/spacemacs/blob/master/core/templates/.spacemacs.template
 ;; https://github.com/roryk/dotfiles/blob/master/spacemacs
 
 (defun dotspacemacs/layers ()
