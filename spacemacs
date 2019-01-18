@@ -15,6 +15,10 @@
 ;; rm -rf ~/.emacs.d
 ;; git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
+;; Exit (quit):
+;; <:q> (Vim style)
+;; Ctrl+x Ctrl+c (Emacs style)
+
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
