@@ -1,2 +1,6 @@
 # Stop asking me about Time Machine backup.
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+
+# Fix the dark mode title bar for Atom on Mojave.
+# https://github.com/atom/atom/issues/18111
+defaults write com.github.atom NSRequiresAquaSystemAppearance 0
