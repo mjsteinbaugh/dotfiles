@@ -327,6 +327,12 @@ set.seed(.env$seed)
             # width = 100L
             # Kill annoying "+" in console output.
             continue = " ",
+            # Improve stack traces for error messages.
+            # https://twitter.com/krlmlr/status/1086995664591044608
+            # https://gist.github.com/krlmlr/33ec72d196b1542b9c4f9497d981de49
+            error = quote(rlang::entrace()),
+            # Can use either "collapse", "branch", or "full".
+            rlang__backtrace_on_error = "full",
             # Enable OAuth token generation using httr on a remote R server.
             # This is used by googlesheets, for example.
             httr_oob_default = TRUE,
