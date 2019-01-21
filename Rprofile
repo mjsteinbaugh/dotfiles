@@ -289,25 +289,7 @@ set.seed(.env$seed)
 # Initilization at start of an R session =======================================
 # help(topic = "Startup", package = "base")
 .First <- function() {
-    # options(
-    #     deparse.max.lines = 2L
-    #     Ncpus = 8L
-    #     width = 100L
-    # )
-
-    # options(
-    #     install.packages.check.source = "no",
-    #     install.packages.compile.from.source = "binary",
-    #     repos = BiocManager::repositories()
-    # )
-
-    # Set my default author options, for R Markdown templates.
-    options(
-        author = "Michael Steinbaugh",
-        email = "mike@steinbaugh.com"
-    )
-
-    # Improve the appearance of the console.
+    # Console options.
     options(
         # Kill annoying "+" in console output.
         continue = " ",
@@ -316,44 +298,39 @@ set.seed(.env$seed)
         # However it doesn't work well in Putty, so disable.
         # prompt = "❯ ",
         prompt = "> ",
-        show.signif.stars = FALSE
+        show.signif.stars = FALSE,
+        width = 80L
     )
 
+    # Set default author, for R Markdown templates.
+    options(
+        author = "Michael Steinbaugh",
+        email = "mike@steinbaugh.com"
+    )
+
+    # basejump
+    options(
+        basejump.save.dir = file.path("data", Sys.Date()),
+        basejump.save.ext = "rds"
+    )
+
+    # crayon
+    options(
+        crayon.enabled = TRUE,
+        crayon.colors = 256L
+    )
+
+    # httr
     # Enable OAuth token generation using httr on a remote R server.
     # This is used by googlesheets, for example.
     options(
         httr_oob_default = TRUE
     )
 
-    # Set my desired defaults for basejump.
+    # readr
     options(
-        basejump.save.dir = file.path("data", Sys.Date()),
-        basejump.save.ext = "rds"
-    )
-
-    # Ensure colors are enabled for packages that use crayon (tidyverse).
-    options(
-        crayon.enabled = TRUE
-        crayon.colors = 256L
-    )
-
-    # Improve the defaults for readr.
-    options(
-        readr.num_columns = 0L
+        readr.num_columns = 0L,
         readr.show_progress = FALSE
-    )
-
-    # Improve the warnings and include backtrace of call stack.
-    options(
-        # Improve stack traces for error messages.
-        # https://twitter.com/krlmlr/status/1086995664591044608
-        # https://gist.github.com/krlmlr/33ec72d196b1542b9c4f9497d981de49
-        error = quote(rlang::entrace()),
-        # Can use either "collapse", "branch", or "full".
-        rlang__backtrace_on_error = "full",
-        showErrorCalls = TRUE,
-        showWarnCalls = TRUE,
-        warn = 1L
     )
 
     # Disable settings that can be problematic across platforms.
@@ -362,6 +339,30 @@ set.seed(.env$seed)
         # Menu graphics can crash R.
         menu.graphics = FALSE
     )
+
+    # Improve the warnings and include backtrace of call stack.
+    options(
+        deparse.max.lines = 3L,
+        showErrorCalls = TRUE,
+        showWarnCalls = TRUE,
+        warn = 1L
+    )
+    # Improve stack traces for error messages.
+    # - https://twitter.com/krlmlr/status/1086995664591044608
+    # - https://gist.github.com/krlmlr/33ec72d196b1542b9c4f9497d981de49
+    options(
+        error = quote(rlang::entrace()),
+        # Can use either "collapse", "branch", or "full".
+        rlang__backtrace_on_error = "full"
+    )
+
+    # Package installation options.
+    # Leave disabled by default, but can be helpful for troublesome packages.
+    # options(
+    #     install.packages.check.source = "no",
+    #     install.packages.compile.from.source = "binary",
+    #     repos = BiocManager::repositories()
+    # )
 
     if (interactive()) {
         attach(.env)
@@ -426,12 +427,15 @@ set.seed(.env$seed)
 # Initilization at end of an R session =========================================
 .Last <- function() {
     # Here's how to write out R history to a file.
-    # https://stackoverflow.com/a/1357432
+    # https://stackoverflow.com/a/1357432i
+    #
     # In shell config:
     # export R_HISTFILE=~/.Rhistory
+    #
     # if (!any(commandArgs() == "--no-readline") && interactive()) {
     #     try(utils::savehistory(Sys.getenv("R_HISTFILE")))
     # }
+
     if (interactive()) {
         message("Goodbye at ", date(), "\n")
     }
