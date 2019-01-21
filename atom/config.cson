@@ -16,7 +16,7 @@
       "dracula-syntax"
     ]
   editor:
-    fontFamily: "SFMono-Regular, Menlo, Consolas, DejaVu Sans Mono, monospace"
+    fontFamily: "SF Mono, Menlo, Consolas, DejaVu Sans Mono, monospace"
     fontSize: 16
     showIndentGuide: true
     showInvisibles: true
