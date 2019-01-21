@@ -12,7 +12,8 @@
 # https://csgillespie.github.io/efficientR/set-up.html
 
 # Notes ========================================================================
-# Don't set `stringsAsFactors = FALSE`. Code will be non-portable!
+# Don't set `stringsAsFactors = FALSE`.
+# Code will be non-portable!
 
 # If devtools runs into an unzip error, set this:
 # unzip = "/usr/bin/unzip"
@@ -202,14 +203,17 @@ stopifnot(Sys.which("conda") == "")
 
 # Get free memory statistics.
 # Currently this only works for Linux.
-# help(topic = "Memory", package = "base")
-# help(topic = "Memory-limits", package = "base")
-# https://stackoverflow.com/a/6457769
-# https://stackoverflow.com/a/29787527
-# https://stat.ethz.ch/R-manual/R-devel/library/base/html/Memory-limits.html
-# http://adv-r.had.co.nz/memory.html
-# `utils:::format.object_size()``
-# `print:::print.bytes()`
+#
+# - `help(topic = "Memory", package = "base")`
+# - `help(topic = "Memory-limits", package = "base")`
+#
+# - `utils:::format.object_size()`
+# - `print:::print.bytes()`
+#
+# - https://stackoverflow.com/a/6457769
+# - https://stackoverflow.com/a/29787527
+# - https://stat.ethz.ch/R-manual/R-devel/library/base/html/Memory-limits.html
+# - http://adv-r.had.co.nz/memory.html
 .env$memfree <- function() {
     message("Running garbage collection first with base::gc().")
     print(gc(verbose = TRUE, full = TRUE))
@@ -234,7 +238,7 @@ stopifnot(Sys.which("conda") == "")
 }
 
 .env$report <- function(...) {
-    # covr doesn't currently install DT but requires it for this function...
+    # covr doesn't currently install DT but requires it for this function.
     library(DT)
     covr::report(...)
 }
@@ -285,17 +289,78 @@ set.seed(.env$seed)
 # Initilization at start of an R session =======================================
 # help(topic = "Startup", package = "base")
 .First <- function() {
+    # options(
+    #     deparse.max.lines = 2L
+    #     Ncpus = 8L
+    #     width = 100L
+    # )
+
+    # options(
+    #     install.packages.check.source = "no",
+    #     install.packages.compile.from.source = "binary",
+    #     repos = BiocManager::repositories()
+    # )
+
+    # Set my default author options, for R Markdown templates.
     options(
         author = "Michael Steinbaugh",
+        email = "mike@steinbaugh.com"
+    )
+
+    # Improve the appearance of the console.
+    options(
+        # Kill annoying "+" in console output.
+        continue = " ",
+        max.print = 1000L,
+        # Unicode character has improved legibility (see zsh pure).
+        # However it doesn't work well in Putty, so disable.
+        # prompt = "❯ ",
+        prompt = "> ",
+        show.signif.stars = FALSE
+    )
+
+    # Enable OAuth token generation using httr on a remote R server.
+    # This is used by googlesheets, for example.
+    options(
+        httr_oob_default = TRUE
+    )
+
+    # Set my desired defaults for basejump.
+    options(
         basejump.save.dir = file.path("data", Sys.Date()),
-        basejump.save.ext = "rds",
-        browserNLdisabled = TRUE,
-        email = "mike@steinbaugh.com",
-        # Menu graphics can crash R.
-        menu.graphics = FALSE,
+        basejump.save.ext = "rds"
+    )
+
+    # Ensure colors are enabled for packages that use crayon (tidyverse).
+    options(
+        crayon.enabled = TRUE
+        crayon.colors = 256L
+    )
+
+    # Improve the defaults for readr.
+    options(
+        readr.num_columns = 0L
+        readr.show_progress = FALSE
+    )
+
+    # Improve the warnings and include backtrace of call stack.
+    options(
+        # Improve stack traces for error messages.
+        # https://twitter.com/krlmlr/status/1086995664591044608
+        # https://gist.github.com/krlmlr/33ec72d196b1542b9c4f9497d981de49
+        error = quote(rlang::entrace()),
+        # Can use either "collapse", "branch", or "full".
+        rlang__backtrace_on_error = "full",
         showErrorCalls = TRUE,
         showWarnCalls = TRUE,
         warn = 1L
+    )
+
+    # Disable settings that can be problematic across platforms.
+    options(
+        browserNLdisabled = TRUE,
+        # Menu graphics can crash R.
+        menu.graphics = FALSE
     )
 
     if (interactive()) {
@@ -312,37 +377,6 @@ set.seed(.env$seed)
                 sep = "\n"
             )
         }
-
-        # Set general interactive options.
-        options(
-            # crayon.enabled = TRUE
-            # crayon.colors = 256L
-            # deparse.max.lines = 2L
-            # install.packages.check.source = "no"
-            # install.packages.compile.from.source = "binary"
-            # Ncpus = 8L
-            # readr.num_columns = 0L
-            # readr.show_progress = FALSE
-            # repos = BiocManager::repositories()
-            # width = 100L
-            # Kill annoying "+" in console output.
-            continue = " ",
-            # Improve stack traces for error messages.
-            # https://twitter.com/krlmlr/status/1086995664591044608
-            # https://gist.github.com/krlmlr/33ec72d196b1542b9c4f9497d981de49
-            error = quote(rlang::entrace()),
-            # Can use either "collapse", "branch", or "full".
-            rlang__backtrace_on_error = "full",
-            # Enable OAuth token generation using httr on a remote R server.
-            # This is used by googlesheets, for example.
-            httr_oob_default = TRUE,
-            max.print = 1000L,
-            # Unicode character has improved legibility (see zsh pure).
-            # However it doesn't work well in Putty, so disable.
-            # prompt = "❯ ",
-            prompt = "> ",
-            show.signif.stars = FALSE
-        )
 
         # Turn on completion of installed package names.
         utils::rc.settings(ipck = TRUE)
