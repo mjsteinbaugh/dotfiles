@@ -268,7 +268,11 @@ stopifnot(Sys.which("conda") == "")
 # Check installed packages
 .env$update_packages <- function() {
     remotes::update_packages()
-    update.packages(ask = TRUE, checkBuilt = TRUE)
+    update.packages(
+        ask = TRUE,
+        checkBuilt = TRUE,
+        repos = BiocManager::repositories()
+    )
 }
 
 .env$valid <- function(...) {
@@ -362,14 +366,12 @@ set.seed(.env$seed)
     )
 
     # Package installation options.
-    options(
-        repos = BiocManager::repositories()
-    )
     # Leave these disabled by default.
     # Can be helpful for troublesome packages.
     # options(
     #     install.packages.check.source = "no",
     #     install.packages.compile.from.source = "binary",
+    #     repos = BiocManager::repositories()
     # )
 
     if (interactive()) {
