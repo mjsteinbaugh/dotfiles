@@ -33,10 +33,10 @@
     disableAnimations: true
     themeColor: "Purple"
   "sync-settings":
-    _lastBackupHash: "83423ffe267cf6851d740010f6007b4a4dd8a1d6"
-    gistId: "cf8e7a41d6e6b77f31348b6a6a964569"
-    personalAccessToken: "579a744c835f010e3cf08463c3460028a7be5e6b"
+    _lastBackupHash: "c4be1e8644fe66fc39e4cc2c42a3feaadebf35b4"
+    checkForUpdatedBackup: false
     quietUpdateCheck: true
     removeObsoletePackages: true
+    syncSettings: false
   welcome:
     showOnStartup: false
