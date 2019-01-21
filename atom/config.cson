@@ -5,12 +5,9 @@
     disabledPackages: [
       "autocomplete-plus"
       "autocomplete-snippets"
+      "bracket-matcher"
       "language-gfm"
-      "language-mustache"
-      "language-toml"
-      "language-typescript"
       "snippets"
-      "sync-settings"
     ]
     projectHome: "/Users/mike/git"
     telemetryConsent: "no"
@@ -36,7 +33,10 @@
     disableAnimations: true
     themeColor: "Purple"
   "sync-settings":
-    _lastBackupHash: "97fe7665e888bbe8401b46d17c60c0adc3a84e3e"
-    checkForUpdatedBackup: false
+    _lastBackupHash: "83423ffe267cf6851d740010f6007b4a4dd8a1d6"
+    gistId: "cf8e7a41d6e6b77f31348b6a6a964569"
+    personalAccessToken: "579a744c835f010e3cf08463c3460028a7be5e6b"
+    quietUpdateCheck: true
+    removeObsoletePackages: true
   welcome:
     showOnStartup: false
