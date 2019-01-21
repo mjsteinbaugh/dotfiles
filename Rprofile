@@ -345,7 +345,12 @@ set.seed(.env$seed)
         deparse.max.lines = 3L,
         showErrorCalls = TRUE,
         showWarnCalls = TRUE,
-        warn = 1L
+        warn = 1L,
+        # Note that edgeR and pheatmap currently fail for this.
+        warnPartialMatchAttr = TRUE,
+        warnPartialMatchDollar = TRUE,
+        # 8170 is the maximum warning length.
+        warning.length = 8170L
     )
     # Improve stack traces for error messages.
     # - https://twitter.com/krlmlr/status/1086995664591044608
@@ -360,7 +365,8 @@ set.seed(.env$seed)
     options(
         repos = BiocManager::repositories()
     )
-    # Leave these disabled by default, but can be helpful for troublesome packages.
+    # Leave these disabled by default.
+    # Can be helpful for troublesome packages.
     # options(
     #     install.packages.check.source = "no",
     #     install.packages.compile.from.source = "binary",
@@ -389,20 +395,14 @@ set.seed(.env$seed)
 
         # Set developer-specific profile.
         if (isTRUE(devel)) {
-            # options(
-            #     warnPartialMatchAttr = TRUE  # edgeR and pheatmap fail this.
-            #     warnPartialMatchDollar = TRUE,
-            #     warning.length = 8170L  # 8170 is the maximum.
-            # )
-
             # Enable automatic package updates from home directory.
             if (identical(
                 x = normalizePath(getwd()),
                 y = normalizePath("~")
             )) {
                 # Automatically update packages.
-                # try(BiocManager::install(ask = TRUE))
-                # suppressWarnings(utils::update.packages(ask = TRUE))
+                try(BiocManager::install(ask = TRUE))
+                suppressWarnings(utils::update.packages(ask = TRUE))
             }
         }
 
