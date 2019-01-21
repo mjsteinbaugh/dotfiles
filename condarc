@@ -1,4 +1,5 @@
 # Don't change the command prompt (PS1)
+# conda config --set changeps1 no
 changeps1: False
 
 # https://bioconda.github.io/#set-up-channels
