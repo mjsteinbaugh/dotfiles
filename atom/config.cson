@@ -34,9 +34,7 @@
     themeColor: "Purple"
   "sync-settings":
     _lastBackupHash: "e8677a6190fa6eebfc2487990b53e193ab94c753"
-    checkForUpdatedBackup: false
     quietUpdateCheck: true
     removeObsoletePackages: true
-    syncSettings: false
   welcome:
     showOnStartup: false
