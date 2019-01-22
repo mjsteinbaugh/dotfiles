@@ -346,9 +346,9 @@ set.seed(.env$seed)
         showErrorCalls = TRUE,
         showWarnCalls = TRUE,
         warn = 1L,
-        # Note that edgeR and pheatmap currently fail for this.
-        warnPartialMatchAttr = TRUE,
-        warnPartialMatchDollar = TRUE,
+        # Note that edgeR and pheatmap currently fail for these.
+        # warnPartialMatchAttr = TRUE,
+        # warnPartialMatchDollar = TRUE,
         # 8170 is the maximum warning length.
         warning.length = 8170L
     )
