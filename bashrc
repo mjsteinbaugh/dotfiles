@@ -77,6 +77,13 @@ then
     # \u: username
     # \w: working directory
 
+    # Add the conda environment name.
+    # Note that we have to source conda first (see shrc.rc above).
+    # https://stackoverflow.com/questions/42481726
+    # CONDA_PROMPT_MODIFIER="($(basename "$CONDA_PREFIX"))"
+    # export CONDA_PROMPT_MODIFIER
+    # conda="$CONDA_PROMPT_MODIFIER"
+
     history="[c\#; h\!]"
     prompt="\$"
     # Unicode doesn't work with PuTTY on Windows.
@@ -141,12 +148,6 @@ fi
 
 
 
-# Source shared shell configuration.
-# shellcheck source=/dev/null
-source ~/.shrc
-
-
-
 # Powerline
 # Disabled at the moment in favor of simply using airline in vim.
 # Need to source this after shrc so we can get the powerline install path from conda.
@@ -155,3 +156,8 @@ source ~/.shrc
 #     source "${POWERLINE_ROOT}/bindings/bash/powerline.sh"
 # fi
 
+
+
+# Source shared shell configuration.
+# shellcheck source=/dev/null
+source ~/.shrc

@@ -16,7 +16,7 @@
       "dracula-syntax"
     ]
   editor:
-    fontFamily: "SFMono-Regular, Menlo, Consolas, DejaVu Sans Mono, monospace"
+    fontFamily: "SF Mono, Menlo, Consolas, DejaVu Sans Mono, monospace"
     fontSize: 16
     showIndentGuide: true
     showInvisibles: true
@@ -33,9 +33,7 @@
     disableAnimations: true
     themeColor: "Purple"
   "sync-settings":
-    _lastBackupHash: "83423ffe267cf6851d740010f6007b4a4dd8a1d6"
-    gistId: "cf8e7a41d6e6b77f31348b6a6a964569"
-    personalAccessToken: "579a744c835f010e3cf08463c3460028a7be5e6b"
+    _lastBackupHash: "e8677a6190fa6eebfc2487990b53e193ab94c753"
     quietUpdateCheck: true
     removeObsoletePackages: true
   welcome:
