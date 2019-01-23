@@ -334,7 +334,7 @@ fi
 # koopa ========================================================================
 # Load koopa.
 # https://github.com/steinbaugh/koopa/
-export KOOPA_EXE="${HOME}/.koopa/bin/koopa"
+export KOOPA_EXE="${HOME}/.koopa/bin/koopa.sh"
 if [ -f "$KOOPA_EXE" ]
 then
     if [ ! -z "$SLURM_CONF" ]
