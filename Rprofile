@@ -268,11 +268,11 @@ stopifnot(Sys.which("conda") == "")
 # Check installed packages
 .env$update_packages <- function() {
     remotes::update_packages()
-    update.packages(
-        ask = TRUE,
-        checkBuilt = TRUE,
-        repos = BiocManager::repositories()
-    )
+    # update.packages(
+    #     ask = TRUE,
+    #     checkBuilt = TRUE,
+    #     repos = BiocManager::repositories()
+    # )
 }
 
 .env$valid <- function(...) {
@@ -350,9 +350,9 @@ set.seed(.env$seed)
         showErrorCalls = TRUE,
         showWarnCalls = TRUE,
         warn = 1L,
-        # Note that edgeR and pheatmap currently fail for this.
-        warnPartialMatchAttr = TRUE,
-        warnPartialMatchDollar = TRUE,
+        # Note that edgeR and pheatmap currently fail for these.
+        # warnPartialMatchAttr = TRUE,
+        # warnPartialMatchDollar = TRUE,
         # 8170 is the maximum warning length.
         warning.length = 8170L
     )
