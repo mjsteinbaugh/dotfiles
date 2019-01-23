@@ -268,11 +268,11 @@ stopifnot(Sys.which("conda") == "")
 # Check installed packages
 .env$update_packages <- function() {
     remotes::update_packages()
-    update.packages(
-        ask = TRUE,
-        checkBuilt = TRUE,
-        repos = BiocManager::repositories()
-    )
+    # update.packages(
+    #     ask = TRUE,
+    #     checkBuilt = TRUE,
+    #     repos = BiocManager::repositories()
+    # )
 }
 
 .env$valid <- function(...) {
