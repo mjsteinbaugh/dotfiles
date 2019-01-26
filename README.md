@@ -1,4 +1,4 @@
-# Dot Files
+# Dot files
 
 My configuration files shared between machines running:
 
