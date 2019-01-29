@@ -184,6 +184,20 @@ set wildmode=list:longest,full
 
 
 
+" Markdown fold style.
+"
+" Completely disable Markdown-specific code folding.
+" let g:vim_markdown_folding_disabled = 1
+"
+" Here's how to disable code folding globally in vim.
+" set [no]foldenable
+"
+" let g:vim_markdown_folding_style_pythonic = 1
+" let g:vim_markdown_override_foldtext = 0
+let g:vim_markdown_folding_level = 2
+
+
+
 " ==============================================================================
 " VIM 8+ specific
 " ==============================================================================
@@ -194,8 +208,9 @@ set wildmode=list:longest,full
 "     finish
 " endif
 
-" Note that this is handled automatically by dracula plugin- now.
+" Note that this is handled automatically by dracula plugin now.
 " Airline powerbar theme colors.
 " Seems to be breaking inside tmux?
 " https://github.com/vim-airline/vim-airline/issues/829
 " let g:airline_theme='dracula'
+
