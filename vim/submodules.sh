@@ -2,17 +2,21 @@
 # Installing dependencies as submodules.
 
 git submodule add --force \
-    git@github.com:vim-airline/vim-airline.git \
+    git@github.com:mjsteinbaugh/vim-airline.git \
     pack/dist/start/vim-airline
 git submodule add --force \
-    git@github.com:dracula/vim.git \
+    git@github.com:mjsteinbaugh/vim-dracula.git \
     pack/dist/start/dracula-theme
 git submodule add --force \
-    git@github.com:plasticboy/vim-markdown.git \
+    git@github.com:mjsteinbaugh/vim-markdown.git \
     pack/dist/start/vim-markdown
+git submodule add --force \
+    git@github.com:mjsteinbaugh/Nvim-R.git \
+    pack/dist/start/Nvim-R
 
 # After cloning, need to initialize the submodules.
 git submodule init
+git submodule sync
 git submodule update
 # git submodule update --recursive
 
