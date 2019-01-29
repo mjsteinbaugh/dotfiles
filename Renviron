@@ -10,7 +10,8 @@
 # Using a symlink to point to full library path.
 # Example: ~/R/x86_64-apple-darwin15.6.0-library/3.5/bioc-3.8-release
 # `$R_PLATFORM` returns the platform string to use in directory name.
-R_LIBS_USER="~/R/library"
+# R_LIBS_USER="~/R/library"
+R_LIBS_USER="~/R/x86_64-apple-darwin15.6.0-library/3.5/bioc-3.8-release"
 
 # Path
 PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/usr/local/MacGPG2/bin:/opt/X11/bin"
