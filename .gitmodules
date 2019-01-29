@@ -4,3 +4,6 @@
 [submodule "vim/pack/dist/start/dracula-theme"]
 	path = vim/pack/dist/start/dracula-theme
 	url = git@github.com:dracula/vim.git
+[submodule "vim/pack/dist/start/vim-markdown"]
+	path = vim/pack/dist/start/vim-markdown
+	url = git@github.com:plasticboy/vim-markdown.git
