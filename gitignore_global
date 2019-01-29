@@ -66,6 +66,10 @@ token.*
 *.zip
 
 
+# Code editors ====
+.vscode
+
+
 # Large directories ====
 # bcbio-*/
 # bcbio/
