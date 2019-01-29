@@ -9,6 +9,7 @@
 " - https://gist.github.com/nerdalert/5f80853b4e195204bc6d
 
 
+
 " Enable 256 color support (in PuTTY)
 " https://gist.github.com/limingjie/4975c36d13d0927613e6
 if &term == "screen"
@@ -18,14 +19,38 @@ endif
 set background=dark
 
 
+
 " Enable syntax highlighting.
 syntax on
+
+
 
 " Color theme.
 color dracula
 
+
+
+" Enable soft wrapping.
+" Use nowrap to disable.
+set wrap
+
 " Set the text line wrapping width.
-set textwidth=80
+" Note that this will add line breaks, which can be annoying.
+" May want to enable this for specific file types instead.
+" set textwidth=80
+
+" Here's how to disable automatic line breaks.
+" https://stackoverflow.com/questions/2280030
+set textwidth=0
+set wrapmargin=0
+
+" Set the right margin color column.
+" Super useful when using soft wrapping.
+" Added in Vim 7.3.
+" https://stackoverflow.com/questions/2182427
+set colorcolumn=80
+
+
 
 " Show line numbers.
 set number
@@ -52,21 +77,31 @@ set showcmd
 " Highlight matches.
 set showmatch
 
+
+
 " Set mouse integration.
 " `a` means all here.
 set mouse=a
 " set mouse=
 
+
+
 " Disable creation of `foo~` files.
 " These are annoying and create file system cruft.
 set nobackup
 
+
+
 " Disable the swap file, if desired.
 " set noswapfile
+
+
 
 " Fix backspace (delete) key for macOS.
 " https://unix.stackexchange.com/a/307974
 set backspace=indent,eol,start
+
+
 
 " Enable copy to clipboard (for macOS).
 " Now Vy will work.
@@ -125,7 +160,7 @@ set expandtab
 
 
 
-" Whitespace
+" Whitespace indicators.
 if has("multi_byte")
     set encoding=utf-8
     set list listchars=tab:»·,trail:·
@@ -135,14 +170,15 @@ endif
 
 
 
-" Searching
+" Searching.
 set ignorecase
 set smartcase
 set hlsearch
 set incsearch
 
 
-" Command mode menus
+
+" Command mode menus.
 set wildmenu
 set wildmode=list:longest,full
 
@@ -163,4 +199,3 @@ set wildmode=list:longest,full
 " Seems to be breaking inside tmux?
 " https://github.com/vim-airline/vim-airline/issues/829
 " let g:airline_theme='dracula'
-
