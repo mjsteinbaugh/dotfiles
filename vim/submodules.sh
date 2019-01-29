@@ -7,6 +7,9 @@ git submodule add --force \
 git submodule add --force \
     git@github.com:dracula/vim.git \
     pack/dist/start/dracula-theme
+git submodule add --force \
+    git@github.com:plasticboy/vim-markdown.git \
+    pack/dist/start/vim-markdown
 
 # After cloning, need to initialize the submodules.
 git submodule init
