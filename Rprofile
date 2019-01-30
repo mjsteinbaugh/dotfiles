@@ -279,6 +279,10 @@ stopifnot(Sys.which("conda") == "")
     BiocManager::valid(...)
 }
 
+.env$View2 <- function(...) {
+    View(as.data.frame(...))
+}
+
 # Set seed for reproducibility =================================================
 .env$seed <- 1454944673L
 set.seed(.env$seed)
