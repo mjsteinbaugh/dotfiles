@@ -26,7 +26,8 @@ syntax on
 
 
 " Color theme.
-color dracula
+" This is now handled by plugin.
+" color dracula
 
 
 
