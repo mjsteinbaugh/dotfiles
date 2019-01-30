@@ -1,6 +1,7 @@
-# HMS O2 R conda environment
+# HMS O2 R environment
+# /n/app/R/3.5.1/bin/R
 
-R_LIBS_USER="~/R/library"
+R_LIBS_USER="~/R/x86_64-pc-linux-gnu-library/3.5/bioc-3.8-release-20190129"
 
 # Enable this if necessary when working with single-cell packages.
 # R_MAX_NUM_DLLS=200
