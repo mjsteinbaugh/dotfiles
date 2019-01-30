@@ -20,22 +20,32 @@
 
 # Check compilers are installed ================================================
 if (Sys.getenv("HMS_CLUSTER") == "o2") {
-    # Use conda GCC instead of GCC 6 module.
+    # module load gcc/6.2.0
     stopifnot(identical(
         x = Sys.which(c("gcc", "g++", "gfortran")),
         y = c(
-            "gcc" = "/home/mjs65/miniconda3/envs/R-3.5.1-20181104/bin/gcc",
-            "g++" = "/home/mjs65/miniconda3/envs/R-3.5.1-20181104/bin/g++",
-            "gfortran" = "/home/mjs65/miniconda3/envs/R-3.5.1-20181104/bin/gfortran"
+            "gcc" =      "/n/app/gcc/6.2.0/bin/gcc",
+            "g++" =      "/n/app/gcc/6.2.0/bin/g++",
+            "gfortran" = "/n/app/gcc/6.2.0/bin/gfortran"
         )
+    ))
+    # module load R/3.5.1
+    stopifnot(identical(
+        Sys.which("R"),
+        c(R = "/n/app/R/3.5.1/bin/R")
+    ))
+    # module load hdf5/1.10.1
+    stopifnot(identical(
+        Sys.which("h5cc"),
+        c(h5cc = "/n/app/hdf5/1.10.1/bin/h5cc")
     ))
 } else if (Sys.info()[["sysname"]] == "Darwin") {
     # Use recommended CRAN compiler settings.
     stopifnot(identical(
         x = Sys.which(c("clang", "clang++", "gfortran")),
         y = c(
-            "clang" = "/usr/local/clang6/bin/clang",
-            "clang++" = "/usr/local/clang6/bin/clang++",
+            "clang" =    "/usr/local/clang6/bin/clang",
+            "clang++" =  "/usr/local/clang6/bin/clang++",
             "gfortran" = "/usr/local/gfortran/bin/gfortran"
         )
     ))
@@ -43,8 +53,8 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
     stopifnot(identical(
         x = Sys.which(c("gcc", "g++", "gfortran")),
         y = c(
-            "gcc" = "/usr/bin/gcc",
-            "g++" = "/usr/bin/g++",
+            "gcc" =      "/usr/bin/gcc",
+            "g++" =      "/usr/bin/g++",
             "gfortran" = "/usr/bin/gfortran"
         )
     ))
