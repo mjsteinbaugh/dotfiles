@@ -328,6 +328,7 @@ set.seed(.env$seed)
 
     # basejump
     options(
+        basejump.load.dir = file.path("data", Sys.Date()),
         basejump.save.dir = file.path("data", Sys.Date()),
         basejump.save.ext = "rds"
     )
@@ -336,6 +337,11 @@ set.seed(.env$seed)
     options(
         crayon.enabled = TRUE,
         crayon.colors = 256L
+    )
+
+    # goalie
+    options(
+        goalie.traceback = FALSE
     )
 
     # httr
