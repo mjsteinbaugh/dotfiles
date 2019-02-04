@@ -49,6 +49,8 @@ export HOSTNAME
 # 077 is more secure, but 022 is more useful.
 # umask 022
 
+# Group writeable by default.
+# umask 002
 
 
 # Functions --------------------------------------------------------------------
