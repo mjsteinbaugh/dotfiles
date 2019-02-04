@@ -59,6 +59,8 @@ export HOSTNAME
 #
 # See also:
 # - https://stackoverflow.com/questions/13268796
+# - https://www.cyberciti.biz/tips/understanding-linux-unix-umask-value-usage.html
+# - http://articles.slicehost.com/2010/7/17/umask-and-unusual-file-permissions-and-types
 umask 002
 
 
