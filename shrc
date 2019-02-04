@@ -44,13 +44,18 @@ export HOSTNAME
 # Non-persistent in subshells
 # ==============================================================================
 
+# Default permissions
 # Set default file permissions with umask.
 # Use access control lists (ACLs) instead if possible.
-# 077 is more secure, but 022 is more useful.
-# umask 022
-
-# Group writeable by default.
-# umask 002
+#
+# umask 077 - Assigns permissions so that only you have read/write access for files, and read/write/search for directories you own. All others have no access permissions to your files or directories.
+# umask 022 - Assigns permissions so that only you have read/write access for files, and read/write/search for directories you own. All others have read access only to your files, and read/search access to your directories.
+# umask 002 - Assigns permissions so that only you and members of your group have read/write access to files, and read/write/search access to directories you own. All others have read access only to your files, and read/search to your directories.
+#
+# 077 is more secure; 022 is generally more useful.
+#
+# See also:
+# - https://stackoverflow.com/questions/13268796
 
 
 # Functions --------------------------------------------------------------------
