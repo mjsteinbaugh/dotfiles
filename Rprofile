@@ -306,9 +306,11 @@ set.seed(.env$seed)
 
 # RStudio fixes ================================================================
 if (isTRUE(nzchar(Sys.getenv("RSTUDIO_USER_IDENTITY")))) {
+    cat("R is running inside RStudio.\n\n")
+
     # RStudio doesn't pick up the correct system umask, which is annoying.
     # Let's override manually using umask 002 instead.
-    Sys.umask("002")
+    Sys.umask("0002")
 
     # The `View()` utility function only works in RStudio.
     # It doesn't work with S4 DataFrame, so let's make a `View2()` variant.
