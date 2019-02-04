@@ -252,6 +252,8 @@ then
         HOMEBREW_REPOSITORY="$(brew --repo)"
         export HOMEBREW_REPOSITORY
         export HOMEBREW_INSTALL_CLEANUP=1
+        # Disable tracking with Google Analytics.
+        export HOMEBREW_NO_ANALYTICS=1
     fi
 
     # Enable more colors with grc.
