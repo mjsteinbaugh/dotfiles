@@ -46,6 +46,7 @@ export HOSTNAME
 
 # Set default file permissions with umask.
 # Note: Access control lists (ACLs) are sometimes preferable to umask.
+# Use `umask -S` to return u,g,o values.
 #
 # - 022: User can write, others can read (usually default).
 #     - f: u=rw,g=r,o=r

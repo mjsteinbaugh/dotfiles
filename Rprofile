@@ -293,10 +293,6 @@ stopifnot(Sys.which("conda") == "")
     BiocManager::valid(...)
 }
 
-.env$View2 <- function(...) {
-    View(as.data.frame(...))
-}
-
 # Set seed for reproducibility =================================================
 .env$seed <- 1454944673L
 set.seed(.env$seed)
@@ -307,6 +303,19 @@ set.seed(.env$seed)
 # 624
 # 1853863629
 # -1353004246
+
+# RStudio fixes ================================================================
+if (isTRUE(nzchar(Sys.getenv("RSTUDIO_USER_IDENTITY")))) {
+    # RStudio doesn't pick up the correct system umask, which is annoying.
+    # Let's override manually using umask 002 instead.
+    Sys.umask("002")
+
+    # The `View()` utility function only works in RStudio.
+    # It doesn't work with S4 DataFrame, so let's make a `View2()` variant.
+    .env$View2 <- function(...) {
+      View(as.data.frame(...))
+    }
+}
 
 # Initilization at start of an R session =======================================
 # help(topic = "Startup", package = "base")
