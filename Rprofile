@@ -247,6 +247,10 @@ stopifnot(Sys.which("conda") == "")
     rcmdcheck::rcmdcheck(...)
 }
 
+.env$render <- function(...) {
+    rmarkdown::render(...)
+}
+
 .env$report <- function(...) {
     # covr doesn't currently install DT but requires it for this function.
     library(DT)
