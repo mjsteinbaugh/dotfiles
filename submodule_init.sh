@@ -1,6 +1,10 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
 # Using pack (native Vim 8 package manager).
 # Installing dependencies as submodules.
 
+# These commands will modify `.gitmodules` file.
 git submodule add --force \
     git@github.com:mjsteinbaugh/vim-airline.git \
     pack/dist/start/vim-airline
@@ -14,13 +18,8 @@ git submodule add --force \
     git@github.com:mjsteinbaugh/Nvim-R.git \
     pack/dist/start/Nvim-R
 
-# After cloning, need to initialize the submodules.
+# Initialize the submodules.
 git submodule init
-git submodule sync
-git submodule update
-# git submodule update --recursive
 
-# How to update submodules.
-git submodule update --remote --merge
-git commit -m "Submodule update"
-git push
+# If necessary, here's how to de-initialize.
+# git submodule deinit
