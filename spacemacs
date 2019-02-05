@@ -48,13 +48,14 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     vimscript
      auto-completion
      better-defaults
      csv
      emacs-lisp
      ess
-     git
+     ;; Git support requires Magit, which requires Git 2.0+.
+     ;; Git 1.8 is bundled on many VMs, so disable.
+     ;; git
      ;; Can use helm instead of ivy.
      ;; helm
      html
@@ -69,7 +70,8 @@ values."
      ;;        shell-default-position 'bottom)
      spell-checking
      syntax-checking
-     version-control
+     ;; version-control
+     vimscript
      yaml
      )
    ;; List of additional packages that will be installed without being
