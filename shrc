@@ -112,6 +112,7 @@ alias cp="cp -irv"
 alias mkdir="mkdir -vp"
 alias mv="mv -iv"
 alias rm="rm -iv"
+alias scp="scp -r"
 
 # Listing files.
 alias la="ls -a"
