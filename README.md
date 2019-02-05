@@ -10,6 +10,8 @@ My configuration files shared between machines running:
 - [Ubuntu](https://www.ubuntu.com/)
 - [Raspbian](https://www.raspbian.org/)
 
+Use [shellcheck](https://www.shellcheck.net/) to check shell scripts.
+
 ## Submodules
 
 Currently, the vim configuration requires git submodules.
@@ -24,5 +26,3 @@ Run [`submodule_init.sh`](submodule_init.sh) after cloning the repo.
   `Renviron`, `Rprofile`
 - [Rory Kirchner](https://github.com/roryk/dotfiles):
   `gitconfig`, `spacemacs`, `tmux.conf`
-
-Use [shellcheck](https://www.shellcheck.net/) to check shell scripts.
