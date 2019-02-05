@@ -10,7 +10,7 @@ My configuration files shared between machines running:
 - [Ubuntu](https://www.ubuntu.com/)
 - [Raspbian](https://www.raspbian.org/)
 
-## Managing submodules
+## Submodules
 
 Currently, the vim configuration requires git submodules.
 Run [`submodule_init.sh`](submodule_init.sh) after cloning the repo.
