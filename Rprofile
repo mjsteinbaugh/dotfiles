@@ -10,13 +10,14 @@
 #
 # Efficient R programming:
 # https://csgillespie.github.io/efficientR/set-up.html
-
-# Notes ========================================================================
+#
 # Don't set `stringsAsFactors = FALSE`.
 # Code will be non-portable!
-
+#
 # If devtools runs into an unzip error, set this:
 # unzip = "/usr/bin/unzip"
+
+
 
 # Check compilers are installed ================================================
 if (Sys.getenv("HMS_CLUSTER") == "o2") {
@@ -60,269 +61,36 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
     ))
 }
 
+
 # No conda allowed! Can cause compilation issues.
 stopifnot(Sys.which("conda") == "")
 
-# Invisible utility functions ==================================================
-# Assign shortcuts to a hidden environment.
-.env <- new.env()
 
-.env$available <- function(...) {
-    available::available(...)
-}
-
-.env$bb8 <- function(...) {
-    bb8::bb8(...)
-}
-
-.env$BiocCheck <- function(package = ".", ...) {
-    BiocCheck::BiocCheck(package = package, ...)
-}
-
-.env$build <- function(..., vignettes = FALSE) {
-    devtools::build(..., vignettes = vignettes)
-}
-
-.env$build_articles <- function(...) {
-    pkgdown::build_articles(...)
-}
-
-.env$build_home <- function(...) {
-    pkgdown::build_home(...)
-}
-
-.env$build_news <- function(...) {
-    pkgdown::build_news(...)
-}
-
-.env$build_reference <- function(...) {
-    pkgdown::build_reference(...)
-}
-
-.env$build_reference_index <- function(...) {
-    pkgdown::build_reference_index(...)
-}
-
-.env$build_site <- function(..., document = FALSE) {
-    unlink("docs", recursive = TRUE)
-    pkgdown::build_site(..., document = document)
-}
-
-.env$build_vignettes <- function(...) {
-    devtools::build_vignettes(...)
-}
-
-.env$catVec <- function(x) {
-    x <- paste0("\"", x, "\"")
-    x <- paste(x, collapse = ",\n")
-    cat(x)
-}
-
-.env$check <- function(
-    ...,
-    document = FALSE,
-    vignettes = FALSE
-) {
-    devtools::check(
-        ...,
-        document = document,
-        vignettes = vignettes
-    )
-    # This will error if directory doesn't match package name.
-    # BiocCheck::BiocCheck(".")
-}
-
-.env$cd <- function(...) {
-    base::setwd(...)
-}
-
-.env$clear <- function() {
-    cat("\f")
-}
-
-.env$clearWarnings <- function() {
-    assign("last.warning", NULL, envir = baseenv())
-}
-
-.env$devinstall <- function(..., dependencies = FALSE) {
-    devtools::install(..., dependencies = dependencies)
-}
-
-.env$document <- function(...) {
-    devtools::document(...)
-}
-
-.env$export <- function(...) {
-    basejump::export(...)
-}
-
-# Find and replace across a directory.
-.env$findAndReplace <- function(
-    pattern,
-    replacement,
-    dir = ".",
-    recursive = FALSE
-) {
-    files <- list.files(
-        path = dir,
-        pattern = "(r|R)$",
-        full.names = TRUE,
-        recursive = recursive
-    )
-    invisible(parallel::mclapply(
-        X = files,
-        FUN = function(file) {
-            x <- readr::read_lines(file)
-            x <- gsub(pattern = pattern, replacement = replacement, x = x)
-            readr::write_lines(x, path = file)
-        }
-    ))
-}
-
-# macOS: Open Finder to the current directory.
-.env$finder <- function(path = ".") {
-    stopifnot(Sys.info()[[1L]] == "Darwin")
-    stopifnot(is.character(path) && length(character) == 1L)
-    system(paste("open", path))
-}
-
-.env$import <- function(...) {
-    basejump::import(...)
-}
-
-.env$install <- function(...) {
-    BiocManager::install(...)
-}
-
-.env$install_github <- function(..., upgrade = "never") {
-    remotes::install_github(..., upgrade = upgrade)
-}
-
-.env$lint_package <- function(...) {
-    lintr::lint_package(...)
-}
-
-.env$loadData <- function(...) {
-    basejump::loadData(...)
-}
-
-# pkgload::load_all(helpers = FALSE, attach_testthat = FALSE)
-.env$load_all <- function() {
-    devtools::load_all()
-}
-
-# Get free memory statistics.
-# Currently this only works for Linux.
-#
-# - `help(topic = "Memory", package = "base")`
-# - `help(topic = "Memory-limits", package = "base")`
-#
-# - `utils:::format.object_size()`
-# - `print:::print.bytes()`
-#
-# - https://stackoverflow.com/a/6457769
-# - https://stackoverflow.com/a/29787527
-# - https://stat.ethz.ch/R-manual/R-devel/library/base/html/Memory-limits.html
-# - http://adv-r.had.co.nz/memory.html
-.env$memfree <- function() {
-    message("Running garbage collection first with base::gc().")
-    print(gc(verbose = TRUE, full = TRUE))
-    mem_used <- capture.output(print(pryr::mem_used()))
-    mem_free <- utils:::format.object_size(as.numeric(
-        system("awk '/MemFree/ {print $2}' /proc/meminfo", intern = TRUE)
-    ), "auto")
-    message(paste0(
-        "Memory used: ", mem_used, " (pryr::mem_used)\n",
-        "Memory free: ", mem_free, " (awk MemFree)"
-    ))
-}
-
-# macOS: Copy to clipboard.
-.env$pbcopy <- function(x) {
-    stopifnot(Sys.info()[[1L]] == "Darwin")
-    capture.output(x, file = pipe("pbcopy"))
-}
-
-.env$rcmdcheck <- function(...) {
-    rcmdcheck::rcmdcheck(...)
-}
-
-.env$render <- function(...) {
-    rmarkdown::render(...)
-}
-
-.env$report <- function(...) {
-    # covr doesn't currently install DT but requires it for this function.
-    library(DT)
-    covr::report(...)
-}
-
-.env$roxygenize <- function(...) {
-    roxygen2::roxygenise(...)
-}
-
-.env$run_examples <- function(..., fresh = TRUE) {
-    devtools::run_examples(..., fresh = fresh)
-}
-
-.env$saveData <- function(...) {
-    basejump::saveData(...)
-}
-
-.env$script_path <- function() {
-    rstudioapi::getSourceEditorContext()$path
-}
-
-.env$test <- function(...) {
-    require(testthat)
-    require(patrick)
-    devtools::test(...)
-}
-
-# Check installed packages
-.env$update_packages <- function() {
-    remotes::update_packages()
-    # update.packages(
-    #     ask = TRUE,
-    #     checkBuilt = TRUE,
-    #     repos = BiocManager::repositories()
-    # )
-}
-
-.env$valid <- function(...) {
-    BiocManager::valid(...)
-}
-
-# Set seed for reproducibility =================================================
-.env$seed <- 1454944673L
-set.seed(.env$seed)
-
-# R 3.5.1
-# cat(head(.Random.seed, n = 3L), sep = "\n")
-# 403
-# 624
-# 1853863629
-# -1353004246
-
-# RStudio fixes ================================================================
-if (isTRUE(nzchar(Sys.getenv("RSTUDIO_USER_IDENTITY")))) {
-    cat("R is running inside RStudio.\n\n")
-
-    # RStudio doesn't pick up the correct system umask, which is annoying.
-    # Let's override manually using umask 002 instead.
-    Sys.umask("0002")
-
-    # The `View()` utility function only works in RStudio.
-    # It doesn't work with S4 DataFrame, so let's make a `View2()` variant.
-    .env$View2 <- function(...) {
-      View(as.data.frame(...))
-    }
-}
 
 # Initilization at start of an R session =======================================
 # help(topic = "Startup", package = "base")
 .First <- function() {
-    # Console options.
+    # Always set seed for reproducibility.
+    seed <- 1454944673L
+    set.seed(seed)
+    
+    
+    # Check if session is running inside RStudio.
+    if (isTRUE(nzchar(Sys.getenv("RSTUDIO_USER_IDENTITY")))) {
+        rstudio <- TRUE
+    } else {
+        rstudio <- FALSE
+    }
+    
+    
+    # Fix default file permissions in RStudio.
+    # RStudio doesn't pick up the system umask, which is annoying.
+    if (isTRUE(rstudio)) {
+        Sys.umask("0002")
+    }
+
+
+    # Set console options.
     options(
         # Kill annoying "+" in console output.
         continue = " ",
@@ -391,6 +159,7 @@ if (isTRUE(nzchar(Sys.getenv("RSTUDIO_USER_IDENTITY")))) {
         # 8170 is the maximum warning length.
         warning.length = 8170L
     )
+    
     # Improve stack traces for error messages.
     # - https://twitter.com/krlmlr/status/1086995664591044608
     # - https://gist.github.com/krlmlr/33ec72d196b1542b9c4f9497d981de49
@@ -400,17 +169,262 @@ if (isTRUE(nzchar(Sys.getenv("RSTUDIO_USER_IDENTITY")))) {
         rlang__backtrace_on_error = "full"
     )
 
-    # Package installation options.
-    # Leave these disabled by default.
-    # Can be helpful for troublesome packages.
-    # options(
-    #     install.packages.check.source = "no",
-    #     install.packages.compile.from.source = "binary",
-    #     repos = BiocManager::repositories()
-    # )
 
     if (interactive()) {
+        # Package installation options.
+        # Leave these disabled by default.
+        # Can be helpful for troublesome packages.
+        # options(
+        #     install.packages.check.source = "no",
+        #     install.packages.compile.from.source = "binary",
+        #     repos = BiocManager::repositories()
+        # )
+
+        # Assign shortcuts and session information to a hidden environment.
+        .env <- new.env()
+        
+        # Stash the seed.
+        .env$seed <- seed
+        
+        .env$available <- function(...) {
+            available::available(...)
+        }
+
+        .env$bb8 <- function(...) {
+            bb8::bb8(...)
+        }
+
+        .env$BiocCheck <- function(package = ".", ...) {
+            BiocCheck::BiocCheck(package = package, ...)
+        }
+
+        .env$build <- function(..., vignettes = FALSE) {
+            devtools::build(..., vignettes = vignettes)
+        }
+
+        .env$build_articles <- function(...) {
+            pkgdown::build_articles(...)
+        }
+
+        .env$build_home <- function(...) {
+            pkgdown::build_home(...)
+        }
+
+        .env$build_news <- function(...) {
+            pkgdown::build_news(...)
+        }
+
+        .env$build_reference <- function(...) {
+            pkgdown::build_reference(...)
+        }
+
+        .env$build_reference_index <- function(...) {
+            pkgdown::build_reference_index(...)
+        }
+
+        .env$build_site <- function(..., document = FALSE) {
+            unlink("docs", recursive = TRUE)
+            pkgdown::build_site(..., document = document)
+        }
+
+        .env$build_vignettes <- function(...) {
+            devtools::build_vignettes(...)
+        }
+
+        .env$catVec <- function(x) {
+            x <- paste0("\"", x, "\"")
+            x <- paste(x, collapse = ",\n")
+            cat(x)
+        }
+
+        .env$check <- function(
+            ...,
+            document = FALSE,
+            vignettes = FALSE
+        ) {
+            devtools::check(
+                ...,
+                document = document,
+                vignettes = vignettes
+            )
+            # This will error if directory doesn't match package name.
+            # BiocCheck::BiocCheck(".")
+        }
+
+        .env$cd <- function(...) {
+            base::setwd(...)
+        }
+
+        .env$clear <- function() {
+            cat("\f")
+        }
+
+        .env$clearWarnings <- function() {
+            assign("last.warning", NULL, envir = baseenv())
+        }
+
+        .env$devinstall <- function(..., dependencies = FALSE) {
+            devtools::install(..., dependencies = dependencies)
+        }
+
+        .env$document <- function(...) {
+            devtools::document(...)
+        }
+
+        .env$export <- function(...) {
+            basejump::export(...)
+        }
+
+        # Find and replace across a directory.
+        .env$findAndReplace <- function(
+            pattern,
+            replacement,
+            dir = ".",
+            recursive = FALSE
+        ) {
+            files <- list.files(
+                path = dir,
+                pattern = "(r|R)$",
+                full.names = TRUE,
+                recursive = recursive
+            )
+            invisible(parallel::mclapply(
+                X = files,
+                FUN = function(file) {
+                    x <- readr::read_lines(file)
+                    x <- gsub(
+                        pattern = pattern,
+                        replacement = replacement,
+                        x = x
+                    )
+                    readr::write_lines(x, path = file)
+                }
+            ))
+        }
+
+        # macOS: Open Finder to the current directory.
+        .env$finder <- function(path = ".") {
+            stopifnot(Sys.info()[[1L]] == "Darwin")
+            stopifnot(is.character(path) && length(character) == 1L)
+            system(paste("open", path))
+        }
+
+        .env$import <- function(...) {
+            basejump::import(...)
+        }
+
+        .env$install <- function(...) {
+            BiocManager::install(...)
+        }
+
+        .env$install_github <- function(..., upgrade = "never") {
+            remotes::install_github(..., upgrade = upgrade)
+        }
+
+        .env$lint_package <- function(...) {
+            lintr::lint_package(...)
+        }
+
+        .env$loadData <- function(...) {
+            basejump::loadData(...)
+        }
+
+        # pkgload::load_all(helpers = FALSE, attach_testthat = FALSE)
+        .env$load_all <- function() {
+            devtools::load_all()
+        }
+
+        # Get free memory statistics.
+        # Currently this only works for Linux.
+        #
+        # - `help(topic = "Memory", package = "base")`
+        # - `help(topic = "Memory-limits", package = "base")`
+        #
+        # - `utils:::format.object_size()`
+        # - `print:::print.bytes()`
+        #
+        # - https://stackoverflow.com/a/6457769
+        # - https://stackoverflow.com/a/29787527
+        # - https://stat.ethz.ch/R-manual/R-devel/library/base/html/Memory-limits.html
+        # - http://adv-r.had.co.nz/memory.html
+        .env$memfree <- function() {
+            message("Running garbage collection first with base::gc().")
+            print(gc(verbose = TRUE, full = TRUE))
+            mem_used <- capture.output(print(pryr::mem_used()))
+            mem_free <- utils:::format.object_size(as.numeric(
+                system("awk '/MemFree/ {print $2}' /proc/meminfo", intern = TRUE)
+            ), "auto")
+            message(paste0(
+                "Memory used: ", mem_used, " (pryr::mem_used)\n",
+                "Memory free: ", mem_free, " (awk MemFree)"
+            ))
+        }
+
+        # macOS: Copy to clipboard.
+        .env$pbcopy <- function(x) {
+            stopifnot(Sys.info()[[1L]] == "Darwin")
+            capture.output(x, file = pipe("pbcopy"))
+        }
+
+        .env$rcmdcheck <- function(...) {
+            rcmdcheck::rcmdcheck(...)
+        }
+
+        .env$render <- function(...) {
+            rmarkdown::render(...)
+        }
+
+        .env$report <- function(...) {
+            # covr doesn't currently install DT but requires it for this function.
+            library(DT)
+            covr::report(...)
+        }
+
+        .env$roxygenize <- function(...) {
+            roxygen2::roxygenise(...)
+        }
+
+        .env$run_examples <- function(..., fresh = TRUE) {
+            devtools::run_examples(..., fresh = fresh)
+        }
+
+        .env$saveData <- function(...) {
+            basejump::saveData(...)
+        }
+
+        .env$script_path <- function() {
+            rstudioapi::getSourceEditorContext()$path
+        }
+
+        .env$test <- function(...) {
+            require(testthat)
+            require(patrick)
+            devtools::test(...)
+        }
+
+        # Check installed packages
+        .env$update_packages <- function() {
+            remotes::update_packages()
+            # update.packages(
+            #     ask = TRUE,
+            #     checkBuilt = TRUE,
+            #     repos = BiocManager::repositories()
+            # )
+        }
+
+        .env$valid <- function(...) {
+            BiocManager::valid(...)
+        }
+        
+        if (isTRUE(rstudio)) {
+            # RStudio `View()` doesn't work with S4 DataFrame.
+            .env$View2 <- function(...) {
+                View(as.data.frame(...))
+             }
+        }
+
         attach(.env)
+
 
         # Load secret variables that we don't want in Renviron.
         if (file.exists("~/.Rsecrets")) {
@@ -424,13 +438,13 @@ if (isTRUE(nzchar(Sys.getenv("RSTUDIO_USER_IDENTITY")))) {
             )
         }
 
+
         # Turn on completion of installed package names.
         utils::rc.settings(ipck = TRUE)
-
-        # Check for developer environment.
-        devel <- grepl("devel$", Sys.getenv("R_LIBS_USER"))
-
+        
+        
         # Set developer-specific profile.
+        devel <- grepl("devel$", Sys.getenv("R_LIBS_USER"))
         if (isTRUE(devel)) {
             # Enable automatic package updates from home directory.
             if (identical(
@@ -451,6 +465,11 @@ if (isTRUE(nzchar(Sys.getenv("RSTUDIO_USER_IDENTITY")))) {
         #     warning("Developer library not detected.")
         # }
 
+        
+        # Show useful session information.
+        if (isTRUE(rstudio)) {
+           cat("R is running inside RStudio.\n\n")
+        }
         cat(
             "User Library:",
             normalizePath(Sys.getenv("R_LIBS_USER")),
@@ -462,6 +481,8 @@ if (isTRUE(nzchar(Sys.getenv("RSTUDIO_USER_IDENTITY")))) {
         )
     }
 }
+
+
 
 # Initilization at end of an R session =========================================
 .Last <- function() {
