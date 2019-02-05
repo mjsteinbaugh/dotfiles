@@ -13,7 +13,7 @@ My configuration files shared between machines running:
 ## Managing submodules
 
 Currently, the vim configuration requires git submodules.
-Run [submodule_init.sh][] after cloning the repo.
+Run [`submodule_init.sh`](submodule_init.sh) after cloning the repo.
 
 ## See also
 
