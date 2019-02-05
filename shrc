@@ -44,25 +44,24 @@ export HOSTNAME
 # Non-persistent in subshells
 # ==============================================================================
 
-# Set default file permissions with umask.
-# Note: Access control lists (ACLs) are sometimes preferable to umask.
-# Use `umask -S` to return u,g,o values.
+# Set default file permissions.
 #
-# - umask: files and directories.
-# - fmask: only files.
-# - dmask: only directories.
+# - `umask`: Files and directories.
+# - `fmask`: Only files.
+# - `dmask`: Only directories.
 #
-# - 0022: User can write, others can read (usually default).
-#     - f: u=rw,g=r,o=r
-#     - d: u=rwx,g=rx,o=rx
-# - 0002: User and group can write, others can read.
-#     - f: u=rw,g=rw,o=r
-#     - d: u=rwx,g=rwx,o=rw
-# - 0077: User alone can read/write. More secure.
-#     - f: u=rw,g=,o=
-#     - d: u=rwx,g=,o=
+# Use `umask -S` to return `u,g,o` values.
 #
-# Alternatively, here's how to use ACLs with setfacl
+# - 0022: u=rwx,g=rx,o=rx
+#         User can write, others can read. Usually default.
+# - 0002: u=rwx,g=rwx,o=rx
+#         User and group can write, others can read.
+#         Recommended setting in a shared coding environment.
+# - 0077: u=rwx,g=,o=
+#         User alone can read/write. More secure.
+#
+# Access control lists (ACLs) are sometimes preferable to umask.
+# Here's how to use ACLs with setfacl.
 # setfacl -d -m group:name:rwx /dir
 #
 # See also:
