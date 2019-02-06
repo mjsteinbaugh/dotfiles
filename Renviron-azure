@@ -1,5 +1,5 @@
 LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/lib:/usr/lib64/R/lib:/usr/lib64:/usr/lib:/lib64:/lib"
 PATH="/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin"
 R_LIBS_USER="~/R/x86_64-redhat-linux-gnu-library/3.5/bioc-3.8-release"
-RETICULATE_PYTHON="~/.conda/envs/bioinfo/bin/python"
+RETICULATE_PYTHON="~/.conda/envs/reticulate/bin/python"
 TZ="America/New_York"
