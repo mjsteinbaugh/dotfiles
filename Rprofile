@@ -305,10 +305,6 @@ stopifnot(Sys.which("conda") == "")
             system(paste("open", path))
         }
 
-        .env$import <- function(...) {
-            basejump::import(...)
-        }
-
         .env$install <- function(...) {
             BiocManager::install(...)
         }
