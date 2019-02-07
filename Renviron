@@ -12,8 +12,12 @@ R_LIBS_USER="~/R/x86_64-apple-darwin15.6.0-library/3.5/bioc-3.8-release"
 
 # Path
 # Set a minimal, consistent PATH for R.
-# Don't allow conda in PATH.
-PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/usr/local/MacGPG2/bin:/opt/X11/bin"
+# Don't allow conda here.
+PATH="/usr/local/bin:/usr/bin:/bin"
+# TeX
+PATH="${PATH}:/Library/TeX/texbin"
+# X11
+PATH="${PATH}:/opt/X11/bin"
 # clang 6 (CRAN).
 PATH="/usr/local/clang6/bin:${PATH}"
 # gfortran 6.1 (CRAN).
