@@ -1,8 +1,5 @@
 #!/usr/bin/sh
 
-# shellcheck disable=SC2236
-# SC2236: Use `-n` instead of `! -z`.
-# zsh doesn't interpret `-n` correctly in POSIX mode.
 
 
 
@@ -13,306 +10,42 @@ export SHRC=1
 
 
 
-# Here's how to list all functions defined:
-# declare -F
+# Set default file permissions.
 #
-# Exporting functions to subshells:
-# https://unix.stackexchange.com/questions/22796
+# - `umask`: Files and directories.
+# - `fmask`: Only files.
+# - `dmask`: Only directories.
 #
-# This method works but is specific to Bash:
-# export -f function_name
+# Use `umask -S` to return `u,g,o` values.
 #
-# This may potentially work:
-# declare -pf
+# - 0022: u=rwx,g=rx,o=rx
+#         User can write, others can read. Usually default.
+# - 0002: u=rwx,g=rwx,o=rx
+#         User and group can write, others can read.
+#         Recommended setting in a shared coding environment.
+# - 0077: u=rwx,g=,o=
+#         User alone can read/write. More secure.
+#
+# Access control lists (ACLs) are sometimes preferable to umask.
+# Here's how to use ACLs with setfacl.
+# setfacl -d -m group:name:rwx /dir
+#
+# See also:
+# - https://stackoverflow.com/questions/13268796
+# - https://askubuntu.com/questions/44534
+umask 0002
 
 
 
-# Detect operating system environment.
-OSNAME=$(uname -s)
-export OSNAME
-
-# Host name is defined automatically in bash, but not all shells.
-HOSTNAME=$(uname -n)
-export HOSTNAME
-
-[ "$OSNAME" = "Darwin" ] && export MACOS=1 && export UNIX=1
-[ "$OSNAME" = "Linux" ] && export LINUX=1 && export UNIX=1
+# koopa shell
+# https://github.com/steinbaugh/koopa
+# shellcheck source=/dev/null
+cmd="activate" . "${HOME}/.koopa/bin/koopa.sh"
 
 
-
-# ==============================================================================
-# Non-persistent in subshells
-# ==============================================================================
-
-# Set default file permissions with umask.
-# Use access control lists (ACLs) instead if possible.
-# 077 is more secure, but 022 is more useful.
-# umask 022
-
-
-
-# Functions --------------------------------------------------------------------
-add_to_path_start() {
-    [ -d "$1" ] || return
-    export PATH="$1:$PATH"
-}
-
-# Regular expression matching that is POSIX compliant.
-# https://stackoverflow.com/questions/21115121
-# Avoid using `[[ =~ ]]` in sh config files.
-# expr is faster than using case.
-quiet_expr() {
-    expr "$1" : "$2" 1>/dev/null
-}
-
-# Don't use `&>` here, it isn't POSIX.
-# https://unix.stackexchange.com/a/80632
-quiet_which() {
-    # command -v "$1" >/dev/null
-    command -v "$1" >/dev/null 2>&1
-}
-
-
-
-# Aliases ----------------------------------------------------------------------
-# alias be="noglob bundle exec"
-# alias gist="gist --open --copy"
-# alias ls="ls -Fhlo --color"
-# alias make="nice make"
-# alias rake="noglob rake"
-# alias rg="rg --colors 'match:style:nobold' --colors 'path:style:nobold'"
-# alias rsync="rsync --partial --progress --human-readable --compress"
-# alias zmv="noglob zmv -vW"
-
-# Quick exit.
-alias e="exit"
-
-# Improve common file system command defaults.
-alias cp="cp -irv"
-alias mkdir="mkdir -vp"
-alias mv="mv -iv"
-alias rm="rm -iv"
-
-# Listing files.
-alias la="ls -a"
-alias lF="ls -F"
-alias ll="ls -AFGlh"
-
-# Shortcut for listing tmux sessions.
-alias tls="tmux ls"
-
-# Set more sensible defaults for size commands.
-alias df="df -H"
-alias du="du -sh"
-
-# Improve less defaults.
-alias less="less --ignore-case --raw-control-chars"
-
-# Easier checksum calculation.
-alias sha256="shasum -a 256"
-
-# Emacs.
-# Use terminal (console) mode by default instead of window system.
-# alias emacs="emacs -nw"
-# alias emacs="emacs --no-window-system"
-
-# Disable R prompt to save workspace.
-# --no-environ
-# --no-init
-# --no-restore
-# --no-save
-# --vanilla
-alias R="R --no-restore --no-save"
-
-# Run dircolors, if it exists.
-quiet_which dircolors && eval "$(dircolors -b)"
-
-# Enable colors (for dircolors).
-# alias dir="dir --color=auto"
-# alias egrep="egrep --color=auto"
-# alias fgrep="fgrep --color=auto"
-# alias grep="grep --color=auto"
-# alias ls="ls --color=auto"
-# alias vdir="vdir --color=auto"
-
-# Fake realpath support, if necessary.
-if ! quiet_which realpath
-then
-    alias realpath="readlink -f"
-fi
-
-# Platform-specific aliases.
-if [ ! -z "$MACOS" ]
-then
-    # Use exa instead of ls, if installed.
-    # It has better color support.
-    # https://the.exa.website/
-    if quiet_which exa
-    then
-        alias ls="exa -Fg"
-    else
-        alias ls="ls -F"
-    fi
-
-    alias autofs="sudo automount -vc"
-    alias finder-hide="setfile -a V"
-    alias icloud-status="brctl log --wait --shorten"
-    alias locate="mdfind -name"
-    alias rstudio="open -a rstudio"
-fi
-
-
-
-# ==============================================================================
-# Persistent in sub-shells
-# ==============================================================================
-
-if quiet_expr "$HOSTNAME" "azlabapp"
-then
-    export AZURE=1
-fi
-
-# Set up text editor.
-# Using vim instead of emacs by default.
-if quiet_which vim
-then
-    export EDITOR="vim"
-elif quiet_which vi
-then
-    export EDITOR="vi"
-fi
-
-# Save more history.
-export HISTSIZE=100000
-export SAVEHIST=100000
-
-# Trim the maximum number of directories in prompt (PS1).
-# For bash, requires >= v4.
-export PROMPT_DIRTRIM=3
-
-# Ruby gems.
-[ -d "${HOME}/.gem" ] && export GEM_HOME="${HOME}/.gem"
-
-# GnuPGP. Enable passphrase prompting in terminal.
-GPG_TTY=$(tty)
-export GPG_TTY
-
-# Add the date/time to `history` command output.
-# Note that on macOS bash will fail if `set -e` is set and this isn't exported.
-export HISTTIMEFORMAT="%Y%m%d %T  "
-
-# rsync
-# -a, --archive               archive mode; equals -rlptgoD (no -H,-A,-X)
-# -z, --compress              compress file data during the transfer
-# -L, --copy-links            transform symlink into referent file/dir
-#     --delete-before         receiver deletes before xfer, not during
-# -h, --human-readable        output numbers in a human-readable format
-#     --iconv=CONVERT_SPEC    request charset conversion of filenames
-#     --progress              show progress during transfer
-#     --dry-run
-#     --one-file-system
-#     --acls --xattrs
-#     --iconv=utf-8,utf-8-mac
-export RSYNC_FLAGS="--archive --copy-links --delete-before --human-readable --progress"
-
-# Bash scripts -----------------------------------------------------------------
-# Add bash scripts to PATH.
-add_to_path_start "${HOME}/bash/general"
 
 # Set up the today bucket and symlink.
 if [ "$USER" = "mike" ] || [ "$USER" = "michael.steinbaugh" ]
 then
-    bash bucket.sh
-fi
-if [ ! -z "$AZURE" ]
-then
-    add_to_path_start "${HOME}/bash/azure"
-elif [ ! -z "$MACOS" ]
-then
-    # Ensure sbin is in `$PATH` (for Homebrew).
-    add_to_path_start "/usr/local/sbin"
-
-    # Add macOS-specific bash scripts.
-    add_to_path_start "${HOME}/bash/macos"
-
-    # Improve terminal colors.
-    export CLICOLOR=1
-    export GREP_OPTIONS="--color=auto"
-    # `man ls`: see LSCOLORS section for color designators.
-    # export LSCOLORS="Gxfxcxdxbxegedabagacad"
-
-    # Set rsync flags for APFS.
-    export RSYNC_FLAGS_APFS="${RSYNC_FLAGS} --iconv=utf-8,utf-8-mac"
-
-    # Homebrew
-    if quiet_which brew
-    then
-        HOMEBREW_PREFIX="$(brew --prefix)"
-        export HOMEBREW_PREFIX
-        HOMEBREW_REPOSITORY="$(brew --repo)"
-        export HOMEBREW_REPOSITORY
-        export HOMEBREW_INSTALL_CLEANUP=1
-    fi
-
-    # Enable more colors with grc.
-    # shellcheck disable=SC1090
-    [ -f "$HOMEBREW_PREFIX/etc/grc.bashrc" ] && \
-        . "$HOMEBREW_PREFIX/etc/grc.bashrc"
-
-    # Python
-    # Using Conda Python instead of Homebrew version (see koopa).
-    # https://docs.brew.sh/Homebrew-and-Python
-    # brew info python
-    # python -V
-    # export PATH="/usr/local/opt/python/libexec/bin:${PATH}"
-
-    # Ruby (rbenv)
-    # https://github.com/rbenv/rbenv
-    # export PATH="~/.rbenv/shims:${PATH}"
-    # eval "$(rbenv init -)"
-    quiet_which rbenv && add_to_path_start "$(rbenv root)/shims"
-
-    # Perl (perlbrew)
-    # https://perlbrew.pl
-    # if [ -f "${HOME}/perl5/perlbrew/etc/bashrc" ]; then
-    #     . "${HOME}/perl5/perlbrew/etc/bashrc"
-    # fi
-
-    # Ensembl Perl API
-    # ensembl="${HOME}/GitHub/ensembl/75"
-    # if [ -d "$ensembl" ]; then
-    #     export PATH="${ensembl}/ensembl-git-tools/bin:${PATH}"
-    #
-    #     # perlbrew switch perl-5.14.4
-    #     PERL5LIB="${PERL5LIB}:${ensembl}/bioperl-1.6.1"
-    #     PERL5LIB="${PERL5LIB}:${ensembl}/ensembl/modules"
-    #     PERL5LIB="${PERL5LIB}:${ensembl}/ensembl-compara/modules"
-    #     PERL5LIB="${PERL5LIB}:${ensembl}/ensembl-variation/modules"
-    #     PERL5LIB="${PERL5LIB}:${ensembl}/ensembl-funcgen/modules"
-    #     export PERL5LIB
-    # fi
-    # unset -v ensembl
-
-    # Google Cloud SDK
-    # Install using Homebrew Cask:
-    # brew cask install google-cloud-sdk
-    # dir="${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
-    # if [ -d $dir ]
-    # then
-    #     . "${dir}/path.bash.inc"
-    #     . "${dir}/completion.bash.inc"
-    # fi
-    # unset -v dir
-fi
-
-# koopa bootloader -------------------------------------------------------------
-# Load koopa.
-# https://github.com/steinbaugh/koopa/
-export KOOPA_EXE="${HOME}/.koopa/bin/koopa.sh"
-if [ -f "$KOOPA_EXE" ]
-then
-    # SC2240 The dot command does not support arguments in sh/dash.
-    # Set them as variables.
-    # shellcheck source=/dev/null
-    cmd="activate" . "${KOOPA_EXE}"
+    bash today-bucket.sh
 fi

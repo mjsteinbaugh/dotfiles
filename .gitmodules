@@ -10,3 +10,15 @@
 [submodule "vim/pack/dist/start/Nvim-R"]
 	path = vim/pack/dist/start/Nvim-R
 	url = git@github.com:mjsteinbaugh/Nvim-R.git
+[submodule "pack/dist/start/vim-airline"]
+	path = pack/dist/start/vim-airline
+	url = git@github.com:mjsteinbaugh/vim-airline.git
+[submodule "pack/dist/start/dracula-theme"]
+	path = pack/dist/start/dracula-theme
+	url = git@github.com:mjsteinbaugh/vim-dracula.git
+[submodule "pack/dist/start/vim-markdown"]
+	path = pack/dist/start/vim-markdown
+	url = git@github.com:mjsteinbaugh/vim-markdown.git
+[submodule "pack/dist/start/Nvim-R"]
+	path = pack/dist/start/Nvim-R
+	url = git@github.com:mjsteinbaugh/Nvim-R.git

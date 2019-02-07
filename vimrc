@@ -76,11 +76,11 @@ set showmatch
 
 
 
-" Set mouse integration.
+" Enable mouse integration.
 " `a` means all here.
-set mouse=a
-" Here's how to disable.
-" set mouse=
+" set mouse=a
+" Disable mouse integration.
+set mouse=
 
 
 
