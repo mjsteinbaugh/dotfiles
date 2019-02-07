@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-# Using pack (native Vim 8 package manager).
-# Installing dependencies as submodules.
+# Initialize submodules.
+# Vim: using pack (native Vim 8 package manager).
 
 # These commands were used to prepare `.gitmodules` file.
 # git submodule add --force \
@@ -23,3 +23,11 @@ git submodule init
 
 # If necessary, here's how to de-initialize.
 # git submodule deinit
+
+git submodule update
+# git submodule update --recursive
+
+git submodule foreach git pull origin master
+
+git submodule sync
+git submodule status
