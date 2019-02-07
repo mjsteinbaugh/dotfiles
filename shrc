@@ -1,8 +1,5 @@
 #!/usr/bin/sh
 
-# shellcheck disable=SC2236
-# SC2236: Use `-n` instead of `! -z`.
-# zsh doesn't interpret `-n` correctly in POSIX mode.
 
 
 
@@ -42,9 +39,8 @@ umask 0002
 
 # koopa shell
 # https://github.com/steinbaugh/koopa
-export KOOPA_EXE="${HOME}/.koopa/bin/koopa.sh"
 # shellcheck source=/dev/null
-cmd="activate" . "${KOOPA_EXE}"
+cmd="activate" . "${HOME}/.koopa/bin/koopa.sh"
 
 
 
