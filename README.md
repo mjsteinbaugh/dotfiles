@@ -15,7 +15,7 @@ Use [shellcheck](https://www.shellcheck.net/) to check shell scripts.
 ## Submodules
 
 Currently, the vim configuration requires git submodules.
-Run [`submodule_init.sh`](submodule_init.sh) after cloning the repo.
+Run the scripts in `INSTALL/` after cloning the repo.
 
 ## See also
 
