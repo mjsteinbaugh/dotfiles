@@ -1,32 +1,29 @@
 " Vim configuration
 " https://www.vim.org
 "
-" Consider using Neovim.
-" https://neovim.io
-"
 " References:
 " - https://github.com/MikeMcQuaid/dotfiles/blob/master/vimrc
 " - https://gist.github.com/nerdalert/5f80853b4e195204bc6d
 
 
 
-" Enable 256 color support (in PuTTY)
+" Enable 256 color support.
+" This is useful when running inside PuTTY.
 " https://gist.github.com/limingjie/4975c36d13d0927613e6
 if &term == "screen"
-  set t_Co=256
+    set t_Co=256
 endif
 
+
+
+" Recommend a dark background by default, for vim < 7.
+" Note that for v8+ we're using dracula theme (see below).
 set background=dark
 
 
 
 " Enable syntax highlighting.
 syntax on
-
-
-
-" Color theme.
-color dracula
 
 
 
@@ -71,17 +68,18 @@ set ruler
 " Show what you're typing as a command.
 set showcmd
 
-" Enable case insensitive mode.
-" set ignorecase
-
 " Highlight matches.
 set showmatch
+
+" Enable case insensitive mode.
+" set ignorecase
 
 
 
 " Set mouse integration.
 " `a` means all here.
 set mouse=a
+" Here's how to disable.
 " set mouse=
 
 
@@ -90,9 +88,8 @@ set mouse=a
 " These are annoying and create file system cruft.
 set nobackup
 
-
-
 " Disable the swap file, if desired.
+" This also creates FS cruft but is useful for recovery.
 " set noswapfile
 
 
@@ -109,9 +106,9 @@ set backspace=indent,eol,start
 " https://stackoverflow.com/questions/677986
 set clipboard=unnamed
 
-" Note that this won't work for PuTTY on Windows. Instead, hold down SHIFT and then
-" you can highlight with the mouse. Yank doesn't integrate well with the Windows
-" clipboard unless you use X11 forwarding.
+" Note that this won't work for PuTTY on Windows. Instead, hold down SHIFT and
+" then you can highlight with the mouse. Yank doesn't integrate well with the
+" Windows clipboard unless you use X11 forwarding.
 " https://stackoverflow.com/a/4313348
 
 
@@ -199,18 +196,19 @@ let g:vim_markdown_folding_level = 2
 
 
 " ==============================================================================
-" VIM 8+ specific
+" Version-specific
 " ==============================================================================
 
-" These settings require the new built-in package manager.
+" Can use "finish" inside if/endif to early return
 
-" if v:version < 800
-"     finish
-" endif
+if v:version >= 800
+    " These settings require the new built-in package manager.
 
-" Note that this is handled automatically by dracula plugin now.
-" Airline powerbar theme colors.
-" Seems to be breaking inside tmux?
-" https://github.com/vim-airline/vim-airline/issues/829
-" let g:airline_theme='dracula'
+    " Color theme.
+    color dracula
+
+    " Airline powerbar theme colors.
+    " This is handled automatically by dracula plugin now.
+    let g:airline_theme='dracula'
+endif
 

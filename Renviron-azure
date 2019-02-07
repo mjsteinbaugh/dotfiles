@@ -1,7 +1,4 @@
-R_LIBS_USER="~/R/library/x86_64-redhat-linux-gnu/3.5/bioc-3.8-release"
-
-# Set a minimal, consistent PATH for R.
 PATH="/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin"
-
+R_LIBS_USER="~/R/x86_64-redhat-linux-gnu-library/3.5/bioc-3.8-release"
 RETICULATE_PYTHON="~/.conda/envs/bioinfo/bin/python"
 TZ="America/New_York"

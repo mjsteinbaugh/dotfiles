@@ -1,7 +1,7 @@
 #!/usr/bin/sh
 
 # shellcheck disable=SC2236
-# SC2236: Use -n instead of ! -z
+# SC2236: Use `-n` instead of `! -z`.
 # zsh doesn't interpret `-n` correctly in POSIX mode.
 
 
@@ -9,13 +9,21 @@
 # Shared POSIX-compatible shell configuration.
 # Intended for bash and zsh.
 # Don't attempt to use with fish or tcsh.
-#
-# Put all preferences that don't persist in subshells (e.g. functions, aliases)
-# above the `$BASHRC` variable export step (see below). These need to always be
-# re-sourced, but we don't want to double export variables, such as `$PATH`.
-#
-# Here's how to list all functions defined.
+export SHRC=1
+
+
+
+# Here's how to list all functions defined:
 # declare -F
+#
+# Exporting functions to subshells:
+# https://unix.stackexchange.com/questions/22796
+#
+# This method works but is specific to Bash:
+# export -f function_name
+#
+# This may potentially work:
+# declare -pf
 
 
 
@@ -33,10 +41,11 @@ export HOSTNAME
 
 
 # ==============================================================================
-# Need to re-source in subshells
+# Non-persistent in subshells
 # ==============================================================================
 
 # Set default file permissions with umask.
+# Use access control lists (ACLs) instead if possible.
 # 077 is more secure, but 022 is more useful.
 # umask 022
 
@@ -73,24 +82,7 @@ quiet_which() {
 # alias rake="noglob rake"
 # alias rg="rg --colors 'match:style:nobold' --colors 'path:style:nobold'"
 # alias rsync="rsync --partial --progress --human-readable --compress"
-# alias svn="svn-git.sh"
 # alias zmv="noglob zmv -vW"
-
-# Enable colors (for dircolors).
-# alias dir="dir --color=auto"
-# alias egrep="egrep --color=auto"
-# alias fgrep="fgrep --color=auto"
-# alias grep="grep --color=auto"
-# alias ls="ls --color=auto"
-# alias vdir="vdir --color=auto"
-
-# How to copy to Azure shares without error.
-# Note that timestamps and permissions are not maintained.
-# -R, --recursive
-# -L, --dereference
-# -u, --update
-# -v, --verbose
-# cp -RLuv data seq01
 
 # Quick exit.
 alias e="exit"
@@ -135,13 +127,21 @@ alias R="R --no-restore --no-save"
 # Run dircolors, if it exists.
 quiet_which dircolors && eval "$(dircolors -b)"
 
+# Enable colors (for dircolors).
+# alias dir="dir --color=auto"
+# alias egrep="egrep --color=auto"
+# alias fgrep="fgrep --color=auto"
+# alias grep="grep --color=auto"
+# alias ls="ls --color=auto"
+# alias vdir="vdir --color=auto"
+
 # Fake realpath support, if necessary.
 if ! quiet_which realpath
 then
     alias realpath="readlink -f"
 fi
 
-# Platform-specific settings.
+# Platform-specific aliases.
 if [ ! -z "$MACOS" ]
 then
     # Use exa instead of ls, if installed.
@@ -154,25 +154,6 @@ then
         alias ls="ls -F"
     fi
 
-    # FIXME Rework this idea -- export scripts in PATH instead.
-    # Call personal bash scripts using "mjs" prefix function.
-    # Currently this is macOS-specific.
-    # Note that functions don't propagate to isolated shells called by name
-    # (e.g. using "bash" here), so don't attempt to use "mjs" function in the
-    # bash script repo.
-    # mjs() {
-    #     script="$1"
-    #     shift 1
-    #     # shellcheck source=/dev/null
-    #     # shellcheck disable=SC2240
-    #     bash "${HOME}/git/bash/${script}.sh" "$@"
-    #     unset -v script
-    # }
-
-    # # Create the today directory in bucket automatically.
-    # mjs bucket
-
-    # Aliases.
     alias autofs="sudo automount -vc"
     alias finder-hide="setfile -a V"
     alias icloud-status="brctl log --wait --shorten"
@@ -186,26 +167,13 @@ fi
 # Persistent in sub-shells
 # ==============================================================================
 
-# This step causes conda to not work correctly in subshells for slurm on O2...
-# [ ! -z "$SHRC" ] && return
-export SHRC=1
-
 if quiet_expr "$HOSTNAME" "azlabapp"
 then
     export AZURE=1
 fi
 
-# Add bash scripts to PATH.
-add_to_path_start "${HOME}/bash/general"
-
-# Set up the today bucket and symlink.
-if [ "$USER" = "mike" ] || [ "$USER" = "michael.steinbaugh" ]
-then
-    bash bucket.sh
-fi
-
 # Set up text editor.
-# Using vi mode instead of emacs by default.
+# Using vim instead of emacs by default.
 if quiet_which vim
 then
     export EDITOR="vim"
@@ -215,8 +183,8 @@ then
 fi
 
 # Save more history.
-export HISTSIZE="100000"
-export SAVEHIST="100000"
+export HISTSIZE=100000
+export SAVEHIST=100000
 
 # Trim the maximum number of directories in prompt (PS1).
 # For bash, requires >= v4.
@@ -247,7 +215,15 @@ export HISTTIMEFORMAT="%Y%m%d %T  "
 #     --iconv=utf-8,utf-8-mac
 export RSYNC_FLAGS="--archive --copy-links --delete-before --human-readable --progress"
 
-# Platform-specific.
+# Bash scripts -----------------------------------------------------------------
+# Add bash scripts to PATH.
+add_to_path_start "${HOME}/bash/general"
+
+# Set up the today bucket and symlink.
+if [ "$USER" = "mike" ] || [ "$USER" = "michael.steinbaugh" ]
+then
+    bash bucket.sh
+fi
 if [ ! -z "$AZURE" ]
 then
     add_to_path_start "${HOME}/bash/azure"
@@ -329,40 +305,14 @@ then
     # unset -v dir
 fi
 
-
-
-# koopa ========================================================================
+# koopa bootloader -------------------------------------------------------------
 # Load koopa.
 # https://github.com/steinbaugh/koopa/
 export KOOPA_EXE="${HOME}/.koopa/bin/koopa.sh"
 if [ -f "$KOOPA_EXE" ]
 then
-    if [ ! -z "$SLURM_CONF" ]
-    then
-        # Simply load the base environment on an HPC (e.g. O2).
-        CONDA_DEFAULT_ENV="base"
-    elif [ $USER = "mike" ] || [ $USER = "michael.steinbaugh" ]
-    then
-        # Otherwise, load the recommended default environment.
-        CONDA_DEFAULT_ENV="default"
-    fi
-    export CONDA_DEFAULT_ENV
     # SC2240 The dot command does not support arguments in sh/dash.
     # Set them as variables.
     # shellcheck source=/dev/null
     cmd="activate" . "${KOOPA_EXE}"
 fi
-
-
-
-# Powerline ===================================================================
-if [ ! -z "$CONDA_PREFIX" ]
-then
-    powerline="${CONDA_PREFIX}/lib/python3.6/site-packages/powerline"
-    if [ -d "$powerline" ]
-    then
-        export POWERLINE_ROOT="$powerline"
-        unset -v powerline
-    fi
-fi
-
