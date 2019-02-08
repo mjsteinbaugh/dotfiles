@@ -2,6 +2,11 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
+;; How to install spacemacs.
+;; Note that this will remove existing emacs configuration.
+;; rm -rf ~/.emacs.d
+;; git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+
 ;; Configuration references:
 ;; https://github.com/syl20bnr/spacemacs/blob/master/doc/BEGINNERS_TUTORIAL.org
 ;; https://github.com/syl20bnr/spacemacs/blob/master/core/templates/.spacemacs.template
@@ -10,10 +15,6 @@
 ;; Reload the configuration with:
 ;; <SPC f e R> (Vim style)
 ;; <M-m f e R> (Emacs style)
-
-;; Reinstall spacemacs:
-;; rm -rf ~/.emacs.d
-;; git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
 ;; Exit (quit):
 ;; <:q> (Vim style)
