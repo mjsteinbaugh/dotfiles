@@ -73,16 +73,16 @@ stopifnot(Sys.which("conda") == "")
     # Always set seed for reproducibility.
     seed <- 1454944673L
     set.seed(seed)
-    
-    
+
+
     # Check if session is running inside RStudio.
     if (isTRUE(nzchar(Sys.getenv("RSTUDIO_USER_IDENTITY")))) {
         rstudio <- TRUE
     } else {
         rstudio <- FALSE
     }
-    
-    
+
+
     # Fix default file permissions in RStudio.
     # RStudio doesn't pick up the system umask, which is annoying.
     if (isTRUE(rstudio)) {
@@ -159,7 +159,7 @@ stopifnot(Sys.which("conda") == "")
         # 8170 is the maximum warning length.
         warning.length = 8170L
     )
-    
+
     # Improve stack traces for error messages.
     # - https://twitter.com/krlmlr/status/1086995664591044608
     # - https://gist.github.com/krlmlr/33ec72d196b1542b9c4f9497d981de49
@@ -182,16 +182,20 @@ stopifnot(Sys.which("conda") == "")
 
         # Assign shortcuts and session information to a hidden environment.
         .env <- new.env()
-        
+
         # Stash the seed.
         .env$seed <- seed
-        
+
         .env$available <- function(...) {
             available::available(...)
         }
 
         .env$bb8 <- function(...) {
             bb8::bb8(...)
+        }
+
+        .env$biocLite <- function(...) {
+            BiocInstaller::biocLite(...)
         }
 
         .env$BiocCheck <- function(package = ".", ...) {
@@ -399,7 +403,7 @@ stopifnot(Sys.which("conda") == "")
         .env$valid <- function(...) {
             BiocManager::valid(...)
         }
-        
+
         if (isTRUE(rstudio)) {
             # RStudio `View()` doesn't work with S4 DataFrame.
             .env$View2 <- function(...) {
@@ -425,8 +429,8 @@ stopifnot(Sys.which("conda") == "")
 
         # Turn on completion of installed package names.
         utils::rc.settings(ipck = TRUE)
-        
-        
+
+
         # Set developer-specific profile.
         devel <- grepl("devel$", Sys.getenv("R_LIBS_USER"))
         if (isTRUE(devel)) {
@@ -449,7 +453,7 @@ stopifnot(Sys.which("conda") == "")
         #     warning("Developer library not detected.")
         # }
 
-        
+
         # Show useful session information.
         if (isTRUE(rstudio)) {
            cat("R is running inside RStudio.\n\n")
