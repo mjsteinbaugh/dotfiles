@@ -9,6 +9,7 @@
 # This step is needed to ensure hdf5r loads correctly.
 #
 # See also:
+# - https://stackoverflow.com/questions/45112506
 # - https://stackoverflow.com/a/45228086
 #
 # LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/lib:/usr/lib64/R/lib:/usr/lib64:/usr/lib:/lib64:/lib"
