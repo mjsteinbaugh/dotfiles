@@ -1,5 +1,22 @@
-LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/lib:/usr/lib64/R/lib:/usr/lib64:/usr/lib:/lib64:/lib"
+# Ensure `dyn.load()` is configured correctly.
+#
+# Define lib paths in `/etc/ld.so.conf.d/local-x86_64.conf/`.
+# Add multiple paths there using a line break.
+#
+# Alternatively, can export LD_LIBRARY_PATH in `.shrc`.
+# This must be done per user though.
+#
+# This step is needed to ensure hdf5r loads correctly.
+#
+# See also:
+# - https://stackoverflow.com/a/45228086
+#
+# LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/lib:/usr/lib64/R/lib:/usr/lib64:/usr/lib:/lib64:/lib"
+
 PATH="/usr/local/bin:/usr/bin:/bin"
+
 R_LIBS_USER="~/R/x86_64-redhat-linux-gnu-library/3.5/bioc-3.8-release"
+
 RETICULATE_PYTHON="~/.conda/envs/reticulate/bin/python"
+
 TZ="America/New_York"
