@@ -157,13 +157,18 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   ;; Source Code Pro is the recommended default.
+   ;; (default "Source Code Pro")
+   ;; dotspacemacs-default-font '("Source Code Pro"
+   ;;                             :size 13
+   ;;                             :weight normal
+   ;;                             :width normal
+   ;;                             :powerline-scale 1.5)
    dotspacemacs-default-font '("SF Mono"
                                :size 16
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
-   ;; The leader key
+   ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
    ;; (default "SPC")
@@ -343,6 +348,22 @@ you should place your code here."
   ;; I'm disabling currently so this plays nicely with PuTTY on Windows.
   ;; https://github.com/syl20bnr/spacemacs/blob/master/doc/DOCUMENTATION.org#powerline-separators
   (setq powerline-default-separator nil)
+
+  ;; Disable auto-indenting for R comments.
+  (setq ess-fancy-comments nil)
+
+  ;; Make ess default to use R.
+  ;; (via https://gist.github.com/benmarwick/ee0f400b14af87a57e4a)
+  (defun ess-set-language ()
+    (setq-default ess-language "R")
+    (setq ess-language "R")
+    )
+
+  ;; From Barb's ESS config on GitLab.
+  ;; (require 'ess-eldoc)
+  ;; (show-paren-mode 1)
+  (setq ess-ask-for-ess-directory nil)
+  (setq ess-eval-visibly-p nil)
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
