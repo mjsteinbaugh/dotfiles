@@ -376,8 +376,11 @@ stopifnot(Sys.which("conda") == "")
             roxygen2::roxygenise(...)
         }
 
-        .env$run_examples <- function(..., fresh = TRUE) {
-            devtools::run_examples(..., fresh = fresh)
+        # Disabling `run = TRUE` by default.
+        # Otherwise, this will attempt to run code inside `\dontrun{}` blocks.
+        # See https://github.com/r-lib/devtools/issues/1990.
+        .env$run_examples <- function(..., fresh = TRUE, run = FALSE) {
+            devtools::run_examples(..., fresh = fresh, run = run)
         }
 
         .env$script_path <- function() {
