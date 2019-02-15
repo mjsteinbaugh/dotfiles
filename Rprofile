@@ -379,8 +379,20 @@ stopifnot(Sys.which("conda") == "")
         # Disabling `run = TRUE` by default.
         # Otherwise, this will attempt to run code inside `\dontrun{}` blocks.
         # See https://github.com/r-lib/devtools/issues/1990.
-        .env$run_examples <- function(..., fresh = TRUE, run = FALSE) {
-            devtools::run_examples(..., fresh = fresh, run = run)
+        .env$run_examples <- function(
+            ...,
+            document = FALSE,
+            fresh = TRUE,
+            run = FALSE,
+            test = FALSE
+        ) {
+            devtools::run_examples(
+                ...,
+                document = document,
+                fresh = fresh,
+                run = run,
+                test = test
+            )
         }
 
         .env$script_path <- function() {
