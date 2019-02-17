@@ -108,6 +108,12 @@ stopifnot(Sys.which("conda") == "")
         author = "Michael Steinbaugh",
         email = "mike@steinbaugh.com"
     )
+    
+    # Stop asking about which CRAN repo to use for `install.packages()`.
+    repos <- getOption("repos")
+    repos["CRAN"] <- "https://cloud.r-project.org"
+    options(repos = repos)
+    rm(repos)
 
     # basejump
     options(
