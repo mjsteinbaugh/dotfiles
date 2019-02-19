@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-# macOS: Use a separate admin account to install programs.
-
-# Homebrew now supports a global variable to force bottle installations.
-# https://github.com/Homebrew/brew/pull/4520/files
-# https://github.com/Homebrew/brew/pull/4542/files
-export HOMEBREW_FORCE_BOTTLE="1"
