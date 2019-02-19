@@ -9,7 +9,8 @@
 # https://www.bioconductor.org/developers/how-to/useDevel/
 # `$R_PLATFORM` returns the platform string to use in directory name.
 # R_LIBS_USER="~/R/x86_64-apple-darwin15.6.0-library/3.4/bioc-3.6-release"
-R_LIBS_USER="~/R/x86_64-apple-darwin15.6.0-library/3.5/bioc-3.8-release"
+# R_LIBS_USER="~/R/x86_64-apple-darwin15.6.0-library/3.5/bioc-3.8-release"
+R_LIBS_USER="~/R/library"
 
 # Path
 # Set a minimal, consistent PATH for R.
