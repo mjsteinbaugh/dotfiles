@@ -18,16 +18,8 @@ export ZSH="${HOME}/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# Disable this when using pure prompt.
 # ZSH_THEME="robbyrussell"
-
-# We're using pure instead (see zprofile).
-ZSH_THEME="robbyrussell"
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
@@ -39,6 +31,9 @@ CASE_SENSITIVE="true"
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
+# Enable automatic upgrade, without prompting.
+DISABLE_UPDATE_PROMPT=true
+
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
 
@@ -46,7 +41,7 @@ CASE_SENSITIVE="true"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -77,8 +72,8 @@ HIST_STAMPS="yyyy-mm-dd"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  zsh-autosuggestions
-  zsh-syntax-highlighting
+  # zsh-autosuggestions
+  # zsh-syntax-highlighting
 )
 
 source "${ZSH}/oh-my-zsh.sh"
@@ -112,8 +107,6 @@ source "${ZSH}/oh-my-zsh.sh"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
-
 # Dark the autosuggest text color.
 # Define using xterm-256 color code.
 # https://stackoverflow.com/questions/47310537
@@ -122,8 +115,8 @@ source "${ZSH}/oh-my-zsh.sh"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
 
 
-# Autoload =====================================================================
 
+# Autoload =====================================================================
 # Info on `autoload -U`
 # https://unix.stackexchange.com/questions/214296
 
@@ -149,6 +142,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
 
 
 
+# Set options ==================================================================
 # Use emacs bindings even with vim as EDITOR.
 # bindkey -e
 
