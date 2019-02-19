@@ -1,12 +1,8 @@
 #!/usr/bin/sh
 
-
-
-
 # Shared POSIX-compatible shell configuration.
 # Intended for bash and zsh.
 # Don't attempt to use with fish or tcsh.
-export SHRC=1
 
 
 
