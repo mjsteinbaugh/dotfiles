@@ -117,8 +117,8 @@ stopifnot(Sys.which("conda") == "")
 
     # basejump
     options(
-        basejump.load.dir = file.path("data", Sys.Date()),
-        basejump.save.dir = file.path("data", Sys.Date()),
+        basejump.load.dir = file.path("rds", Sys.Date()),
+        basejump.save.dir = file.path("rds", Sys.Date()),
         basejump.save.ext = "rds"
     )
 
