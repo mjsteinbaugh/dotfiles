@@ -1,12 +1,6 @@
 #!/usr/bin/sh
 
-# Shared POSIX-compatible shell configuration.
-# Intended for bash and zsh.
-# Don't attempt to use with fish or tcsh.
-
-
-
 # koopa shell
 # https://github.com/steinbaugh/koopa
 # shellcheck source=/dev/null
-cmd="activate" extra=1 . "${HOME}/.koopa/bin/koopa.sh"
+extra=1 . "${HOME}/.koopa/activate.sh"
