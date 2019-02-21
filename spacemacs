@@ -5,6 +5,10 @@
 ;; Reload: SPC f e R
 ;; ESS: M-x R
 
+;; Update to spacemacs master branch.
+;; cd ~/.emacs.d
+;; git pull --rebase
+
 ;; Right margin indicator.
 ;; Use M-q to automatically fill paragraphs to fill-column value.
 ;; Refer to:
