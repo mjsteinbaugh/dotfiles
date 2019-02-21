@@ -3,6 +3,7 @@
 ;; It must be stored in your home directory.
 
 ;; Reload: SPC f e R
+;; ESS: M-x R
 
 ;; Right margin indicator.
 ;; Use M-q to automatically fill paragraphs to fill-column value.
@@ -17,6 +18,8 @@
 ;;   https://github.com/syl20bnr/spacemacs/blob/master/core/templates/.spacemacs.template
 ;; - roryk dotfile
 ;;   https://github.com/roryk/dotfiles/blob/master/spacemacs
+;; - Actually getting spacemacs to do stuff
+;;   http://paul-gowder.com/emacs.html
 ;; - shell layer
 ;;   https://github.com/syl20bnr/spacemacs/tree/master/layers/%2Btools/shell
 ;; - ess layer
@@ -68,9 +71,13 @@ values."
      org
      osx
      python
+     ;; Always pop out the shell to the right side at full width.
+     ;; This setting also applies to R console running in ESS.
+     ;; shell-default-height 30
+     ;; shell-default-position 'bottom
      (shell :variables
-            shell-default-height 30
-            shell-default-position 'bottom)
+            shell-default-width 80
+            shell-default-position 'right)
      syntax-checking
      version-control
      vimscript
