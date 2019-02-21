@@ -2,23 +2,27 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
-;; How to install spacemacs.
-;; Note that this will remove existing emacs configuration.
-;; rm -rf ~/.emacs.d
-;; git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+;; Reload: SPC f e R
 
-;; Configuration references:
-;; https://github.com/syl20bnr/spacemacs/blob/master/doc/BEGINNERS_TUTORIAL.org
-;; https://github.com/syl20bnr/spacemacs/blob/master/core/templates/.spacemacs.template
-;; https://github.com/roryk/dotfiles/blob/master/spacemacs
+;; Right margin indicator.
+;; Use M-q to automatically fill paragraphs to fill-column value.
+;; Refer to:
+;; - turn-on-fci-mode
+;; - fill-column
 
-;; Reload the configuration with:
-;; <SPC f e R> (Vim style)
-;; <M-m f e R> (Emacs style)
-
-;; Exit (quit):
-;; <:q> (Vim style)
-;; Ctrl+x Ctrl+c (Emacs style)
+;; References:
+;; - Beginner's tutorial
+;;   https://github.com/syl20bnr/spacemacs/blob/master/doc/BEGINNERS_TUTORIAL.org
+;; - Default template
+;;   https://github.com/syl20bnr/spacemacs/blob/master/core/templates/.spacemacs.template
+;; - roryk dotfile
+;;   https://github.com/roryk/dotfiles/blob/master/spacemacs
+;; - shell layer
+;;   https://github.com/syl20bnr/spacemacs/tree/master/layers/%2Btools/shell
+;; - ess layer
+;;   https://github.com/syl20bnr/spacemacs/tree/master/layers/%2Blang/ess
+;; - Right margin indicator
+;;   https://github.com/syl20bnr/spacemacs/issues/4856#issuecomment-176650964
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
@@ -49,29 +53,26 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     auto-completion
+     ;; Pick either helm or ivy.
+     ;; julia is still experimental.
+     ;; version-control layer uses magit, which requires git 2.0+.
+     ;; auto-completion
      better-defaults
      csv
      emacs-lisp
      ess
-     ;; Git support requires Magit, which requires Git 2.0+.
-     ;; Git 1.8 is bundled on many VMs, so disable.
-     ;; git
-     ;; Can use helm instead of ivy.
-     ;; helm
+     git
      html
      ivy
-     ;; julia
      markdown
      org
      osx
      python
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     spell-checking
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom)
      syntax-checking
-     ;; version-control
+     version-control
      vimscript
      yaml
      )
@@ -331,8 +332,12 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-   ;; Don't warn about PATH in bashrc.
-   (setq exec-path-from-shell-arguments '("-l"))
+  ;; Don't warn about PATH in bashrc.
+  (setq exec-path-from-shell-arguments '("-l"))
+
+  ;; Enable hard wrapping at 80 characters.
+  ;; https://github.com/syl20bnr/spacemacs/issues/4856#issuecomment-176650964
+  (setq-default fill-column 80)
   )
 
 (defun dotspacemacs/user-config ()
@@ -342,12 +347,9 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  ;; The powerline won't render correctly on systems without custom font.
-  ;; Here's how to customize. Arrow is default.
-  ;; powerline-default-separator 'arrow
-  ;; I'm disabling currently so this plays nicely with PuTTY on Windows.
-  ;; https://github.com/syl20bnr/spacemacs/blob/master/doc/DOCUMENTATION.org#powerline-separators
-  (setq powerline-default-separator nil)
+  ;; Activate fill column indicator in prog-mode and text-mode.
+  (add-hook 'prog-mode-hook 'turn-on-fci-mode)
+  (add-hook 'text-mode-hook 'turn-on-fci-mode)
 
   ;; Disable auto-indenting for R comments.
   (setq ess-fancy-comments nil)
@@ -364,6 +366,13 @@ you should place your code here."
   ;; (show-paren-mode 1)
   (setq ess-ask-for-ess-directory nil)
   (setq ess-eval-visibly-p nil)
+
+  ;; The powerline won't render correctly on systems without custom font.
+  ;; Here's how to customize. Arrow is default.
+  ;; powerline-default-separator 'arrow
+  ;; I'm disabling currently so this plays nicely with PuTTY on Windows.
+  ;; https://github.com/syl20bnr/spacemacs/blob/master/doc/DOCUMENTATION.org#powerline-separators
+  (setq powerline-default-separator nil)
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -374,7 +383,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (vimrc-mode dactyl-mode powerline spinner hydra parent-mode helm helm-core flx highlight smartparens iedit anzu evil goto-chg undo-tree projectile pkg-info epl bind-map bind-key packed async f dash s avy popup yapfify yaml-mode wgrep web-mode unfill tagedit smex smeargle slim-mode scss-mode sass-mode reveal-in-osx-finder pyvenv pytest pyenv-mode py-isort pug-mode pip-requirements pbcopy osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow live-py-mode launchctl ivy-hydra hy-mode dash-functional htmlize haml-mode gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-ivy flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor ess-smart-equals ess-R-data-view ctable ess julia-mode emmet-mode diff-hl cython-mode csv-mode counsel-projectile counsel swiper ivy company-web web-completion-data company-statistics company-anaconda company auto-yasnippet yasnippet auto-dictionary anaconda-mode pythonic ac-ispell auto-complete neotree ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline solarized-theme restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+    (xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help transient lv vimrc-mode dactyl-mode powerline spinner hydra parent-mode helm helm-core flx highlight smartparens iedit anzu evil goto-chg undo-tree projectile pkg-info epl bind-map bind-key packed async f dash s avy popup yapfify yaml-mode wgrep web-mode unfill tagedit smex smeargle slim-mode scss-mode sass-mode reveal-in-osx-finder pyvenv pytest pyenv-mode py-isort pug-mode pip-requirements pbcopy osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow live-py-mode launchctl ivy-hydra hy-mode dash-functional htmlize haml-mode gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-ivy flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor ess-smart-equals ess-R-data-view ctable ess julia-mode emmet-mode diff-hl cython-mode csv-mode counsel-projectile counsel swiper ivy company-web web-completion-data company-statistics company-anaconda company auto-yasnippet yasnippet auto-dictionary anaconda-mode pythonic ac-ispell auto-complete neotree ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline solarized-theme restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
