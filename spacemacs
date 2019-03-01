@@ -70,6 +70,8 @@ values."
      ess
      git
      html
+     ;; Now called Jupyter Notebook, but the recipe still uses iPython.
+     ipython-notebook
      ivy
      markdown
      org
