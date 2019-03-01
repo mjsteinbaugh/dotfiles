@@ -25,8 +25,8 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
     stopifnot(identical(
         x = Sys.which(c("gcc", "g++", "gfortran")),
         y = c(
-            "gcc" =      "/n/app/gcc/6.2.0/bin/gcc",
-            "g++" =      "/n/app/gcc/6.2.0/bin/g++",
+            "gcc"      = "/n/app/gcc/6.2.0/bin/gcc",
+            "g++"      = "/n/app/gcc/6.2.0/bin/g++",
             "gfortran" = "/n/app/gcc/6.2.0/bin/gfortran"
         )
     ))
@@ -45,8 +45,8 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
     stopifnot(identical(
         x = Sys.which(c("clang", "clang++", "gfortran")),
         y = c(
-            "clang" =    "/usr/local/clang6/bin/clang",
-            "clang++" =  "/usr/local/clang6/bin/clang++",
+            "clang"    = "/usr/local/clang6/bin/clang",
+            "clang++"  = "/usr/local/clang6/bin/clang++",
             "gfortran" = "/usr/local/gfortran/bin/gfortran"
         )
     ))
@@ -54,8 +54,8 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
     stopifnot(identical(
         x = Sys.which(c("gcc", "g++", "gfortran")),
         y = c(
-            "gcc" =      "/usr/bin/gcc",
-            "g++" =      "/usr/bin/g++",
+            "gcc"      = "/usr/bin/gcc",
+            "g++"      = "/usr/bin/g++",
             "gfortran" = "/usr/bin/gfortran"
         )
     ))
@@ -117,9 +117,14 @@ stopifnot(Sys.which("conda") == "")
 
     # basejump
     options(
-        basejump.load.dir = file.path("rds", Sys.Date()),
-        basejump.save.dir = file.path("rds", Sys.Date()),
-        basejump.save.ext = "rds"
+        basejump.save.ext = "rds",
+        # Save to dated subdirectory automatically.
+        # This helps avoid accidental rewrites, and enables easy versioning.
+        basejump.save.dir = file.path(
+            getOption("basejump.save.ext"), Sys.Date()
+        ),
+        # Attempt to load from corresponding save directory by default.
+        basejump.load.dir = getOption("basejump.save.dir"),
     )
 
     # crayon
