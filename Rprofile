@@ -124,7 +124,7 @@ stopifnot(Sys.which("conda") == "")
             getOption("basejump.save.ext"), Sys.Date()
         ),
         # Attempt to load from corresponding save directory by default.
-        basejump.load.dir = getOption("basejump.save.dir"),
+        basejump.load.dir = getOption("basejump.save.dir")
     )
 
     # crayon
