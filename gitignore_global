@@ -40,10 +40,7 @@ token.*
 # Large files ====
 # *.html
 # *.log
-# *.pdf
 # *.png
-# *.rda
-# *.rds
 *.RData
 *.bam
 *.bed
@@ -58,7 +55,10 @@ token.*
 *.gz
 *.gz.*
 *.out
+*.pdf
+*.rda
 *.rdb
+*.rds
 *.rdx
 *.sam
 *.tar
