@@ -108,7 +108,7 @@ stopifnot(Sys.which("conda") == "")
         author = "Michael Steinbaugh",
         email = "mike@steinbaugh.com"
     )
-    
+
     # Stop asking about which CRAN repo to use for `install.packages()`.
     repos <- getOption("repos")
     repos["CRAN"] <- "https://cloud.r-project.org"
@@ -116,14 +116,16 @@ stopifnot(Sys.which("conda") == "")
     rm(repos)
 
     # basejump
+    options(basejump.save.ext = "rds")
+    # Save to dated subdirectory automatically.
+    # This helps avoid accidental rewrites, and enables easy versioning.
     options(
-        basejump.save.ext = "rds",
-        # Save to dated subdirectory automatically.
-        # This helps avoid accidental rewrites, and enables easy versioning.
         basejump.save.dir = file.path(
             getOption("basejump.save.ext"), Sys.Date()
-        ),
-        # Attempt to load from corresponding save directory by default.
+        )
+    )
+    # Attempt to load from corresponding save directory by default.
+    options(
         basejump.load.dir = getOption("basejump.save.dir")
     )
 
