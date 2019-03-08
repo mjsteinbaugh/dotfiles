@@ -257,6 +257,9 @@ stopifnot(Sys.which("conda") == "")
             document = FALSE,
             vignettes = FALSE
         ) {
+            # `system.file()` calls in working examples will fail unless we
+            # install the package first.
+            devinstall()
             devtools::check(
                 ...,
                 document = document,
