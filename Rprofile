@@ -184,6 +184,8 @@ stopifnot(Sys.which("conda") == "")
 
 
     if (interactive()) {
+        # Custom functions should be saved in bb8 package instead of here.
+
         # Package installation options.
         # Leave these disabled by default.
         # Can be helpful for troublesome packages.
@@ -207,6 +209,7 @@ stopifnot(Sys.which("conda") == "")
             bb8::bb8(...)
         }
 
+        # Deprecated, consider only including for R 3.4.
         .env$biocLite <- function(...) {
             BiocInstaller::biocLite(...)
         }
@@ -248,12 +251,6 @@ stopifnot(Sys.which("conda") == "")
             devtools::build_vignettes(...)
         }
 
-        .env$catVec <- function(x) {
-            x <- paste0("\"", x, "\"")
-            x <- paste(x, collapse = ",\n")
-            cat(x)
-        }
-
         .env$check <- function(
             ...,
             document = FALSE,
@@ -291,40 +288,6 @@ stopifnot(Sys.which("conda") == "")
             devtools::document(...)
         }
 
-        # Find and replace across a directory.
-        .env$findAndReplace <- function(
-            pattern,
-            replacement,
-            dir = ".",
-            recursive = FALSE
-        ) {
-            files <- list.files(
-                path = dir,
-                pattern = "(r|R)$",
-                full.names = TRUE,
-                recursive = recursive
-            )
-            invisible(parallel::mclapply(
-                X = files,
-                FUN = function(file) {
-                    x <- readr::read_lines(file)
-                    x <- gsub(
-                        pattern = pattern,
-                        replacement = replacement,
-                        x = x
-                    )
-                    readr::write_lines(x, path = file)
-                }
-            ))
-        }
-
-        # macOS: Open Finder to the current directory.
-        .env$finder <- function(path = ".") {
-            stopifnot(Sys.info()[[1L]] == "Darwin")
-            stopifnot(is.character(path) && length(character) == 1L)
-            system(paste("open", path))
-        }
-
         .env$install <- function(...) {
             BiocManager::install(...)
         }
@@ -340,32 +303,6 @@ stopifnot(Sys.which("conda") == "")
         # pkgload::load_all(helpers = FALSE, attach_testthat = FALSE)
         .env$load_all <- function() {
             devtools::load_all()
-        }
-
-        # Get free memory statistics.
-        # Currently this only works for Linux.
-        #
-        # - `help(topic = "Memory", package = "base")`
-        # - `help(topic = "Memory-limits", package = "base")`
-        #
-        # - `utils:::format.object_size()`
-        # - `print:::print.bytes()`
-        #
-        # - https://stackoverflow.com/a/6457769
-        # - https://stackoverflow.com/a/29787527
-        # - https://stat.ethz.ch/R-manual/R-devel/library/base/html/Memory-limits.html
-        # - http://adv-r.had.co.nz/memory.html
-        .env$memfree <- function() {
-            message("Running garbage collection first with base::gc().")
-            print(gc(verbose = TRUE, full = TRUE))
-            mem_used <- capture.output(print(pryr::mem_used()))
-            mem_free <- utils:::format.object_size(as.numeric(
-                system("awk '/MemFree/ {print $2}' /proc/meminfo", intern = TRUE)
-            ), "auto")
-            message(paste0(
-                "Memory used: ", mem_used, " (pryr::mem_used)\n",
-                "Memory free: ", mem_free, " (awk MemFree)"
-            ))
         }
 
         # macOS: Copy to clipboard.
