@@ -258,7 +258,7 @@ stopifnot(Sys.which("conda") == "")
         ) {
             # `system.file()` calls in working examples will fail unless we
             # install the package first.
-            devinstall()
+            # devinstall()
             devtools::check(
                 ...,
                 document = document,
