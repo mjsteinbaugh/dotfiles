@@ -311,6 +311,10 @@ stopifnot(Sys.which("conda") == "")
             capture.output(x, file = pipe("pbcopy"))
         }
 
+        .env$pc <- function(...) {
+            bb8::printComment(...)
+        }
+
         .env$rcmdcheck <- function(...) {
             rcmdcheck::rcmdcheck(...)
         }
