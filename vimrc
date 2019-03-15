@@ -50,7 +50,11 @@ set colorcolumn=80
 
 
 " Show line numbers.
-set number
+" set number
+
+" Disable line numbers.
+" Using this currently because it's easier to paste on Windows with tmux.
+set nonumber
 
 " Show command in bottom bar.
 set showcmd
