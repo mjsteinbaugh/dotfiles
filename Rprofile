@@ -116,18 +116,18 @@ stopifnot(Sys.which("conda") == "")
     rm(repos)
 
     # basejump
-    options(basejump.save.ext = "rds")
+    # > options(basejump.save.ext = "rds")
     # Save to dated subdirectory automatically.
     # This helps avoid accidental rewrites, and enables easy versioning.
-    options(
-        basejump.save.dir = file.path(
-            getOption("basejump.save.ext"), Sys.Date()
-        )
-    )
+    # > options(
+    # >     basejump.save.dir = file.path(
+    # >         getOption("basejump.save.ext"), Sys.Date()
+    # >     )
+    # > )
     # Attempt to load from corresponding save directory by default.
-    options(
-        basejump.load.dir = getOption("basejump.save.dir")
-    )
+    # > options(
+    # >     basejump.load.dir = getOption("basejump.save.dir")
+    # > )
 
     # crayon
     options(
