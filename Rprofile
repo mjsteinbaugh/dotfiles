@@ -254,7 +254,7 @@ stopifnot(Sys.which("conda") == "")
         .env$check <- function(
             ...,
             document = FALSE,
-            vignettes = FALSE
+            vignettes = TRUE
         ) {
             # `system.file()` calls in working examples will fail unless we
             # install the package first.
