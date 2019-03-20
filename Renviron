@@ -26,6 +26,8 @@ PATH="/usr/local/clang6/bin:${PATH}"
 PATH="/usr/local/gfortran/bin:${PATH}"
 # pandoc (RStudio).
 PATH="/Applications/RStudio.app/Contents/MacOS/pandoc:${PATH}"
+# Homebrew Python.
+PATH="/usr/local/opt/python/libexec/bin:${PATH}"
 
 # Package configuration
 # LAPACK
@@ -43,7 +45,7 @@ XML_CONFIG="/usr/local/opt/libxml2/bin/xml2-config"
 # R_MAX_NUM_DLLS=153
 
 # Required to run UMAP.
-RETICULATE_PYTHON="~/anaconda3/envs/steinbaugh/bin/python"
+# RETICULATE_PYTHON="~/anaconda3/envs/steinbaugh/bin/python"
 
 # R 3.5 can sometimes error due to time zone, unless this is set.
 TZ="America/New_York"
