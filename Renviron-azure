@@ -1,39 +1,46 @@
+# R environment for Azure VM
+
+
+
+# Dynamic linker/loader configuration
+#
 # Ensure `dyn.load()` is configured correctly.
+# This step is needed to ensure hdf5r loads correctly, for example.
 #
-# Define lib paths in `/etc/ld.so.conf.d/local-x86_64.conf/`.
-# Add multiple paths there using a line break.
-#
-# /usr/local/lib64
-# /usr/local/lib
+# Since we have sudo access, dDefine lib paths in `/etc/ld.so.conf.d/`.
+# 
+# Add one path per file:
+# - local.conf:        /usr/local/lib
+# - local-x86_64.conf: /usr/local/lib64
 #
 # If you install new software (e.g. gsl, hdf5) need to update config.
 # Run `sudo ldconfig`.
 #
-# You can check the linkage using `ldd`.
+# Check the linkage using `ldd`.
 # For example:
 # ldd /usr/local/bin/emacs
 #
-# Alternatively, can export LD_LIBRARY_PATH in `.shrc`.
-# Generally this is BAD and should be avoided.
-# This must be done per user though.
-#
-# This step is needed to ensure hdf5r loads correctly.
+# On systems without sudo access, `$LD_LIBRARY_PATH` can be exported per user
+# in `.shrc` file instead. Configuration via `ld.so.conf.d` approach is better.
 #
 # See also:
-# - `/etc/ld.so.conf.d/` approach (recommended).
-#   https://stackoverflow.com/a/45228086
-#   https://stackoverflow.com/a/696247
+# - https://stackoverflow.com/a/45228086
+# - https://stackoverflow.com/a/696247
 # - https://stackoverflow.com/questions/45112506
 # - https://stat.ethz.ch/R-manual/R-devel/library/base/html/getLoadedDLLs.html
 #
-# Avoid setting `LD_LIBRARY_PATH`!!!
+# Only set `$LD_LIBRARY_PATH` when you don't have sudo access.
 # LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/lib:/usr/lib64/R/lib:/usr/lib64:/usr/lib:/lib64:/lib"
 
-# Restricting PATH so we don't load any binaries from conda.
+
+
+# Restrict `$PATH` so we don't load any binaries from conda or bcbio.
 PATH="/usr/local/bin:/usr/bin:/bin"
 
-R_LIBS_USER="~/R/x86_64-redhat-linux-gnu-library/3.5/bioc-3.8-release"
 
-RETICULATE_PYTHON="~/.conda/envs/reticulate/bin/python"
+# User library
+R_LIBS_USER="~/R/%p-library/%v/bioc-3.8-release"
+
+
 
 TZ="America/New_York"
