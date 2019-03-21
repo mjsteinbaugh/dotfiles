@@ -20,6 +20,12 @@
 # ‘%o’ the underlying operating system, the value of ‘R.version$os’.
 # ‘%a’ the architecture (CPU) R was built on/for, the value of ‘R.version$arch’.
 
+# Linux
+# R_LIBS_USER="~/R/%p-library/%v"
+
+# Windows
+# R_LIBS_USER="~/R/win-library/%v"
+
 R_LIBS_USER="~/R/library"
 
 
