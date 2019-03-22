@@ -243,7 +243,7 @@ stopifnot(Sys.which("conda") == "")
         }
 
         .env$build_site <- function(..., document = FALSE) {
-            unlink("docs", recursive = TRUE)
+            unlink(file.path("docs", "reference"), recursive = TRUE)
             pkgdown::build_site(..., document = document)
         }
 
