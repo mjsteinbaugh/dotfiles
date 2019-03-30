@@ -247,8 +247,8 @@ stopifnot(Sys.which("conda") == "")
             pkgdown::build_site(..., document = document)
         }
 
-        .env$build_vignettes <- function(...) {
-            devtools::build_vignettes(...)
+        .env$build_vignettes <- function(..., clean = FALSE) {
+            devtools::build_vignettes(..., clean = clean)
         }
 
         .env$check <- function(
