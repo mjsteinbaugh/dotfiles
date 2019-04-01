@@ -39,7 +39,8 @@ PATH="/usr/local/bin:/usr/bin:/bin"
 
 
 # User library
-R_LIBS_USER="~/R/%p-library/%v/bioc-3.8-release"
+# R_LIBS_USER="~/R/%p-library/%v/bioc-3.8"
+R_LIBS_USER="~/R/library"
 
 
 
