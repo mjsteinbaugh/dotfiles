@@ -51,6 +51,8 @@ token.*
 *.fasta
 *.fastq
 *.fq
+*.gff
+*.gff3
 *.gtf
 *.gz
 *.gz.*
