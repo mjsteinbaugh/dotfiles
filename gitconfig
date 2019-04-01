@@ -59,3 +59,5 @@
 	zeroPaddedFilemode = warn
 [fsck]
 	zeroPaddedFilemode = warn
+[status]
+	submoduleSummary = true
