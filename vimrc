@@ -145,7 +145,7 @@ set shiftwidth=4
 set softtabstop=4
 
 " Expand (detab) tab to spaces.
-" set expandtab
+set expandtab
 
 " Legacy method (no longer recommended).
 " set smartindent
