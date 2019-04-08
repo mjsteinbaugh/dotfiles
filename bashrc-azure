@@ -1,8 +1,8 @@
 #!/usr/bin/sh
 
 # bcbio
-# export BCBIO_EXE="/data00/bcbio/tools/bin/bcbio_nextgen.py"
-export BCBIO_EXE="/data00/bcbio/tools-patched/bin/bcbio_nextgen.py"
+export BCBIO_EXE="/data00/bcbio/tools/bin/bcbio_nextgen.py"
+# export BCBIO_EXE="/data00/bcbio/tools-patched/bin/bcbio_nextgen.py"
 
 # koopa shell
 # https://github.com/acidgenomics/koopa/
