@@ -74,7 +74,6 @@ stopifnot(Sys.which("conda") == "")
     seed <- 1454944673L
     set.seed(seed)
 
-
     # Check if session is running inside RStudio.
     if (isTRUE(nzchar(Sys.getenv("RSTUDIO_USER_IDENTITY")))) {
         rstudio <- TRUE
@@ -82,13 +81,11 @@ stopifnot(Sys.which("conda") == "")
         rstudio <- FALSE
     }
 
-
     # Fix default file permissions in RStudio.
     # RStudio doesn't pick up the system umask, which is annoying.
     if (isTRUE(rstudio)) {
         Sys.umask("0002")
     }
-
 
     # Set console options.
     options(
@@ -181,7 +178,6 @@ stopifnot(Sys.which("conda") == "")
         # Can use either "collapse", "branch", or "full".
         rlang__backtrace_on_error = "full"
     )
-
 
     if (interactive()) {
         # Custom functions should be saved in bb8 package instead of here.
@@ -372,6 +368,10 @@ stopifnot(Sys.which("conda") == "")
             # )
         }
 
+        .env$use_data <- function(..., overwrite = TRUE) {
+            usethis::use_data(..., overwrite = overwrite)
+        }
+
         .env$valid <- function(...) {
             BiocManager::valid(...)
         }
@@ -385,7 +385,6 @@ stopifnot(Sys.which("conda") == "")
 
         attach(.env)
 
-
         # Load secret variables that we don't want in Renviron.
         if (file.exists("~/.Rsecrets")) {
             source("~/.Rsecrets")
@@ -398,10 +397,8 @@ stopifnot(Sys.which("conda") == "")
             )
         }
 
-
         # Turn on completion of installed package names.
         utils::rc.settings(ipck = TRUE)
-
 
         # Set developer-specific profile.
         devel <- grepl("devel$", Sys.getenv("R_LIBS_USER"))
@@ -424,7 +421,6 @@ stopifnot(Sys.which("conda") == "")
         # ) {
         #     warning("Developer library not detected.")
         # }
-
 
         # Show useful session information.
         if (isTRUE(rstudio)) {
