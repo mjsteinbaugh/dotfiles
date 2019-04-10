@@ -22,6 +22,8 @@
 ;;   https://github.com/syl20bnr/spacemacs/blob/master/core/templates/.spacemacs.template
 ;; - roryk dotfile
 ;;   https://github.com/roryk/dotfiles/blob/master/spacemacs
+;; - practicalli dotfile
+;;   https://github.com/practicalli/spacemacs-config/blob/master/.spacemacs
 ;; - Actually getting spacemacs to do stuff
 ;;   http://paul-gowder.com/emacs.html
 ;; - shell layer
