@@ -176,7 +176,7 @@ stopifnot(Sys.which("conda") == "")
     options(
         error = quote(rlang::entrace()),
         # Can use either "collapse", "branch", or "full".
-        rlang__backtrace_on_error = "full"
+        rlang_backtrace_on_error = "full"
     )
 
     if (interactive()) {
