@@ -1,13 +1,11 @@
 # R environment for Azure VM
 
-
-
 # Dynamic linker/loader configuration
 #
 # Ensure `dyn.load()` is configured correctly.
 # This step is needed to ensure hdf5r loads correctly, for example.
 #
-# Since we have sudo access, dDefine lib paths in `/etc/ld.so.conf.d/`.
+# Since we have sudo access, define lib paths in `/etc/ld.so.conf.d/`.
 # 
 # Add one path per file:
 # - local.conf:        /usr/local/lib
@@ -32,16 +30,16 @@
 # Only set `$LD_LIBRARY_PATH` when you don't have sudo access.
 # LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/lib:/usr/lib64/R/lib:/usr/lib64:/usr/lib:/lib64:/lib"
 
-
-
 # Restrict `$PATH` so we don't load any binaries from conda or bcbio.
 PATH="/usr/local/bin:/usr/bin:/bin"
-
 
 # User library
 # R_LIBS_USER="~/R/%p-library/%v/bioc-3.8"
 R_LIBS_USER="~/R/library"
 
+# Always upgrade GitHub R packages, without prompting.
+# See `remotes::update_packages()` for details.
+R_REMOTES_UPGRADE="always"
 
-
+# Set the time zone, to avoid some potential issues with devtools.
 TZ="America/New_York"
