@@ -3,6 +3,35 @@
 
 
 
+# Path
+# Set a minimal, consistent PATH for R.
+# Don't allow conda here.
+PATH="/usr/local/bin:/usr/bin:/bin"
+# Homebrew Python
+PATH="/usr/local/opt/python/libexec/bin:${PATH}"
+# TeX
+PATH="${PATH}:/Library/TeX/texbin"
+# X11
+PATH="${PATH}:/opt/X11/bin"
+# clang 6 (CRAN)
+PATH="/usr/local/clang6/bin:${PATH}"
+# gfortran 6.1 (CRAN)
+PATH="/usr/local/gfortran/bin:${PATH}"
+# pandoc (RStudio)
+PATH="/Applications/RStudio.app/Contents/MacOS/pandoc:${PATH}"
+
+
+
+# Package configuration
+# LAPACK
+PKG_CONFIG_PATH="/usr/local/opt/lapack/lib/pkgconfig:${PKG_CONFIG_PATH}"
+# OpenBLAS
+PKG_CONFIG_PATH="/usr/local/opt/openblas/lib/pkgconfig:${PKG_CONFIG_PATH}"
+# imagemagick
+PKG_CONFIG_PATH="/usr/local/opt/imagemagick/lib/pkgconfig:${PKG_CONFIG_PATH}"
+
+
+
 # User package library
 #
 # General:
@@ -34,43 +63,14 @@ R_LIBS_USER="~/R/library"
 
 
 
-# Path
-# Set a minimal, consistent PATH for R.
-# Don't allow conda here.
-PATH="/usr/local/bin:/usr/bin:/bin"
-# Homebrew Python
-PATH="/usr/local/opt/python/libexec/bin:${PATH}"
-# TeX
-PATH="${PATH}:/Library/TeX/texbin"
-# X11
-PATH="${PATH}:/opt/X11/bin"
-# clang 6 (CRAN)
-PATH="/usr/local/clang6/bin:${PATH}"
-# gfortran 6.1 (CRAN)
-PATH="/usr/local/gfortran/bin:${PATH}"
-# pandoc (RStudio)
-PATH="/Applications/RStudio.app/Contents/MacOS/pandoc:${PATH}"
-
-
-
-# Package configuration
-# LAPACK
-PKG_CONFIG_PATH="/usr/local/opt/lapack/lib/pkgconfig:${PKG_CONFIG_PATH}"
-# OpenBLAS
-PKG_CONFIG_PATH="/usr/local/opt/openblas/lib/pkgconfig:${PKG_CONFIG_PATH}"
-# imagemagick
-PKG_CONFIG_PATH="/usr/local/opt/imagemagick/lib/pkgconfig:${PKG_CONFIG_PATH}"
-
-
-
-# XML configuration
-# libxml2
-XML_CONFIG="/usr/local/opt/libxml2/bin/xml2-config"
-
-
-
 # Increase this for large single-cell RNA-seq projects.
 # R_MAX_NUM_DLLS=153
+
+
+
+# Always upgrade GitHub R packages, without prompting.
+# See `remotes::update_packages()` for details.
+R_REMOTES_UPGRADE="always"
 
 
 
@@ -78,6 +78,12 @@ XML_CONFIG="/usr/local/opt/libxml2/bin/xml2-config"
 # Here's how to force Python available for reticulate.
 # Instead, call `use_virtualenv()` or `use_condaenv()`.
 # RETICULATE_PYTHON="~/anaconda3/envs/steinbaugh/bin/python"
+
+
+
+# XML configuration
+# libxml2
+XML_CONFIG="/usr/local/opt/libxml2/bin/xml2-config"
 
 
 
