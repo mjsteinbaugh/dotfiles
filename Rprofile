@@ -238,9 +238,9 @@ stopifnot(Sys.which("conda") == "")
             pkgdown::build_reference_index(...)
         }
 
-        .env$build_site <- function(..., document = FALSE) {
+        .env$build_site <- function(..., document = FALSE, preview = FALSE) {
             unlink(file.path("docs", "reference"), recursive = TRUE)
-            pkgdown::build_site(..., document = document)
+            pkgdown::build_site(..., document = document, preview = preview)
         }
 
         .env$build_vignettes <- function(..., clean = FALSE) {
