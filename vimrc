@@ -116,6 +116,11 @@ set clipboard=unnamed
 " https://stackoverflow.com/a/4313348
 
 
+" Vim-R-plugin
+" Disable `_` to `<-`, which is ridiculous.
+let vimrplugin_assign = 0
+
+
 
 " Indentation
 " Prefer spaces over tabs. Sorry, Richard Hendricks.
