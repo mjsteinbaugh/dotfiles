@@ -359,15 +359,11 @@ stopifnot(Sys.which("conda") == "")
         }
 
         # Check installed packages
-        .env$update_packages <- function(..., upgrade = "always") {
-            remotes::update_packages(..., upgrade = upgrade)
-            if (upgrade == "always") {
-                ask <- FALSE
-            } else {
-                ask <- TRUE
-            }
+        .env$update <- function() {
+            BiocManager::install(update = TRUE, ask = FALSE)
+            remotes::update_packages(upgrade = "always")
             update.packages(
-                ask = ask,
+                ask = FALSE,
                 checkBuilt = TRUE,
                 repos = BiocManager::repositories()
             )
