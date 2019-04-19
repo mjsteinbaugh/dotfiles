@@ -118,7 +118,9 @@ set clipboard=unnamed
 
 " Vim-R-plugin
 " Disable `_` to `<-`, which is ridiculous.
-let vimrplugin_assign = 0
+" let vimrplugin_assign = 0
+" https://stackoverflow.com/questions/44529713
+let R_assign = 0
 
 
 
