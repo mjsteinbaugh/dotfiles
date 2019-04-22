@@ -284,8 +284,8 @@ stopifnot(Sys.which("conda") == "")
             devtools::document(...)
         }
 
-        .env$install <- function(...) {
-            BiocManager::install(...)
+        .env$install <- function(..., dependencies = TRUE) {
+            BiocManager::install(..., dependencies = dependencies)
         }
 
         .env$install_github <- function(..., upgrade = "never") {
