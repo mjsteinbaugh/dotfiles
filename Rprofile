@@ -238,9 +238,9 @@ stopifnot(Sys.which("conda") == "")
             pkgdown::build_reference_index(...)
         }
 
-        .env$build_site <- function(..., document = FALSE) {
+        .env$build_site <- function(..., document = FALSE, preview = FALSE) {
             unlink(file.path("docs", "reference"), recursive = TRUE)
-            pkgdown::build_site(..., document = document)
+            pkgdown::build_site(..., document = document, preview = preview)
         }
 
         .env$build_vignettes <- function(..., clean = FALSE) {
@@ -359,15 +359,11 @@ stopifnot(Sys.which("conda") == "")
         }
 
         # Check installed packages
-        .env$update_packages <- function(..., upgrade = "always") {
-            remotes::update_packages(..., upgrade = upgrade)
-            if (upgrade == "always") {
-                ask <- FALSE
-            } else {
-                ask <- TRUE
-            }
+        .env$update <- function() {
+            BiocManager::install(update = TRUE, ask = FALSE)
+            remotes::update_packages(upgrade = "always")
             update.packages(
-                ask = ask,
+                ask = FALSE,
                 checkBuilt = TRUE,
                 repos = BiocManager::repositories()
             )

@@ -7,7 +7,7 @@
 # Ensure `dyn.load()` is configured correctly.
 # This step is needed to ensure hdf5r loads correctly, for example.
 #
-# Since we have sudo access, dDefine lib paths in `/etc/ld.so.conf.d/`.
+# Since we have sudo access, define lib paths in `/etc/ld.so.conf.d/`.
 # 
 # Add one path per file:
 # - local.conf:        /usr/local/lib
@@ -38,10 +38,18 @@
 PATH="/usr/local/bin:/usr/bin:/bin"
 
 
+
 # User library
 # R_LIBS_USER="~/R/%p-library/%v/bioc-3.8"
 R_LIBS_USER="~/R/library"
 
 
 
+# Always upgrade GitHub R packages, without prompting.
+# See `remotes::update_packages()` for details.
+R_REMOTES_UPGRADE="always"
+
+
+
+# R 3.5 can sometimes error due to time zone, unless this is set.
 TZ="America/New_York"
