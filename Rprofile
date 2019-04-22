@@ -358,8 +358,10 @@ stopifnot(Sys.which("conda") == "")
             devtools::test(...)
         }
 
-        # Check installed packages
-        .env$update <- function() {
+        # Update installed packages.
+        # Don't use `update()`; conflicts with `stats::update()`.
+        # Don't use `upgrade()`; conflicts with `utils::upgrade()`.
+        .env$update_all <- function() {
             BiocManager::install(update = TRUE, ask = FALSE)
             remotes::update_packages(upgrade = "always")
             update.packages(
