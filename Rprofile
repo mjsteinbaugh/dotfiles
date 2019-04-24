@@ -61,9 +61,15 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
     ))
 }
 
-
 # No conda allowed! Can cause compilation issues.
-stopifnot(Sys.which("conda") == "")
+# Issue a warning here, otherwise bcbio unit tests will fail to run.
+if (Sys.which("conda") != "") {
+    warning(paste(
+        "conda detected.",
+        "Run `conda deactivate` prior to starting R.",
+        sep = "\n"
+    ))
+}
 
 
 
@@ -282,6 +288,10 @@ stopifnot(Sys.which("conda") == "")
 
         .env$document <- function(...) {
             devtools::document(...)
+        }
+
+        .env$findAndReplace <- function(...) {
+            bb8::findAndReplace(...)
         }
 
         .env$install <- function(..., dependencies = TRUE) {
