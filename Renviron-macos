@@ -1,5 +1,9 @@
 # R environment for macOS (darwin)
+#
 # Using Homebrew cask to install CRAN R.
+#
+# See also:
+# - `help(topic = "Renviron")`
 
 
 
@@ -36,8 +40,8 @@ PKG_CONFIG_PATH="/usr/local/opt/imagemagick/lib/pkgconfig:${PKG_CONFIG_PATH}"
 #
 # General:
 # - `Sys.getenv()`.
-# - `?R_LIBS_USER`.
-# - `?.libPaths`.
+# - `help(topic = "R_LIBS_USER")`.
+# - `help(topic = ".libPaths")`.
 #
 # Bioconductor-specific:
 # - https://www.bioconductor.org/developers/how-to/useDevel/

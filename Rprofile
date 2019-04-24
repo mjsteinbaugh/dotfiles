@@ -2,20 +2,22 @@
 #
 # Tested on Linux, macOS, and Windows.
 #
-# Stephen Turner's profile:
-# http://gettinggeneticsdone.blogspot.com/2013/07/customize-rprofile.html
-#
-# Jim Hester's profile:
-# https://github.com/jimhester/dotfiles/blob/master/R/Rprofile
-#
-# Efficient R programming:
-# https://csgillespie.github.io/efficientR/set-up.html
-#
-# Don't set `stringsAsFactors = FALSE`.
+# Never set `stringsAsFactors = FALSE`.
 # Code will be non-portable!
 #
 # If devtools runs into an unzip error, set this:
-# unzip = "/usr/bin/unzip"
+# `unzip = "/usr/bin/unzip"`
+#
+# See also:
+# - `help(topic = "Rprofile")`.
+#
+# Useful examples:
+# - Stephen Turner's profile
+#   http://gettinggeneticsdone.blogspot.com/2013/07/customize-rprofile.html
+# - Jim Hester's profile
+#   https://github.com/jimhester/dotfiles/blob/master/R/Rprofile
+# - Efficient R programming
+#   https://csgillespie.github.io/efficientR/set-up.html
 
 
 
@@ -61,7 +63,6 @@ if (Sys.getenv("HMS_CLUSTER") == "o2") {
     ))
 }
 
-
 # No conda allowed! Can cause compilation issues.
 stopifnot(Sys.which("conda") == "")
 
@@ -70,6 +71,24 @@ stopifnot(Sys.which("conda") == "")
 # Initilization at start of an R session =======================================
 # help(topic = "Startup", package = "base")
 .First <- function() {
+    # Check for user library version mismatch.
+    r_ver <- paste(
+        R.version[["major"]],
+        substr(x = R.version[["minor"]], start = 1, stop = 1),
+        sep = "."
+    )
+    lib_ver <- strsplit(x = .libPaths()[[1L]], split = .Platform$file.sep)[[1L]]
+    lib_ver <- lib_ver[length(lib_ver) - 1L]
+    if (!identical(r_ver, lib_ver)) {
+        stop(paste0(
+            "R library version mismatch detected.\n",
+            "  R.version: ", r_ver, "\n",
+            "R_LIBS_USER: ", lib_ver, "\n",
+            "Check .libPaths() configuration in ~/.Renviron."
+        ))
+    }
+    rm(r_ver, lib_ver)
+
     # Always set seed for reproducibility.
     seed <- 1454944673L
     set.seed(seed)
@@ -112,18 +131,18 @@ stopifnot(Sys.which("conda") == "")
     options(repos = repos)
     rm(repos)
 
-    # basejump
-    # > options(basejump.save.ext = "rds")
+    # Acid Genomics
+    # > options(acid.save.ext = "rds")
     # Save to dated subdirectory automatically.
     # This helps avoid accidental rewrites, and enables easy versioning.
     # > options(
-    # >     basejump.save.dir = file.path(
-    # >         getOption("basejump.save.ext"), Sys.Date()
+    # >     acid.save.dir = file.path(
+    # >         getOption("acid.save.ext"), Sys.Date()
     # >     )
     # > )
     # Attempt to load from corresponding save directory by default.
     # > options(
-    # >     basejump.load.dir = getOption("basejump.save.dir")
+    # >     acid.load.dir = getOption("acid.save.dir")
     # > )
 
     # crayon
@@ -403,28 +422,6 @@ stopifnot(Sys.which("conda") == "")
         # Turn on completion of installed package names.
         utils::rc.settings(ipck = TRUE)
 
-        # Set developer-specific profile.
-        devel <- grepl("devel$", Sys.getenv("R_LIBS_USER"))
-        if (isTRUE(devel)) {
-            # Enable automatic package updates from home directory.
-            if (identical(
-                x = normalizePath(getwd()),
-                y = normalizePath("~")
-            )) {
-                # Automatically update packages.
-                try(BiocManager::install(ask = TRUE))
-                suppressWarnings(utils::update.packages(ask = TRUE))
-            }
-        }
-
-        # Check for developer library in git repos.
-        # if (
-        #     grepl("/git/", getwd()) &&
-        #     !isTRUE(devel)
-        # ) {
-        #     warning("Developer library not detected.")
-        # }
-
         # Show useful session information.
         if (isTRUE(rstudio)) {
            cat("R is running inside RStudio.\n\n")
@@ -439,6 +436,8 @@ stopifnot(Sys.which("conda") == "")
             sep = "\n"
         )
     }
+
+    rm(rstudio)
 }
 
 
