@@ -448,7 +448,7 @@ if (Sys.which("conda") != "") {
         )
     }
 
-    rm(rstudio)
+    rm(rstudio, seed)
 }
 
 
