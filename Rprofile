@@ -33,7 +33,10 @@
 
     # Check that the local library matches the R version.
     libs <- .libPaths()
-    lib_pattern <- file.path(Sys.getenv("R_PLATFORM"), r_ver) 
+    lib_pattern <- file.path(
+        paste0(Sys.getenv("R_PLATFORM"), "-library"),
+        r_ver
+    )
     usr_lib <- grepl(pattern = lib_pattern, x = libs)
     if (!any(usr_lib)) {
         stop(paste0(
