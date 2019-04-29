@@ -212,16 +212,18 @@
     # - https://gist.github.com/krlmlr/33ec72d196b1542b9c4f9497d981de49
     # options(error = rlang::entrace)
     # options(error = utils::recover)
-
+    #
     # Verbose error debugging currently crashes RStudio.
-    # https://github.com/rstudio/rstudio/issues/4723
-    if (!isTRUE(rstudio)) {
-        options(
-            error = quote(rlang::entrace()),
-            # Can use either "collapse", "branch", or "full".
-            rlang_backtrace_on_error = "full"
-        )
+    # - https://github.com/rstudio/rstudio/issues/4723
+    # - https://github.com/rstudio/rstudio/pull/4726
+    if (isTRUE(rstudio)) {
+        options(rstudio.errors.suppressed = FALSE)
     }
+    options(
+        error = quote(rlang::entrace()),
+        # Can use either "collapse", "branch", or "full".
+        rlang_backtrace_on_error = "full"
+    )
 
     if (interactive()) {
         # Custom functions should be saved in bb8 package instead of here.
