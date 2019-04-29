@@ -33,15 +33,11 @@
 
     # Check that the local library matches the R version.
     libs <- .libPaths()
-    usr_lib <- libs[length(libs) - 1L]
-    lib_ver <- strsplit(x = usr_lib, split = .Platform$file.sep)[[1L]]
-    lib_ver <- lib_ver[length(lib_ver) - 1L]
-    if (!identical(r_ver, lib_ver)) {
-        message(paste0(
-            "R library version mismatch detected.\n",
-            "  R.version: ", r_ver, "\n",
-            "R_LIBS_USER: ", lib_ver, "\n",
-            "Check .libPaths() configuration in ~/.Renviron."
+    usr_lib <- grepl(pattern = r_ver, x = libs)
+    if (!any(usr_lib)) {
+        stop(paste(
+            "Failed to detect", r_ver, "user library.",
+            "Check .libPaths() configuration in ~/.Renviron file."
         ))
     }
 
