@@ -21,80 +21,89 @@
 
 
 
-# Check compilers are installed ================================================
-if (Sys.getenv("HMS_CLUSTER") == "o2") {
-    # module load gcc/6.2.0
-    stopifnot(identical(
-        x = Sys.which(c("gcc", "g++", "gfortran")),
-        y = c(
-            "gcc"      = "/n/app/gcc/6.2.0/bin/gcc",
-            "g++"      = "/n/app/gcc/6.2.0/bin/g++",
-            "gfortran" = "/n/app/gcc/6.2.0/bin/gfortran"
-        )
-    ))
-    # module load R/3.5.1
-    stopifnot(identical(
-        Sys.which("R"),
-        c(R = "/n/app/R/3.5.1/bin/R")
-    ))
-    # module load hdf5/1.10.1
-    stopifnot(identical(
-        Sys.which("h5cc"),
-        c(h5cc = "/n/app/hdf5/1.10.1/bin/h5cc")
-    ))
-} else if (Sys.info()[["sysname"]] == "Darwin") {
-    # Use recommended CRAN compiler settings.
-    stopifnot(identical(
-        x = Sys.which(c("clang", "clang++", "gfortran")),
-        y = c(
-            "clang"    = "/usr/local/clang6/bin/clang",
-            "clang++"  = "/usr/local/clang6/bin/clang++",
-            "gfortran" = "/usr/local/gfortran/bin/gfortran"
-        )
-    ))
-} else if (Sys.info()[["sysname"]] == "Linux") {
-    stopifnot(identical(
-        x = Sys.which(c("gcc", "g++", "gfortran")),
-        y = c(
-            "gcc"      = "/usr/bin/gcc",
-            "g++"      = "/usr/bin/g++",
-            "gfortran" = "/usr/bin/gfortran"
-        )
-    ))
-}
-
-# No conda allowed! Can cause compilation issues.
-# Issue a warning here, otherwise bcbio unit tests will fail to run.
-if (Sys.which("conda") != "") {
-    warning(paste(
-        "conda detected.",
-        "Run `conda deactivate` prior to starting R.",
-        sep = "\n"
-    ))
-}
-
-
-
 # Initilization at start of an R session =======================================
 # help(topic = "Startup", package = "base")
 .First <- function() {
-    # Check for user library version mismatch.
+    # Get the R version without patch (e.g. 3.6).
     r_ver <- paste(
         R.version[["major"]],
         substr(x = R.version[["minor"]], start = 1, stop = 1),
         sep = "."
     )
-    lib_ver <- strsplit(x = .libPaths()[[1L]], split = .Platform$file.sep)[[1L]]
+    
+    # Check that the local library matches the R version.
+    libs <- .libPaths()
+    usr_lib <- libs[length(libs) - 1L]
+    lib_ver <- strsplit(x = usr_lib, split = .Platform$file.sep)[[1L]]
     lib_ver <- lib_ver[length(lib_ver) - 1L]
     if (!identical(r_ver, lib_ver)) {
-        stop(paste0(
+        message(paste0(
             "R library version mismatch detected.\n",
             "  R.version: ", r_ver, "\n",
             "R_LIBS_USER: ", lib_ver, "\n",
             "Check .libPaths() configuration in ~/.Renviron."
         ))
     }
-    rm(r_ver, lib_ver)
+    
+    # Check for expected compilers.
+    if (Sys.getenv("HMS_CLUSTER") == "o2") {
+        # module load gcc/6.2.0
+        gcc_bin_dir <- "/n/app/gcc/6.2.0/bin"
+        stopifnot(identical(
+            x = Sys.which(c("gcc", "g++", "gfortran")),
+            y = c(
+                "gcc"      = file.path(gcc_bin_dir, "gcc"),
+                "g++"      = file.path(gcc_bin_dir, "g++"),
+                "gfortran" = file.path(gcc_bin_dir, "gfortran")
+            )
+        ))
+        # module load R/3.5.1
+        stopifnot(identical(
+            Sys.which("R"),
+            c(R = "/n/app/R/3.5.1/bin/R")
+        ))
+        # module load hdf5/1.10.1
+        stopifnot(identical(
+            Sys.which("h5cc"),
+            c(h5cc = "/n/app/hdf5/1.10.1/bin/h5cc")
+        ))
+    } else if (Sys.info()[["sysname"]] == "Darwin") {
+        # Use recommended CRAN compiler settings.
+        if (r_ver == "3.5") {
+            clang_ver <- "6"
+        } else if (r_ver == "3.6") {
+            clang_ver <- "7"
+        }
+        clang_bin_dir <-
+            file.path("", "usr", "local", paste0("clang", clang_ver), "bin")
+        stopifnot(identical(
+            x = Sys.which(c("clang", "clang++", "gfortran")),
+            y = c(
+                "clang"    = file.path(clang_bin_dir, "clang"),
+                "clang++"  = file.path(clang_bin_dir, "clang++"),
+                "gfortran" = "/usr/local/gfortran/bin/gfortran"
+            )
+        ))
+    } else if (Sys.info()[["sysname"]] == "Linux") {
+        stopifnot(identical(
+            x = Sys.which(c("gcc", "g++", "gfortran")),
+            y = c(
+                "gcc"      = "/usr/bin/gcc",
+                "g++"      = "/usr/bin/g++",
+                "gfortran" = "/usr/bin/gfortran"
+            )
+        ))
+    }
+
+    # No conda allowed! Can cause compilation issues.
+    # Issue a warning here, otherwise bcbio unit tests will fail to run.
+    if (Sys.which("conda") != "") {
+        warning(paste(
+            "conda detected.",
+            "Run `conda deactivate` prior to starting R.",
+            sep = "\n"
+        ))
+    }
 
     # Always set seed for reproducibility.
     seed <- 1454944673L
@@ -136,7 +145,6 @@ if (Sys.which("conda") != "") {
     repos <- getOption("repos")
     repos["CRAN"] <- "https://cloud.r-project.org"
     options(repos = repos)
-    rm(repos)
 
     # Acid Genomics
     # > options(acid.save.ext = "rds")
@@ -449,8 +457,6 @@ if (Sys.which("conda") != "") {
             sep = "\n"
         )
     }
-
-    rm(rstudio, seed)
 }
 
 
