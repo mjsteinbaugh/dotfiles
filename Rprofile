@@ -30,7 +30,7 @@
         substr(x = R.version[["minor"]], start = 1, stop = 1),
         sep = "."
     )
-    
+
     # Check that the local library matches the R version.
     libs <- .libPaths()
     usr_lib <- libs[length(libs) - 1L]
@@ -44,7 +44,7 @@
             "Check .libPaths() configuration in ~/.Renviron."
         ))
     }
-    
+
     # Check for expected compilers.
     if (Sys.getenv("HMS_CLUSTER") == "o2") {
         # module load gcc/6.2.0
@@ -198,8 +198,8 @@
         showWarnCalls = TRUE,
         warn = 1L,
         # Note that edgeR and pheatmap currently fail for these.
-        # warnPartialMatchAttr = TRUE,
-        # warnPartialMatchDollar = TRUE,
+        warnPartialMatchAttr = TRUE,
+        warnPartialMatchDollar = TRUE,
         # 8170 is the maximum warning length.
         warning.length = 8170L
     )
