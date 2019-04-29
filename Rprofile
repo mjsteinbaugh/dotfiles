@@ -199,6 +199,8 @@ if (Sys.which("conda") != "") {
     # Improve stack traces for error messages.
     # - https://twitter.com/krlmlr/status/1086995664591044608
     # - https://gist.github.com/krlmlr/33ec72d196b1542b9c4f9497d981de49
+    # options(error = rlang::entrace)
+    # options(error = utils::recover)
     options(
         error = quote(rlang::entrace()),
         # Can use either "collapse", "branch", or "full".

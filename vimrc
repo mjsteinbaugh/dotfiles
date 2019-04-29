@@ -124,6 +124,13 @@ let R_assign = 0
 
 
 
+" Disable Markdown header folding by default
+" https://stackoverflow.com/questions/8316139
+" Restore folds with `zc`.
+set nofoldenable
+
+
+
 " Indentation
 " Prefer spaces over tabs. Sorry, Richard Hendricks.
 " See also:
