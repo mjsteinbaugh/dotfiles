@@ -10,11 +10,11 @@
 # xcode-select --install
 # sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
 
-CC=/usr/local/clang6/bin/clang
-CXX=/usr/local/clang6/bin/clang++
-CXX11=/usr/local/clang6/bin/clang++
-CXX14=/usr/local/clang6/bin/clang++
-CXX17=/usr/local/clang6/bin/clang++
-CXX1X=/usr/local/clang6/bin/clang++
-CXX98=/usr/local/clang6/bin/clang++
-LDFLAGS=-L/usr/local/clang6/lib
+CC=/usr/local/clang7/bin/clang
+CXX=/usr/local/clang7/bin/clang++
+CXX11=/usr/local/clang7/bin/clang++
+CXX14=/usr/local/clang7/bin/clang++
+CXX17=/usr/local/clang7/bin/clang++
+CXX1X=/usr/local/clang7/bin/clang++
+CXX98=/usr/local/clang7/bin/clang++
+LDFLAGS=-L/usr/local/clang7/lib
