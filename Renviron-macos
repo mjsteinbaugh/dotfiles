@@ -49,9 +49,6 @@ PKG_CONFIG_PATH="/usr/local/opt/imagemagick/lib/pkgconfig:${PKG_CONFIG_PATH}"
 # Bioconductor-specific:
 # - https://www.bioconductor.org/developers/how-to/useDevel/
 #
-# R_LIBS_USER="~/R/x86_64-apple-darwin15.6.0-library/3.4/bioc-3.6-release"
-# R_LIBS_USER="~/R/x86_64-apple-darwin15.6.0-library/3.5/bioc-3.8-release"
-#
 # ‘%V’ R version number including the patchlevel (e.g., ‘2.5.0’).
 # ‘%v’ R version number excluding the patchlevel (e.g., ‘2.5’).
 # ‘%p’ the platform for which R was built, the value of ‘R.version$platform’.
@@ -66,7 +63,7 @@ PKG_CONFIG_PATH="/usr/local/opt/imagemagick/lib/pkgconfig:${PKG_CONFIG_PATH}"
 #
 # Here I'm currently symlinking, for easier machine-specific customization,
 # since I'm currently using macOS to test legacy R 3.4 and R-devel.
-R_LIBS_USER="~/R/library"
+R_LIBS_USER="~/R/%p-library/%v/bioc-3.9"
 
 
 
