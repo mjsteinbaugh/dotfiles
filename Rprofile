@@ -293,21 +293,9 @@
             devtools::build_vignettes(..., clean = clean)
         }
 
-        .env$check <- function(
-            ...,
-            document = FALSE,
-            vignettes = TRUE
-        ) {
-            # `system.file()` calls in working examples will fail unless we
-            # install the package first.
-            # devinstall()
-            devtools::check(
-                ...,
-                document = document,
-                vignettes = vignettes
-            )
-            # This will error if directory doesn't match package name.
-            # BiocCheck::BiocCheck(".")
+        .env$check <- function() {
+            rcmdcheck::rcmdcheck()
+            BiocCheck::BiocCheck()
         }
 
         .env$cd <- function(...) {
