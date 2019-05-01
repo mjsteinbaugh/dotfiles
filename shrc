@@ -4,3 +4,7 @@
 # https://github.com/acidgenomics/koopa/
 # shellcheck source=/dev/null
 extra=1 . "${HOME}/.koopa/activate.sh"
+
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+source ~/.virtualenvs/default/bin/activate
+
