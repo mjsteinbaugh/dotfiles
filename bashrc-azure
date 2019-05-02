@@ -11,3 +11,9 @@ extra=1 . "${HOME}/.koopa/activate.sh"
 # Work on integrating this into koopa.
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 source ~/.virtualenvs/default/bin/activate
+
+# Launch a new tmux session automatically.
+if [ ! -n "${TMUX:-}" ]
+then
+    tmux new
+fi
