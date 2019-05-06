@@ -1,17 +1,15 @@
 # R startup profile
 #
 # Tested on Linux, macOS, and Windows.
-#
-# Never set `stringsAsFactors = FALSE`.
-# Code will be non-portable!
-#
-# If devtools runs into an unzip error, set this:
-# `unzip = "/usr/bin/unzip"`
-#
-# See also:
-# - `help(topic = "Rprofile")`.
-#
-# Useful examples:
+
+
+
+# Notes                                                                     {{{1
+# ==============================================================================
+
+# help(topic = "Rprofile")
+
+# Example profiles, for reference:
 # - Stephen Turner's profile
 #   http://gettinggeneticsdone.blogspot.com/2013/07/customize-rprofile.html
 # - Jim Hester's profile
@@ -19,10 +17,24 @@
 # - Efficient R programming
 #   https://csgillespie.github.io/efficientR/set-up.html
 
+# Never set `options(stringsAsFactors = FALSE)`.
+# Code will be non-portable.
+
+# If devtools runs into an unzip error, set this option:
+# - unzip = "/usr/bin/unzip"
+
+# Useful installation options (but leave disabled by default):
+# - install.packages.check.source = "no"
+# - install.packages.compile.from.source = "binary"
+# - repos = BiocManager::repositories()
 
 
-# Initilization at start of an R session =======================================
+
+# Initialization at start of an R session                                   {{{1
+# ==============================================================================
+
 # help(topic = "Startup", package = "base")
+
 .First <- function() {
     # Get the R version without patch (e.g. 3.6).
     r_ver <- paste(
@@ -30,6 +42,16 @@
         substr(x = R.version[["minor"]], start = 1, stop = 1),
         sep = "."
     )
+
+    # Check if session is running inside RStudio.
+    if (isTRUE(nzchar(Sys.getenv("RSTUDIO_USER_IDENTITY")))) {
+        rstudio <- TRUE
+    } else {
+        rstudio <- FALSE
+    }
+
+    # Pre-flight checks                                                     {{{2
+    # --------------------------------------------------------------------------
 
     # Check that the local library matches the R version.
     libs <- .libPaths()
@@ -98,8 +120,8 @@
         ))
     }
 
-    # No conda allowed! Can cause compilation issues.
-    # Issue a warning here, otherwise bcbio unit tests will fail to run.
+    # Check for active conda. Can cause compilation issues. Issue a warning
+    # here, otherwise bcbio unit tests will fail to run.
     if (Sys.which("conda") != "") {
         warning(paste(
             "conda detected.",
@@ -108,16 +130,12 @@
         ))
     }
 
+    # Global options                                                        {{{2
+    # --------------------------------------------------------------------------
+
     # Always set seed for reproducibility.
     seed <- 1454944673L
     set.seed(seed)
-
-    # Check if session is running inside RStudio.
-    if (isTRUE(nzchar(Sys.getenv("RSTUDIO_USER_IDENTITY")))) {
-        rstudio <- TRUE
-    } else {
-        rstudio <- FALSE
-    }
 
     # Fix default file permissions in RStudio.
     # RStudio doesn't pick up the system umask, which is annoying.
@@ -138,30 +156,24 @@
         width = 80L
     )
 
+    # Stop asking about which CRAN repo to use for `install.packages()`.
+    repos <- getOption("repos")
+    repos["CRAN"] <- "https://cloud.r-project.org"
+    options(repos = repos)
+
     # Set default author, for R Markdown templates.
     options(
         author = "Michael Steinbaugh",
         email = "mike@steinbaugh.com"
     )
 
-    # Stop asking about which CRAN repo to use for `install.packages()`.
-    repos <- getOption("repos")
-    repos["CRAN"] <- "https://cloud.r-project.org"
-    options(repos = repos)
-
     # Acid Genomics
-    # > options(acid.save.ext = "rds")
+    options(acid.save.ext = "rds")
     # Save to dated subdirectory automatically.
     # This helps avoid accidental rewrites, and enables easy versioning.
-    # > options(
-    # >     acid.save.dir = file.path(
-    # >         getOption("acid.save.ext"), Sys.Date()
-    # >     )
-    # > )
+    options(acid.save.dir = file.path(getOption("acid.save.ext"), Sys.Date()))
     # Attempt to load from corresponding save directory by default.
-    # > options(
-    # >     acid.load.dir = getOption("acid.save.dir")
-    # > )
+    options(acid.load.dir = getOption("acid.save.dir"))
 
     # crayon
     options(
@@ -190,7 +202,6 @@
     # Disable settings that can be problematic across platforms.
     options(
         browserNLdisabled = TRUE,
-        # Menu graphics can crash R.
         menu.graphics = FALSE
     )
 
@@ -208,39 +219,40 @@
     )
 
     # Improve stack traces for error messages.
+    #
+    # Use either:
+    # - `rlang::entrace` (recommended)
+    # - `utils::recover`
+    #
+    # See also:
     # - https://twitter.com/krlmlr/status/1086995664591044608
     # - https://gist.github.com/krlmlr/33ec72d196b1542b9c4f9497d981de49
-    # options(error = rlang::entrace)
-    # options(error = utils::recover)
     #
-    # Verbose error debugging currently crashes RStudio.
+    # Verbose error debugging is currently crashing RStudio 1.2 unless
+    # `rstudio.errors.suppressed` is defined.
+    #
+    # Related issues:
     # - https://github.com/rstudio/rstudio/issues/4723
     # - https://github.com/rstudio/rstudio/pull/4726
+    
     if (isTRUE(rstudio)) {
         options(rstudio.errors.suppressed = FALSE)
     }
     options(
         error = quote(rlang::entrace()),
-        # Can use either "collapse", "branch", or "full".
         rlang_backtrace_on_error = "full"
     )
 
+    # Interactive options and environment                                   {{{2
+    # --------------------------------------------------------------------------
+    
+    # Assign shortcuts and session information to a hidden environment.
+    # Custom functions are to be saved in bb8 package instead of here.
+
     if (interactive()) {
-        # Custom functions should be saved in bb8 package instead of here.
-
-        # Package installation options.
-        # Leave these disabled by default.
-        # Can be helpful for troublesome packages.
-        # options(
-        #     install.packages.check.source = "no",
-        #     install.packages.compile.from.source = "binary",
-        #     repos = BiocManager::repositories()
-        # )
-
-        # Assign shortcuts and session information to a hidden environment.
         .env <- new.env()
 
-        # Stash the seed.
+        # Stash the seed defined above in the environment.
         .env$seed <- seed
 
         .env$available <- function(...) {
@@ -249,11 +261,6 @@
 
         .env$bb8 <- function(...) {
             bb8::bb8(...)
-        }
-
-        # Deprecated, consider only including for R 3.4.
-        .env$biocLite <- function(...) {
-            BiocInstaller::biocLite(...)
         }
 
         .env$BiocCheck <- function(package = ".", ...) {
@@ -358,7 +365,7 @@
         }
 
         .env$report <- function(...) {
-            # covr doesn't currently install DT but requires it for this function.
+            # covr doesn't currently install DT but requires it for `report()`.
             library(DT)
             covr::report(...)
         }
@@ -400,16 +407,13 @@
         # Don't use `update()`; conflicts with `stats::update()`.
         # Don't use `upgrade()`; conflicts with `utils::upgrade()`.
         .env$update_all <- function() {
-            BiocManager::install(update = TRUE, ask = FALSE)
-            remotes::update_packages(
-                dependencies = TRUE,
-                upgrade = "always"
-            )
-            update.packages(
-                ask = FALSE,
-                checkBuilt = TRUE,
+            options(
+                R_REMOTES_UPGRADE = "always",
                 repos = BiocManager::repositories()
             )
+            BiocManager::install(update = TRUE, ask = FALSE)
+            remotes::update_packages()
+            update.packages(ask = FALSE, checkBuilt = TRUE)
         }
 
         .env$use_data <- function(..., overwrite = TRUE) {
@@ -428,8 +432,11 @@
         }
 
         attach(.env)
+        
+        # Turn on completion of installed package names.
+        utils::rc.settings(ipck = TRUE)
 
-        # Load secret variables that we don't want in Renviron.
+        # Load secret variables that we don't want to commit in shared Renviron.
         if (file.exists("~/.Rsecrets")) {
             source("~/.Rsecrets")
         } else {
@@ -440,9 +447,6 @@
                 sep = "\n"
             )
         }
-
-        # Turn on completion of installed package names.
-        utils::rc.settings(ipck = TRUE)
 
         # Show useful session information.
         if (isTRUE(rstudio)) {
@@ -462,19 +466,16 @@
 
 
 
-# Initilization at end of an R session =========================================
-.Last <- function() {
-    # Here's how to write out R history to a file.
-    # https://stackoverflow.com/a/1357432i
-    #
-    # In shell config:
-    # export R_HISTFILE=~/.Rhistory
-    #
-    # if (!any(commandArgs() == "--no-readline") && interactive()) {
-    #     try(utils::savehistory(Sys.getenv("R_HISTFILE")))
-    # }
+# Initialization at end of an R session                                     {{{1
+# ==============================================================================
 
+.Last <- function() {
     if (interactive()) {
         message("Goodbye at ", date(), "\n")
     }
 }
+
+
+
+# turn on folds
+# vim: fdm=marker
