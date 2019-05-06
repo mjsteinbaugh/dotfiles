@@ -401,7 +401,10 @@
         # Don't use `upgrade()`; conflicts with `utils::upgrade()`.
         .env$update_all <- function() {
             BiocManager::install(update = TRUE, ask = FALSE)
-            remotes::update_packages(upgrade = "always")
+            remotes::update_packages(
+                dependencies = TRUE,
+                upgrade = "always"
+            )
             update.packages(
                 ask = FALSE,
                 checkBuilt = TRUE,

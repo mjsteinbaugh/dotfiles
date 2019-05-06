@@ -80,6 +80,7 @@ token.*
 # reference/
 annotations/
 bam/
+bcbio/
 bed/
 bigwig/
 fastq/
