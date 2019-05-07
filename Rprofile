@@ -168,12 +168,15 @@
     )
 
     # Acid Genomics
-    options(acid.save.ext = "rds")
-    # Save to dated subdirectory automatically.
-    # This helps avoid accidental rewrites, and enables easy versioning.
-    options(acid.save.dir = file.path(getOption("acid.save.ext"), Sys.Date()))
-    # Attempt to load from corresponding save directory by default.
-    options(acid.load.dir = getOption("acid.save.dir"))
+    # Easy read-write into dated subdirectories, for improved data provenance.
+    # > options(acid.save.ext = "rds")
+    # > options(
+    # >     acid.save.dir = file.path(
+    # >         getOption("acid.save.ext"),
+    # >         Sys.Date()
+    # >     )
+    # > )
+    # > options(acid.load.dir = getOption("acid.save.dir"))
 
     # crayon
     options(
@@ -211,12 +214,15 @@
         showErrorCalls = TRUE,
         showWarnCalls = TRUE,
         warn = 1L,
-        # Note that edgeR and pheatmap currently fail for these.
-        warnPartialMatchAttr = TRUE,
-        warnPartialMatchDollar = TRUE,
         # 8170 is the maximum warning length.
         warning.length = 8170L
     )
+
+    # Note that edgeR and pheatmap currently fail for these (too verbose).
+    # > options(
+    # >     warnPartialMatchAttr = TRUE,
+    # >     warnPartialMatchDollar = TRUE
+    # > )
 
     # Improve stack traces for error messages.
     #
@@ -234,7 +240,7 @@
     # Related issues:
     # - https://github.com/rstudio/rstudio/issues/4723
     # - https://github.com/rstudio/rstudio/pull/4726
-    
+
     if (isTRUE(rstudio)) {
         options(rstudio.errors.suppressed = FALSE)
     }
@@ -245,7 +251,7 @@
 
     # Interactive options and environment                                   {{{2
     # --------------------------------------------------------------------------
-    
+
     # Assign shortcuts and session information to a hidden environment.
     # Custom functions are to be saved in bb8 package instead of here.
 
@@ -432,7 +438,7 @@
         }
 
         attach(.env)
-        
+
         # Turn on completion of installed package names.
         utils::rc.settings(ipck = TRUE)
 
