@@ -196,6 +196,13 @@
         httr_oob_default = TRUE
     )
 
+    # parallel
+    # Improve the default multi-core settings. Note that we're recommending
+    # using n-2 by default for powerful machines.
+    options(
+        mc.cores = max(2L, as.integer(Sys.getenv("CPU_COUNT")) - 2L)
+    )
+
     # readr
     options(
         readr.num_columns = 0L,
