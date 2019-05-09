@@ -192,12 +192,10 @@
     # Related issues:
     # - https://github.com/rstudio/rstudio/issues/4723
     # - https://github.com/rstudio/rstudio/pull/4726
-    if (isTRUE(rstudio)) {
-        options(rstudio.errors.suppressed = FALSE)
-    }
     options(
         error = quote(rlang::entrace()),
-        rlang_backtrace_on_error = "full"
+        rlang_backtrace_on_error = "full",
+        rstudio.errors.suppressed = FALSE
     )
 
     # Repositories                                                          {{{3
