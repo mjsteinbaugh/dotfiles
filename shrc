@@ -3,5 +3,5 @@
 # koopa shell
 # https://github.com/acidgenomics/koopa/
 # shellcheck source=/dev/null
-extra=1 . "${HOME}/.koopa/activate.sh"
+extra=1 . "${HOME}/.koopa/activate"
 
