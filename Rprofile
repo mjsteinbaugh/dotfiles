@@ -133,88 +133,31 @@
     # Global options                                                        {{{2
     # --------------------------------------------------------------------------
 
+    # Seed                                                                  {{{3
     # Always set seed for reproducibility.
     seed <- 1454944673L
     set.seed(seed)
 
+    # File permissions                                                      {{{3
     # Fix default file permissions in RStudio.
     # RStudio doesn't pick up the system umask, which is annoying.
     if (isTRUE(rstudio)) {
         Sys.umask("0002")
     }
 
-    # Set console options.
+    # Console and interface                                                 {{{3
     options(
-        # Kill annoying "+" in console output.
+        browserNLdisabled = TRUE,
+        # Remove "+" line prefix in output, making code easier to copy.
         continue = " ",
         max.print = 1000L,
-        # Unicode character has improved legibility (see zsh pure).
-        # However it doesn't work well in Putty, so disable.
-        # prompt = "❯ ",
+        menu.graphics = FALSE,
         prompt = "> ",
         show.signif.stars = FALSE,
         width = 80L
     )
 
-    # Stop asking about which CRAN repo to use for `install.packages()`.
-    repos <- getOption("repos")
-    repos["CRAN"] <- "https://cloud.r-project.org"
-    options(repos = repos)
-
-    # Set default author, for R Markdown templates.
-    options(
-        author = "Michael Steinbaugh",
-        email = "mike@steinbaugh.com"
-    )
-
-    # Acid Genomics
-    # Easy read-write into dated subdirectories, for improved data provenance.
-    # > options(acid.save.ext = "rds")
-    # > options(
-    # >     acid.save.dir = file.path(
-    # >         getOption("acid.save.ext"),
-    # >         Sys.Date()
-    # >     )
-    # > )
-    # > options(acid.load.dir = getOption("acid.save.dir"))
-
-    # crayon
-    options(
-        crayon.enabled = TRUE,
-        crayon.colors = 256L
-    )
-
-    # goalie
-    options(
-        goalie.traceback = FALSE
-    )
-
-    # httr
-    # Enable OAuth token generation using httr on a remote R server.
-    # This is used by googlesheets, for example.
-    options(
-        httr_oob_default = TRUE
-    )
-
-    # parallel
-    # Improve the default multi-core settings. Note that we're recommending
-    # using n-2 by default for powerful machines.
-    options(
-        mc.cores = max(2L, as.integer(Sys.getenv("CPU_COUNT")) - 2L)
-    )
-
-    # readr
-    options(
-        readr.num_columns = 0L,
-        readr.show_progress = FALSE
-    )
-
-    # Disable settings that can be problematic across platforms.
-    options(
-        browserNLdisabled = TRUE,
-        menu.graphics = FALSE
-    )
-
+    # Debugging                                                             {{{3
     # Improve the warnings and include backtrace of call stack.
     options(
         deparse.max.lines = 3L,
@@ -225,17 +168,19 @@
         warning.length = 8170L
     )
 
+    # Stricter debugging                                                    {{{3
     # Note that edgeR and pheatmap currently fail for these (too verbose).
     # > options(
     # >     warnPartialMatchAttr = TRUE,
     # >     warnPartialMatchDollar = TRUE
     # > )
 
+    # Stack trace                                                           {{{3
     # Improve stack traces for error messages.
     #
     # Use either:
-    # - `rlang::entrace` (recommended)
-    # - `utils::recover`
+    # - `rlang::entrace()` (recommended)
+    # - `utils::recover()`
     #
     # See also:
     # - https://twitter.com/krlmlr/status/1086995664591044608
@@ -247,13 +192,74 @@
     # Related issues:
     # - https://github.com/rstudio/rstudio/issues/4723
     # - https://github.com/rstudio/rstudio/pull/4726
-
     if (isTRUE(rstudio)) {
         options(rstudio.errors.suppressed = FALSE)
     }
     options(
         error = quote(rlang::entrace()),
         rlang_backtrace_on_error = "full"
+    )
+
+    # Repositories                                                          {{{3
+    # Stop asking about which CRAN repo to use for `install.packages()`.
+    # Consider using a versioned MRAN snapshot for increased reproducibility.
+    repos <- getOption("repos")
+    repos["CRAN"] <- "https://cloud.r-project.org"
+    options(repos = repos)
+
+    # Alternatively, this lets you install Bioconductor packages using
+    # `install.packages()`, but this causes a slight R session load delay.
+    # > options(repos = BiocManager::repositories())
+
+    # Author                                                                {{{3
+    # Set default author, for R Markdown templates.
+    options(
+        author = "Michael Steinbaugh",
+        email = "mike@steinbaugh.com"
+    )
+
+    # acidverse                                                             {{{3
+    # Easy read-write into dated subdirectories, for improved data provenance.
+    # > options(acid.save.ext = "rds")
+    # > options(
+    # >     acid.save.dir = file.path(
+    # >         getOption("acid.save.ext"),
+    # >         Sys.Date()
+    # >     )
+    # > )
+    # > options(acid.load.dir = getOption("acid.save.dir"))
+
+    # crayon                                                                {{{3
+    options(
+        crayon.enabled = TRUE,
+        crayon.colors = 256L
+    )
+
+    # goalie                                                                {{{3
+    # Enable this for more verbose code debugging. Disabled by default.
+    # > options(
+    # >     goalie.traceback = TRUE
+    # > )
+
+    # httr                                                                  {{{3
+    # Enable OAuth token generation using httr on a remote R server.
+    # This is used by googlesheets, for example.
+    options(
+        httr_oob_default = TRUE
+    )
+
+    # parallel                                                              {{{3
+    # Improve the default multi-core settings.
+    # Minimum of 2 cores, maximum of 16 cores.
+    # `BiocParallel::MulticoreParam()` should inherit this setting.
+    options(
+        mc.cores = min(max(2L, parallel::detectCores() - 2L), 16L)
+    )
+
+    # readr                                                                 {{{3
+    options(
+        readr.num_columns = 0L,
+        readr.show_progress = FALSE
     )
 
     # Interactive options and environment                                   {{{2
@@ -446,9 +452,11 @@
 
         attach(.env)
 
+        # Completion                                                        {{{3
         # Turn on completion of installed package names.
         utils::rc.settings(ipck = TRUE)
 
+        # Secrets                                                           {{{3
         # Load secret variables that we don't want to commit in shared Renviron.
         if (file.exists("~/.Rsecrets")) {
             source("~/.Rsecrets")
@@ -461,7 +469,8 @@
             )
         }
 
-        # Show useful session information.
+        # Session info                                                      {{{3
+        # Show useful session information in console at load.
         if (isTRUE(rstudio)) {
            cat("R is running inside RStudio.\n\n")
         }
