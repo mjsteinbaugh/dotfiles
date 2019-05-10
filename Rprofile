@@ -474,9 +474,6 @@
 
         # Session info                                                      {{{3
         # Show useful session information in console at load.
-        if (isTRUE(rstudio)) {
-           cat("R is running inside RStudio.\n\n")
-        }
         cat(
             "User Library:",
             normalizePath(Sys.getenv("R_LIBS_USER")),
