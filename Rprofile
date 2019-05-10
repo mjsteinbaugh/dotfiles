@@ -198,6 +198,9 @@
         rstudio.errors.suppressed = FALSE
     )
 
+    # Quiet down about registered S3 method collisons.
+    Sys.setenv("_R_S3_METHOD_REGISTRATION_NOTE_OVERWRITES_" = 0L)
+
     # Repositories                                                          {{{3
     # Stop asking about which CRAN repo to use for `install.packages()`.
     # Consider using a versioned MRAN snapshot for increased reproducibility.
