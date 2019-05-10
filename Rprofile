@@ -199,6 +199,7 @@
     )
 
     # Quiet down about registered S3 method collisons.
+    # https://svn.r-project.org/R/trunk/src/library/base/R/namespace.R
     # https://github.com/wch/r-source/blob/master/src/library/base/R/namespace.R
     Sys.setenv("_R_S3_METHOD_REGISTRATION_NOTE_OVERWRITES_" = "0")
 
