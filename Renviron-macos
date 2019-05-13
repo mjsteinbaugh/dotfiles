@@ -60,10 +60,7 @@ PKG_CONFIG_PATH="/usr/local/opt/imagemagick/lib/pkgconfig:${PKG_CONFIG_PATH}"
 #
 # Windows default:
 # R_LIBS_USER="~/R/win-library/%v"
-#
-# Here I'm currently symlinking, for easier machine-specific customization,
-# since I'm currently using macOS to test legacy R 3.4 and R-devel.
-R_LIBS_USER="~/R/%p-library/%v/bioc-3.9"
+R_LIBS_USER="~/R/%p-library/%v"
 
 
 
