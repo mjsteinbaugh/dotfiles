@@ -41,8 +41,7 @@ PATH="/usr/local/bin:/usr/bin:/bin"
 
 # User library
 # I'm currently using a symlink approach here to manage my libraries.
-# R_LIBS_USER="~/R/%p-library/%v/bioc-3.8"
-R_LIBS_USER="~/R/library"
+R_LIBS_USER="~/R/%p-library/%v"
 
 
 
