@@ -198,6 +198,11 @@
         rstudio.errors.suppressed = FALSE
     )
 
+    # Quiet down about registered S3 method collisons.
+    # https://svn.r-project.org/R/trunk/src/library/base/R/namespace.R
+    # https://github.com/wch/r-source/blob/master/src/library/base/R/namespace.R
+    Sys.setenv("_R_S3_METHOD_REGISTRATION_NOTE_OVERWRITES_" = "0")
+
     # Repositories                                                          {{{3
     # Stop asking about which CRAN repo to use for `install.packages()`.
     # Consider using a versioned MRAN snapshot for increased reproducibility.
@@ -469,9 +474,6 @@
 
         # Session info                                                      {{{3
         # Show useful session information in console at load.
-        if (isTRUE(rstudio)) {
-           cat("R is running inside RStudio.\n\n")
-        }
         cat(
             "User Library:",
             normalizePath(Sys.getenv("R_LIBS_USER")),
