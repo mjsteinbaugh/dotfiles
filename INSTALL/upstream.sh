@@ -1,18 +1,14 @@
 #!/usr/bin/env bash
-set -Eeuo pipefail
+set -Eeuxo pipefail
 
-
-
-# dracula powershell
 (
+    echo "Installing dracula powershell."
     cd dracula/powershell
     git remote add upstream git@github.com:mjsteinbaugh/dracula-powershell.git
 )
 
-
-
-# dracula putty
 (
+    echo "Installing dracula putty."
     cd dracula/putty
     git remote add upstream git@github.com:gkroon/dracula-putty.git
 )

@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+set -Eeuxo pipefail
+
 # Initialize submodules.
 # These commands were used to prepare `.gitmodules` file.
 
