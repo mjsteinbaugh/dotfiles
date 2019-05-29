@@ -313,9 +313,9 @@
             pkgdown::build_reference_index(...)
         }
 
-        .env$build_site <- function(..., document = FALSE, preview = FALSE) {
+        .env$build_site <- function(..., devel = FALSE, preview = FALSE) {
             unlink(file.path("docs", "reference"), recursive = TRUE)
-            pkgdown::build_site(..., document = document, preview = preview)
+            pkgdown::build_site(..., devel = devel, preview = preview)
         }
 
         .env$build_vignettes <- function(..., clean = FALSE) {
