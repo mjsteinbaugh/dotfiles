@@ -1,0 +1,64 @@
+# Global git configuration
+
+# oh-my-zsh repo will fail to clone unless these are set.
+# > git config --global fetch.fsck.zeroPaddedFilemode warn
+# > git config --global receive.fsck.zeroPaddedFilemode warn
+# > git config --global transfer.fsck.zeroPaddedFilemode warn
+# > git config --global fsck.zeroPaddedFilemode warn
+
+[user]
+	name = Michael Steinbaugh
+	email = mike@steinbaugh.com
+
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore_global
+[status]
+    # submoduleSummary = true
+
+[color]
+	ui = true
+
+[github]
+	user = mjsteinbaugh
+[shell]
+	# Default SSH username.
+	username = mike
+
+[push]
+	default = simple
+[fetch]
+	fsckobjects = true
+	zeroPaddedFilemode = ignore
+[receive]
+	fsckobjects = true
+[transfer]
+	fsckobjects = true
+
+[fsck]
+	zeroPaddedFilemode = warn
+[fetch "fsck"]
+	zeroPaddedFilemode = warn
+[receive "fsck"]
+	zeroPaddedFilemode = warn
+[transfer "fsck"]
+	zeroPaddedFilemode = warn
+
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+
+[alias]
+	aa = add --all
+	cm = commit -m
+	cleanup = !git remote prune origin && git gc && git clean -dfx && git stash clear
+	grog = log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\"
+	pr = !sh -c 'git fetch origin pull/$1/head:pr$1' -
+	shorty = status --short --branch
+	st = status -sb
+	trash = checkout --
+	up = !sh -c 'git pull --rebase --prune && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
+	who = shortlog -n -s --no-merges
+
