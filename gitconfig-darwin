@@ -1,7 +1,7 @@
 # macOS git configuration
 
 [include]
-    path = ~/.dotfiles/gitconfig-global
+    path = ~/.dotfiles/gitconfig
 
 [user]
 	# Public PGP key used for commit signing.
