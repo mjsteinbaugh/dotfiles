@@ -1,16 +1,22 @@
 #!/usr/bin/env bash
 set -Eeuxo pipefail
 
-# Initialize the submodules.
-git submodule init
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
-# If necessary, here's how to de-initialize.
-# git submodule deinit
+(
+    cd "$script_dir"
 
-git submodule update
-# git submodule update --recursive
+    # Initialize the submodules.
+    git submodule init
 
-git submodule foreach git pull origin master
+    # If necessary, here's how to de-initialize.
+    # git submodule deinit
 
-git submodule sync
-git submodule status
+    git submodule update
+    # git submodule update --recursive
+
+    git submodule foreach git pull origin master
+
+    git submodule sync
+    git submodule status
+)
