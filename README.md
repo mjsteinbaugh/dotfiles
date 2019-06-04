@@ -14,7 +14,7 @@ Use [shellcheck](https://www.shellcheck.net/) to check shell scripts.
 
 ## Installation
 
-Use [koopa](https://github.com/acidgenomics/koopa/) to manage shell configuration and dot files.
+Use [koopa](https://github.com/acidgenomics/koopa/) to deploy these shared dot files across multiple machines.
 
 ## See also
 
