@@ -12,10 +12,9 @@ My configuration files shared between machines running:
 
 Use [shellcheck](https://www.shellcheck.net/) to check shell scripts.
 
-## Submodules
+## Installation
 
-Currently, the vim configuration requires git submodules.
-Run the scripts in `INSTALL/` after cloning the repo.
+Use [koopa](https://github.com/acidgenomics/koopa/) to manage shell configuration and dot files.
 
 ## See also
 
