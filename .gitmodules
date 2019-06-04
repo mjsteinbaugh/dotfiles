@@ -1,3 +1,10 @@
+[submodule "dracula/powershell"]
+	path = dracula/powershell
+	url = https://github.com/mjsteinbaugh/dracula-powershell.git
+[submodule "dracula/putty"]
+	path = dracula/putty
+	url = https://github.com/mjsteinbaugh/dracula-putty.git
+
 [submodule "vim/pack/dist/start/vim-airline"]
 	path = vim/pack/dist/start/vim-airline
 	url = https://github.com/mjsteinbaugh/vim-airline.git
@@ -10,9 +17,4 @@
 [submodule "vim/pack/dist/start/Nvim-R"]
 	path = vim/pack/dist/start/Nvim-R
 	url = https://github.com/mjsteinbaugh/Nvim-R.git
-[submodule "dracula/putty"]
-	path = dracula/putty
-	url = https://github.com/mjsteinbaugh/dracula-putty.git
-[submodule "dracula/powershell"]
-	path = dracula/powershell
-	url = https://github.com/mjsteinbaugh/dracula-powershell.git
+
