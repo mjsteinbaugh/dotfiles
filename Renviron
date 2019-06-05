@@ -8,7 +8,7 @@
 # This step is needed to ensure hdf5r loads correctly, for example.
 #
 # Since we have sudo access, define lib paths in `/etc/ld.so.conf.d/`.
-# 
+#
 # Add one path per file:
 # - local.conf:        /usr/local/lib
 # - local-x86_64.conf: /usr/local/lib64
@@ -36,6 +36,7 @@
 
 # Restrict `$PATH` so we don't load any binaries from conda or bcbio.
 PATH="/usr/local/bin:/usr/bin:/bin"
+# PATH="~/.virtualenvs/default/bin:${PATH}"
 
 
 
