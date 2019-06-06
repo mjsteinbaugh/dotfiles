@@ -23,6 +23,12 @@
 # If devtools runs into an unzip error, set this option:
 # - unzip = "/usr/bin/unzip"
 
+# Restart R clean inside RStudio project with:
+# Session -> Restart R (Ctrl + Shift + F10).
+# `.rs.restartR()` will reload but not detach packages, which isn't helpful.
+# https://stackoverflow.com/questions/6313079
+# https://support.rstudio.com/hc/en-us/community/posts/200653076
+
 # Useful installation options (but leave disabled by default):
 # - install.packages.check.source = "no"
 # - install.packages.compile.from.source = "binary"

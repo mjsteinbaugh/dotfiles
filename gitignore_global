@@ -1,4 +1,10 @@
-# File system (general) ====
+# Git ignore global rules
+
+
+
+# Temporary files                                                           {{{1
+# ==============================================================================
+
 ._*
 .*~
 *~
@@ -6,30 +12,10 @@
 *.swp
 
 
-# macOS ===
-.AppleDouble
-.DS_Store
-.LSOverride
-Icon
 
-# Files that might appear in the root of a volume.
-.DocumentRevisions-V100
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
-.fseventsd
+# Codes and keys                                                            {{{1
+# ==============================================================================
 
-# Directories potentially created on a remote AFP share.
-.AppleDB
-.AppleDesktop
-.apdisk
-Network Trash Folder
-Temporary Items
-
-
-# Sensitive files ====
 *_rsa
 *.pem
 .secrets
@@ -37,10 +23,15 @@ secrets
 token.*
 
 
-# Large files ====
+
+# Large files                                                               {{{1
+# ==============================================================================
+
 # *.html
 # *.log
 # *.png
+# *.rda
+# *.rds
 *.RData
 *.bam
 *.bed
@@ -58,9 +49,7 @@ token.*
 *.gz.*
 *.out
 *.pdf
-*.rda
 *.rdb
-*.rds
 *.rdx
 *.sam
 *.tar
@@ -68,19 +57,15 @@ token.*
 *.zip
 
 
-# Code editors ====
-.vscode
 
+# Large directories                                                         {{{1
+# ==============================================================================
 
-# Large directories ====
-# bcbio-*/
-# bcbio/
-# data-*/
 # data/
-# reference/
 annotations/
 bam/
 bcbio/
+bcbio-*/
 bed/
 bigwig/
 fastq/
@@ -88,30 +73,49 @@ figures/
 links/
 rda/
 rds/
+reference/
 sam/
 tmp/
 tmp_*/
 
 
-# GitHub Pages ====
-.jekyll-metadata
-.sass-cache
-Gemfile.lock
-_drafts/
-_site/
+
+# macOS                                                                     {{{1
+# ==============================================================================
+
+.AppleDouble
+.DS_Store
+.LSOverride
+Icon
+
+# Files that might appear in the root of a volume.
+.DocumentRevisions-V100
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.fseventsd
+
+# Directories potentially created on a remote AFP share.
+.AppleDB/
+.AppleDesktop/
+.apdisk/
+Network Trash Folder/
+Temporary Items/
 
 
-# R/RStudio ====
-# *.Rproj
-# *_cache/
-# *_files/
+
+# R / RStudio                                                               {{{1
+# ==============================================================================
+
 *-Ex.R
-*.Rcheck
+*.Rcheck/
 *.knit.md
 *.utf8.md
-*_cache
+*_cache/
 *_draft.Rmd
-*_files
+*_files/
 .RData
 .Rapp.history
 .Rhistory
@@ -124,3 +128,48 @@ revdep/
 vignettes/*.html
 vignettes/*.pdf
 vignettes/.build.timestamp
+
+
+
+# GitHub Pages                                                              {{{1
+# ==============================================================================
+
+.jekyll-metadata
+.sass-cache
+Gemfile.lock
+_drafts/
+_site/
+
+
+
+# Dot file directories                                                      {{{1
+# ==============================================================================
+
+# find ~ -maxdepth 1 -name ".*" -type d | sort
+
+.azure/
+.cache/
+.config/
+.emacs.d/
+.ghc/
+.gnupg/
+.gsutil/
+.idlerc/
+.ipython/
+.java/
+.keras/
+.local/
+.oh-my-zsh/
+.perlbrew/
+.pki/
+.R/
+.rstudio/
+.ssh/
+.subversion/
+.systemtap/
+.vscode/
+.virtualenvs/
+
+
+
+# vim: fdm=marker
