@@ -228,6 +228,8 @@
     )
 
     # acidverse                                                             {{{3
+    options(acid.test.extra = TRUE)
+
     # Easy read-write into dated subdirectories, for improved data provenance.
     # > options(acid.save.ext = "rds")
     # > options(
