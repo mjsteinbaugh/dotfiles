@@ -27,11 +27,6 @@ token.*
 # Large files                                                               {{{1
 # ==============================================================================
 
-# *.html
-# *.log
-# *.png
-# *.rda
-# *.rds
 *.RData
 *.bam
 *.bed
@@ -47,9 +42,13 @@ token.*
 *.gtf
 *.gz
 *.gz.*
+*.html
 *.out
 *.pdf
+*.png
+*.rda
 *.rdb
+*.rds
 *.rdx
 *.sam
 *.tar
