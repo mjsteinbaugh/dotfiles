@@ -505,7 +505,3 @@
     }
 }
 
-
-
-# turn on folds
-# vim: fdm=marker

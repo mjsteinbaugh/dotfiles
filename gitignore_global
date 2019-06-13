@@ -169,6 +169,3 @@ _site/
 .vscode/
 .virtualenvs/
 
-
-
-# vim: fdm=marker
