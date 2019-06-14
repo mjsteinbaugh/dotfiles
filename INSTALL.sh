@@ -16,30 +16,33 @@ echo "Symlinking dot files."
 os="${KOOPA_OS_NAME:-}"
 host="${KOOPA_HOST_NAME:-}"
 
-dotfile --force Rprofile
-dotfile --force condarc
-dotfile --force gitignore_global
-dotfile --force shrc
-dotfile --force spacemacs
-dotfile --force tmux.conf
-dotfile --force vim
-dotfile --force vimrc
-dotfile --force zshrc
+dotfile Rprofile
+dotfile bash_profile
+dotfile bashrc
+dotfile condarc
+dotfile gitignore_global
+dotfile kshrc
+dotfile shrc
+dotfile spacemacs
+dotfile tmux.conf
+dotfile vim
+dotfile vimrc
+dotfile zshrc
 
 if [[ "$os" == "darwin" ]]
 then
-    dotfile --force Renviron-darwin Renviron
+    dotfile Renviron-darwin Renviron
 elif [[ "$host" == "harvard-o2" ]]
 then
-    dotfile --force Renviron-harvard-o2 Renviron 
+    dotfile Renviron-harvard-o2 Renviron 
 elif [[ "$host" == "harvard-odyssey" ]]
 then
-    dotfile --force Renviron-harvard-odyssey Renviron
+    dotfile Renviron-harvard-odyssey Renviron
 fi
 
 if [[ "${mike:-}" -eq 1 ]]
 then
-    dotfile --force gitconfig
+    dotfile gitconfig
 fi
 
 list-dotfiles
