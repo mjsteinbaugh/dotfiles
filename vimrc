@@ -194,12 +194,9 @@ endif
 
 " These settings require the new built-in package manager.
 if v:version >= 800
-    " Color theme.
-    color dracula
-
-    " Airline powerbar theme colors.
-    " This is handled automatically by dracula plugin now.
-    let g:airline_theme="dracula"
+    " Dracula color theme.
+    packadd! dracula-theme
+    colorscheme dracula
 endif
 
 
