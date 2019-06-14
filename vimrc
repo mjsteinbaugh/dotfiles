@@ -10,6 +10,15 @@
 
 
 
+" Keyboard                                                                  {{{1
+" ==============================================================================
+
+" Fix backspace key to work as expected.
+" https://unix.stackexchange.com/a/307974
+set backspace=indent,eol,start
+
+
+
 " Text formatting                                                           {{{1
 " ==============================================================================
 
@@ -232,20 +241,16 @@ set nobackup
 " ==============================================================================
 
 if has("macunix")
-    " Fix backspace (delete) key for macOS.
-    " https://unix.stackexchange.com/a/307974
-    set backspace=indent,eol,start
-    
     " Enable copy to clipboard (for macOS).
     " Now `Vy` will work.
+    "
     " > :w !pbcopy
     " https://stackoverflow.com/questions/677986
-
+    "
     " Note that this won't work for PuTTY on Windows. Instead, hold down SHIFT
     " and then you can highlight with the mouse. Yank doesn't integrate well
     " with the Windows clipboard unless you use X11 forwarding.
     " https://stackoverflow.com/a/4313348
-
     set clipboard=unnamed
 endif
 
