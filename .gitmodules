@@ -1,19 +1,29 @@
+# dracula/powershell
 [submodule "dracula/powershell"]
 	path = dracula/powershell
 	url = https://github.com/mjsteinbaugh/dotfiles-dracula-powershell.git
+
+# gkroon/dracula-putty
 [submodule "dracula/putty"]
 	path = dracula/putty
 	url = https://github.com/mjsteinbaugh/dotfiles-dracula-putty.git
 
+# vim-airline/vim-airline
 [submodule "vim/pack/dist/start/vim-airline"]
 	path = vim/pack/dist/start/vim-airline
 	url = https://github.com/mjsteinbaugh/dotfiles-vim-airline.git
+
+# dracula/vim
 [submodule "vim/pack/dist/start/dracula-theme"]
 	path = vim/pack/dist/start/dracula-theme
 	url = https://github.com/mjsteinbaugh/dotfiles-dracula-vim.git
+
+# plasticboy/vim-markdown
 [submodule "vim/pack/dist/start/vim-markdown"]
 	path = vim/pack/dist/start/vim-markdown
 	url = https://github.com/mjsteinbaugh/dotfiles-vim-markdown.git
+
+# jalvesaq/Nvim-R
 [submodule "vim/pack/dist/start/Nvim-R"]
 	path = vim/pack/dist/start/Nvim-R
 	url = https://github.com/mjsteinbaugh/dotfiles-nvim-r.git
