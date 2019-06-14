@@ -11,16 +11,31 @@ command -v koopa >/dev/null 2>&1 || {
     exit 1
 }
 
-dotfile --force condarc
-dotfile --force gitconfig
-dotfile --force gitignore_global
+echo "Symlinking dot files."
+
+os="${KOOPA_OS_NAME:-}"
+host="${KOOPA_HOST_NAME:-}"
+
 dotfile --force Rprofile
+dotfile --force condarc
+dotfile --force gitignore_global
 dotfile --force shrc
 dotfile --force spacemacs
 dotfile --force tmux.conf
 dotfile --force vim
 dotfile --force vimrc
 dotfile --force zshrc
+
+if [[ "$os" == "darwin" ]]
+then
+    dotfile --force Renviron-darwin Renviron
+elif [[ "$host" == "harvard-o2" ]]
+then
+    dotfile --force Renviron-harvard-o2 Renviron 
+elif [[ "$host" == "harvard-odyssey" ]]
+then
+    dotfile --force Renviron-harvard-odyssey Renviron
+fi
 
 if [[ "${mike:-}" -eq 1 ]]
 then
