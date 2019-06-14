@@ -40,13 +40,16 @@ dotfile zshrc
 
 if [[ "$os" == "darwin" ]]
 then
-    dotfile Renviron-darwin Renviron
+    dir="os/darwin"
+    dotfile "${dir}/Renviron"
 elif [[ "$host" == "harvard-o2" ]]
 then
-    dotfile Renviron-harvard-o2 Renviron 
+    dir="host/harvard-o2"
+    dotfile "${dir}/Renviron"
 elif [[ "$host" == "harvard-odyssey" ]]
 then
-    dotfile Renviron-harvard-odyssey Renviron
+    dir="host/harvard-odyssey"
+    dotfile "${dir}/Renviron"
 fi
 
 if [[ "${mike:-}" -eq 1 ]]
