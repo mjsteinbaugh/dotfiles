@@ -29,7 +29,7 @@ dotfile Rprofile
 dotfile bash_profile
 dotfile bashrc
 dotfile condarc
-dotfile gitignore_global
+dotfile gitignore
 dotfile kshrc
 dotfile shrc
 dotfile spacemacs

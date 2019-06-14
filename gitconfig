@@ -1,7 +1,7 @@
 # Mike's specific git configuration
 
 [include]
-    path = ~/.dotfiles/gitconfig_global
+    path = ~/.dotfiles/gitconfig-global
 
 [user]
 	name = Michael Steinbaugh
