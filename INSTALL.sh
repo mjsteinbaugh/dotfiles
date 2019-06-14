@@ -56,6 +56,3 @@ if [[ "${mike:-}" -eq 1 ]]
 then
     dotfile gitconfig
 fi
-
-list-dotfiles
-
