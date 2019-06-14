@@ -6,6 +6,8 @@ set -Eeuo pipefail
 
 # mike=1 ./INSTALL.sh
 
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd -P)"
+
 command -v koopa >/dev/null 2>&1 || {
     >&2 echo "koopa is not installed."
     exit 1
@@ -15,6 +17,13 @@ echo "Symlinking dot files."
 
 os="${KOOPA_OS_NAME:-}"
 host="${KOOPA_HOST_NAME:-}"
+
+# Symlink the dotfiles repo.
+if [[ ! -d ~/.dotfiles ]]
+then
+    rm -rf ~/.dotfiles
+    ln -s "$script_dir" ~/.dotfiles
+fi
 
 dotfile Rprofile
 dotfile bash_profile
