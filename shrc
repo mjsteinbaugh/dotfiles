@@ -2,8 +2,9 @@
 
 # koopa shell
 # https://github.com/acidgenomics/koopa/
-if [ -z "${KOOPA_DIR:-}" ]
+KOOPA_DIR="${HOME}/koopa"
+if [ -z "${KOOPA_SHELL:-}" ]
 then
     # shellcheck source=/dev/null
-    . "${HOME}/koopa/activate"
+    . "${KOOPA_DIR}/activate"
 fi
