@@ -37,21 +37,26 @@ dotfile -f vim
 dotfile -f vimrc
 dotfile -f zshrc
 
+# Renviron
 if [[ "$os" == "darwin" ]]
 then
-    dir="os/darwin"
-    dotfile -f "${dir}/Renviron"
+    dotfile -f os/darwin/Renviron
 elif [[ "$host" == "harvard-o2" ]]
 then
-    dir="host/harvard-o2"
-    dotfile -f "${dir}/Renviron"
+    dotfile -f host/harvard-o2/Renviron
 elif [[ "$host" == "harvard-odyssey" ]]
 then
-    dir="host/harvard-odyssey"
-    dotfile -f "${dir}/Renviron"
+    dotfile -f host/harvard-odyssey/Renviron
 fi
 
+# Mike only files.
 if [[ "${mike:-}" -eq 1 ]]
 then
-    dotfile -f gitconfig
+    if [[ "$os" == "darwin" ]]
+    then
+    dotfile -f os/darwin/gitconfig
+    else
+        dotfile -f gitconfig
+    fi
 fi
+
