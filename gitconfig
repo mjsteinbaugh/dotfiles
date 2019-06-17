@@ -1,7 +1,7 @@
 # Mike's specific git configuration
 
 [include]
-    path = ~/.dotfiles/gitconfig-global
+    path = ~/.config/koopa/dotfiles/gitconfig-global
 
 [user]
 	name = Michael Steinbaugh

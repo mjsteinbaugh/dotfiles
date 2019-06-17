@@ -1,17 +1,6 @@
 # Global git configuration
 # Modified 2019-06-14.
 
-# Set username and email in a separate config but include this file.
-
-# [include]
-#     path = ~/.dotfiles/gitconfig
-
-# oh-my-zsh repo will fail to clone unless these are set:
-# > git config --global fetch.fsck.zeroPaddedFilemode warn
-# > git config --global receive.fsck.zeroPaddedFilemode warn
-# > git config --global transfer.fsck.zeroPaddedFilemode warn
-# > git config --global fsck.zeroPaddedFilemode warn
-
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
@@ -29,6 +18,12 @@
 	fsckobjects = true
 [transfer]
 	fsckobjects = true
+
+# oh-my-zsh will fail to clone unless these are set.
+# > git config --global fetch.fsck.zeroPaddedFilemode warn
+# > git config --global receive.fsck.zeroPaddedFilemode warn
+# > git config --global transfer.fsck.zeroPaddedFilemode warn
+# > git config --global fsck.zeroPaddedFilemode warn
 
 [fsck]
 	zeroPaddedFilemode = warn

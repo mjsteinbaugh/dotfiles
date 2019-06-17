@@ -13,6 +13,21 @@
 
 
 
+# macOS                                                                     {{{1
+# ==============================================================================
+
+.AppleDB/
+.AppleDesktop/
+.AppleDouble
+.DS_Store
+.LSOverride
+.apdisk/
+Icon
+Network Trash Folder/
+Temporary Items/
+
+
+
 # Codes and keys                                                            {{{1
 # ==============================================================================
 
@@ -78,30 +93,6 @@ tmp/
 tmp_*/
 
 
-
-# macOS                                                                     {{{1
-# ==============================================================================
-
-.AppleDouble
-.DS_Store
-.LSOverride
-Icon
-
-# Files that might appear in the root of a volume.
-.DocumentRevisions-V100
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
-.fseventsd
-
-# Directories potentially created on a remote AFP share.
-.AppleDB/
-.AppleDesktop/
-.apdisk/
-Network Trash Folder/
-Temporary Items/
 
 
 
