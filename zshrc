@@ -8,7 +8,7 @@ source "${HOME}/.shrc"
 
 # These steps are required to be sourced in `~/.zshrc` and won't set up properly
 # if only called from `/etc/profile`.
-if [[ -d "${KOOPA_DIR:-}" ]] && [[ -z "${KOOPA_MINIMAL:-}"]]
+if [[ -z "${KOOPA_MINIMAL:-}" ]]
 then
     zsh_dir="${KOOPA_DIR:-}/system/activate/shell/zsh/"
     if [[ ! -d "$zsh_dir" ]]
