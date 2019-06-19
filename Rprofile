@@ -24,7 +24,9 @@ if (!isTRUE(getOption("rprofile.site"))) {
             "Rprofile.site"
         )
     }
-    stopifnot(file.exists(file))
+    if (!file.exists(file)) {
+        stop(paste0("Failed to locate ", file, "."))
+    }
     source(file)
     rm(file)
 }
