@@ -1,413 +1,312 @@
-# R startup profile
-#
-# Tested on Linux, macOS, and Windows.
+# Mike's R startup profile
+# Modified 2019-06-19.
 
 
 
-# Notes                                                                     {{{1
+# Load shared profile                                                       {{{1
 # ==============================================================================
 
-# help(topic = "Rprofile")
+# This will be handled automatically when `Rprofile.site` file is installed.
+# Otherwise, we're providing fall back support here for local installations,
+# when koopa is installed at `~/.local/share/koopa`.
 
-# Example profiles, for reference:
-# - Stephen Turner's profile
-#   http://gettinggeneticsdone.blogspot.com/2013/07/customize-rprofile.html
-# - Jim Hester's profile
-#   https://github.com/jimhester/dotfiles/blob/master/R/Rprofile
-# - Efficient R programming
-#   https://csgillespie.github.io/efficientR/set-up.html
+if (!isTRUE(getOption("rprofile.site"))) {
+    file <- file.path(Sys.getenv("R_HOME"), "etc", "Rprofile.site")
+    if (!file.exists(file)) {
+        file <- file.path(
+            "~",
+            ".local",
+            "share",
+            "koopa",
+            "config",
+            "R",
+            "etc",
+            "Rprofile.site"
+        )
+    }
+    stopifnot(file.exists(file))
+    source(file)
+    rm(file)
+}
 
-# Never set `options(stringsAsFactors = FALSE)`.
-# Code will be non-portable.
-
-# If devtools runs into an unzip error, set this option:
-# - unzip = "/usr/bin/unzip"
-
-# Restart R clean inside RStudio project with:
-# Session -> Restart R (Ctrl + Shift + F10).
-# `.rs.restartR()` will reload but not detach packages, which isn't helpful.
-# https://stackoverflow.com/questions/6313079
-# https://support.rstudio.com/hc/en-us/community/posts/200653076
-
-# Useful installation options (but leave disabled by default):
-# - install.packages.check.source = "no"
-# - install.packages.compile.from.source = "binary"
-# - repos = BiocManager::repositories()
+stopifnot(isTRUE(getOption("rprofile.site")))
 
 
 
-# Initialization at start of an R session                                   {{{1
+# User information                                                          {{{1
 # ==============================================================================
 
-# help(topic = "Startup", package = "base")
+# These values are used in many of my R Markdown templates.
 
-.First <- function() {
-    # Get the R version without patch (e.g. 3.6).
-    r_ver <- paste(
-        R.version[["major"]],
-        substr(x = R.version[["minor"]], start = 1, stop = 1),
-        sep = "."
-    )
+options(
+    author = "Michael Steinbaugh",
+    email = "mike@steinbaugh.com"
+)
 
-    # Check if session is running inside RStudio.
-    if (isTRUE(nzchar(Sys.getenv("RSTUDIO_USER_IDENTITY")))) {
-        rstudio <- TRUE
-    } else {
-        rstudio <- FALSE
-    }
 
-    # Pre-flight checks                                                     {{{2
-    # --------------------------------------------------------------------------
 
-    # Check that the local library matches the R version.
-    libs <- .libPaths()
-    lib_pattern <- file.path(
-        paste0(Sys.getenv("R_PLATFORM"), "-library"),
-        r_ver
-    )
-    usr_lib <- grepl(pattern = lib_pattern, x = libs)
-    if (!any(usr_lib)) {
-        stop(paste0(
-            "Failed to detect ", r_ver, " user library.", "\n",
-            "Check R_LIBS_USER configuration in ~/.Renviron file.", "\n",
-            "Looking for: ", lib_pattern, "\n\n",
-            ".libPaths():", "\n",
-            paste(libs, collapse = "\n")
-        ))
-    }
+# acidverse                                                                 {{{1
+# ==============================================================================
 
-    # Check for expected compilers.
-    if (Sys.getenv("HMS_CLUSTER") == "o2") {
-        # module load gcc/6.2.0
-        gcc_bin_dir <- "/n/app/gcc/6.2.0/bin"
-        stopifnot(identical(
-            x = Sys.which(c("gcc", "g++", "gfortran")),
-            y = c(
-                "gcc"      = file.path(gcc_bin_dir, "gcc"),
-                "g++"      = file.path(gcc_bin_dir, "g++"),
-                "gfortran" = file.path(gcc_bin_dir, "gfortran")
-            )
-        ))
-        # module load R/3.5.1
-        stopifnot(identical(
-            Sys.which("R"),
-            c(R = "/n/app/R/3.5.1/bin/R")
-        ))
-        # module load hdf5/1.10.1
-        stopifnot(identical(
-            Sys.which("h5cc"),
-            c(h5cc = "/n/app/hdf5/1.10.1/bin/h5cc")
-        ))
-    } else if (Sys.info()[["sysname"]] == "Darwin") {
-        # Use recommended CRAN compiler settings.
-        if (r_ver == "3.5") {
-            clang_ver <- "6"
-        } else if (r_ver == "3.6") {
-            clang_ver <- "7"
-        }
-        clang_bin_dir <-
-            file.path("", "usr", "local", paste0("clang", clang_ver), "bin")
-        stopifnot(identical(
-            x = Sys.which(c("clang", "clang++", "gfortran")),
-            y = c(
-                "clang"    = file.path(clang_bin_dir, "clang"),
-                "clang++"  = file.path(clang_bin_dir, "clang++"),
-                "gfortran" = "/usr/local/gfortran/bin/gfortran"
-            )
-        ))
-    } else if (Sys.info()[["sysname"]] == "Linux") {
-        stopifnot(identical(
-            x = Sys.which(c("gcc", "g++", "gfortran")),
-            y = c(
-                "gcc"      = "/usr/bin/gcc",
-                "g++"      = "/usr/bin/g++",
-                "gfortran" = "/usr/bin/gfortran"
-            )
-        ))
-    }
+# Easy read-write into dated subdirectories, for improved data provenance.
+# > options(acid.save.ext = "rds")
+# > options(
+# >     acid.save.dir = file.path(
+# >         getOption("acid.save.ext"),
+# >         Sys.Date()
+# >     )
+# > )
+# > options(acid.load.dir = getOption("acid.save.dir"))
 
-    # Check for active conda. Can cause compilation issues. Issue a warning
-    # here, otherwise bcbio unit tests will fail to run.
-    if (Sys.which("conda") != "") {
-        warning(paste(
-            "conda detected.",
-            "Run `conda deactivate` prior to starting R.",
-            sep = "\n"
-        ))
-    }
+# Enable this for more thorough unit testing.
+# > options(acid.test.extra = TRUE)
 
-    # Global options                                                        {{{2
-    # --------------------------------------------------------------------------
+# Enable this for more verbose code debugging.
+# > options(
+# >     goalie.traceback = TRUE
+# > )
 
-    # Seed                                                                  {{{3
-    # Always set seed for reproducibility.
-    seed <- 1454944673L
-    set.seed(seed)
 
-    # File permissions                                                      {{{3
-    # Fix default file permissions in RStudio.
-    # RStudio doesn't pick up the system umask, which is annoying.
-    if (isTRUE(rstudio)) {
-        Sys.umask("0002")
-    }
 
-    # Console and interface                                                 {{{3
-    options(
-        browserNLdisabled = TRUE,
-        # Remove "+" line prefix in output, making code easier to copy.
-        continue = " ",
-        max.print = 1000L,
-        menu.graphics = FALSE,
-        prompt = "> ",
-        show.signif.stars = FALSE,
-        width = 80L
-    )
+# Interactive                                                               {{{1
+# ==============================================================================
 
-    # Debugging                                                             {{{3
-    # Improve the warnings and include backtrace of call stack.
-    options(
-        deparse.max.lines = 3L,
-        showErrorCalls = TRUE,
-        showWarnCalls = TRUE,
-        warn = 1L,
-        # 8170 is the maximum warning length.
-        warning.length = 8170L
-    )
+# Assign shortcuts and session information to a hidden environment.
+# Custom functions are to be saved in bb8 package instead of here.
 
-    # Stricter debugging                                                    {{{3
-    # Note that edgeR and pheatmap currently fail for these (too verbose).
-    # > options(
-    # >     warnPartialMatchAttr = TRUE,
-    # >     warnPartialMatchDollar = TRUE
-    # > )
+if (interactive()) {
+    stopifnot(isTRUE(".env" %in% search()))
+    envir <- as.environment(".env")
 
-    # Stack trace                                                           {{{3
-    # Improve stack traces for error messages.
-    #
-    # Use either:
-    # - `rlang::entrace()` (recommended)
-    # - `utils::recover()`
-    #
-    # See also:
-    # - https://twitter.com/krlmlr/status/1086995664591044608
-    # - https://gist.github.com/krlmlr/33ec72d196b1542b9c4f9497d981de49
-    #
-    # Verbose error debugging is currently crashing RStudio 1.2 unless
-    # `rstudio.errors.suppressed` is defined.
-    #
-    # Related issues:
-    # - https://github.com/rstudio/rstudio/issues/4723
-    # - https://github.com/rstudio/rstudio/pull/4726
-    options(
-        error = quote(rlang::entrace()),
-        rlang_backtrace_on_error = "full",
-        rstudio.errors.suppressed = FALSE
-    )
-
-    # Quiet down about registered S3 method collisons.
-    # https://svn.r-project.org/R/trunk/src/library/base/R/namespace.R
-    # https://github.com/wch/r-source/blob/master/src/library/base/R/namespace.R
-    Sys.setenv("_R_S3_METHOD_REGISTRATION_NOTE_OVERWRITES_" = "0")
-
-    # Repositories                                                          {{{3
-    # Stop asking about which CRAN repo to use for `install.packages()`.
-    # Consider using a versioned MRAN snapshot for increased reproducibility.
-    repos <- getOption("repos")
-    repos["CRAN"] <- "https://cloud.r-project.org"
-    options(repos = repos)
-
-    # Alternatively, this lets you install Bioconductor packages using
-    # `install.packages()`, but this causes a slight R session load delay.
-    # > options(repos = BiocManager::repositories())
-
-    # Author                                                                {{{3
-    # Set default author, for R Markdown templates.
-    options(
-        author = "Michael Steinbaugh",
-        email = "mike@steinbaugh.com"
-    )
-
-    # acidverse                                                             {{{3
-    options(acid.test.extra = TRUE)
-
-    # Easy read-write into dated subdirectories, for improved data provenance.
-    # > options(acid.save.ext = "rds")
-    # > options(
-    # >     acid.save.dir = file.path(
-    # >         getOption("acid.save.ext"),
-    # >         Sys.Date()
-    # >     )
-    # > )
-    # > options(acid.load.dir = getOption("acid.save.dir"))
-
-    # crayon                                                                {{{3
-    options(
-        crayon.enabled = TRUE,
-        crayon.colors = 256L
-    )
-
-    # goalie                                                                {{{3
-    # Enable this for more verbose code debugging. Disabled by default.
-    # > options(
-    # >     goalie.traceback = TRUE
-    # > )
-
-    # httr                                                                  {{{3
-    # Enable OAuth token generation using httr on a remote R server.
-    # This is used by googlesheets, for example.
-    options(
-        httr_oob_default = TRUE
-    )
-
-    # parallel                                                              {{{3
-    # Improve the default multi-core settings.
-    # Minimum of 2 cores, maximum of 16 cores.
-    # `BiocParallel::MulticoreParam()` should inherit this setting.
-    options(
-        mc.cores = min(max(2L, parallel::detectCores() - 2L), 16L)
-    )
-
-    # readr                                                                 {{{3
-    options(
-        readr.num_columns = 0L,
-        readr.show_progress = FALSE
-    )
-
-    # Interactive options and environment                                   {{{2
-    # --------------------------------------------------------------------------
-
-    # Assign shortcuts and session information to a hidden environment.
-    # Custom functions are to be saved in bb8 package instead of here.
-
-    if (interactive()) {
-        .env <- new.env()
-
-        # Stash the seed defined above in the environment.
-        .env$seed <- seed
-
-        .env$available <- function(...) {
-            available::available(...)
-        }
-
-        .env$bb8 <- function(...) {
-            bb8::bb8(...)
-        }
-
-        .env$BiocCheck <- function(package = ".", ...) {
+    assign(
+        x = "BiocCheck",
+        value = function(package = ".", ...) {
             BiocCheck::BiocCheck(package = package, ...)
-        }
+        },
+        envir = envir
+    )
 
-        .env$build <- function(..., vignettes = FALSE) {
+    assign(
+        x = "available",
+        value = function(...) {
+            available::available(...)
+        },
+        envir = envir
+    )
+
+    assign(
+        x = "bb8",
+        value = function(...) {
+            bb8::bb8(...)
+        },
+        envir = envir
+    )
+
+    assign(
+        x = "build",
+        value = function(..., vignettes = FALSE) {
             devtools::build(..., vignettes = vignettes)
-        }
+        },
+        envir = envir
+    )
 
-        .env$build_articles <- function(...) {
+    assign(
+        x = "build_articles",
+        value = function(...) {
             pkgdown::build_articles(...)
-        }
+        },
+        envir = envir
+    )
 
-        .env$build_home <- function(...) {
+    assign(
+        x = "build_home",
+        value = function(...) {
             pkgdown::build_home(...)
-        }
+        },
+        envir = envir
+    )
 
-        .env$build_news <- function(...) {
+    assign(
+        x = "build_news",
+        value = function(...) {
             pkgdown::build_news(...)
-        }
+        },
+        envir = envir
+    )
 
-        .env$build_reference <- function(...) {
+    assign(
+        x = "build_reference",
+        value = function(...) {
             pkgdown::build_reference(...)
-        }
+        },
+        envir = envir
+    )
 
-        .env$build_reference_index <- function(...) {
+    assign(
+        x = "build_reference_index",
+        value = function(...) {
             pkgdown::build_reference_index(...)
-        }
+        },
+        envir = envir
+    )
 
-        .env$build_site <- function(..., devel = FALSE, preview = FALSE) {
+    assign(
+        x = "build_site",
+        value = function(..., devel = FALSE, preview = FALSE) {
             unlink(file.path("docs", "reference"), recursive = TRUE)
             pkgdown::build_site(..., devel = devel, preview = preview)
-        }
+        },
+        envir = envir
+    )
 
-        .env$build_vignettes <- function(..., clean = FALSE) {
+    assign(
+        x = "build_vignettes",
+        value = function(..., clean = FALSE) {
             devtools::build_vignettes(..., clean = clean)
-        }
+        },
+        envir = envir
+    )
 
-        .env$check <- function() {
+    assign(
+        x = "check",
+        value = function() {
             rcmdcheck::rcmdcheck()
             BiocCheck::BiocCheck()
-        }
+        },
+        envir = envir
+    )
 
-        .env$cd <- function(...) {
+    assign(
+        x = "cd",
+        value = function(...) {
             base::setwd(...)
-        }
+        },
+        envir = envir
+    )
 
-        .env$clear <- function() {
+    assign(
+        x = "clear",
+        value = function() {
             cat("\f")
-        }
+        },
+        envir = envir
+    )
 
-        .env$clearWarnings <- function() {
+    assign(
+        x = "clearWarnings",
+        value = function() {
             assign("last.warning", NULL, envir = baseenv())
-        }
+        },
+        envir = envir
+    )
 
-        .env$devinstall <- function(..., dependencies = FALSE) {
+    assign(
+        x = "devinstall",
+        value = function(..., dependencies = FALSE) {
             devtools::install(..., dependencies = dependencies)
-        }
+        },
+        envir = envir
+    )
 
-        .env$document <- function(...) {
+    assign(
+        x = "document",
+        value = function(...) {
             devtools::document(...)
-        }
+        },
+        envir = envir
+    )
 
-        .env$findAndReplace <- function(...) {
+    assign(
+        x = "findAndReplace",
+        value = function(...) {
             bb8::findAndReplace(...)
-        }
+        },
+        envir = envir
+    )
 
-        .env$install <- function(..., dependencies = TRUE) {
+    assign(
+        x = "install",
+        value = function(..., dependencies = TRUE) {
             BiocManager::install(..., dependencies = dependencies)
-        }
+        },
+        envir = envir
+    )
 
-        .env$install_github <- function(..., upgrade = "never") {
+    assign(
+        x = "install_github",
+        value = function(..., upgrade = "never") {
             remotes::install_github(..., upgrade = upgrade)
-        }
+        },
+        envir = envir
+    )
 
-        .env$lint_package <- function(...) {
+    assign(
+        x = "lint_package",
+        value = function(...) {
             lintr::lint_package(...)
-        }
+        },
+        envir = envir
+    )
 
-        # pkgload::load_all(helpers = FALSE, attach_testthat = FALSE)
-        .env$load_all <- function() {
+    assign(
+        x = "load_all",
+        value = function() {
+            # > pkgload::load_all(helpers = FALSE, attach_testthat = FALSE)
             devtools::load_all()
-        }
+        },
+        envir = envir
+    )
 
-        # macOS: Copy to clipboard.
-        .env$pbcopy <- function(x) {
-            stopifnot(Sys.info()[[1L]] == "Darwin")
-            capture.output(x, file = pipe("pbcopy"))
-        }
-
-        .env$printComment <- function(...) {
+    assign(
+        x = "printComment",
+        value = function(...) {
             bb8::printComment(...)
-        }
+        },
+        envir = envir
+    )
 
-        .env$rcmdcheck <- function(...) {
+    assign(
+        x = "rcmdcheck",
+        value = function(...) {
             rcmdcheck::rcmdcheck(...)
-        }
+        },
+        envir = envir
+    )
 
-        .env$render <- function(...) {
+    assign(
+        x = "render",
+        value = function(...) {
             rmarkdown::render(...)
-        }
+        },
+        envir = envir
+    )
 
-        .env$report <- function(...) {
-            # covr doesn't currently install DT but requires it for `report()`.
-            library(DT)
+    # covr doesn't currently install DT but requires it for `report()`.
+    assign(
+        x = "report",
+        value = function(...) {
+            if (!requireNamespace("DT", quietly = TRUE)) {
+                install.packages("DT")
+            }
             covr::report(...)
-        }
+        },
+        envir = envir
+    )
 
-        .env$roxygenize <- function(...) {
+    assign(
+        x = "roxygenize",
+        value = function(...) {
             roxygen2::roxygenise(...)
-        }
+        },
+        envir = envir
+    )
 
-        # Disabling `run = TRUE` by default.
-        # Otherwise, this will attempt to run code inside `\dontrun{}` blocks.
-        # See https://github.com/r-lib/devtools/issues/1990.
-        .env$run_examples <- function(
+    # Disabling `run = TRUE` by default.
+    # Otherwise, this will attempt to run code inside `\dontrun{}` blocks.
+    # See https://github.com/r-lib/devtools/issues/1990.
+    assign(
+        x = "run_examples",
+        value = function(
             ...,
             document = FALSE,
             fresh = TRUE,
@@ -421,22 +320,26 @@
                 run = run,
                 test = test
             )
-        }
+        },
+        envir = envir
+    )
 
-        .env$script_path <- function() {
-            rstudioapi::getSourceEditorContext()$path
-        }
-
-        .env$test <- function(...) {
+    assign(
+        x = "test",
+        value = function(...) {
             require(testthat)
             require(patrick)
             devtools::test(...)
-        }
+        },
+        envir = envir
+    )
 
-        # Update installed packages.
-        # Don't use `update()`; conflicts with `stats::update()`.
-        # Don't use `upgrade()`; conflicts with `utils::upgrade()`.
-        .env$update_all <- function() {
+    # Update installed packages.
+    # Don't use `update()`; conflicts with `stats::update()`.
+    # Don't use `upgrade()`; conflicts with `utils::upgrade()`.
+    assign(
+        x = "update_all",
+        value = function() {
             options(
                 R_REMOTES_UPGRADE = "always",
                 repos = BiocManager::repositories()
@@ -444,64 +347,64 @@
             BiocManager::install(update = TRUE, ask = FALSE)
             remotes::update_packages()
             update.packages(ask = FALSE, checkBuilt = TRUE)
-        }
+        },
+        envir = envir
+    )
 
-        .env$use_data <- function(..., overwrite = TRUE) {
+    assign(
+        x = "use_data",
+        value = function(..., overwrite = TRUE) {
             usethis::use_data(..., overwrite = overwrite)
-        }
+        },
+        envir = envir
+    )
 
-        .env$valid <- function(...) {
+    assign(
+        x = "valid",
+        value = function(...) {
             BiocManager::valid(...)
-        }
+        },
+        envir = envir
+    )
 
-        if (isTRUE(rstudio)) {
-            # RStudio `View()` doesn't work with S4 DataFrame.
-            .env$View2 <- function(...) {
-                View(as.data.frame(...))
-             }
-        }
+    # macOS-specific                                                        {{{2
+    # --------------------------------------------------------------------------
 
-        attach(.env)
-
-        # Completion                                                        {{{3
-        # Turn on completion of installed package names.
-        utils::rc.settings(ipck = TRUE)
-
-        # Secrets                                                           {{{3
-        # Load secret variables that we don't want to commit in shared Renviron.
-        if (file.exists("~/.Rsecrets")) {
-            source("~/.Rsecrets")
-        } else {
-            cat(
-                "Failed to detect `~/.Rsecrets` file.",
-                "GitHub package installs will be rate limited.",
-                "",
-                sep = "\n"
-            )
-        }
-
-        # Session info                                                      {{{3
-        # Show useful session information in console at load.
-        cat(
-            "User Library:",
-            normalizePath(Sys.getenv("R_LIBS_USER")),
-            "",
-            "Working Directory:",
-            normalizePath(getwd()),
-            "",
-            sep = "\n"
+    if (Sys.info()[[1L]] == "Darwin") {
+        # Copy to clipboard.
+        assign(
+            x = "pbcopy",
+            value = function(x) {
+                capture.output(x, file = pipe("pbcopy"))
+            },
+            envir = envir
         )
     }
-}
 
+    # RStudio-specific                                                      {{{2
+    # --------------------------------------------------------------------------
 
+    if (isTRUE(nzchar(Sys.getenv("RSTUDIO_USER_IDENTITY")))) {
+        assign(
+            x = "script_path",
+            value = function() {
+                rstudioapi::getSourceEditorContext()$path
+            },
+            envir = envir
+        )
 
-# Initialization at end of an R session                                     {{{1
-# ==============================================================================
-
-.Last <- function() {
-    if (interactive()) {
-        message("Goodbye at ", date(), "\n")
+        # RStudio `View()` doesn't work well with S4 DataFrame.
+        assign(
+            x = "View2",
+            value = function(object) {
+                if (is(object, "DataFrame")) {
+                    object <- as.data.frame(object)
+                }
+                View(object)
+            },
+            envir = envir
+        )
     }
-}
 
+    rm(envir)
+}
