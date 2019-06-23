@@ -10,7 +10,7 @@ source "${HOME}/.shrc"
 # if only called from `/etc/profile`.
 if [[ -z "${KOOPA_MINIMAL:-}" ]]
 then
-    zsh_dir="${KOOPA_DIR:-}/system/activate/shell/zsh/"
+    zsh_dir="${KOOPA_HOME:-}/system/activate/shell/zsh/"
     if [[ ! -d "$zsh_dir" ]]
     then
         >&2 printf "Error: Failed to load koopa zsh scripts.\n"
