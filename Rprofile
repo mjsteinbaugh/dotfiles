@@ -15,10 +15,8 @@ if (!isTRUE(getOption("rprofile.site"))) {
     if (!file.exists(file)) {
         file <- file.path(
             "~",
-            ".local",
-            "share",
+            ".config",
             "koopa",
-            "config",
             "R",
             "etc",
             "Rprofile.site"
