@@ -4,7 +4,7 @@ My configuration files shared between machines.
 
 ## Installation
 
-Use [koopa](https://github.com/acidgenomics/koopa/) to configure your shell environment.
+Use my [koopa](https://github.com/acidgenomics/koopa/) shell bootloader to configure your environment.
 
 ## See also
 
