@@ -4,7 +4,7 @@ My configuration files shared between machines.
 
 ## Installation
 
-Use [koopa](https://github.com/acidgenomics/koopa/) to deploy these shared dot files across multiple machines.
+Use [koopa](https://github.com/acidgenomics/koopa/) to configure your shell environment.
 
 ## See also
 
