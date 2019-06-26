@@ -1,15 +1,6 @@
 # Dot files
 
-My configuration files shared between machines running:
-
-- [macOS](https://www.apple.com/macos/)
-- [AWS EC2](https://aws.amazon.com/ec2/)
-- [Azure](https://azure.microsoft.com/)
-- [CentOS](https://www.centos.org/)
-- [Ubuntu](https://www.ubuntu.com/)
-- [Bioconductor Cloud AMI](https://www.bioconductor.org/help/bioconductor-cloud-ami/)
-- [Amazon Linux 2 AMI](https://aws.amazon.com/amazon-linux-2/)
-- [Raspbian](https://www.raspbian.org/)
+My configuration files shared between machines.
 
 ## Installation
 
