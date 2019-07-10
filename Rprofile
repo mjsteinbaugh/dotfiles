@@ -16,7 +16,6 @@ if (!isTRUE(getOption("rprofile.site"))) {
         ".config",
         "koopa",
         "R",
-        "etc",
         "Rprofile.site"
     )
     if (!file.exists(file)) {
