@@ -1,5 +1,5 @@
 # Mike's R startup profile
-# Modified 2019-06-19.
+# Modified 2019-07-10.
 
 
 
@@ -11,17 +11,14 @@
 # when koopa is installed at `~/.local/share/koopa`.
 
 if (!isTRUE(getOption("rprofile.site"))) {
-    file <- file.path(Sys.getenv("R_HOME"), "etc", "Rprofile.site")
-    if (!file.exists(file)) {
-        file <- file.path(
-            "~",
-            ".config",
-            "koopa",
-            "R",
-            "etc",
-            "Rprofile.site"
-        )
-    }
+    file <- file.path(
+        "~",
+        ".config",
+        "koopa",
+        "R",
+        "etc",
+        "Rprofile.site"
+    )
     if (!file.exists(file)) {
         stop(paste0("Failed to locate ", file, "."))
     }
