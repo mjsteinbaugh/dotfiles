@@ -1,10 +1,10 @@
 #!/bin/sh
 
-# koopa shell
-# https://github.com/acidgenomics/koopa/
-# shellcheck source=/dev/null
+## koopa shell
+## https://github.com/acidgenomics/koopa/
+## shellcheck source=/dev/null
 . "${HOME}/.config/koopa/activate"
 
-# Test mode.
-# > test=1 . "${HOME}/.config/koopa/activate"
-# > set -x; test=1 . "${HOME}/.config/koopa/activate"
+## Test mode.
+## > test=1 . "${HOME}/.config/koopa/activate"
+## > set -x; test=1 . "${HOME}/.config/koopa/activate"

@@ -1,4 +1,5 @@
-# Mike's specific git configuration
+## Mike's specific git configuration
+## Updated 2019-07-26.
 
 [include]
     path = ~/.config/koopa/dotfiles/gitconfig-global

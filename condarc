@@ -1,10 +1,14 @@
 ## Configure conda to use bioconda.
+## Updated 2019-07-26.
+
+## Refer to website for more details:
 ## https://bioconda.github.io/#set-up-channels
+
 channels:
   - conda-forge
   - bioconda
   - defaults
 
 ## Don't change the command prompt (PS1) upon activation.
-## conda config --set changeps1 no
+## > conda config --set changeps1 no
 changeps1: False

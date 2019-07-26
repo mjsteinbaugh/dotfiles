@@ -1,7 +1,8 @@
 " Vim configuration
-" https://www.vim.org
+" Updated 2019-07-26
 "
 " See also:
+" - https://www.vim.org
 " - https://steinbaugh.com/posts/vim.html
 " - https://github.com/MikeMcQuaid/dotfiles/blob/master/vimrc
 " - https://gist.github.com/nerdalert/5f80853b4e195204bc6d

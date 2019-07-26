@@ -1,14 +1,14 @@
-# Mike's R startup profile
-# Updated 2019-07-10.
+## Mike's R startup profile
+## Updated 2019-07-26.
 
 
 
-# Load shared profile                                                       {{{1
-# ==============================================================================
+## Load shared profile                                                      {{{1
+## =============================================================================
 
-# This will be handled automatically when `Rprofile.site` file is installed.
-# Otherwise, we're providing fall back support here for local installations,
-# when koopa is installed at `~/.local/share/koopa`.
+## This will be handled automatically when `Rprofile.site` file is installed.
+## Otherwise, we're providing fall back support here for local installations,
+## when koopa is installed at `~/.local/share/koopa`.
 
 if (!isTRUE(getOption("rprofile.site"))) {
     file <- file.path(
@@ -29,10 +29,10 @@ stopifnot(isTRUE(getOption("rprofile.site")))
 
 
 
-# User information                                                          {{{1
-# ==============================================================================
+## User information                                                         {{{1
+## =============================================================================
 
-# These values are used in many of my R Markdown templates.
+## These values are used in many of my R Markdown templates.
 
 options(
     author = "Michael Steinbaugh",
@@ -41,34 +41,34 @@ options(
 
 
 
-# acidverse                                                                 {{{1
-# ==============================================================================
+## acidverse                                                                {{{1
+## =============================================================================
 
-# Easy read-write into dated subdirectories, for improved data provenance.
-# > options(acid.save.ext = "rds")
-# > options(
-# >     acid.save.dir = file.path(
-# >         getOption("acid.save.ext"),
-# >         Sys.Date()
-# >     )
-# > )
-# > options(acid.load.dir = getOption("acid.save.dir"))
+## Easy read-write into dated subdirectories, for improved data provenance.
+## > options(acid.save.ext = "rds")
+## > options(
+## >     acid.save.dir = file.path(
+## >         getOption("acid.save.ext"),
+## >         Sys.Date()
+## >     )
+## > )
+## > options(acid.load.dir = getOption("acid.save.dir"))
 
-# Enable this for more thorough unit testing.
-# > options(acid.test.extra = TRUE)
+## Enable this for more thorough unit testing.
+## > options(acid.test.extra = TRUE)
 
-# Enable this for more verbose code debugging.
-# > options(
-# >     goalie.traceback = TRUE
-# > )
+## Enable this for more verbose code debugging.
+## > options(
+## >     goalie.traceback = TRUE
+## > )
 
 
 
-# Interactive                                                               {{{1
-# ==============================================================================
+## Interactive                                                              {{{1
+## =============================================================================
 
-# Assign shortcuts and session information to a hidden environment.
-# Custom functions are to be saved in bb8 package instead of here.
+## Assign shortcuts and session information to a hidden environment.
+## Custom functions are to be saved in bb8 package instead of here.
 
 if (interactive()) {
     stopifnot(isTRUE(".env" %in% search()))
@@ -247,7 +247,7 @@ if (interactive()) {
     assign(
         x = "load_all",
         value = function() {
-            # > pkgload::load_all(helpers = FALSE, attach_testthat = FALSE)
+            ## > pkgload::load_all(helpers = FALSE, attach_testthat = FALSE)
             devtools::load_all()
         },
         envir = envir
@@ -277,7 +277,7 @@ if (interactive()) {
         envir = envir
     )
 
-    # covr doesn't currently install DT but requires it for `report()`.
+    ## covr doesn't currently install DT but requires it for `report()`.
     assign(
         x = "report",
         value = function(...) {
@@ -297,9 +297,9 @@ if (interactive()) {
         envir = envir
     )
 
-    # Disabling `run = TRUE` by default.
-    # Otherwise, this will attempt to run code inside `\dontrun{}` blocks.
-    # See https://github.com/r-lib/devtools/issues/1990.
+    ## Disabling `run = TRUE` by default.
+    ## Otherwise, this will attempt to run code inside `\dontrun{}` blocks.
+    ## See https://github.com/r-lib/devtools/issues/1990.
     assign(
         x = "run_examples",
         value = function(
@@ -330,9 +330,9 @@ if (interactive()) {
         envir = envir
     )
 
-    # Update installed packages.
-    # Don't use `update()`; conflicts with `stats::update()`.
-    # Don't use `upgrade()`; conflicts with `utils::upgrade()`.
+    ## Update installed packages.
+    ## Don't use `update()`; conflicts with `stats::update()`.
+    ## Don't use `upgrade()`; conflicts with `utils::upgrade()`.
     assign(
         x = "update_all",
         value = function() {
@@ -363,11 +363,11 @@ if (interactive()) {
         envir = envir
     )
 
-    # macOS-specific                                                        {{{2
-    # --------------------------------------------------------------------------
+    ## macOS-specific                                                       {{{2
+    ## -------------------------------------------------------------------------
 
     if (Sys.info()[[1L]] == "Darwin") {
-        # Copy to clipboard.
+        ## Copy to clipboard.
         assign(
             x = "pbcopy",
             value = function(x) {
@@ -377,8 +377,8 @@ if (interactive()) {
         )
     }
 
-    # RStudio-specific                                                      {{{2
-    # --------------------------------------------------------------------------
+    ## RStudio-specific                                                     {{{2
+    ## -------------------------------------------------------------------------
 
     if (isTRUE(nzchar(Sys.getenv("RSTUDIO_USER_IDENTITY")))) {
         assign(
@@ -389,7 +389,7 @@ if (interactive()) {
             envir = envir
         )
 
-        # RStudio `View()` doesn't work well with S4 DataFrame.
+        ## RStudio `View()` doesn't work well with S4 DataFrame.
         assign(
             x = "View2",
             value = function(object) {

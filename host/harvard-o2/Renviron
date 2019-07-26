@@ -1,14 +1,15 @@
-# HMS O2 R environment
+## HMS O2 R environment
+## Updated 2019-07-26.
 
-# Load modules first:
-# ~/bash/o2/load_r_module.sh
-# /n/app/R/3.5.1/bin/R
+## Load modules first:
+## > ~/bash/o2/load_r_module.sh
+## > /n/app/R/3.5.1/bin/R
 
 R_LIBS_USER="~/R/x86_64-pc-linux-gnu-library/3.5/bioc-3.8-release"
 
-# Enable this if necessary when working with single-cell packages.
-# R_MAX_NUM_DLLS=200
+## Enable this if necessary when working with single-cell packages.
+## > R_MAX_NUM_DLLS=200
 
-# Note that this is HMS O2 specific.
-# XML (libxml2)
+## Note that this is HMS O2 specific.
+## XML (libxml2)
 XML_CONFIG="/n/app/libxml2/2.9.4/bin/xml2-config"

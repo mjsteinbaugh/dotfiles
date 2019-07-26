@@ -1,6 +1,0 @@
-# https://github.com/MikeMcQuaid/dotfiles/blob/master/screenrc
-
-term "screen-256color"
-
-# Configure Terminal.app scrolling.
-termcapinfo xterm* ti@:te@
