@@ -1,5 +1,5 @@
 # Mike's R startup profile
-# Modified 2019-07-10.
+# Updated 2019-07-10.
 
 
 

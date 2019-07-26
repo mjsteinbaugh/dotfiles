@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # Z shell configuration.
-# Modified 2019-06-17.
+# Updated 2019-06-17.
 
 # Load the shared shell configuration.
 source "${HOME}/.shrc"

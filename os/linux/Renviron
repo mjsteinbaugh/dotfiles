@@ -1,5 +1,5 @@
 # R environment for Linux.
-# Modified 2019-07-10.
+# Updated 2019-07-10.
 
 # Restrict `$PATH` so we don't load any binaries from conda or bcbio.
 PATH="/usr/local/bin:/usr/bin:/bin"

@@ -1,5 +1,5 @@
 # Global git configuration
-# Modified 2019-06-14.
+# Updated 2019-06-14.
 
 [core]
 	editor = vim
