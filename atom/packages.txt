@@ -1,3 +1,0 @@
-language-markdown
-language-r
-markdown-writer
