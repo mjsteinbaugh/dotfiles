@@ -1,5 +1,5 @@
-## Global git configuration
-## Updated 2019-06-14.
+# Global git configuration
+# Updated 2019-06-14.
 
 [core]
 	editor = vim
@@ -7,7 +7,7 @@
 [color]
 	ui = true
 [status]
-    ## submoduleSummary = true
+    # submoduleSummary = true
 
 [push]
 	default = simple
@@ -19,11 +19,11 @@
 [transfer]
 	fsckobjects = true
 
-## oh-my-zsh will fail to clone unless these are set.
-## > git config --global fetch.fsck.zeroPaddedFilemode warn
-## > git config --global receive.fsck.zeroPaddedFilemode warn
-## > git config --global transfer.fsck.zeroPaddedFilemode warn
-## > git config --global fsck.zeroPaddedFilemode warn
+# oh-my-zsh will fail to clone unless these are set.
+# > git config --global fetch.fsck.zeroPaddedFilemode warn
+# > git config --global receive.fsck.zeroPaddedFilemode warn
+# > git config --global transfer.fsck.zeroPaddedFilemode warn
+# > git config --global fsck.zeroPaddedFilemode warn
 
 [fsck]
 	zeroPaddedFilemode = warn
