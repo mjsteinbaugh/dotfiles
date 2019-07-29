@@ -3,11 +3,11 @@
 ## Z shell configuration.
 ## Updated 2019-07-29.
 
-## Load the shared shell configuration.
+# Load the shared shell configuration.
 source "${HOME}/.shrc"
 
-## These steps are required to be sourced in `~/.zshrc` and won't set up
-## properly if only called from `/etc/profile`.
+# These steps are required to be sourced in `~/.zshrc` and won't set up properly
+# if only called from `/etc/profile`.
 if [[ -z "${KOOPA_MINIMAL:-}" ]]
 then
     zsh_dir="${KOOPA_HOME}/system/activate/shell/zsh"
