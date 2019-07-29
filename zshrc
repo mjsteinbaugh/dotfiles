@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 ## Z shell configuration.
-## Updated 2019-07-26.
+## Updated 2019-07-29.
 
 ## Load the shared shell configuration.
 source "${HOME}/.shrc"
@@ -10,7 +10,7 @@ source "${HOME}/.shrc"
 ## properly if only called from `/etc/profile`.
 if [[ -z "${KOOPA_MINIMAL:-}" ]]
 then
-    zsh_dir="${KOOPA_HOME:-}/system/activate/shell/zsh/"
+    zsh_dir="${KOOPA_HOME}/system/activate/shell/zsh"
     if [[ ! -d "$zsh_dir" ]]
     then
         >&2 printf "Error: Failed to load koopa zsh scripts.\n"
