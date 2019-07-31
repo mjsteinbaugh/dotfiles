@@ -12,12 +12,12 @@
 [submodule "vim/pack/dist/start/airline"]
 	path = vim/pack/dist/start/airline
 	url = https://github.com/mjsteinbaugh/dotfiles-vim-airline.git
-[submodule "vim/pack/dist/start/dracula"]
-	path = vim/pack/dist/start/dracula
-	url = https://github.com/mjsteinbaugh/dotfiles-dracula-vim.git
 [submodule "vim/pack/dist/start/markdown"]
 	path = vim/pack/dist/start/markdown
 	url = https://github.com/mjsteinbaugh/dotfiles-vim-markdown.git
 [submodule "vim/pack/dist/start/R"]
 	path = vim/pack/dist/start/R
 	url = https://github.com/mjsteinbaugh/dotfiles-vim-r.git
+[submodule "vim/pack/dist/start/dracula-theme"]
+	path = vim/pack/dist/start/dracula-theme
+	url = https://github.com/mjsteinbaugh/dotfiles-dracula-vim.git
