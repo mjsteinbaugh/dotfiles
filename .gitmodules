@@ -1,23 +1,19 @@
-# dracula/powershell
 [submodule "dracula/powershell"]
 	path = dracula/powershell
 	url = https://github.com/mjsteinbaugh/dotfiles-dracula-powershell.git
-
-# gkroon/dracula-putty
 [submodule "dracula/putty"]
 	path = dracula/putty
 	url = https://github.com/mjsteinbaugh/dotfiles-dracula-putty.git
-
-# vim-airline/vim-airline
 [submodule "vim/pack/dist/start/airline"]
 	path = vim/pack/dist/start/airline
 	url = https://github.com/mjsteinbaugh/dotfiles-vim-airline.git
+# Note that this must be named "dracula-theme", not "dracula".
+[submodule "vim/pack/dist/start/dracula-theme"]
+	path = vim/pack/dist/start/dracula-theme
+	url = https://github.com/mjsteinbaugh/dotfiles-dracula-vim.git
 [submodule "vim/pack/dist/start/markdown"]
 	path = vim/pack/dist/start/markdown
 	url = https://github.com/mjsteinbaugh/dotfiles-vim-markdown.git
 [submodule "vim/pack/dist/start/R"]
 	path = vim/pack/dist/start/R
 	url = https://github.com/mjsteinbaugh/dotfiles-vim-r.git
-[submodule "vim/pack/dist/start/dracula-theme"]
-	path = vim/pack/dist/start/dracula-theme
-	url = https://github.com/mjsteinbaugh/dotfiles-dracula-vim.git
