@@ -9,11 +9,6 @@
 	url = https://github.com/mjsteinbaugh/dotfiles-dracula-putty.git
 
 # vim-airline/vim-airline
-[submodule "vim/pack/dist/start/dracula-theme"]
-	path = vim/pack/dist/start/dracula-theme
-	url = https://github.com/mjsteinbaugh/dotfiles-dracula-vim.git
-
-# plasticboy/vim-markdown
 [submodule "vim/pack/dist/start/vim-markdown"]
 	path = vim/pack/dist/start/vim-markdown
 	url = https://github.com/mjsteinbaugh/dotfiles-vim-markdown.git
@@ -26,3 +21,6 @@
 [submodule "vim/pack/dist/start/airline"]
 	path = vim/pack/dist/start/airline
 	url = https://github.com/mjsteinbaugh/dotfiles-vim-airline.git
+[submodule "vim/pack/dist/start/dracula"]
+	path = vim/pack/dist/start/dracula
+	url = https://github.com/mjsteinbaugh/dotfiles-dracula-vim.git
