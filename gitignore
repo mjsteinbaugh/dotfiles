@@ -1,5 +1,5 @@
 # Git ignore global rules
-# Updated 2019-07-26.
+# Updated 2019-08-01.
 
 
 
@@ -113,6 +113,7 @@ tmp_*/
 .Rproj.user
 .httr-oauth
 cache/
+doc/
 reports/
 results/
 revdep/
