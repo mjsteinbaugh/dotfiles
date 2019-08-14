@@ -1,5 +1,5 @@
 # Git ignore global rules
-# Updated 2019-08-01.
+# Updated 2019-08-14.
 
 
 
@@ -47,6 +47,7 @@ token.*
 *.bam
 *.bed
 *.bz2
+*.csv
 *.db
 *.err
 *.fa
@@ -58,7 +59,9 @@ token.*
 *.gtf
 *.gz
 *.gz.*
+*.h5
 *.html
+*.mtx
 *.out
 *.pdf
 *.png
@@ -68,6 +71,7 @@ token.*
 *.rdx
 *.sam
 *.tar
+*.tsv
 *.xz
 *.zip
 
