@@ -1,12 +1,15 @@
 #!/bin/sh
 
-# koopa shell
-# https://koopa.acidgenomics.com/
+# I use koopa to manage my shared shell configuration across machines.
+
 # bcbio configuration, based on hostname.
 case "$(uname -n)" in
     azlabapp*)
         export BCBIO_EXE="/data00/bcbio/v1.1.5/tools/bin/bcbio_nextgen.py"
         ;;
 esac
+
+# koopa shell
+# https://koopa.acidgenomics.com/
 # shellcheck source=/dev/null
 . "${HOME}/.config/koopa/activate"
