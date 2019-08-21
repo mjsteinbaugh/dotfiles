@@ -113,6 +113,7 @@ tmp_*/
 *_files/
 .RData
 .Rapp.history
+.Rcheck
 .Rhistory
 .Rproj.user
 .httr-oauth
