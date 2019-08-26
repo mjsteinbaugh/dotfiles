@@ -1,10 +1,10 @@
 # Dot files
 
-My configuration files shared between machines.
+Configuration files shared between machines.
 
 ## Installation
 
-Use my [koopa](https://github.com/acidgenomics/koopa/) shell bootloader to configure your environment.
+Use the [koopa](https://github.com/acidgenomics/koopa/) shell bootloader to configure your environment.
 
 ## See also
 
