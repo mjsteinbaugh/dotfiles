@@ -142,7 +142,7 @@ _site/
 # Dot file directories                                                      {{{1
 # ==============================================================================
 
-# find ~ -maxdepth 1 -name ".*" -type d | sort
+# > find ~ -maxdepth 1 -name ".*" -type d | sort
 
 .azure/
 .cache/
