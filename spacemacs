@@ -62,17 +62,18 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     ;; Pick either helm or ivy.
-     ;; julia is still experimental.
-     ;; version-control layer uses magit, which requires git 2.0+.
-     ;; auto-completion
+     ;; Pick either 'helm' or 'ivy'.
+     ;;
+     ;; 'julia' is still experimental.
+     ;; 'version-control' uses magit, which requires git 2.0+.
+     ;;
+     ;; > auto-completion
      better-defaults
      csv
      emacs-lisp
      ess
      git
      html
-     ;; Now called Jupyter Notebook, but the recipe still uses iPython.
      ipython-notebook
      ivy
      markdown
@@ -81,13 +82,13 @@ values."
      python
      ;; Always pop out the shell to the right side at full width.
      ;; This setting also applies to R console running in ESS.
-     ;; shell-default-height 30
-     ;; shell-default-position 'bottom
+     ;; > shell-default-height 30
+     ;; > shell-default-position 'bottom
      ;;
      ;; To pop the shell to the right side at 80 characters:
      ;; This works well with ESS but is wonky with shell currently.
-     ;; shell-default-width 80
-     ;; shell-default-position 'right
+     ;; > shell-default-width 80
+     ;; > shell-default-position 'right
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -179,11 +180,6 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    ;; (default "Source Code Pro")
-   ;; dotspacemacs-default-font '("Source Code Pro"
-   ;;                             :size 13
-   ;;                             :weight normal
-   ;;                             :width normal
-   ;;                             :powerline-scale 1.5)
    dotspacemacs-default-font '("SF Mono"
                                :size 16
                                :weight normal
