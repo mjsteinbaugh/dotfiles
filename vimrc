@@ -1,5 +1,5 @@
 " Vim configuration
-" Updated 2019-07-26
+" Updated 2019-09-04.
 "
 " See also:
 " - https://www.vim.org
@@ -70,6 +70,7 @@ set shiftwidth=4
 set softtabstop=4
 
 " Expand (detab) tab to spaces.
+" This can be annoying when working with TSV files.
 set expandtab
 
 " Legacy method (no longer recommended).
@@ -188,9 +189,14 @@ let g:vim_markdown_folding_level=2
 " Colors                                                                    {{{1
 " ==============================================================================
 
-" Recommend a dark background by default, for vim < 7.
-" Note that for v8+ we're using dracula theme (see below).
-set background=dark
+" For vim >= 8, use the dracula theme.
+" For vim < 8, use the generic dark theme.
+if v:version >= 800
+    packadd! dracula-theme
+    colorscheme dracula
+else
+    set background=dark
+endif
 
 " Enable syntax highlighting.
 syntax on
@@ -200,13 +206,6 @@ syntax on
 " https://gist.github.com/limingjie/4975c36d13d0927613e6
 if &term == "screen"
     set t_Co=256
-endif
-
-" These settings require the new built-in package manager.
-if v:version >= 800
-    " Dracula color theme.
-    packadd! dracula-theme
-    colorscheme dracula
 endif
 
 

@@ -1,5 +1,5 @@
 # Git ignore global rules
-# Updated 2019-08-26.
+# Updated 2019-09-04.
 
 
 
@@ -61,6 +61,7 @@ token.*
 *.gz.*
 *.h5
 *.html
+*.idx
 *.mtx
 *.out
 *.pdf
@@ -89,10 +90,13 @@ bed/
 bigwig/
 fastq/
 figures/
+genewiz/
+kallisto/
 links/
 rda/
 rds/
 reference/
+salmon/
 sam/
 tmp/
 tmp_*/
