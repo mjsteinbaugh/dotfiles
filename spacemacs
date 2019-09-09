@@ -77,6 +77,8 @@ values."
      ;; 'julia' is still experimental.
      ;; 'version-control' uses magit, which requires git 2.0+.
      ;;
+     ;; > auto-completion
+     ;; > helm
      ;; > js-mocha
      ;; > php
      ;; > react
@@ -84,7 +86,13 @@ values."
      ;; > swift
      ;; > typescript
      ;;
-     ;; auto-completion
+     ;; ruby
+     ;; > (ruby :variables
+     ;; >       ruby-enable-enh-ruby-mode t
+     ;; >       ruby-version-manager 'rvm
+     ;; >                  ruby-test-runner 'rspec)
+     ;;
+     ;;
      better-defaults
      csv
      evil-commentary
@@ -98,12 +106,6 @@ values."
      org
      osx
      python
-     ;;
-     ;; ruby
-     ;; > (ruby :variables
-     ;; >       ruby-enable-enh-ruby-mode t
-     ;; >       ruby-version-manager 'rvm
-     ;; >                  ruby-test-runner 'rspec)
      ;;
      ;; shell
      ;; Always pop out the shell to the right side at full width.
@@ -203,11 +205,12 @@ values."
    ;; Refer to 'themes-megapack' for examples.
    ;; https://themegallery.robdor.com/
    ;;
+   ;; Dracula background is currently inconsistent with PuTTY and iTerm2.
    dotspacemacs-themes
    '(
      spacemacs-dark
-     spacemacs-light
      dracula
+     spacemacs-light
      ;; afternoon
      ;; ample
      ;; ample-zen
@@ -416,32 +419,39 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
+  ;; Indentation.
+  (setq-default
+   standard-indent 4
+   tab-width 4
+   )
+
   ;; Activate fill column indicator in prog-mode and text-mode.
   (add-hook 'prog-mode-hook 'turn-on-fci-mode)
   (add-hook 'text-mode-hook 'turn-on-fci-mode)
 
+  ;; The powerline doesn't render correctly on systems without custom font.
+  ;; > powerline-default-separator 'arrow
+  (setq powerline-default-separator nil)
+  ;; > (spaceline-compile)
+
+  ;; Customize icons.
+  ;; > (setq neo-theme 'icons)
+
+  ;; ESS / R --------------------------------------------------------------------
   ;; Disable auto-indenting for R comments.
   (setq ess-fancy-comments nil)
-
   ;; Make ess default to use R.
   ;; (via https://gist.github.com/benmarwick/ee0f400b14af87a57e4a)
   (defun ess-set-language ()
     (setq-default ess-language "R")
     (setq ess-language "R")
     )
-
   ;; From Barb's ESS config on GitLab.
   ;; (require 'ess-eldoc)
   ;; (show-paren-mode 1)
   (setq ess-ask-for-ess-directory nil)
   (setq ess-eval-visibly-p nil)
-
-  ;; The powerline won't render correctly on systems without custom font.
-  ;; Here's how to customize. Arrow is default.
-  ;; powerline-default-separator 'arrow
-  ;; I'm disabling currently so this plays nicely with PuTTY on Windows.
-  ;; https://github.com/syl20bnr/spacemacs/blob/master/doc/DOCUMENTATION.org#powerline-separators
-  (setq powerline-default-separator nil)
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
