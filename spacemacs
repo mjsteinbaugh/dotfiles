@@ -208,7 +208,6 @@ values."
      spacemacs-dark
      spacemacs-light
      dracula
-     nord
      ;; afternoon
      ;; ample
      ;; ample-zen
