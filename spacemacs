@@ -84,7 +84,7 @@ values."
      ;; > swift
      ;; > typescript
      ;;
-     auto-completion
+     ;; auto-completion
      better-defaults
      csv
      evil-commentary
@@ -205,11 +205,10 @@ values."
    ;;
    dotspacemacs-themes
    '(
+     spacemacs-dark
+     spacemacs-light
      dracula
      nord
-     spacemacs-dark
-     ;; spacemacs-light
-     ;;
      ;; afternoon
      ;; ample
      ;; ample-zen
