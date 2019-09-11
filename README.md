@@ -9,10 +9,10 @@ Use the [koopa](https://github.com/acidgenomics/koopa/) shell bootloader to conf
 ## See also
 
 - Use [shellcheck](https://www.shellcheck.net/) to check shell scripts.
-- [Dracula Theme](https://draculatheme.com/)
+- [Dracula Theme](https://draculatheme.com/).
 - [Mike McQuaid](https://github.com/MikeMcQuaid/dotfiles):
-  `bash_profile`, `bashrc`, `zprofile`, `zshrc`
+  `bash_profile`, `bashrc`, `zprofile`, `zshrc`.
 - [Jim Hester](https://github.com/jimhester/dotfiles):
-  `Renviron`, `Rprofile`
+  `Renviron`, `Rprofile`.
 - [Rory Kirchner](https://github.com/roryk/dotfiles):
-  `gitconfig`, `spacemacs`, `tmux.conf`
+  `gitconfig`, `spacemacs`, `tmux.conf`.
