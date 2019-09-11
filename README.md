@@ -8,7 +8,7 @@ Use the [koopa](https://github.com/acidgenomics/koopa/) shell bootloader to conf
 
 ## See also
 
-- [Dracula Theme](https://draculatheme.com/).
+- [Dracula theme](https://draculatheme.com/).
 - [Mike McQuaid](https://github.com/MikeMcQuaid/dotfiles):
   `bash_profile`, `bashrc`, `zprofile`, `zshrc`.
 - [Jim Hester](https://github.com/jimhester/dotfiles):
