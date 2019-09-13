@@ -1,6 +1,24 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 # Updated 2019-09-13.
 
+window:
+  dimensions:
+    columns: 90
+    lines: 30
+
+font:
+  size: 16.0
+  normal:
+    family: "SF Mono"
+    style: Regular
+  bold:
+    family: "SF Mono"
+    style: Bold
+  italic:
+    family: "SF Mono"
+    style: Italic
+  use_thin_strokes: false
+
 colors:
   primary:
     background: '0x282a36'
@@ -23,18 +41,5 @@ colors:
     magenta: '0xff92d0'
     cyan:    '0x9aedfe'
     white:   '0xe6e6e6'
-
-font:
-  size: 16.0
-  normal:
-    family: "SF Mono"
-    style: Regular
-  bold:
-    family: "SF Mono"
-    style: Bold
-  italic:
-    family: "SF Mono"
-    style: Italic
-  use_thin_strokes: true
 
 draw_bold_text_with_bright_colors: true
