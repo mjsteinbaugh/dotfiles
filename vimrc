@@ -1,5 +1,5 @@
 " Vim configuration
-" Updated 2019-09-04.
+" Updated 2019-09-16.
 "
 " See also:
 " - https://www.vim.org
@@ -210,20 +210,6 @@ endif
 
 
 
-" Languages                                                                 {{{1
-" ==============================================================================
-
-" R                                                                         {{{2
-" ------------------------------------------------------------------------------
-
-" Vim-R-plugin
-" Disable `_` to `<-`, which is ridiculous.
-" let vimrplugin_assign = 0
-" https://stackoverflow.com/questions/44529713
-let R_assign = 0
-
-
-
 " File management                                                           {{{1
 " ==============================================================================
 
@@ -234,6 +220,50 @@ set nobackup
 " Disable the swap file, if desired.
 " This also creates FS cruft but is useful for recovery.
 " > set noswapfile
+
+
+
+
+
+
+" Plugins                                                                   {{{1
+" ==============================================================================
+
+" Nvim-R                                                                    {{{2
+" ------------------------------------------------------------------------------
+
+" Disable `_` to `<-`, which is ridiculous.
+" > let vimrplugin_assign = 0
+" https://stackoverflow.com/questions/44529713
+let R_assign = 0
+
+
+" jedi-vim                                                                  {{{2
+" ------------------------------------------------------------------------------
+
+" https://github.com/davidhalter/jedi-vim#settings
+
+" > let g:jedi#use_splits_not_buffers = "left"
+" > let g:jedi#use_tabs_not_buffers = 1
+let g:jedi#auto_initialization = 1
+let g:jedi#auto_vim_configuration = 1
+let g:jedi#completions_enabled = 1
+let g:jedi#popup_on_dot = 1
+let g:jedi#popup_select_first = 1
+let g:jedi#show_call_signatures = 1
+
+
+" syntastic                                                                 {{{2
+" ------------------------------------------------------------------------------
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 
 

@@ -56,3 +56,9 @@
 	# https://github.com/plasticboy/vim-markdown
 	path = vim/pack/dist/start/markdown
 	url = https://github.com/mjsteinbaugh/dotfiles-vim-markdown.git
+
+[submodule "vim/pack/dist/start/syntastic"]
+	# syntastic
+	# https://github.com/vim-syntastic/syntastic.git
+	path = vim/pack/dist/start/syntastic
+	url = https://github.com/mjsteinbaugh/dotfiles-vim-syntastic.git
