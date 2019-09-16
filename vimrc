@@ -409,6 +409,9 @@ let g:jedi#show_call_signatures = 1
 " syntastic                                                                 {{{2
 " ------------------------------------------------------------------------------
 
+" Check which linters are enabled with `:SyntasticInfo`.
+" Check PATH with `:echo syntastic#util#system('echo "$PATH"')`.
+
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -418,7 +421,13 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" lintr
+" > let g:syntastic_aggregate_errors = 1
+
+" Python
+" > let g:syntastic_python_checkers = ['flake8']
+" > let g:syntastic_python_checkers = ['pylint']
+
+" R
 " https://github.com/jimhester/lintr
 " This can be slow to load, so disable by default.
 " > let g:syntastic_enable_r_lintr_checker = 1
