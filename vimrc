@@ -223,14 +223,156 @@ set nobackup
 
 
 
-
-
-
 " Plugins                                                                   {{{1
 " ==============================================================================
 
 " Nvim-R                                                                    {{{2
 " ------------------------------------------------------------------------------
+
+" This plugin is awesome, and lets you run an R session inside if vim.
+" Conceptually, it works similarly to ESS for Emacs.
+
+" Usage
+" https://raw.githubusercontent.com/jalvesaq/Nvim-R/master/doc/Nvim-R.txt
+" Copied from source on 2019-09-16.
+"
+" Note: The <LocalLeader> is '\' by default.
+"
+" To use the plugin, open a .R, .Rnw, .Rd, .Rmd or .Rrst file with Vim and
+" type <LocalLeader>rf. Then, you will be able to use the plugin key bindings to
+" send commands to R.
+"
+" This plugin has many key bindings, which correspond with menu entries. In the
+" list below, the backslash represents the <LocalLeader>. Not all menu items and
+" key bindings are enabled in all filetypes supported by the plugin (r, rnoweb,
+" rhelp, rrst, rmd).
+"
+" Menu entry                                Default shortcut~
+" Start/Close
+"   . Start R (default)                                  \rf
+"   . Start R (custom)                                   \rc
+"   --------------------------------------------------------
+"   . Close R (no save)                                  \rq
+"   . Stop R                                          :RStop
+" -----------------------------------------------------------
+"
+" Send
+"   . File                                               \aa
+"   . File (echo)                                        \ae
+"   . File (open .Rout)                                  \ao
+"   --------------------------------------------------------
+"   . Block (cur)                                        \bb
+"   . Block (cur, echo)                                  \be
+"   . Block (cur, down)                                  \bd
+"   . Block (cur, echo and down)                         \ba
+"   --------------------------------------------------------
+"   . Chunk (cur)                                        \cc
+"   . Chunk (cur, echo)                                  \ce
+"   . Chunk (cur, down)                                  \cd
+"   . Chunk (cur, echo and down)                         \ca
+"   . Chunk (from first to here)                         \ch
+"   --------------------------------------------------------
+"   . Function (cur)                                     \ff
+"   . Function (cur, echo)                               \fe
+"   . Function (cur and down)                            \fd
+"   . Function (cur, echo and down)                      \fa
+"   --------------------------------------------------------
+"   . Selection                                          \ss
+"   . Selection (echo)                                   \se
+"   . Selection (and down)                               \sd
+"   . Selection (echo and down)                          \sa
+"   . Selection (evaluate and insert output in new tab)  \so
+"   --------------------------------------------------------
+"   . Send motion region                                 \m{motion}
+"   --------------------------------------------------------
+"   . Paragraph                                          \pp
+"   . Paragraph (echo)                                   \pe
+"   . Paragraph (and down)                               \pd
+"   . Paragraph (echo and down)                          \pa
+"   --------------------------------------------------------
+"   . Line                                                \l
+"   . Line (and down)                                     \d
+"   . Line (and new one)                                  \q
+"   . Left part of line (cur)                       \r<Left>
+"   . Right part of line (cur)                     \r<Right>
+"   . Line (evaluate and insert the output as comment)    \o
+"   . All lines above the current one                    \su
+" -----------------------------------------------------------
+"
+" Command
+"   . List space                                         \rl
+"   . Clear console                                      \rr
+"   . Remove objects and clear console                   \rm
+"   --------------------------------------------------------
+"   . Print (cur)                                        \rp
+"   . Names (cur)                                        \rn
+"   . Structure (cur)                                    \rt
+"   . View data.frame (cur) in new tab                   \rv
+"   . View data.frame (cur) in horizontal split          \vs
+"   . View data.frame (cur) in vertical split            \vv
+"   . View head(data.frame) (cur) in horizontal split    \vh
+"   . Run dput(cur) and show output in new tab           \td
+"   . Run print(cur) and show output in new tab          \tp
+"   --------------------------------------------------------
+"   . Arguments (cur)                                    \ra
+"   . Example (cur)                                      \re
+"   . Help (cur)                                         \rh
+"   --------------------------------------------------------
+"   . Summary (cur)                                      \rs
+"   . Plot (cur)                                         \rg
+"   . Plot and summary (cur)                             \rb
+"   --------------------------------------------------------
+"   . Set working directory (cur file path)              \rd
+"   --------------------------------------------------------
+"   . Sweave (cur file)                                  \sw
+"   . Sweave and PDF (cur file)                          \sp
+"   . Sweave, BibTeX and PDF (cur file) (Linux/Unix)     \sb
+"   --------------------------------------------------------
+"   . Knit (cur file)                                    \kn
+"   . Knit, BibTeX and PDF (cur file) (Linux/Unix)       \kb
+"   . Knit and PDF (cur file)                            \kp
+"   . Knit and Beamer PDF (cur file)                     \kl
+"   . Knit and HTML (cur file, verbose)                  \kh
+"   . Knit and ODT (cur file)                            \ko
+"   . Knit and Word Document (cur file)                  \kw
+"   . Markdown render (cur file)                         \kr
+"   . Spin (cur file) (only .R)                          \ks
+"   --------------------------------------------------------
+"   . Open attachment of reference (Rmd, Rnoweb)         \oa
+"   . Open PDF (cur file)                                \op
+"   . Search forward (SyncTeX)                           \gp
+"   . Go to LaTeX (SyncTeX)                              \gt
+"   --------------------------------------------------------
+"   . Build tags file (cur dir)                  :RBuildTags
+" -----------------------------------------------------------
+"
+" Edit
+"   . Insert "<-"                                          _
+"   . Complete object name                     CTRL-X CTRL-O
+"   --------------------------------------------------------
+"   . Indent (line)                                       ==
+"   . Indent (selected lines)                              =
+"   . Indent (whole buffer)                             gg=G
+"   --------------------------------------------------------
+"   . Toggle comment (line, sel)                         \xx
+"   . Comment (line, sel)                                \xc
+"   . Uncomment (line, sel)                              \xu
+"   . Add/Align right comment (line, sel)                 \;
+"   --------------------------------------------------------
+"   . Go (next R chunk)                                  \gn
+"   . Go (previous R chunk)                              \gN
+" -----------------------------------------------------------
+"
+" Object Browser
+"   . Open/Close                                         \ro
+"   . Expand (all lists)                                 \r=
+"   . Collapse (all lists)                               \r-
+"   . Toggle (cur)                                     Enter
+" -----------------------------------------------------------
+"
+" Help (plugin)
+" Help (R)                                            :Rhelp
+" -----------------------------------------------------------
 
 " Disable `_` to `<-`, which is ridiculous.
 " > let vimrplugin_assign = 0
@@ -238,10 +380,21 @@ set nobackup
 let R_assign = 0
 
 
-" jedi-vim                                                                  {{{2
+" airline                                                                   {{{2
 " ------------------------------------------------------------------------------
 
-" https://github.com/davidhalter/jedi-vim#settings
+" Consider adding tmuxline integration.
+" https://github.com/edkolev/tmuxline.vim
+
+" Tab line.
+" > let g:airline#extensions#tabline#left_alt_sep = '|'
+" > let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'default'
+
+
+" jedi-vim                                                                  {{{2
+" ------------------------------------------------------------------------------
 
 " > let g:jedi#use_splits_not_buffers = "left"
 " > let g:jedi#use_tabs_not_buffers = 1
@@ -264,6 +417,13 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" lintr
+" https://github.com/jimhester/lintr
+" This can be slow to load, so disable by default.
+" > let g:syntastic_enable_r_lintr_checker = 1
+" > let g:syntastic_r_checkers = ['lintr']
+" > let g:syntastic_r_lintr_linters = 'with_defaults(object_name_linter("camelCase"))'
 
 
 
