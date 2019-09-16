@@ -1,19 +1,62 @@
+# Git submodules
+# Updated 2019-09-16.
+
+# > man git submodule
+# > git submodule add [--force] <REPO> <PATH>
+
+
+
+# Dracula                                                                   {{{1
+# ==============================================================================
+
 [submodule "dracula/powershell"]
+    # dracula powershell
+    # https://github.com/dracula/powershell
 	path = dracula/powershell
 	url = https://github.com/mjsteinbaugh/dotfiles-dracula-powershell.git
 [submodule "dracula/putty"]
+    # dracula putty
+    # https://github.com/gkroon/dracula-putty
 	path = dracula/putty
 	url = https://github.com/mjsteinbaugh/dotfiles-dracula-putty.git
-[submodule "vim/pack/dist/start/airline"]
-	path = vim/pack/dist/start/airline
-	url = https://github.com/mjsteinbaugh/dotfiles-vim-airline.git
-# Note that this must be named "dracula-theme", not "dracula".
-[submodule "vim/pack/dist/start/dracula-theme"]
-	path = vim/pack/dist/start/dracula-theme
-	url = https://github.com/mjsteinbaugh/dotfiles-dracula-vim.git
-[submodule "vim/pack/dist/start/markdown"]
-	path = vim/pack/dist/start/markdown
-	url = https://github.com/mjsteinbaugh/dotfiles-vim-markdown.git
+
+
+
+# Vim plugins                                                               {{{1
+# ==============================================================================
+
 [submodule "vim/pack/dist/start/R"]
+    # Nvim-R
+    # https://github.com/jalvesaq/Nvim-R
 	path = vim/pack/dist/start/R
 	url = https://github.com/mjsteinbaugh/dotfiles-vim-r.git
+
+[submodule "vim/pack/dist/start/airline"]
+    # vim-airline
+    # https://github.com/vim-airline/vim-airline
+	path = vim/pack/dist/start/airline
+	url = https://github.com/mjsteinbaugh/dotfiles-vim-airline.git
+
+[submodule "vim/pack/dist/start/dracula-theme"]
+    # dracula vim
+    # https://github.com/dracula/vim
+    # Note that this must be named "dracula-theme", not "dracula".
+	path = vim/pack/dist/start/dracula-theme
+	url = https://github.com/mjsteinbaugh/dotfiles-dracula-vim.git
+
+[submodule "vim/pack/dist/start/jedi-vim"]
+    # jedi-vim
+    # https://github.com/davidhalter/jedi-vim
+    # Need to initialize submodules.
+    # > (
+    # >     cd vim/pack/dist/start/jedi-vim || exit 1
+    # >     cd git submodule update --init --recursive
+    # > )
+	path = vim/pack/dist/start/jedi-vim
+	url = https://github.com/mjsteinbaugh/dotfiles-jedi-vim
+
+[submodule "vim/pack/dist/start/markdown"]
+    # vim-markdown
+    # https://github.com/plasticboy/vim-markdown
+	path = vim/pack/dist/start/markdown
+	url = https://github.com/mjsteinbaugh/dotfiles-vim-markdown.git
