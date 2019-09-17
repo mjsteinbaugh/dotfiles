@@ -1,5 +1,5 @@
 " Vim configuration
-" Updated 2019-09-16.
+" Updated 2019-09-17.
 "
 " See also:
 " - https://www.vim.org
@@ -387,10 +387,10 @@ let R_assign = 0
 " https://github.com/edkolev/tmuxline.vim
 
 " Tab line.
+" > let g:airline#extensions#tabline#enabled = 1
+" > let g:airline#extensions#tabline#formatter = 'default'
 " > let g:airline#extensions#tabline#left_alt_sep = '|'
 " > let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'default'
 
 
 " jedi-vim                                                                  {{{2
