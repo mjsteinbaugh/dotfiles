@@ -7,7 +7,6 @@
 ;; Consider using spacemacs instead when managing multiple plugins.
 ;;
 ;; Packages ====================================================================
-;;
 ;; Install packages (e.g. from MELPA):
 ;; > M-x list-packages
 ;;
@@ -19,16 +18,12 @@
 ;; > M-x package-refresh-contents
 ;; > M-x package-list-packages
 ;;
-;; See also:
-;; - https://melpa.org/#/getting-started
+;; See also: https://melpa.org/
 ;;
 ;; ESS / R =====================================================================
-;;
-;; Launch R:
-;; > M-x R
-;;
-;; Check ESS version:
-;; > M-x ess-version
+;; Manual: https://ess.r-project.org/Manual/ess.html
+;; Launch R: M-x R
+;; Check ESS version: M-x ess-version
 ;;
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
@@ -61,8 +56,6 @@ There are two things you can do about this warning:
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-;; ESS =========================================================================
-;; Manual: https://ess.r-project.org/Manual/ess.html
 (setq-default
  ;; inferior-R-program-name "/usr/local/bin/R"
  ess-ask-for-ess-directory nil
