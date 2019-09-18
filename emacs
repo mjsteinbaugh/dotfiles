@@ -55,6 +55,12 @@ There are two things you can do about this warning:
  ;; If there is more than one, they won't work right.
  '(diff-switches "-u")
  '(package-selected-packages (quote (ess))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 ;; ESS =========================================================================
 ;; Manual: https://ess.r-project.org/Manual/ess.html
 (setq-default
@@ -67,10 +73,3 @@ There are two things you can do about this warning:
 ;; See matching pairs of parentheses and other characters.
 (setq-default show-paren-delay 0)
 (show-paren-mode 1)
-;; =============================================================================
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
