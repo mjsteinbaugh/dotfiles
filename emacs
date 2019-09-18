@@ -53,7 +53,6 @@ There are two things you can do about this warning:
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- ;; '(custom-enabled-themes (quote (adwaita)))
  '(diff-switches "-u")
  '(package-selected-packages (quote (ess))))
 ;; ESS =========================================================================
