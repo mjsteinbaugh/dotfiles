@@ -256,9 +256,9 @@ values."
    '(
      sanityinc-tomorrow-eighties
      sanityinc-tomorrow-bright
+     dracula
      gruber-darker
      spacemacs-dark
-     dracula
      )
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
