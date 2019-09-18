@@ -63,6 +63,7 @@ There are two things you can do about this warning:
  ess-ask-for-ess-directory nil
  ess-eval-visibly-p nil
  ess-language "R"
+ inferior-R-args "--no-restore --no-save"
  )
 ;; See matching pairs of parentheses and other characters.
 (setq-default show-paren-delay 0)

@@ -117,6 +117,7 @@ values."
           ess-language "R"
           ess-style 'RStudio
           ess-use-flymake t
+          inferior-R-args "--no-restore --no-save"
           )
      git
      html
