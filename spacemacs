@@ -435,7 +435,7 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; Indentation and wrapping.
   (setq-default
-   fci-rule-color "#000000"
+   fci-rule-color "#FF9500"
    fill-column 80
    standard-indent 4
    tab-width 4
