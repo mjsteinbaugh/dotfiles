@@ -106,7 +106,6 @@ values."
      ;;
      better-defaults
      csv
-     dracula-theme@themes-megapack
      evil-commentary
      emacs-lisp
      (ess :variables
@@ -136,6 +135,7 @@ values."
             shell-default-height 30
             )
      syntax-checking
+     themes-megapack
      version-control
      vimscript
      yaml
@@ -217,37 +217,48 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    ;;
-   ;; Dracula colors are currently too bright / wonky with PuTTY.
+   ;; Dracula colors are currently too bright and wonky with PuTTY.
    ;;
    ;; Refer to 'themes-megapack' for examples.
    ;; https://themegallery.robdor.com/
    ;;
+   ;; default:
+   ;; spacemacs-dark
+   ;; spacemacs-light
+   ;;
+   ;; themes-megapack:
+   ;; - afternoon
+   ;; - ample
+   ;; - ample-zen
+   ;; - colorsarenice-dark
+   ;; - cyberpunk
+   ;; - dracula
+   ;; - farmhouse-dark
+   ;; - flatland
+   ;; - gruber-darker
+   ;; - gruvbox
+   ;; - hickey
+   ;; - inkpot
+   ;; - material
+   ;; - monokai
+   ;; - sanityinc-tomorrow-bright
+   ;; - sanityinc-tomorrow-eighties
+   ;; - sanityinc-tomorrow-night
+   ;; - seti
+   ;; - solarized-dark
+   ;; - spacegray
+   ;;
+   ;; doom themes:
+   ;; - doom-dracula
+   ;; - doom-nord
+   ;;
    dotspacemacs-themes
    '(
+     sanityinc-tomorrow-eighties
+     sanityinc-tomorrow-bright
+     gruber-darker
      spacemacs-dark
-     spacemacs-light
      dracula
-     ;; afternoon
-     ;; ample
-     ;; ample-zen
-     ;; colorsarenice-dark
-     ;; cyberpunk
-     ;; doom-dracula
-     ;; doom-nord
-     ;; farmhouse-dark
-     ;; flatland
-     ;; gruber-darker
-     ;; gruvbox
-     ;; hickey
-     ;; inkpot
-     ;; material
-     ;; monokai
-     ;; sanityinc-tomorrow-bright
-     ;; sanityinc-tomorrow-eighties
-     ;; sanityinc-tomorrow-night
-     ;; seti
-     ;; solarized-dark
-     ;; spacegray
      )
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
