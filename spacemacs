@@ -1,14 +1,29 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
-;;
 ;; Updated 2019-09-18.
 ;;
-;; Reload config: SPC f e R
-;; Launch ESS: M-x R
+;; Spacemacs cheatsheet:
+;; https://steinbaugh.com/posts/spacemacs.html
 ;;
-;; Update to spacemacs master branch:
-;; > cd ~/.emacs.d; git pull --rebase
+;; |command          | description                 |
+;; |-----------------|-----------------------------|
+;; | SPC f e D       | Diff config against default |
+;; | SPC f e R       | Reload config               |
+;; | SPC q q         | Quit                        |
+;; | :w              | Save (vim style)            |
+;; | SPC f f         | File browser                |
+;; | SPC w           | Split window horizontally   |
+;; | SPC w /         | Split window vertically     |
+;; | SPC 1           | Switch to window 1          |
+;; | SPC 2           | Switch to window 2          |
+;; | SPC t n         | Toggle line numbers         |
+;; | SPC t f         | Toggle fill (margin) column |
+;; | M-x R           | Launch ESS / R              |
+;; | M-x ess-version | Check ESS version           |
+;;
+;; Manually update spacemacs (in shell):
+;; > ( cd ~/.emacs.d; git pull --rebase )
 ;;
 ;; Right margin indicator.
 ;; Use `M-q' to automatically fill paragraphs to fill-column value.
@@ -65,32 +80,28 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
-     ;;
-     ;; Pick either 'helm' or 'ivy'.
-     ;;
-     ;; 'julia' is still experimental.
-     ;; 'version-control' uses magit, which requires git 2.0+.
+     ;; Pick either `helm' or `ivy'.
+     ;; `julia' is still experimental.
      ;;
      ;; > auto-completion
+     ;; > (c-c++ :variables
+     ;; >        c-c++-enable-clang-support t
+     ;; >        )
+     ;; > clojure
      ;; > helm
+     ;; > javascript
      ;; > js-mocha
+     ;; > pandoc
      ;; > php
+     ;; > racket
      ;; > react
+     ;; > (ruby :variables
+     ;; >       ruby-version-manager 'rbenv
+     ;; >       )
+     ;; > rust
      ;; > spell-checking
      ;; > swift
      ;; > typescript
-     ;;
-     ;; ruby
-     ;; > (ruby :variables
-     ;; >       ruby-enable-enh-ruby-mode t
-     ;; >       ruby-version-manager 'rvm
-     ;; >                  ruby-test-runner 'rspec)
-     ;;
      ;;
      better-defaults
      csv
@@ -98,13 +109,14 @@ values."
      emacs-lisp
      (ess :variables
           ;; Manual: https://ess.r-project.org/Manual/ess.html
+          ;; Customize pop out settings in shell section.
           ess-ask-for-ess-directory nil
           ess-eval-visibly-p nil
           ess-fancy-comments nil
           ess-indent-with-fancy-comments nil
           ess-language "R"
-          ess-use-flymake t
           ess-style 'RStudio
+          ess-use-flymake t
           )
      git
      html
@@ -114,20 +126,11 @@ values."
      org
      osx
      python
-     ;;
-     ;; shell
-     ;; Always pop out the shell to the right side at full width.
-     ;; This setting also applies to R console running in ESS.
-     ;; > shell-default-height 30
-     ;; > shell-default-position 'bottom
-     ;;
-     ;; To pop the shell to the right side at 80 characters:
-     ;; This works well with ESS but is wonky with shell currently.
-     ;; > shell-default-width 80
-     ;; > shell-default-position 'right
      (shell :variables
-            shell-default-height 30
+            ;; > shell-default-position 'right
+            ;; > shell-default-width 80
             shell-default-position 'bottom
+            shell-default-height 30
             )
      syntax-checking
      version-control
@@ -138,7 +141,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(all-the-icons)
+   dotspacemacs-additional-packages '()
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -211,15 +214,16 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    ;;
+   ;; Dracula background is currently inconsistent with PuTTY and iTerm2.
+   ;;
    ;; Refer to 'themes-megapack' for examples.
    ;; https://themegallery.robdor.com/
    ;;
-   ;; Dracula background is currently inconsistent with PuTTY and iTerm2.
    dotspacemacs-themes
    '(
      spacemacs-dark
-     dracula
      spacemacs-light
+     dracula
      ;; afternoon
      ;; ample
      ;; ample-zen
@@ -244,13 +248,12 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   ;; (default "Source Code Pro")
    dotspacemacs-default-font '("SF Mono"
                                :size 16
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
-   ;; The leader key (default "SPC")
+   ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
    ;; (default "SPC")
@@ -413,13 +416,9 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  (setq-default
-   ;; Don't warn about PATH in bashrc.
-   exec-path-from-shell-arguments '("-l")
-   ;; Enable hard wrapping at 80 characters.
-   ;; https://github.com/syl20bnr/spacemacs/issues/4856#issuecomment-176650964
-   fill-column 80
-   ))
+  ;; Don't warn about PATH in bashrc.
+  (setq-default exec-path-from-shell-arguments '("-l"))
+  )
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -428,19 +427,23 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  ;; Indentation.
+  ;; Indentation and wrapping.
   (setq-default
+   fci-rule-color "#000000"
+   fill-column 80
    standard-indent 4
-   tab-width 4)
+   tab-width 4
+   )
   ;; See matching pairs of parentheses and other characters.
   (setq-default show-paren-delay 0)
   (show-paren-mode 1)
-  ;; Activate fill column indicator in prog-mode and text-mode.
-  (add-hook 'prog-mode-hook 'turn-on-fci-mode)
-  (add-hook 'text-mode-hook 'turn-on-fci-mode)
   ;; The powerline doesn't render correctly on systems without custom font.
   ;; > powerline-default-separator 'arrow
   (setq-default powerline-default-separator nil)
+  ;; Customize autofill and column fill (margin) indicator.
+  (add-hook 'markdown-mode-hook '(turn-on-fci-mode auto-fill-mode))
+  (add-hook 'prog-mode-hook 'turn-on-fci-mode)
+  (add-hook 'text-mode-hook 'turn-on-fci-mode)
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -453,7 +456,7 @@ you should place your code here."
    ["#080808" "#d70000" "#67b11d" "#875f00" "#268bd2" "#af00df" "#00ffff" "#b2b2b2"])
  '(package-selected-packages
    (quote
-    (evil-commentary all-the-icons memoize polymode ein skewer-mode deferred websocket js2-mode simple-httpd xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help transient lv vimrc-mode dactyl-mode powerline spinner hydra parent-mode helm helm-core flx highlight smartparens iedit anzu evil goto-chg undo-tree projectile pkg-info epl bind-map bind-key packed async f dash s avy popup yapfify yaml-mode wgrep web-mode unfill tagedit smex smeargle slim-mode scss-mode sass-mode reveal-in-osx-finder pyvenv pytest pyenv-mode py-isort pug-mode pip-requirements pbcopy osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow live-py-mode launchctl ivy-hydra hy-mode dash-functional htmlize haml-mode gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-ivy flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor ess-smart-equals ess-R-data-view ctable ess julia-mode emmet-mode diff-hl cython-mode csv-mode counsel-projectile counsel swiper ivy company-web web-completion-data company-statistics company-anaconda company auto-yasnippet yasnippet auto-dictionary anaconda-mode pythonic ac-ispell auto-complete neotree ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline solarized-theme restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+    (pandoc-mode ox-pandoc ht evil-commentary all-the-icons memoize polymode ein skewer-mode deferred websocket js2-mode simple-httpd xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help transient lv vimrc-mode dactyl-mode powerline spinner hydra parent-mode helm helm-core flx highlight smartparens iedit anzu evil goto-chg undo-tree projectile pkg-info epl bind-map bind-key packed async f dash s avy popup yapfify yaml-mode wgrep web-mode unfill tagedit smex smeargle slim-mode scss-mode sass-mode reveal-in-osx-finder pyvenv pytest pyenv-mode py-isort pug-mode pip-requirements pbcopy osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow live-py-mode launchctl ivy-hydra hy-mode dash-functional htmlize haml-mode gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-ivy flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor ess-smart-equals ess-R-data-view ctable ess julia-mode emmet-mode diff-hl cython-mode csv-mode counsel-projectile counsel swiper ivy company-web web-completion-data company-statistics company-anaconda company auto-yasnippet yasnippet auto-dictionary anaconda-mode pythonic ac-ispell auto-complete neotree ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline solarized-theme restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

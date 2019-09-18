@@ -1,37 +1,34 @@
-;; Emacs configuration
-;; Updated 2019-08-29.
+;; -*- mode: emacs-lisp -*-
+;; This file is loaded by Emacs at startup.
+;; It must be stored in your home directory.
+;; Updated 2019-09-18.
 ;;
+;; This configuration is intended for a minimal ESS installation.
 ;; Consider using spacemacs instead when managing multiple plugins.
 ;;
-;; Install packages                                                         {{{1
-;; =============================================================================
+;; Packages ====================================================================
 ;;
-;; See also:
-;; - https://www.emacswiki.org/emacs/InstallingPackages
-;;
+;; Install packages (e.g. from MELPA):
 ;; > M-x list-packages
 ;;
-;; Press ‘i’ to mark for installation, ‘u’ to unmark, and ‘x’ to perform the
-;; installation. Press ‘RET’ to read more about installing and using each
+;; Press `i' to mark for installation, `u' to unmark, and `x' to perform the
+;; installation. Press `RET' to read more about installing and using each
 ;; package.
 ;;
-;; Enable MELPA                                                             {{{1
-;; =============================================================================
+;; Refresh and list:
+;; > M-x package-refresh-contents
+;; > M-x package-list-packages
 ;;
 ;; See also:
 ;; - https://melpa.org/#/getting-started
 ;;
-;; > M-x package-refresh-contents
-;; > M-x package-list-packages
-;;
-;; ESS                                                                      {{{1
-;; =============================================================================
-;;
-;; Check ESS version:
-;; > M-x ess-version
+;; ESS / R =====================================================================
 ;;
 ;; Launch R:
 ;; > M-x R
+;;
+;; Check ESS version:
+;; > M-x ess-version
 ;;
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
@@ -60,9 +57,15 @@ There are two things you can do about this warning:
  '(diff-switches "-u")
  '(package-selected-packages (quote (ess))))
 ;; ESS =========================================================================
-(setq ess-ask-for-ess-directory nil)
-(setq ess-eval-visibly-p nil)
-;; (setq inferior-R-program-name "/usr/local/bin/R")
+;; Manual: https://ess.r-project.org/Manual/ess.html
+(setq-default
+ ;; inferior-R-program-name "/usr/local/bin/R"
+ ess-ask-for-ess-directory nil
+ ess-eval-visibly-p nil
+ ess-language "R"
+ )
+;; See matching pairs of parentheses and other characters.
+(setq-default show-paren-delay 0)
 (show-paren-mode 1)
 ;; =============================================================================
 (custom-set-faces
