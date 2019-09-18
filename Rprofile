@@ -1,5 +1,5 @@
 ## Mike's R startup profile
-## Updated 2019-07-26.
+## Updated 2019-09-19.
 
 
 
@@ -333,6 +333,8 @@ if (interactive()) {
     ## Update installed packages.
     ## Don't use `update()`; conflicts with `stats::update()`.
     ## Don't use `upgrade()`; conflicts with `utils::upgrade()`.
+    ## If you run into dependency compilation issues, set `ask = TRUE` or
+    ## `upgrade = "ask"` (for GitHub packages).
     assign(
         x = "update_all",
         value = function() {
