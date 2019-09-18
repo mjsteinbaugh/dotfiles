@@ -349,6 +349,14 @@ if (interactive()) {
         envir = envir
     )
 
+    # Note that we're always asking here, since it's useful for troubleshooting.
+    assign(
+        x = "update_packages",
+        value = function(..., upgrade = "ask") {
+            remotes::update_packages(..., upgrade = upgrade)
+        }
+    )
+
     assign(
         x = "use_data",
         value = function(..., overwrite = TRUE) {
