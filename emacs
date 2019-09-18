@@ -56,6 +56,7 @@ There are two things you can do about this warning:
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+;; ESS configuration.
 (setq-default
  ;; inferior-R-program-name "/usr/local/bin/R"
  ess-ask-for-ess-directory nil
