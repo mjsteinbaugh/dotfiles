@@ -86,6 +86,7 @@ values."
      ;; > auto-completion
      ;; > doom-themes
      ;; > spell-checking
+     ;; > themes-megapack
      ;;
      ;; > (c-c++ :variables
      ;; >        c-c++-enable-clang-support t
@@ -135,7 +136,6 @@ values."
             shell-default-height 30
             )
      syntax-checking
-     themes-megapack
      version-control
      vimscript
      yaml
