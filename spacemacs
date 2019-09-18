@@ -106,6 +106,7 @@ values."
      ;;
      better-defaults
      csv
+     dracula-theme@themes-megapack
      evil-commentary
      emacs-lisp
      (ess :variables
@@ -135,7 +136,6 @@ values."
             shell-default-height 30
             )
      syntax-checking
-     themes-megapack
      version-control
      vimscript
      yaml
