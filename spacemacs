@@ -1,20 +1,19 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
-
-;; Reload: SPC f e R
-;; ESS: M-x R
-
-;; Update to spacemacs master branch.
-;; cd ~/.emacs.d
-;; git pull --rebase
-
+;;
+;; Updated 2019-09-18.
+;;
+;; Reload config: SPC f e R
+;; Launch ESS: M-x R
+;;
+;; Update to spacemacs master branch:
+;; > cd ~/.emacs.d; git pull --rebase
+;;
 ;; Right margin indicator.
-;; Use M-q to automatically fill paragraphs to fill-column value.
-;; Refer to:
-;; - turn-on-fci-mode
-;; - fill-column
-
+;; Use `M-q' to automatically fill paragraphs to fill-column value.
+;; Refer to `turn-on-fci-mode', `fill-column' for details.
+;;
 ;; References:
 ;; - Beginner's tutorial
 ;;   https://github.com/syl20bnr/spacemacs/blob/master/doc/BEGINNERS_TUTORIAL.org
@@ -36,7 +35,7 @@
 ;;   https://github.com/syl20bnr/spacemacs/tree/master/layers/%2Blang/ess
 ;; - Right margin indicator
 ;;   https://github.com/syl20bnr/spacemacs/issues/4856#issuecomment-176650964
-
+;;
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
@@ -97,7 +96,16 @@ values."
      csv
      evil-commentary
      emacs-lisp
-     ess
+     (ess :variables
+          ;; Manual: https://ess.r-project.org/Manual/ess.html
+          ess-ask-for-ess-directory nil
+          ess-eval-visibly-p nil
+          ess-fancy-comments nil
+          ess-indent-with-fancy-comments nil
+          ess-language "R"
+          ess-use-flymake t
+          ess-style 'RStudio
+          )
      git
      html
      ipython-notebook
@@ -119,7 +127,8 @@ values."
      ;; > shell-default-position 'right
      (shell :variables
             shell-default-height 30
-            shell-default-position 'bottom)
+            shell-default-position 'bottom
+            )
      syntax-checking
      version-control
      vimscript
@@ -404,13 +413,13 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  ;; Don't warn about PATH in bashrc.
-  (setq exec-path-from-shell-arguments '("-l"))
-
-  ;; Enable hard wrapping at 80 characters.
-  ;; https://github.com/syl20bnr/spacemacs/issues/4856#issuecomment-176650964
-  (setq-default fill-column 80)
-  )
+  (setq-default
+   ;; Don't warn about PATH in bashrc.
+   exec-path-from-shell-arguments '("-l")
+   ;; Enable hard wrapping at 80 characters.
+   ;; https://github.com/syl20bnr/spacemacs/issues/4856#issuecomment-176650964
+   fill-column 80
+   ))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -419,39 +428,19 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-
   ;; Indentation.
   (setq-default
    standard-indent 4
-   tab-width 4
-   )
-
+   tab-width 4)
+  ;; See matching pairs of parentheses and other characters.
+  (setq-default show-paren-delay 0)
+  (show-paren-mode 1)
   ;; Activate fill column indicator in prog-mode and text-mode.
   (add-hook 'prog-mode-hook 'turn-on-fci-mode)
   (add-hook 'text-mode-hook 'turn-on-fci-mode)
-
   ;; The powerline doesn't render correctly on systems without custom font.
   ;; > powerline-default-separator 'arrow
-  (setq powerline-default-separator nil)
-  ;; > (spaceline-compile)
-
-  ;; Customize icons.
-  ;; > (setq neo-theme 'icons)
-
-  ;; ESS / R --------------------------------------------------------------------
-  ;; Disable auto-indenting for R comments.
-  (setq ess-fancy-comments nil)
-  ;; Make ess default to use R.
-  ;; (via https://gist.github.com/benmarwick/ee0f400b14af87a57e4a)
-  (defun ess-set-language ()
-    (setq-default ess-language "R")
-    (setq ess-language "R")
-    )
-  ;; From Barb's ESS config on GitLab.
-  ;; (require 'ess-eldoc)
-  ;; (show-paren-mode 1)
-  (setq ess-ask-for-ess-directory nil)
-  (setq ess-eval-visibly-p nil)
+  (setq-default powerline-default-separator nil)
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
