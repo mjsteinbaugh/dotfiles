@@ -6,24 +6,31 @@
 ;; This configuration is intended for a minimal ESS installation.
 ;; Consider using spacemacs instead when managing multiple plugins.
 ;;
+;; | emacs | meaning | keystroke  |
+;; |-------|---------|------------|
+;; |   C   | Control | Ctrl       |
+;; |   M   | Meta    | Option/Alt |
+;;
+;; | command | action |
+;; |---------|--------|
+;; | C-x C-s | save   |
+;; | C-x C-c | quit   |
+;;
 ;; Packages ====================================================================
-;; Install packages (e.g. from MELPA):
+;; Install packages (e.g. from MELPA).
+;; See also: https://melpa.org/
+;;
 ;; > M-x list-packages
+;; > M-x package-refresh-contents
+;; > M-x package-list-packages
 ;;
 ;; Press `i' to mark for installation, `u' to unmark, and `x' to perform the
 ;; installation. Press `RET' to read more about installing and using each
 ;; package.
 ;;
-;; Refresh and list:
-;; > M-x package-refresh-contents
-;; > M-x package-list-packages
-;;
-;; See also: https://melpa.org/
-;;                                       ;
 ;; Get a list of activated packages.
 ;; https://stackoverflow.com/questions/13866848
 ;; > C-h v package-activated-list
-;; > M-x list-packages <RET> C-s installed
 ;;
 ;; ESS / R =====================================================================
 ;; Manual: https://ess.r-project.org/Manual/ess.html
