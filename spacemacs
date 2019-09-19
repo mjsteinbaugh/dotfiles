@@ -48,7 +48,6 @@
 ;;
 ;; Troubleshooting:
 ;;
-;;
 ;; Fix for org-projectile warning:
 ;; Error (use-package): org-projectile/:config: Symbol’s function definition is
 ;; void: org-projectile:per-repo
@@ -555,16 +554,18 @@ you should place your code here."
 
   ;; ESS -----------------------------------------------------------------------
   (require 'ess-site)
-  ;; > (require 'poly-R)
-  ;; > (require 'poly-markdown)
+  ;; Also using polymodes for R.
+  ;; https://github.com/polymode/poly-R
+  (require 'poly-R)
+  (require 'poly-markdown)
   (defun ess-set-language ()
     (setq-default ess-language "R")
     (setq ess-language "R")
     )
   (add-hook 'ess-post-run-hook 'ess-set-language t)
-  (add-to-list 'auto-mode-alist '("\\.Rmd$" . poly-markdown+r-mode))
-  ;; > (add-to-list 'auto-mode-alist '("\\.R$" . r-mode))
-  ;; > (autoload 'r-mode "ess-site.el" "ESS" t)
+  (add-to-list 'auto-mode-alist '("\\.Rmd$" . poly-markdown+R-mode))
+  ;; > (add-to-list 'auto-mode-alist '("\\.R$" . R-mode))
+  ;; > (autoload 'R-mode "ess-site.el" "ESS" t)
 
   ;; Render R Markdown file with M-n s.
   ;; See also:
