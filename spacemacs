@@ -518,7 +518,7 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
-  ;; Bug fix for small font on retina macOS display.
+  ;; Bug fix for small font in Emacs GUI on retina macOS display.
   ;; Remove any default values in custom-set-faces, if necessary.
   ;; https://github.com/syl20bnr/spacemacs/issues/3477
   ;; > (if (eq system-type 'darwin)
