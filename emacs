@@ -60,6 +60,13 @@ There are two things you can do about this warning:
 (custom-set-faces
  )
 
+;; Default dark theme.
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Custom-Themes.html
+;; - manoj-dark
+;; - tango-dark
+;; - tsdh-dark
+;; > (load-theme 'tsdh-dark t)
+
 ;; Dracula theme.
 ;; https://draculatheme.com/emacs/
 ;; Install: M-x package-install <RET> dracula-theme
