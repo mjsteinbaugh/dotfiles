@@ -133,9 +133,9 @@ values."
      ;; >             js2-basic-offset 2
      ;; >             node-add-modules-path t)
      ;; > js-mocha
-     ;; > json
      ;; > julia
      ;; > pandoc
+     ;; > php
      ;; > racket
      ;; > react
      ;; > ruby-on-rails
@@ -164,10 +164,10 @@ values."
      html
      ipython-notebook
      ivy
+     json
      markdown
      org
      osx
-     php
      (python :variables
              python-test-runner 'pytest)
      (ruby :variables
@@ -301,8 +301,8 @@ values."
    ;; - spacegray
    ;;
    ;; base16-themes:
-   ;; - base16-dracula
    ;; - base16-oceanicnext
+   ;; - base16-dracula
    ;; - base16-onedark
    ;; - base16-nord
    ;;
@@ -313,6 +313,7 @@ values."
    dotspacemacs-themes
    '(
      sanityinc-tomorrow-eighties
+     dracula
      spacemacs-dark
      spacemacs-light
      )
