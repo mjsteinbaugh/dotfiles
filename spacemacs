@@ -286,6 +286,7 @@ values."
    ;;
    ;; Dracula currently only works well in Emacs GUI, and has color problems
    ;; when running in no-window-system mode inside PuTTY.
+   ;; https://github.com/dracula/emacs/issues/52
    ;;
    ;; default:
    ;; - spacemacs-dark
@@ -326,7 +327,6 @@ values."
    dotspacemacs-themes
    '(
      sanityinc-tomorrow-eighties
-     dracula
      spacemacs-dark
      spacemacs-light
      )
