@@ -54,7 +54,6 @@
 
        :tools
        docker
-       ein                   ; tame Jupyter notebooks with emacs
        eval                  ; run code, run (also, repls)
        flycheck              ; tasing you for every semicolon you forget
        (lookup               ; helps you navigate your code and documentation
@@ -65,6 +64,7 @@
        tmux                  ; an API for interacting with tmux
        upload                ; map local to remote projects via ssh/ftp
        ;;editorconfig        ; let someone else argue about tabs vs spaces
+       ;;ein                 ; tame Jupyter notebooks with emacs
 
        :lang
        data                  ; config/data formats
