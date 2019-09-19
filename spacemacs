@@ -1,7 +1,7 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
-;; Updated 2019-09-18.
+;; Updated 2019-09-19.
 ;;
 ;; Spacemacs cheatsheet:
 ;; https://steinbaugh.com/posts/spacemacs.html
@@ -32,7 +32,7 @@
 ;; | zo  | open              |
 ;; | zm  | close all         |
 ;; | zr  | open all          |
-
+;;
 ;; Manually update spacemacs (in shell):
 ;; > ( cd ~/.emacs.d; git pull --rebase )
 ;;
@@ -44,6 +44,17 @@
 ;; Right margin indicator.
 ;; Use `M-q' to automatically fill paragraphs to fill-column value.
 ;; Refer to `turn-on-fci-mode', `fill-column' for details.
+;;
+;; Troubleshooting:
+;;
+;;
+;; Fix for org-projectile warning:
+;; Error (use-package): org-projectile/:config: Symbol’s function definition is
+;; void: org-projectile:per-repo
+;; > rm -fv ~/.emacs.d/elpa/org-projectile-*/org-projectile.elc
+;;
+;; Leave JSON layer disabled by default.
+;; Fails on clean install: 'Unknown layer json declared in dotfile.'
 ;;
 ;; See also:
 ;; - Beginner's tutorial
@@ -133,6 +144,7 @@ values."
      ;; >             js2-basic-offset 2
      ;; >             node-add-modules-path t)
      ;; > js-mocha
+     ;; > json
      ;; > julia
      ;; > pandoc
      ;; > php
@@ -164,7 +176,6 @@ values."
      html
      ipython-notebook
      ivy
-     json
      markdown
      org
      osx
