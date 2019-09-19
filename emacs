@@ -73,14 +73,11 @@ There are two things you can do about this warning:
 ;; ESS configuration.
 ;; https://ess.r-project.org/
 ;; Install: M-x package-install <RET> ess
-(require 'ess-eldoc)
 (require 'ess-site)
 (defun ess-set-language ()
   (setq-default ess-language "R")
   (setq ess-language "R")
   )
-(autoload 'R-mode "ess-site.el" "ESS" t)
-(add-to-list 'auto-mode-alist '("\\.R$" . R-mode))
 (add-hook 'ess-post-run-hook 'ess-set-language t)
 (setq-default
  ;; inferior-R-program-name "/usr/local/bin/R"
