@@ -4,6 +4,12 @@
 ;; - https://github.com/hlissner/emacs-doom-themes
 ;; - https://github.com/haruo31/dot-emacs-d/blob/master/config/doom-modeline.el
 
+
+;; Install all-the-icons fonts in ~/Library/Fonts.
+;; > M-x all-the-icons-install-fonts
+
+(setq doom-font (font-spec :family "SF Mono" :size 16))
+
 (require 'doom-themes)
 
 (setq doom-themes-enable-bold t
