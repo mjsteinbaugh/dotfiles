@@ -287,8 +287,7 @@ values."
    ;; Core themes should work without layers.
    ;; https://github.com/syl20bnr/spacemacs/blob/master/core/core-themes-support.el
    ;;
-   ;; Dracula currently only works well in Emacs GUI, and has color problems
-   ;; when running in no-window-system mode inside PuTTY.
+   ;; Note that Dracula requires 24-bit true color terminal support.   
    ;; https://github.com/dracula/emacs/issues/52
    ;;
    ;; default:
@@ -326,6 +325,7 @@ values."
    dotspacemacs-themes
    '(
      sanityinc-tomorrow-eighties
+     dracula
      spacemacs-dark
      spacemacs-light
      )
