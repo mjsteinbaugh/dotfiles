@@ -22,8 +22,8 @@
 ;;                                       ;
 ;; Get a list of activated packages.
 ;; https://stackoverflow.com/questions/13866848
-;; > M-x list-packages C-s installed
 ;; > C-h v package-activated-list
+;; > M-x list-packages <RET> C-s installed
 ;;
 ;; ESS / R =====================================================================
 ;; Manual: https://ess.r-project.org/Manual/ess.html
