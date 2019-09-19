@@ -78,6 +78,7 @@
 ;; - https://github.com/practicalli/spacemacs-config/blob/master/.spacemacs
 ;; - https://github.com/jsmestad/dfiles/blob/master/.spacemacs.d/init.el
 ;; - https://gist.github.com/benmarwick/ee0f400b14af87a57e4a
+;; - https://github.com/yousufinternet/config-files/blob/master/.spacemacs
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
