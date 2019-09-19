@@ -11,8 +11,8 @@
 (doom! :input
 
        :completion
-       company               ; the ultimate code completion backend
-       ivy                   ; a search engine for love and life
+       company               ; https://company-mode.github.io/
+       ivy                   ; https://oremacs.com/swiper/
 
        :ui
        doom                  ; what makes DOOM look the way it does

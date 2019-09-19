@@ -10,12 +10,12 @@
 ;; |-----------------|-----------------------------|
 ;; | SPC f e D       | Diff config against default |
 ;; | SPC f e R       | Reload config               |
-;; | :w              | Write (vim)                 |
+;; | SPC f s         | Save/write                  |
 ;; | SPC q q         | Quit                        |
-;; | SPC w p m       | Messages buffer             |
 ;; | SPC f f         | File browser                |
 ;; | SPC w           | Split window horizontally   |
 ;; | SPC w /         | Split window vertically     |
+;; | SPC w p m       | Messages buffer             |
 ;; | SPC 1           | Switch to window 1          |
 ;; | SPC 2           | Switch to window 2          |
 ;; | SPC t n         | Toggle line numbers         |
@@ -108,36 +108,77 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     ;; Pick either `helm' or `ivy'.
-     ;;
-     ;; Themes:
-     ;; > base16-themes
-     ;; > doom-themes
-     ;; > themes-megapack
-     ;;
-     ;; Productivity:
+     ;; completion:
+     ;; Use either `ivy' or `helm'.
+     ivy
      ;; > (auto-completion :variables
      ;; >                  auto-completion-enable-sort-by-usage t)
+
+     ;; ui:
+     ;; > emoji
+     ;; > (unicode-fonts :variables
+     ;; >                unicode-fonts-force-multi-color-on-mac t)
+
+     ;; editor:
      ;; > copy-as-format
      ;; > multiple-cursors
      ;; > spell-checking
-     ;; > (unicode-fonts :variables
-     ;; >                unicode-fonts-force-multi-color-on-mac t)
-     ;;
-     ;; Languages:
+
+     ;; emacs:
+     better-defaults
+     evil-commentary
+     syntax-checking
+     version-control
+
+     ;; tools:
+     csv
+     docker
+     git
+     ipython-notebook
+     osx
+
+     ;; lang:
+     emacs-lisp
+     (ess :variables
+          ;; Manual: https://ess.r-project.org/Manual/ess.html
+          ;; Customize pop out settings in shell section.
+          ess-ask-for-ess-directory nil
+          ess-eval-visibly-p nil
+          ess-fancy-comments nil
+          ess-indent-with-fancy-comments nil
+          ess-language "R"
+          ess-style 'RStudio
+          ess-use-flymake t
+          inferior-R-args "--no-restore --no-save")
+     html
+     markdown
+     org
+     (python :variables
+             python-test-runner 'pytest)
+     (ruby :variables
+           ruby-backend 'lsp
+           ruby-test-runner 'rspec
+           ruby-version-manager 'rbenv)
+     rust
+     (shell :variables
+            ;; > shell-default-position 'right
+            ;; > shell-default-width 80
+            shell-default-position 'bottom
+            shell-default-height 30)
+     vimscript
+     yaml
      ;; > (c-c++ :variables
      ;; >        c-c++-backend 'lsp-ccls
      ;; >        c-c++-default-mode-for-headers 'c++-mode
      ;; >        c-c++-enable-clang-format-on-save t
      ;; >        c-c++-enable-clang-support t)
-     ;; > common-lisp
      ;; > clojure
+     ;; > common-lisp
      ;; > (go :variables
      ;; >     go-backend 'lsp
      ;; >     go-format-before-save t
      ;; >     go-use-test-args "-race -timeout 10s"
      ;; >     godoc-at-point-function 'godoc-gogetdoc)
-     ;; > emoji
      ;; > (javascript :variables
      ;; >             javascript-backend 'lsp
      ;; >             javascript-fmt-tool 'web-beautify
@@ -156,46 +197,6 @@ values."
      ;; > (typescript :variables
      ;; >             typescript-backend 'lsp
      ;; >             typescript-fmt-on-save t)
-     ;;
-     better-defaults
-     csv
-     docker
-     evil-commentary
-     emacs-lisp
-     (ess :variables
-          ;; Manual: https://ess.r-project.org/Manual/ess.html
-          ;; Customize pop out settings in shell section.
-          ess-ask-for-ess-directory nil
-          ess-eval-visibly-p nil
-          ess-fancy-comments nil
-          ess-indent-with-fancy-comments nil
-          ess-language "R"
-          ess-style 'RStudio
-          ess-use-flymake t
-          inferior-R-args "--no-restore --no-save")
-     git
-     html
-     ipython-notebook
-     ivy
-     markdown
-     org
-     osx
-     (python :variables
-             python-test-runner 'pytest)
-     (ruby :variables
-           ruby-backend 'lsp
-           ruby-test-runner 'rspec
-           ruby-version-manager 'rbenv)
-     rust
-     (shell :variables
-            ;; > shell-default-position 'right
-            ;; > shell-default-width 80
-            shell-default-position 'bottom
-            shell-default-height 30)
-     syntax-checking
-     version-control
-     vimscript
-     yaml
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
