@@ -516,18 +516,18 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (setq-default
-   ;; Indentation
+   ;; Indentation.
    standard-indent 4
    tab-width 4
-   ;; Fill column (margin guide)
+   ;; Fill column (margin guide).
    fci-rule-color "#FFB86C"
    fill-column 80
-   ;; Matching pairs
+   ;; Matching pairs.
    show-paren-delay 0
    ;; Powerline doesn't render correctly on systems without custom font.
    ;; (default 'arrow)
    powerline-default-separator nil
-   ;; Tramp terminal
+   ;; SSH via TRAMP in terminal.
    tramp-default-method "ssh"
    )
   ;; See matching pairs of parentheses and other characters.
@@ -542,19 +542,22 @@ you should place your code here."
   ;; > (add-hook 'prog-mode-hook 'turn-on-fci-mode)
   ;; > (add-hook 'text-mode-hook 'turn-on-fci-mode)
   (spacemacs/add-to-hooks 'turn-on-fci-mode '(prog-mode-hook text-mode-hook))
+  ;; TRAMP X11 support.
+  ;; > (add-to-list 'tramp-remote-process-environment
+  ;; >              (format "DISPLAY=%s" (getenv "DISPLAY")))
   ;; ESS -----------------------------------------------------------------------
   ;; via @roryk
   ;; https://gist.github.com/benmarwick/ee0f400b14af87a57e4a
+  (require 'ess-eldoc)
+  (require 'ess-site)
   (defun ess-set-language ()
     (setq-default ess-language "R")
     (setq ess-language "R")
     )
+  (autoload 'R-mode "ess-site.el" "ESS" t)
+  (add-to-list 'auto-mode-alist '("\\.R$" . R-mode))
+  (add-to-list 'auto-mode-alist '("\\.Rmd$" . poly-markdown+r-mode))
   (add-hook 'ess-post-run-hook 'ess-set-language t)
-  ;; Allow connection over SSH via tramp.
-  (require 'ess-site)
-  ;; X11 support.
-  ;; > (add-to-list 'tramp-remote-process-environment
-  ;; >              (format "DISPLAY=%s" (getenv "DISPLAY")))
   (defun insert-r-chunk (header)
     "Insert a chunk in R Markdown mode."
     (interactive "sHeader: ")
