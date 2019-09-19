@@ -78,6 +78,7 @@
 ;; - https://github.com/mattnedrich/spacemacs-configuration/blob/master/.spacemacs
 ;; - https://github.com/practicalli/spacemacs-config/blob/master/.spacemacs
 ;; - https://github.com/jsmestad/dfiles/blob/master/.spacemacs.d/init.el
+;; - https://gist.github.com/benmarwick/ee0f400b14af87a57e4a
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
@@ -531,46 +532,81 @@ you should place your code here."
    ;; SSH via TRAMP in terminal.
    tramp-default-method "ssh"
    )
+
   ;; See matching pairs of parentheses and other characters.
   (show-paren-mode 1)
+
   ;; Use magit for git commits.
   (global-git-commit-mode t)
+
   ;; Fix for mouse mode with Magic Trackpad on macOS.
   ;; https://github.com/syl20bnr/spacemacs/issues/4591
   (xterm-mouse-mode -1)
+
   ;; Customize autofill and column fill (margin) indicator.
   ;; > (add-hook 'markdown-mode-hook '(auto-fill-mode turn-on-fci-mode))
   ;; > (add-hook 'prog-mode-hook 'turn-on-fci-mode)
   ;; > (add-hook 'text-mode-hook 'turn-on-fci-mode)
   (spacemacs/add-to-hooks 'turn-on-fci-mode '(prog-mode-hook text-mode-hook))
+
   ;; TRAMP X11 support.
   ;; > (add-to-list 'tramp-remote-process-environment
   ;; >              (format "DISPLAY=%s" (getenv "DISPLAY")))
+
   ;; ESS -----------------------------------------------------------------------
-  ;; via @roryk
-  ;; https://gist.github.com/benmarwick/ee0f400b14af87a57e4a
   (require 'ess-site)
+  ;; > (require 'poly-R)
+  ;; > (require 'poly-markdown)
   (defun ess-set-language ()
     (setq-default ess-language "R")
     (setq ess-language "R")
     )
-  ;; > (autoload 'R-mode "ess-site.el" "ESS" t)
-  ;; > (add-to-list 'auto-mode-alist '("\\.R$" . R-mode))
-  (add-to-list 'auto-mode-alist '("\\.Rmd$" . poly-markdown+r-mode))
   (add-hook 'ess-post-run-hook 'ess-set-language t)
+  (add-to-list 'auto-mode-alist '("\\.Rmd$" . poly-markdown+r-mode))
+  ;; > (add-to-list 'auto-mode-alist '("\\.R$" . r-mode))
+  ;; > (autoload 'r-mode "ess-site.el" "ESS" t)
+
+  ;; Render R Markdown file with M-n s.
+  ;; See also:
+  ;; - http://rmarkdown.rstudio.com/
+  ;; - http://roughtheory.com/posts/ess-rmarkdown.html
+  (defun ess-rmarkdown ()
+    "Render R Markdown file (.Rmd)."
+    (interactive)
+    ;; Check if R session is attached.
+    (condition-case nil
+        (ess-get-process)
+      (error
+       (ess-switch-process)))
+    (let* ((rmd-buf (current-buffer)))
+      (save-excursion
+        (let* ((sprocess (ess-get-process ess-current-process-name))
+               (sbuffer (process-buffer sprocess))
+               (buf-coding (symbol-name buffer-file-coding-system))
+               (R-cmd
+                (format "library(rmarkdown); rmarkdown::render(\"%s\")"
+                        buffer-file-name)))
+          (message "Rendering R Markdown on %s" buffer-file-name)
+          (ess-execute R-cmd 'buffer nil nil)
+          (switch-to-buffer rmd-buf)
+          (ess-show-buffer (buffer-name sbuffer) nil)))))
+  (define-key polymode-mode-map "\M-ns" 'ess-rmarkdown)
+
   (defun insert-r-chunk (header)
     "Insert a chunk in R Markdown mode."
     (interactive "sHeader: ")
     (insert (concat "```{r " header "}\n\n```"))
     (forward-line -1))
-  (defun then_R_operator ()
+
+  ;; Get the magrittr pipe with Ctrl-Shift-m.
+  (defun then-r-operator ()
     "R - %>% operator or 'then' pipe operator."
     (interactive)
     (just-one-space 1)
     (insert "%>%")
     (reindent-then-newline-and-indent))
-  (define-key ess-mode-map (kbd "C-S-m") 'then_R_operator)
-  (define-key inferior-ess-mode-map (kbd "C-S-m") 'then_R_operator)
+  (define-key ess-mode-map (kbd "C-S-m") 'then-r-operator)
+  (define-key inferior-ess-mode-map (kbd "C-S-m") 'then-r-operator)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
