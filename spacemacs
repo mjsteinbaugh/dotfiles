@@ -287,7 +287,7 @@ values."
    ;; Core themes should work without layers.
    ;; https://github.com/syl20bnr/spacemacs/blob/master/core/core-themes-support.el
    ;;
-   ;; Note that Dracula requires 24-bit true color terminal support.   
+   ;; Note that Dracula requires 24-bit true color terminal support.
    ;; https://github.com/dracula/emacs/issues/52
    ;;
    ;; default:
