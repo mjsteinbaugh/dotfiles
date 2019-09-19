@@ -188,6 +188,7 @@ values."
      ;; > js-mocha
      ;; > json
      ;; > julia
+     ;; > latex
      ;; > pandoc
      ;; > php
      ;; > racket
