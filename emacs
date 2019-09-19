@@ -19,9 +19,15 @@
 ;; > M-x package-list-packages
 ;;
 ;; See also: https://melpa.org/
+;;                                       ;
+;; Get a list of activated packages.
+;; https://stackoverflow.com/questions/13866848
+;; > M-x list-packages C-s installed
+;; > C-h v package-activated-list
 ;;
 ;; ESS / R =====================================================================
 ;; Manual: https://ess.r-project.org/Manual/ess.html
+;; See also: https://github.com/acidgenomics/dotfiles/blob/master/spacemacs
 ;; Launch R: M-x R
 ;; Check ESS version: M-x ess-version
 
@@ -54,13 +60,19 @@ There are two things you can do about this warning:
 (custom-set-faces
  )
 
+;; Dracula theme.
+;; https://draculatheme.com/emacs/
+;; Install: M-x package-install <RET> dracula-theme
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(load-theme 'dracula t)
+
 ;; See matching pairs of parentheses and other characters.
 (setq-default show-paren-delay 0)
 (show-paren-mode 1)
 
 ;; ESS configuration.
-;; Manual: https://ess.r-project.org/Manual/ess.html
-;; See also: https://github.com/acidgenomics/dotfiles/blob/master/spacemacs
+;; https://ess.r-project.org/
+;; Install: M-x package-install <RET> ess
 (require 'ess-eldoc)
 (require 'ess-site)
 (defun ess-set-language ()
