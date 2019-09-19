@@ -36,6 +36,11 @@
 ;; Manually update spacemacs (in shell):
 ;; > ( cd ~/.emacs.d; git pull --rebase )
 ;;
+;; TRAMP (Transparent Remove Access, Multiple Protocols) is a package for
+;; editing remote files from within emacs.
+;; https://www.gnu.org/software/tramp/
+;; https://medium.com/@Drowzy/tramp-in-spacemacs-ef82b9e703ee
+;;
 ;; Right margin indicator.
 ;; Use `M-q' to automatically fill paragraphs to fill-column value.
 ;; Refer to `turn-on-fci-mode', `fill-column' for details.
@@ -43,12 +48,12 @@
 ;; See also:
 ;; - Beginner's tutorial
 ;;   https://github.com/syl20bnr/spacemacs/blob/master/doc/BEGINNERS_TUTORIAL.org
-;; - Default template
-;;   https://github.com/syl20bnr/spacemacs/blob/master/core/templates/.spacemacs.template
 ;; - An introduction to Spacemacs
 ;;   https://spin.atomicobject.com/2016/08/30/introduction-to-spacemacs/
 ;; - Actually getting spacemacs to do stuff
 ;;   http://paul-gowder.com/emacs.html
+;; - Default template
+;;   https://github.com/syl20bnr/spacemacs/blob/master/core/templates/.spacemacs.template
 ;; - shell layer
 ;;   https://github.com/syl20bnr/spacemacs/tree/master/layers/%2Btools/shell
 ;; - ess layer
@@ -186,7 +191,14 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages
+   '(
+     poly-R
+     poly-markdown
+     poly-noweb
+     polymode
+     tramp-term
+     )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -481,6 +493,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   ;; Don't warn about PATH in bashrc.
   (setq-default exec-path-from-shell-arguments '("-l"))
+  ;; Tramp terminal.
+  (setq-default tramp-ssh-controlmaster-options
+      "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
   )
 
 (defun dotspacemacs/user-config ()
@@ -494,27 +509,55 @@ you should place your code here."
    ;; Indentation
    standard-indent 4
    tab-width 4
-   ;; Fill column (margin)
+   ;; Fill column (margin guide)
    fci-rule-color "#FFB86C"
    fill-column 80
-   show-trailing-whitespace t
+   ;; Matching pairs
+   show-paren-delay 0
+   ;; Powerline doesn't render correctly on systems without custom font.
+   ;; (default 'arrow)
+   powerline-default-separator nil
+   ;; Tramp terminal
+   tramp-default-method "ssh"
    )
   ;; See matching pairs of parentheses and other characters.
-  (setq-default show-paren-delay 0)
   (show-paren-mode 1)
   ;; Use magit for git commits.
   (global-git-commit-mode t)
   ;; Fix for mouse mode with Magic Trackpad on macOS.
   ;; https://github.com/syl20bnr/spacemacs/issues/4591
   (xterm-mouse-mode -1)
-  ;; The powerline doesn't render correctly on systems without custom font.
-  ;; > powerline-default-separator 'arrow
-  (setq-default powerline-default-separator nil)
   ;; Customize autofill and column fill (margin) indicator.
   ;; > (add-hook 'markdown-mode-hook '(auto-fill-mode turn-on-fci-mode))
   ;; > (add-hook 'prog-mode-hook 'turn-on-fci-mode)
   ;; > (add-hook 'text-mode-hook 'turn-on-fci-mode)
   (spacemacs/add-to-hooks 'turn-on-fci-mode '(prog-mode-hook text-mode-hook))
+  ;; ESS -----------------------------------------------------------------------
+  ;; via @roryk
+  ;; https://gist.github.com/benmarwick/ee0f400b14af87a57e4a
+  (defun ess-set-language ()
+    (setq-default ess-language "R")
+    (setq ess-language "R")
+    )
+  (add-hook 'ess-post-run-hook 'ess-set-language t)
+  ;; Allow connection over SSH via tramp.
+  (require 'ess-site)
+  ;; X11 support.
+  ;; > (add-to-list 'tramp-remote-process-environment
+  ;; >              (format "DISPLAY=%s" (getenv "DISPLAY")))
+  (defun insert-r-chunk (header)
+    "Insert a chunk in R Markdown mode."
+    (interactive "sHeader: ")
+    (insert (concat "```{r " header "}\n\n```"))
+    (forward-line -1))
+  (defun then_R_operator ()
+    "R - %>% operator or 'then' pipe operator."
+    (interactive)
+    (just-one-space 1)
+    (insert "%>%")
+    (reindent-then-newline-and-indent))
+  (define-key ess-mode-map (kbd "C-S-m") 'then_R_operator)
+  (define-key inferior-ess-mode-map (kbd "C-S-m") 'then_R_operator)
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -525,7 +568,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (base16-oceannext-theme helm-pydoc helm-gitignore helm-css-scss toml-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake racer phpunit phpcbf php-extras php-auto-yasnippets minitest flycheck-rust drupal-mode php-mode dockerfile-mode docker json-mode tablist docker-tramp json-snatcher json-reformat chruby cargo rust-mode bundler inf-ruby \(if\ \(eq\ system-type\ \(quote\ darwin\)\)\ dracula\ spacemacs-dark\)-theme zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme doom-dracula-theme pandoc-mode ox-pandoc ht evil-commentary all-the-icons memoize polymode ein skewer-mode deferred websocket js2-mode simple-httpd xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help transient lv vimrc-mode dactyl-mode powerline spinner hydra parent-mode helm helm-core flx highlight smartparens iedit anzu evil goto-chg undo-tree projectile pkg-info epl bind-map bind-key packed async f dash s avy popup yapfify yaml-mode wgrep web-mode unfill tagedit smex smeargle slim-mode scss-mode sass-mode reveal-in-osx-finder pyvenv pytest pyenv-mode py-isort pug-mode pip-requirements pbcopy osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow live-py-mode launchctl ivy-hydra hy-mode dash-functional htmlize haml-mode gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-ivy flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor ess-smart-equals ess-R-data-view ctable ess julia-mode emmet-mode diff-hl cython-mode csv-mode counsel-projectile counsel swiper ivy company-web web-completion-data company-statistics company-anaconda company auto-yasnippet yasnippet auto-dictionary anaconda-mode pythonic ac-ispell auto-complete neotree ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline solarized-theme restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+    (tramp-term poly-R poly-noweb poly-markdown base16-oceannext-theme helm-pydoc helm-gitignore helm-css-scss toml-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake racer phpunit phpcbf php-extras php-auto-yasnippets minitest flycheck-rust drupal-mode php-mode dockerfile-mode docker json-mode tablist docker-tramp json-snatcher json-reformat chruby cargo rust-mode bundler inf-ruby \(if\ \(eq\ system-type\ \(quote\ darwin\)\)\ dracula\ spacemacs-dark\)-theme zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme doom-dracula-theme pandoc-mode ox-pandoc ht evil-commentary all-the-icons memoize polymode ein skewer-mode deferred websocket js2-mode simple-httpd xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help transient lv vimrc-mode dactyl-mode powerline spinner hydra parent-mode helm helm-core flx highlight smartparens iedit anzu evil goto-chg undo-tree projectile pkg-info epl bind-map bind-key packed async f dash s avy popup yapfify yaml-mode wgrep web-mode unfill tagedit smex smeargle slim-mode scss-mode sass-mode reveal-in-osx-finder pyvenv pytest pyenv-mode py-isort pug-mode pip-requirements pbcopy osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow live-py-mode launchctl ivy-hydra hy-mode dash-functional htmlize haml-mode gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-ivy flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor ess-smart-equals ess-R-data-view ctable ess julia-mode emmet-mode diff-hl cython-mode csv-mode counsel-projectile counsel swiper ivy company-web web-completion-data company-statistics company-anaconda company auto-yasnippet yasnippet auto-dictionary anaconda-mode pythonic ac-ispell auto-complete neotree ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline solarized-theme restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

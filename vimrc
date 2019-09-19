@@ -1,5 +1,5 @@
 " Vim configuration
-" Updated 2019-09-17.
+" Updated 2019-09-18.
 "
 " See also:
 " - https://www.vim.org
@@ -7,7 +7,14 @@
 " - https://github.com/MikeMcQuaid/dotfiles/blob/master/vimrc
 " - https://gist.github.com/nerdalert/5f80853b4e195204bc6d
 "
-" Use 'finish' inside if / endif to early return.
+" Use 'finish' inside if/else conditional to early return.
+"
+" Version specific conditionals:
+" > if v:version >= 800
+" >     set background=dark
+" > else
+" >     set background=light
+" > endif
 
 
 
@@ -189,14 +196,9 @@ let g:vim_markdown_folding_level=2
 " Colors                                                                    {{{1
 " ==============================================================================
 
-" For vim >= 8, use the dracula theme.
-" For vim < 8, use the generic dark theme.
-if v:version >= 800
-    packadd! dracula-theme
-    colorscheme dracula
-else
-    set background=dark
-endif
+packadd! dracula-theme
+colorscheme dracula
+
 
 " Enable syntax highlighting.
 syntax on
@@ -396,14 +398,14 @@ let R_assign = 0
 " jedi-vim                                                                  {{{2
 " ------------------------------------------------------------------------------
 
+" > let g:jedi#auto_initialization = 1
+" > let g:jedi#auto_vim_configuration = 1
+" > let g:jedi#popup_select_first = 1
+" > let g:jedi#show_call_signatures = 1
 " > let g:jedi#use_splits_not_buffers = "left"
 " > let g:jedi#use_tabs_not_buffers = 1
-let g:jedi#auto_initialization = 1
-let g:jedi#auto_vim_configuration = 1
-let g:jedi#completions_enabled = 1
-let g:jedi#popup_on_dot = 1
-let g:jedi#popup_select_first = 1
-let g:jedi#show_call_signatures = 1
+let g:jedi#completions_enabled = 0
+let g:jedi#popup_on_dot = 0
 
 
 " syntastic                                                                 {{{2
@@ -416,12 +418,11 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+" > let g:syntastic_aggregate_errors = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
-" > let g:syntastic_aggregate_errors = 1
 
 " Python
 " > let g:syntastic_python_checkers = ['flake8']
