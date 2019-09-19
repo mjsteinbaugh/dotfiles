@@ -63,8 +63,8 @@ There are two things you can do about this warning:
 ;; Dracula theme.
 ;; https://draculatheme.com/emacs/
 ;; Install: M-x package-install <RET> dracula-theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'dracula t)
+;; > (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+;; > (load-theme 'dracula t)
 
 ;; See matching pairs of parentheses and other characters.
 (setq-default show-paren-delay 0)
