@@ -133,6 +133,7 @@ values."
      ;; >             js2-basic-offset 2
      ;; >             node-add-modules-path t)
      ;; > js-mocha
+     ;; > json
      ;; > julia
      ;; > pandoc
      ;; > racket
@@ -160,12 +161,9 @@ values."
           ess-use-flymake t
           inferior-R-args "--no-restore --no-save")
      git
-     (html :variables
-           web-fmt-tool 'web-beautify)
+     html
      ipython-notebook
      ivy
-     (json :variables
-           json-fmt-tool 'web-beautify)
      markdown
      org
      osx
