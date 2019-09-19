@@ -6,7 +6,7 @@
 ;; Spacemacs cheatsheet:
 ;; https://steinbaugh.com/posts/spacemacs.html
 ;;
-;; |command          | description                 |
+;; |command          | action                      |
 ;; |-----------------|-----------------------------|
 ;; | SPC f e D       | Diff config against default |
 ;; | SPC f e R       | Reload config               |
@@ -19,9 +19,20 @@
 ;; | SPC 2           | Switch to window 2          |
 ;; | SPC t n         | Toggle line numbers         |
 ;; | SPC t f         | Toggle fill (margin) column |
+;; | SPC t w         | Toggle whitespace           |
 ;; | M-x R           | Launch ESS / R              |
 ;; | M-x ess-version | Check ESS version           |
 ;;
+;; Using evil code folding mode:
+;;
+;; | cmd | action            |
+;; |-----|-------------------|
+;; | za  | toggle visibility |
+;; | zc  | close             |
+;; | zo  | open              |
+;; | zm  | close all         |
+;; | zr  | open all          |
+
 ;; Manually update spacemacs (in shell):
 ;; > ( cd ~/.emacs.d; git pull --rebase )
 ;;
@@ -29,17 +40,11 @@
 ;; Use `M-q' to automatically fill paragraphs to fill-column value.
 ;; Refer to `turn-on-fci-mode', `fill-column' for details.
 ;;
-;; References:
+;; See also:
 ;; - Beginner's tutorial
 ;;   https://github.com/syl20bnr/spacemacs/blob/master/doc/BEGINNERS_TUTORIAL.org
 ;; - Default template
 ;;   https://github.com/syl20bnr/spacemacs/blob/master/core/templates/.spacemacs.template
-;; - roryk dotfile
-;;   https://github.com/roryk/dotfiles/blob/master/spacemacs
-;; - mattnedrich dotfile
-;;   https://github.com/mattnedrich/spacemacs-configuration/blob/master/.spacemacs
-;; - practicalli dotfile
-;;   https://github.com/practicalli/spacemacs-config/blob/master/.spacemacs
 ;; - An introduction to Spacemacs
 ;;   https://spin.atomicobject.com/2016/08/30/introduction-to-spacemacs/
 ;; - Actually getting spacemacs to do stuff
@@ -50,6 +55,12 @@
 ;;   https://github.com/syl20bnr/spacemacs/tree/master/layers/%2Blang/ess
 ;; - Right margin indicator
 ;;   https://github.com/syl20bnr/spacemacs/issues/4856#issuecomment-176650964
+;;
+;; Reference dotfiles:
+;; - https://github.com/roryk/dotfiles/blob/master/spacemacs
+;; - https://github.com/mattnedrich/spacemacs-configuration/blob/master/.spacemacs
+;; - https://github.com/practicalli/spacemacs-config/blob/master/.spacemacs
+;; - https://github.com/jsmestad/dfiles/blob/master/.spacemacs.d/init.el
 ;;
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
@@ -81,32 +92,55 @@ values."
    dotspacemacs-configuration-layers
    '(
      ;; Pick either `helm' or `ivy'.
-     ;; `julia' is still experimental.
      ;;
-     ;; > auto-completion
+     ;; Themes:
+     ;; > base16-themes
      ;; > doom-themes
-     ;; > spell-checking
      ;; > themes-megapack
      ;;
+     ;; Productivity:
+     ;; > (auto-completion :variables
+     ;; >                  auto-completion-enable-sort-by-usage t)
+     ;; > copy-as-format
+     ;; > multiple-cursors
+     ;; > spell-checking
+     ;; > (unicode-fonts :variables
+     ;; >                unicode-fonts-force-multi-color-on-mac t)
+     ;;
+     ;; Languages:
      ;; > (c-c++ :variables
-     ;; >        c-c++-enable-clang-support t
-     ;; >        )
+     ;; >        c-c++-backend 'lsp-ccls
+     ;; >        c-c++-default-mode-for-headers 'c++-mode
+     ;; >        c-c++-enable-clang-format-on-save t
+     ;; >        c-c++-enable-clang-support t)
+     ;; > common-lisp
      ;; > clojure
-     ;; > javascript
+     ;; > (go :variables
+     ;; >     go-backend 'lsp
+     ;; >     go-format-before-save t
+     ;; >     go-use-test-args "-race -timeout 10s"
+     ;; >     godoc-at-point-function 'godoc-gogetdoc)
+     ;; > emoji
+     ;; > (javascript :variables
+     ;; >             javascript-backend 'lsp
+     ;; >             javascript-fmt-tool 'web-beautify
+     ;; >             js-indent-level 2
+     ;; >             js2-basic-offset 2
+     ;; >             node-add-modules-path t)
      ;; > js-mocha
+     ;; > julia
      ;; > pandoc
-     ;; > php
      ;; > racket
      ;; > react
-     ;; > (ruby :variables
-     ;; >       ruby-version-manager 'rbenv
-     ;; >       )
-     ;; > rust
+     ;; > ruby-on-rails
      ;; > swift
-     ;; > typescript
+     ;; > (typescript :variables
+     ;; >             typescript-backend 'lsp
+     ;; >             typescript-fmt-on-save t)
      ;;
      better-defaults
      csv
+     docker
      evil-commentary
      emacs-lisp
      (ess :variables
@@ -119,22 +153,30 @@ values."
           ess-language "R"
           ess-style 'RStudio
           ess-use-flymake t
-          inferior-R-args "--no-restore --no-save"
-          )
+          inferior-R-args "--no-restore --no-save")
      git
-     html
+     (html :variables
+           web-fmt-tool 'web-beautify)
      ipython-notebook
      ivy
+     (json :variables
+           json-fmt-tool 'web-beautify)
      markdown
      org
      osx
-     python
+     php
+     (python :variables
+             python-test-runner 'pytest)
+     (ruby :variables
+           ruby-backend 'lsp
+           ruby-test-runner 'rspec
+           ruby-version-manager 'rbenv)
+     rust
      (shell :variables
             ;; > shell-default-position 'right
             ;; > shell-default-width 80
             shell-default-position 'bottom
-            shell-default-height 30
-            )
+            shell-default-height 30)
      syntax-checking
      version-control
      vimscript
@@ -217,14 +259,14 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    ;;
+   ;; Core themes should work without layers.
+   ;; https://github.com/syl20bnr/spacemacs/blob/master/core/core-themes-support.el
+   ;;
    ;; Dracula colors are currently too bright and wonky with PuTTY.
    ;;
-   ;; Refer to 'themes-megapack' for examples.
-   ;; https://themegallery.robdor.com/
-   ;;
    ;; default:
-   ;; spacemacs-dark
-   ;; spacemacs-light
+   ;; - spacemacs-dark
+   ;; - spacemacs-light
    ;;
    ;; themes-megapack:
    ;; - afternoon
@@ -248,22 +290,27 @@ values."
    ;; - solarized-dark
    ;; - spacegray
    ;;
-   ;; doom themes:
+   ;; base16-themes:
+   ;; - base16-dracula
+   ;; - base16-oceanicnext
+   ;; - base16-onedark
+   ;; - base16-nord
+   ;;
+   ;; doom-themes:
    ;; - doom-dracula
    ;; - doom-nord
    ;;
    dotspacemacs-themes
    '(
      sanityinc-tomorrow-eighties
-     sanityinc-tomorrow-bright
-     dracula
-     gruber-darker
      spacemacs-dark
+     spacemacs-light
      )
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
+   ;; Fira Code or Source Code Pro are also good defaults.
    dotspacemacs-default-font '("SF Mono"
                                :size 16
                                :weight normal
@@ -391,7 +438,7 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers t
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -401,7 +448,7 @@ values."
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc…
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
-   dotspacemacs-smart-closing-parenthesis nil
+   dotspacemacs-smart-closing-parenthesis 'all
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
@@ -419,10 +466,10 @@ values."
    dotspacemacs-default-package-repository nil
    ;; Delete whitespace while saving buffer. Possible values are `all'
    ;; to aggressively delete empty line and long sequences of whitespace,
-   ;; `trailing' to delete only the whitespace at end of lines, `changed'to
+   ;; `trailing' to delete only the whitespace at end of lines, `changed' to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup nil
+   dotspacemacs-whitespace-cleanup 'trailing
    ))
 
 (defun dotspacemacs/user-init ()
@@ -443,23 +490,31 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  ;; Indentation and wrapping.
   (setq-default
-   fci-rule-color "#FFB86C"
-   fill-column 80
+   ;; Indentation
    standard-indent 4
    tab-width 4
+   ;; Fill column (margin)
+   fci-rule-color "#FFB86C"
+   fill-column 80
+   show-trailing-whitespace t
    )
   ;; See matching pairs of parentheses and other characters.
   (setq-default show-paren-delay 0)
   (show-paren-mode 1)
+  ;; Use magit for git commits.
+  (global-git-commit-mode t)
+  ;; Fix for mouse mode with Magic Trackpad on macOS.
+  ;; https://github.com/syl20bnr/spacemacs/issues/4591
+  (xterm-mouse-mode -1)
   ;; The powerline doesn't render correctly on systems without custom font.
   ;; > powerline-default-separator 'arrow
   (setq-default powerline-default-separator nil)
   ;; Customize autofill and column fill (margin) indicator.
-  (add-hook 'markdown-mode-hook '(turn-on-fci-mode auto-fill-mode))
-  (add-hook 'prog-mode-hook 'turn-on-fci-mode)
-  (add-hook 'text-mode-hook 'turn-on-fci-mode)
+  ;; > (add-hook 'markdown-mode-hook '(auto-fill-mode turn-on-fci-mode))
+  ;; > (add-hook 'prog-mode-hook 'turn-on-fci-mode)
+  ;; > (add-hook 'text-mode-hook 'turn-on-fci-mode)
+  (spacemacs/add-to-hooks 'turn-on-fci-mode '(prog-mode-hook text-mode-hook))
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -470,7 +525,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (\(if\ \(eq\ system-type\ \(quote\ darwin\)\)\ dracula\ spacemacs-dark\)-theme zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme doom-dracula-theme pandoc-mode ox-pandoc ht evil-commentary all-the-icons memoize polymode ein skewer-mode deferred websocket js2-mode simple-httpd xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help transient lv vimrc-mode dactyl-mode powerline spinner hydra parent-mode helm helm-core flx highlight smartparens iedit anzu evil goto-chg undo-tree projectile pkg-info epl bind-map bind-key packed async f dash s avy popup yapfify yaml-mode wgrep web-mode unfill tagedit smex smeargle slim-mode scss-mode sass-mode reveal-in-osx-finder pyvenv pytest pyenv-mode py-isort pug-mode pip-requirements pbcopy osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow live-py-mode launchctl ivy-hydra hy-mode dash-functional htmlize haml-mode gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-ivy flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor ess-smart-equals ess-R-data-view ctable ess julia-mode emmet-mode diff-hl cython-mode csv-mode counsel-projectile counsel swiper ivy company-web web-completion-data company-statistics company-anaconda company auto-yasnippet yasnippet auto-dictionary anaconda-mode pythonic ac-ispell auto-complete neotree ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline solarized-theme restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+    (base16-oceannext-theme helm-pydoc helm-gitignore helm-css-scss toml-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake racer phpunit phpcbf php-extras php-auto-yasnippets minitest flycheck-rust drupal-mode php-mode dockerfile-mode docker json-mode tablist docker-tramp json-snatcher json-reformat chruby cargo rust-mode bundler inf-ruby \(if\ \(eq\ system-type\ \(quote\ darwin\)\)\ dracula\ spacemacs-dark\)-theme zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme doom-dracula-theme pandoc-mode ox-pandoc ht evil-commentary all-the-icons memoize polymode ein skewer-mode deferred websocket js2-mode simple-httpd xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help transient lv vimrc-mode dactyl-mode powerline spinner hydra parent-mode helm helm-core flx highlight smartparens iedit anzu evil goto-chg undo-tree projectile pkg-info epl bind-map bind-key packed async f dash s avy popup yapfify yaml-mode wgrep web-mode unfill tagedit smex smeargle slim-mode scss-mode sass-mode reveal-in-osx-finder pyvenv pytest pyenv-mode py-isort pug-mode pip-requirements pbcopy osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow live-py-mode launchctl ivy-hydra hy-mode dash-functional htmlize haml-mode gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-ivy flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor ess-smart-equals ess-R-data-view ctable ess julia-mode emmet-mode diff-hl cython-mode csv-mode counsel-projectile counsel swiper ivy company-web web-completion-data company-statistics company-anaconda company auto-yasnippet yasnippet auto-dictionary anaconda-mode pythonic ac-ispell auto-complete neotree ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline solarized-theme restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
