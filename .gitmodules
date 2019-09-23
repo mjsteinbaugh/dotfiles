@@ -45,12 +45,6 @@
 	path = vim/pack/dist/start/dracula-theme
 	url = https://github.com/mjsteinbaugh/dotfiles-dracula-vim.git
 
-[submodule "vim/pack/dist/start/jedi-vim"]
-	# jedi-vim
-	# https://github.com/davidhalter/jedi-vim
-	path = vim/pack/dist/start/jedi-vim
-	url = https://github.com/mjsteinbaugh/dotfiles-jedi-vim
-
 [submodule "vim/pack/dist/start/markdown"]
 	# vim-markdown
 	# https://github.com/plasticboy/vim-markdown

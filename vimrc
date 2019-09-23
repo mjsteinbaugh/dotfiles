@@ -1,5 +1,5 @@
 " Vim configuration
-" Updated 2019-09-18.
+" Updated 2019-09-23.
 "
 " See also:
 " - https://www.vim.org
@@ -398,15 +398,17 @@ let R_assign = 0
 " jedi-vim                                                                  {{{2
 " ------------------------------------------------------------------------------
 
-" > let g:jedi#auto_initialization = 1
+" This plugin freaks out in an active conda environment. Edit Python scripts
+" using spacemacs instead.
+
 " > let g:jedi#auto_vim_configuration = 1
+" > let g:jedi#completions_enabled = 0
+" > let g:jedi#popup_on_dot = 0
 " > let g:jedi#popup_select_first = 1
 " > let g:jedi#show_call_signatures = 1
 " > let g:jedi#use_splits_not_buffers = "left"
 " > let g:jedi#use_tabs_not_buffers = 1
-let g:jedi#completions_enabled = 0
-let g:jedi#popup_on_dot = 0
-
+let g:jedi#auto_initialization = 0
 
 " syntastic                                                                 {{{2
 " ------------------------------------------------------------------------------
