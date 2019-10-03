@@ -1,84 +1,19 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
-;; Updated 2019-09-24.
+;; Updated 2019-10-03.
 ;;
 ;; Spacemacs cheatsheet:
 ;; https://steinbaugh.com/posts/spacemacs.html
 ;;
 ;; |command          | action                      |
 ;; |-----------------|-----------------------------|
-;; | SPC f e D       | Diff config against default |
-;; | SPC f e R       | Reload config               |
 ;; | SPC f s         | Save/write                  |
 ;; | SPC q q         | Quit                        |
-;; | SPC f f         | File browser                |
-;; | SPC w           | Split window horizontally   |
-;; | SPC w /         | Split window vertically     |
-;; | SPC w p m       | Messages buffer             |
-;; | SPC 1           | Switch to window 1          |
-;; | SPC 2           | Switch to window 2          |
-;; | SPC t n         | Toggle line numbers         |
-;; | SPC t f         | Toggle fill (margin) column |
-;; | SPC t w         | Toggle whitespace           |
-;; | M-x R           | Launch ESS / R              |
-;; | M-x ess-version | Check ESS version           |
-;;
-;; Using evil code folding mode:
-;;
-;; | cmd | action            |
-;; |-----|-------------------|
-;; | za  | toggle visibility |
-;; | zc  | close             |
-;; | zo  | open              |
-;; | zm  | close all         |
-;; | zr  | open all          |
-;;
-;; Manually update spacemacs (in shell):
-;; > ( cd ~/.emacs.d; git pull --rebase )
-;;
-;; TRAMP (Transparent Remove Access, Multiple Protocols) is a package for
-;; editing remote files from within emacs.
-;; https://www.gnu.org/software/tramp/
-;; https://medium.com/@Drowzy/tramp-in-spacemacs-ef82b9e703ee
-;;
-;; Right margin indicator.
-;; Use `M-q' to automatically fill paragraphs to fill-column value.
-;; Refer to `turn-on-fci-mode', `fill-column' for details.
-;;
-;; Troubleshooting:
-;;
-;; Fix for org-projectile warning:
-;; Error (use-package): org-projectile/:config: Symbol’s function definition is
-;; void: org-projectile:per-repo
-;; > rm -fv ~/.emacs.d/elpa/org-projectile-*/org-projectile.elc
-;;
-;; Leave JSON layer disabled by default.
-;; Fails on clean install: 'Unknown layer json declared in dotfile.'
-;;
-;; See also:
-;; - Beginner's tutorial
-;;   https://github.com/syl20bnr/spacemacs/blob/master/doc/BEGINNERS_TUTORIAL.org
-;; - An introduction to Spacemacs
-;;   https://spin.atomicobject.com/2016/08/30/introduction-to-spacemacs/
-;; - Actually getting spacemacs to do stuff
-;;   http://paul-gowder.com/emacs.html
-;; - Default template
-;;   https://github.com/syl20bnr/spacemacs/blob/master/core/templates/.spacemacs.template
-;; - shell layer
-;;   https://github.com/syl20bnr/spacemacs/tree/master/layers/%2Btools/shell
-;; - ess layer
-;;   https://github.com/syl20bnr/spacemacs/tree/master/layers/%2Blang/ess
-;; - Right margin indicator
-;;   https://github.com/syl20bnr/spacemacs/issues/4856#issuecomment-176650964
-;;
-;; Reference dotfiles:
-;; - https://github.com/roryk/dotfiles/blob/master/spacemacs
-;; - https://github.com/mattnedrich/spacemacs-configuration/blob/master/.spacemacs
-;; - https://github.com/practicalli/spacemacs-config/blob/master/.spacemacs
-;; - https://github.com/jsmestad/dfiles/blob/master/.spacemacs.d/init.el
-;; - https://gist.github.com/benmarwick/ee0f400b14af87a57e4a
-;; - https://github.com/yousufinternet/config-files/blob/master/.spacemacs
+;; | SPC f e R       | Reload config               |
+;; | SPC f e D       | Diff config against default |
+
+
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
@@ -142,13 +77,19 @@ values."
      emacs-lisp
      (ess :variables
           ;; Manual: https://ess.r-project.org/Manual/ess.html
-          ;; Customize pop out settings in shell section.
+          ;; Customize pop out settings in shell section (see below).
+          ;; > ess-style 'RStudio
+          ;; > inferior-R-program-name "/usr/local/bin/R"
           ess-ask-for-ess-directory nil
+          ess-default-style 'DEFAULT
           ess-eval-visibly-p nil
           ess-fancy-comments nil
+          ess-history-file nil
+          ess-indent-level 4
           ess-indent-with-fancy-comments nil
           ess-language "R"
-          ess-style 'RStudio
+          ess-nuke-trailing-whitespace-p t
+          ess-roxy-str "#'"
           ess-use-flymake t
           inferior-R-args "--no-restore --no-save")
      html
@@ -162,10 +103,11 @@ values."
            ruby-version-manager 'rbenv)
      rust
      (shell :variables
-            ;; > shell-default-position 'right
-            ;; > shell-default-width 80
-            shell-default-position 'bottom
-            shell-default-height 30)
+            ;; Assuming widescreen window configuration.
+            ;; > shell-default-position 'bottom
+            ;; > shell-default-height 30
+            shell-default-position 'right
+            shell-default-width 80)
      vimscript
      yaml
      ;; > (c-c++ :variables
@@ -220,6 +162,9 @@ values."
      ;; > find ~/.emacs.d/elpa/org-projectile-*/ -name "*elc" -delete
      ;; https://github.com/syl20bnr/spacemacs/issues/9374
      org-projectile
+     ;; Disable auto-completion of parentheses and quotes.
+     ;; This drives me nuts otherwise.
+     smartparens
      )
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -467,7 +412,7 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers t
+   dotspacemacs-line-numbers nil
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil

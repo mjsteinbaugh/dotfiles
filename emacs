@@ -1,10 +1,11 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Emacs at startup.
 ;; It must be stored in your home directory.
-;; Updated 2019-09-19.
+;; Updated 2019-10-03.
 ;;
 ;; This configuration is intended for a minimal ESS installation.
 ;; Consider using spacemacs instead when managing multiple plugins.
+;; Assuming use of Emacs 26.3+ here.
 ;;
 ;; | emacs | meaning | keystroke  |
 ;; |-------|---------|------------|
@@ -16,9 +17,17 @@
 ;; | C-x C-s | save   |
 ;; | C-x C-c | quit   |
 ;;
-;; Packages ====================================================================
-;; Install packages (e.g. from MELPA).
-;; See also: https://melpa.org/
+;; See also:
+;; - https://steinbaugh.com/posts/spacemacs.html
+;; - https://gist.github.com/mikelove/b0f4eb15a21387ddb534
+
+
+
+;; MELPA                                                                     {{{1
+;; ==============================================================================
+
+;; Enable package installs from MELPA.
+;; https://melpa.org/
 ;;
 ;; > M-x list-packages
 ;; > M-x package-refresh-contents
@@ -31,74 +40,157 @@
 ;; Get a list of activated packages.
 ;; https://stackoverflow.com/questions/13866848
 ;; > C-h v package-activated-list
-;;
-;; ESS / R =====================================================================
-;; Manual: https://ess.r-project.org/Manual/ess.html
-;; See also: https://github.com/acidgenomics/dotfiles/blob/master/spacemacs
-;; Launch R: M-x R
-;; Check ESS version: M-x ess-version
 
-;; Enable MELPA.
-;; https://melpa.org/#/getting-started
 (require 'package)
-(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-                    (not (gnutls-available-p))))
-       (proto (if no-ssl "http" "https")))
-  (when no-ssl
-    (warn "\
-Your version of Emacs does not support SSL connections,
-which is unsafe because it allows man-in-the-middle attacks.
-There are two things you can do about this warning:
-1. Install an Emacs version that does support SSL and be safe.
-2. Remove this warning from your init file so you won't see it again."))
-  ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
-  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
-  ;;(add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
-  (when (< emacs-major-version 24)
-    ;; For important compatibility libraries like cl-lib
-    (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
-;; Custom
-(custom-set-variables
- '(diff-switches "-u")
- '(require-final-newline t)
- '(package-selected-packages (quote (ess))))
-(custom-set-faces
- )
 
-;; Default dark theme.
+
+;; General                                                                   {{{1
+;; ==============================================================================
+
+;; > (global-linum-mode t)
+(delete-selection-mode 1)
+(display-time-mode 1)
+(show-paren-mode 1)
+
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+
+;; > (global-set-key "\C-x\C-b" 'electric-buffer-list)
+;; > (global-unset-key (kbd "\C-t"))
+;; > (global-unset-key (kbd "\C-x DEL"))
+
+(setq
+ inhibit-startup-screen t
+ org-startup-folded nil
+ ring-bell-function 'ignore
+ scroll-conservatively 1000
+ show-paren-delay 0)
+
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'reverse)
+
+
+
+;; Theme                                                                     {{{1
+;; ==============================================================================
+
+;; Default dark themes:
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Custom-Themes.html
 ;; - manoj-dark
 ;; - tango-dark
 ;; - tsdh-dark
 ;; > (load-theme 'tsdh-dark t)
 
-;; Dracula theme.
+;; Dracula theme:
 ;; https://draculatheme.com/emacs/
 ;; Install: M-x package-install <RET> dracula-theme
 ;; > (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 ;; > (load-theme 'dracula t)
+;; > (customize-set-variable 'frame-background-mode 'dark)
 
-;; See matching pairs of parentheses and other characters.
-(setq-default show-paren-delay 0)
-(show-paren-mode 1)
 
-;; ESS configuration.
-;; https://ess.r-project.org/
+
+;; Version control                                                           {{{1
+;; ==============================================================================
+
+(setq
+ ;; Use version numbers for backups.
+ version-control t
+ vc-make-backup-files t
+ ;; Copy all files, don't rename them.
+ backup-by-copying t
+ ;; Set the backup directory path.
+ backup-directory-alist '(("" . "~/emacs-backup"))
+ ;; Don't ask to delete excess backup versions.
+ delete-old-versions t
+ ;; Number of newest versions to keep.
+ kept-new-versions 10
+ ;; Number of oldest versions to keep.
+ kept-old-versions 0)
+
+
+
+;; ESS / R                                                                   {{{1
+;; ==============================================================================
+
 ;; Install: M-x package-install <RET> ess
+;; Launch R: M-x R
+;; Check ESS version: M-x ess-version
+;;
+;; See also:
+;; - https://ess.r-project.org/
+;; - https://ess.r-project.org/Manual/ess.html
+;; - https://github.com/acidgenomics/dotfiles/blob/master/spacemacs
+;;
+;; Enable local user install:
+;; > (load "~/emacs/ess-XX.XX/lisp/ess-site")
+
 (require 'ess-site)
+;; Configure ESS to use R by default.
 (defun ess-set-language ()
   (setq-default ess-language "R")
   (setq ess-language "R")
   )
 (add-hook 'ess-post-run-hook 'ess-set-language t)
-(setq-default
- ;; inferior-R-program-name "/usr/local/bin/R"
+
+;; Disable use of underscore for assignment operator.
+(ess-toggle-underscore nil)
+
+(setq
+ ;; > ess-style 'RStudio
+ ;; > inferior-R-program-name "/usr/local/bin/R"
  ess-ask-for-ess-directory nil
+ ess-default-style 'DEFAULT
  ess-eval-visibly-p nil
+ ess-history-file nil
+ ess-indent-level 4
  ess-indent-with-fancy-comments nil
  ess-language "R"
- ess-style 'RStudio
- inferior-R-args "--no-restore --no-save"
+ ess-nuke-trailing-whitespace-p t
+ ess-roxy-str "#'"
+ inferior-R-args "--no-restore --no-save")
+
+;; R coding standards for ESS
+;; https://cran.r-project.org/doc/manuals/R-ints.html#R-coding-standards
+(add-hook 'ess-mode-hook
+          (lambda ()
+            (ess-set-style 'C++ 'quiet)
+            ;; Because
+            ;;                                 DEF GNU BSD K&R C++
+            ;; ess-indent-level                  2   2   8   5   4
+            ;; ess-continued-statement-offset    2   2   8   5   4
+            ;; ess-brace-offset                  0   0  -8  -5  -4
+            ;; ess-arg-function-offset           2   4   0   0   0
+            ;; ess-expression-offset             4   2   8   5   4
+            ;; ess-else-offset                   0   0   0   0   0
+            ;; ess-close-brace-offset            0   0   0   0   0
+            (add-hook 'local-write-file-hooks
+                      (lambda ()
+                        (ess-nuke-trailing-whitespace)))))
+(setq
+ c-basic-offset 4
+ c-default-style 'bsd)
+
+;; Disable `C-c C-c' ess-eval-buffer.
+;; > (add-hook 'ess-mode-hook
+;; >           '(lambda () (define-key ess-mode-map "\C-c\C-c" nil)))
+
+;; Enforce 4 spaces instead of 2.
+;; > (defun myindent-ess-hook ()
+;; >   (setq ess-indent-level 4))
+;; > (add-hook 'ess-mode-hook 'myindent-ess-hook)
+
+
+
+;; Custom                                                                    {{{1
+;; ==============================================================================
+
+(custom-set-variables
+ '(diff-switches "-u")
+ '(require-final-newline t)
+ '(package-selected-packages (quote (ess))))
+(custom-set-faces
  )
