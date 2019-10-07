@@ -1,5 +1,5 @@
-# Git ignore global rules
-# Updated 2019-09-04.
+# Git ignore global rules.
+# Updated 2019-10-06.
 
 
 
@@ -102,6 +102,11 @@ tmp/
 tmp_*/
 
 
+
+# Python                                                                    {{{1
+# ==============================================================================
+
+__pycache__/
 
 
 
