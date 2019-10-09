@@ -1,5 +1,5 @@
 " Vim configuration
-" Updated 2019-09-23.
+" Updated 2019-10-07.
 "
 " See also:
 " - https://www.vim.org
@@ -428,13 +428,13 @@ let g:syntastic_check_on_wq = 0
 
 " Python
 " > let g:syntastic_python_checkers = ['flake8']
-" > let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_python_checkers = ['pylint']
 
 " R
 " https://github.com/jimhester/lintr
 " This can be slow to load, so disable by default.
-" > let g:syntastic_enable_r_lintr_checker = 1
-" > let g:syntastic_r_checkers = ['lintr']
+let g:syntastic_enable_r_lintr_checker = 1
+let g:syntastic_r_checkers = ['lintr']
 " > let g:syntastic_r_lintr_linters = 'with_defaults(object_name_linter("camelCase"))'
 
 
