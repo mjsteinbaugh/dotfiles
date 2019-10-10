@@ -84,6 +84,7 @@ if (interactive()) {
                 package = package,
                 `no-check-R-ver` = TRUE,
                 `no-check-bioc-help` = TRUE,
+                `no-check-coding-practices` = TRUE,
                 `no-check-remotes` = TRUE,
                 `no-check-version-num` = TRUE,
                 `no-check-vignettes` = TRUE,
