@@ -74,10 +74,21 @@ if (interactive()) {
     stopifnot(isTRUE(".env" %in% search()))
     envir <- as.environment(".env")
 
+    ## Run `BiocCheck::usage()` for options.
+    ## See also Rcheck bioc-check script.
+    ## https://github.com/acidgenomics/Rcheck/blob/master/checks/bioc-check
     assign(
         x = "BiocCheck",
         value = function(package = ".", ...) {
-            BiocCheck::BiocCheck(package = package, ...)
+            BiocCheck::BiocCheck(
+                package = package,
+                `no-check-R-ver` = TRUE,
+                `no-check-bioc-help` = TRUE,
+                `no-check-remotes` = TRUE,
+                `no-check-version-num` = TRUE,
+                `no-check-vignettes` = TRUE,
+                ...
+            )
         },
         envir = envir
     )
