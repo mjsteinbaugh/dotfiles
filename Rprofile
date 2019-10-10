@@ -177,8 +177,8 @@ if (interactive()) {
     assign(
         x = "check",
         value = function() {
-            rcmdcheck::rcmdcheck()
-            BiocCheck::BiocCheck()
+            rcmdcheck()
+            BiocCheck()
         },
         envir = envir
     )
@@ -186,7 +186,7 @@ if (interactive()) {
     assign(
         x = "cd",
         value = function(...) {
-            base::setwd(...)
+            setwd(...)
         },
         envir = envir
     )
