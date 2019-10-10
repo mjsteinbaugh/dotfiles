@@ -1,5 +1,5 @@
 ## Mike's R startup profile
-## Updated 2019-09-19.
+## Updated 2019-10-09.
 
 
 
@@ -331,8 +331,10 @@ if (interactive()) {
     )
 
     ## Update installed packages.
+    ##
     ## Don't use `update()`; conflicts with `stats::update()`.
     ## Don't use `upgrade()`; conflicts with `utils::upgrade()`.
+    ##
     ## If you run into dependency compilation issues, set `ask = TRUE` or
     ## `upgrade = "ask"` (for GitHub packages).
     assign(
@@ -345,6 +347,7 @@ if (interactive()) {
             BiocManager::install(update = TRUE, ask = FALSE)
             remotes::update_packages()
             update.packages(ask = FALSE, checkBuilt = TRUE)
+            BiocManager::valid()
         },
         envir = envir
     )

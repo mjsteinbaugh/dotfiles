@@ -433,8 +433,8 @@ let g:syntastic_python_checkers = ['pylint']
 " R
 " https://github.com/jimhester/lintr
 " This can be slow to load, so disable by default.
-let g:syntastic_enable_r_lintr_checker = 1
-let g:syntastic_r_checkers = ['lintr']
+" > let g:syntastic_enable_r_lintr_checker = 1
+" > let g:syntastic_r_checkers = ['lintr']
 " > let g:syntastic_r_lintr_linters = 'with_defaults(object_name_linter("camelCase"))'
 
 
