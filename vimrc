@@ -254,18 +254,7 @@ set nobackup
 " Languages                                                                 {{{1
 " ==============================================================================
 
-" Flag extra whitespace.
-" This will mark extra whitespace as bad and probably color it red.
-au BufRead,BufNewFile *.R,*.py,*.sh
-    \ match BadWhitespace /\s\+$/
-
-" HTML / CSS                                                                {{{2
-" ------------------------------------------------------------------------------
-
-au BufNewFile,BufRead *.css, *.html
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
+syntax on
 
 " Python                                                                    {{{2
 " ------------------------------------------------------------------------------
@@ -283,34 +272,14 @@ au BufNewFile,BufRead *.css, *.html
 " - jedi
 "   https://github.com/davidhalter/jedi
 
-au BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set textwidth=79
-    \ set expandtab
-    \ set autoindent
-    \ set fileformat=unix
-
-" virtualenv support.
-" > py << EOF
-" > import os
-" > import sys
-" > if 'VIRTUAL_ENV' in os.environ:
-" >   project_base_dir = os.environ['VIRTUAL_ENV']
-" >   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-" >   execfile(activate_this, dict(__file__=activate_this))
-" > EOF
-
 let python_highlight_all=1
-syntax on
 
 
 
 " Plugins                                                                   {{{1
 " ==============================================================================
 
-" NERDTree
+" NERDTree                                                                  {{{2
 " ------------------------------------------------------------------------------
 
 " Consider using nerdtree-git-plugin.
@@ -323,8 +292,8 @@ map <C-n> :NERDTreeToggle<CR>
 " > autocmd vimenter * NERDTree
 
 " Open a NERDTree automatically when vim starts up if no files were specified.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" > autocmd StdinReadPre * let s:std_in=1
+" > autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Open NERDTree automatically when vim starts up on opening a directory.
 autocmd StdinReadPre * let s:std_in=1
@@ -525,6 +494,11 @@ let R_assign=0
 " > let g:jedi#use_splits_not_buffers="left"
 " > let g:jedi#use_tabs_not_buffers=1
 
+" python-mode                                                               {{{2
+" ------------------------------------------------------------------------------
+
+let g:pymode_python = 'python3'
+
 " syntastic                                                                 {{{2
 " ------------------------------------------------------------------------------
 
@@ -576,5 +550,6 @@ endif
 " ==============================================================================
 
 " Disable modeline.
-" https://github.com/numirias/security/blob/master/doc/2019-06-04_ace-vim-neovim.md
+" https://github.com/numirias/security/blob/master/doc/
+"     2019-06-04_ace-vim-neovim.md
 set nomodeline
