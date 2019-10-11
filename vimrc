@@ -1,5 +1,5 @@
-" Vim configuration
-" Updated 2019-10-07.
+" Vim configuration.
+" Updated 2019-10-11.
 "
 " See also:
 " - https://www.vim.org
@@ -30,6 +30,9 @@ set backspace=indent,eol,start
 " Text formatting                                                           {{{1
 " ==============================================================================
 
+" Always enforce UTF-8.
+set encoding=utf-8
+
 " Wrapping and margins                                                      {{{2
 " ------------------------------------------------------------------------------
 
@@ -37,12 +40,12 @@ set backspace=indent,eol,start
 " Use nowrap to disable.
 set wrap
 
-" Set the text line wrapping width.
-" Note that this will add line breaks, which can be annoying.
-" May want to enable this for specific file types instead.
+" Enable hard line wrapping width.
+" Can be generally annoying.
+" Consider enabling for specific file types instead.
 " > set textwidth=80
 
-" Here's how to disable automatic line breaks.
+" Disable automatic line breaks.
 " https://stackoverflow.com/questions/2280030
 set textwidth=0
 set wrapmargin=0
@@ -52,7 +55,6 @@ set wrapmargin=0
 " Added in Vim 7.3.
 " https://stackoverflow.com/questions/2182427
 set colorcolumn=80
-
 
 " Spaces and tabs                                                           {{{2
 " ------------------------------------------------------------------------------
@@ -92,7 +94,6 @@ set expandtab
 " Replace all the tabs with spaces in the entire file with:
 " > :%retab
 
-
 " Whitespace                                                                {{{2
 " ------------------------------------------------------------------------------
 
@@ -106,7 +107,6 @@ endif
 
 " Whitespace indicators.
 if has("multi_byte")
-    set encoding=utf-8
     set list listchars=tab:»·,trail:·
 else
     set list listchars=tab:>-,trail:.
@@ -116,6 +116,27 @@ endif
 
 " Navigation                                                                {{{1
 " ==============================================================================
+
+" Window management                                                         {{{2
+" ------------------------------------------------------------------------------
+
+set splitbelow
+set splitright
+
+" Split navigation keys:
+"
+" - Ctrl+J move to the split below
+" - Ctrl+K move to the split above
+" - Ctrl+L move to the split to the right
+" - Ctrl+H move to the split to the left
+"
+" In other words, press Ctrl plus the standard VIM movement key to move to a
+" specific pane.
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " Interface elements                                                        {{{2
 " ------------------------------------------------------------------------------
@@ -137,7 +158,6 @@ set ruler
 set wildmenu
 set wildmode=list:longest,full
 
-
 " Line numbers                                                              {{{2
 " ------------------------------------------------------------------------------
 
@@ -147,7 +167,6 @@ set wildmode=list:longest,full
 " Disable line numbers.
 " Using this currently because it's easier to paste on Windows with tmux.
 set nonumber
-
 
 " Search (matching)                                                         {{{2
 " ------------------------------------------------------------------------------
@@ -159,7 +178,6 @@ set incsearch
 
 " Highlight matches.
 set showmatch
-
 
 " Mouse integration                                                         {{{2
 " ------------------------------------------------------------------------------
@@ -173,16 +191,19 @@ set showmatch
 " Disable mouse integration.
 set mouse=
 
-
 " Folding                                                                   {{{2
 " ------------------------------------------------------------------------------
 
+" The alternative 'indent' method creates too many folds by default.
 set foldmethod=marker
 
 " Disable collapsed folds by default.
 " https://stackoverflow.com/questions/8316139
 " Restore folds with `zc`.
 set nofoldenable
+
+" Enable folding with the spacebar.
+" > nnoremap <space> za
 
 " Completely disable Markdown-specific code folding.
 " > let g:vim_markdown_folding_disabled=1
@@ -191,6 +212,12 @@ set nofoldenable
 " > let g:vim_markdown_override_foldtext=0
 let g:vim_markdown_folding_level=2
 
+" SimpylFold mode (useful for Python IDE).
+" https://github.com/tmhedberg/SimpylFold
+" > set foldmethod=indent
+" > set foldlevel=99
+" > let g:SimpylFold_docstring_preview=1
+
 
 
 " Colors                                                                    {{{1
@@ -198,7 +225,6 @@ let g:vim_markdown_folding_level=2
 
 packadd! dracula-theme
 colorscheme dracula
-
 
 " Enable syntax highlighting.
 syntax on
@@ -222,6 +248,62 @@ set nobackup
 " Disable the swap file, if desired.
 " This also creates FS cruft but is useful for recovery.
 " > set noswapfile
+
+
+
+" Languages                                                                 {{{1
+" ==============================================================================
+
+" Flag extra whitespace.
+" This will mark extra whitespace as bad and probably color it red.
+au BufRead,BufNewFile *.R,*.py,*.sh
+    \ match BadWhitespace /\s\+$/
+
+" HTML / CSS                                                                {{{2
+" ------------------------------------------------------------------------------
+
+au BufNewFile,BufRead *.css, *.html
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+
+" Python                                                                    {{{2
+" ------------------------------------------------------------------------------
+
+" See also:
+" - https://realpython.com/vim-and-python-a-match-made-in-heaven/
+" - syntastic
+"   https://github.com/vim-syntastic/syntastici
+" - pylint
+"   https://www.pylint.org/
+" - SimpylFold
+"   https://github.com/tmhedberg/SimpylFold
+" - YouCompleteMe
+"   https://github.com/ycm-core/YouCompleteMe
+" - jedi
+"   https://github.com/davidhalter/jedi
+
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set textwidth=79
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
+
+" virtualenv support.
+" > py << EOF
+" > import os
+" > import sys
+" > if 'VIRTUAL_ENV' in os.environ:
+" >   project_base_dir = os.environ['VIRTUAL_ENV']
+" >   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+" >   execfile(activate_this, dict(__file__=activate_this))
+" > EOF
+
+let python_highlight_all=1
+syntax on
 
 
 
@@ -379,8 +461,7 @@ set nobackup
 " Disable `_` to `<-`, which is ridiculous.
 " > let vimrplugin_assign = 0
 " https://stackoverflow.com/questions/44529713
-let R_assign = 0
-
+let R_assign=0
 
 " airline                                                                   {{{2
 " ------------------------------------------------------------------------------
@@ -389,26 +470,25 @@ let R_assign = 0
 " https://github.com/edkolev/tmuxline.vim
 
 " Tab line.
-" > let g:airline#extensions#tabline#enabled = 1
-" > let g:airline#extensions#tabline#formatter = 'default'
-" > let g:airline#extensions#tabline#left_alt_sep = '|'
-" > let g:airline#extensions#tabline#left_sep = ' '
-
+" > let g:airline#extensions#tabline#enabled=1
+" > let g:airline#extensions#tabline#formatter='default'
+" > let g:airline#extensions#tabline#left_alt_sep='|'
+" > let g:airline#extensions#tabline#left_sep=' '
 
 " jedi-vim                                                                  {{{2
 " ------------------------------------------------------------------------------
 
-" This plugin freaks out in an active conda environment. Edit Python scripts
-" using spacemacs instead.
+" This plugin freaks out in an active conda environment.
 
-" > let g:jedi#auto_vim_configuration = 1
-" > let g:jedi#completions_enabled = 0
-" > let g:jedi#popup_on_dot = 0
-" > let g:jedi#popup_select_first = 1
-" > let g:jedi#show_call_signatures = 1
-" > let g:jedi#use_splits_not_buffers = "left"
-" > let g:jedi#use_tabs_not_buffers = 1
-let g:jedi#auto_initialization = 0
+" > let g:jedi#auto_initialization=0
+" > let g:jedi#auto_vim_configuration=1
+
+" > let g:jedi#completions_enabled=0
+" > let g:jedi#popup_on_dot=0
+" > let g:jedi#popup_select_first=1
+" > let g:jedi#show_call_signatures=1
+" > let g:jedi#use_splits_not_buffers="left"
+" > let g:jedi#use_tabs_not_buffers=1
 
 " syntastic                                                                 {{{2
 " ------------------------------------------------------------------------------
@@ -420,22 +500,21 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-" > let g:syntastic_aggregate_errors = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" > let g:syntastic_aggregate_errors=1
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=0
 
 " Python
-" > let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_python_checkers=['flake8', 'pylint']
 
 " R
 " https://github.com/jimhester/lintr
 " This can be slow to load, so disable by default.
-" > let g:syntastic_enable_r_lintr_checker = 1
-" > let g:syntastic_r_checkers = ['lintr']
-" > let g:syntastic_r_lintr_linters = 'with_defaults(object_name_linter("camelCase"))'
+" > let g:syntastic_enable_r_lintr_checker=1
+" > let g:syntastic_r_checkers=['lintr']
+" > let g:syntastic_r_lintr_linters='with_defaults(object_name_linter("camelCase"))'
 
 
 
