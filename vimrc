@@ -1,14 +1,41 @@
 " Vim configuration.
-" Updated 2019-10-11.
-"
-" See also:
-" - https://www.vim.org
-" - https://steinbaugh.com/posts/vim.html
-" - https://github.com/MikeMcQuaid/dotfiles/blob/master/vimrc
-" - https://gist.github.com/nerdalert/5f80853b4e195204bc6d
-"
+" Updated 2019-10-13.
+
+
+
+" Notes                                                                     {{{1
+" ==============================================================================
+
+" Useful help:
+" :help myvimrc
+" :help local-options
+" :help setlocal
+" :help map-local
+
+" Vim calls the "prefix" key the "leader".
+
+" Vim has a second "leader" key called "local leader". This is meant to be a
+" prefix for mappings that only take effect for certain types of files, like
+" Python files or HTML files.
+
+" You can be more specific about when you want mappings to apply by using nmap,
+" vmap, and imap. These tell Vim to only use the mapping in normal, visual, or
+" insert mode respectively.
+
+" Each of the *map commands has a *noremap counterpart that ignores other
+" mappings: noremap, nnoremap, vnoremap, and inoremap. Always use these
+" nonrecursive variants when defining custom mappings.
+
+" There are a bunch of keys that you don't normally need in normal mode:
+" * -
+" * <bs>
+" * <cr>
+" * <space>
+" * H
+" * L
+
 " Use 'finish' inside if/else conditional to early return.
-"
+
 " Version specific conditionals:
 " > if v:version >= 800
 " >     set background=dark
@@ -16,14 +43,95 @@
 " >     set background=light
 " > endif
 
+" Useful local options:
+" > :setlocal wrap
+" > :setlocal nowrap
+" > :setlocal wrap!
+" > :setlocal number
+" > :setlocal nonumber
+" > :setlocal number!
+
+" See also:
+" - https://www.vim.org
+" - https://steinbaugh.com/posts/vim.html
+" - http://learnvimscriptthehardway.stevelosh.com/
+" - https://github.com/MikeMcQuaid/dotfiles/blob/master/vimrc
+" - https://gist.github.com/nerdalert/5f80853b4e195204bc6d
 
 
-" Keyboard                                                                  {{{1
+
+" Key mappings (bindings)                                                   {{{1
 " ==============================================================================
+
+let mapleader = "a"
+let maplocalleader = "\\"
 
 " Fix backspace key to work as expected.
 " https://unix.stackexchange.com/a/307974
 set backspace=indent,eol,start
+
+" Normal mode                                                               {{{2
+" ------------------------------------------------------------------------------
+
+" Edit my vimrc file.
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+
+" Source my vimrc file.
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" Add blank line without entering insert mode.
+nnoremap <enter> o<esc>
+" > nnoremap <s-enter> O<esc>
+
+" Enable code fold toggling with the spacebar.
+nnoremap <space> za
+
+" Delete line using leader prefix mapping.
+nnoremap <leader>d dd
+
+" Split navigation keys:
+"
+" - Ctrl+J move to the split below
+" - Ctrl+K move to the split above
+" - Ctrl+L move to the split to the right
+" - Ctrl+H move to the split to the left
+"
+" In other words, press Ctrl plus the standard VIM movement key to move to a
+" specific pane.
+
+nnoremap <c-j> <c-w><c-j>
+nnoremap <c-k> <c-w><c-k>
+nnoremap <c-l> <c-w><c-l>
+nnoremap <c-h> <c-w><c-h>
+
+" Surround current word in single quotes.
+nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
+
+" Surround current word in double quotes.
+nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
+
+" Insert mode                                                               {{{2
+" ------------------------------------------------------------------------------
+
+" Escape from insert mode without stretching to hit Esc key.
+inoremap jk <esc>
+
+" Delete line in insert mode using Ctrl+d.
+inoremap <c-d> <esc>ddi
+
+" Muscle memory                                                             {{{2
+" ------------------------------------------------------------------------------
+
+" Enforce muscle memory of HJKL instead of arrow keys.
+" It's better practice to escape back to normal mode and navigate there.
+" Note that this will break trackpad and can do weird things on macOS.
+" > noremap <up> <nop>
+" > noremap <down> <nop>
+" > noremap <left> <nop>
+" > noremap <right> <nop>
+
+" Enforce muscle memory of JK exit instead of Esc.
+" > inoremap <esc> <nop>
 
 
 
@@ -123,21 +231,6 @@ endif
 set splitbelow
 set splitright
 
-" Split navigation keys:
-"
-" - Ctrl+J move to the split below
-" - Ctrl+K move to the split above
-" - Ctrl+L move to the split to the right
-" - Ctrl+H move to the split to the left
-"
-" In other words, press Ctrl plus the standard VIM movement key to move to a
-" specific pane.
-
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
 " Interface elements                                                        {{{2
 " ------------------------------------------------------------------------------
 
@@ -201,9 +294,6 @@ set foldmethod=marker
 " https://stackoverflow.com/questions/8316139
 " Restore folds with `zc`.
 set nofoldenable
-
-" Enable folding with the spacebar.
-" > nnoremap <space> za
 
 " Completely disable Markdown-specific code folding.
 " > let g:vim_markdown_folding_disabled=1
