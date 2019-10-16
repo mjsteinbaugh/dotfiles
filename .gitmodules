@@ -64,3 +64,9 @@
 	# https://github.com/vim-syntastic/syntastic.git
 	path = vim/pack/dist/start/syntastic
     url = https://github.com/mjsteinbaugh/dotfiles-vim-syntastic.git
+
+# > [submodule "vim/pack/dist/start/virtualenv"]
+# > 	# vim-virtualenv
+# > 	# https://github.com/jmcantrell/vim-virtualenv.git
+# > 	path = vim/pack/dist/start/virtualenv
+# > 	url = https://github.com/mjsteinbaugh/dotfiles-vim-virtualenv.git

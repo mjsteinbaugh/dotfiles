@@ -123,7 +123,7 @@
 ;; See also:
 ;; - https://ess.r-project.org/
 ;; - https://ess.r-project.org/Manual/ess.html
-;; - https://github.com/acidgenomics/dotfiles/blob/master/spacemacs
+;; - https://github.com/mjsteinbaugh/dotfiles/blob/master/spacemacs
 ;;
 ;; Enable local user install:
 ;; > (load "~/emacs/ess-XX.XX/lisp/ess-site")
