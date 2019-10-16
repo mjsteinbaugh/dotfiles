@@ -1,7 +1,7 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Emacs at startup.
 ;; It must be stored in your home directory.
-;; Updated 2019-10-03.
+;; Updated 2019-10-16.
 ;;
 ;; This configuration is intended for a minimal ESS installation.
 ;; Consider using spacemacs instead when managing multiple plugins.
