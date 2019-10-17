@@ -243,7 +243,7 @@ if (interactive()) {
     assign(
         x = "installedPackages",
         value = function(...) {
-            bb8::installedPackges(...)
+            bb8::installedPackages(...)
         },
         envir = envir
     )
