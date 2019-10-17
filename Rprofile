@@ -385,7 +385,8 @@ if (interactive()) {
         x = "update_packages",
         value = function(..., upgrade = "ask") {
             remotes::update_packages(..., upgrade = upgrade)
-        }
+        },
+        envir = envir
     )
 
     assign(
