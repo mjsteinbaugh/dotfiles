@@ -1,5 +1,5 @@
 ## Mike's R startup profile
-## Updated 2019-10-09.
+## Updated 2019-10-17.
 
 
 
@@ -241,9 +241,25 @@ if (interactive()) {
     )
 
     assign(
+        x = "installedPackages",
+        value = function(...) {
+            bb8::installedPackges(...)
+        },
+        envir = envir
+    )
+
+    assign(
         x = "install_github",
         value = function(..., upgrade = "never") {
             remotes::install_github(..., upgrade = upgrade)
+        },
+        envir = envir
+    )
+    
+    assign(
+        x = "lint_dir",
+        value = function(...) {
+            lintr::lint_dir(...)
         },
         envir = envir
     )
