@@ -41,37 +41,11 @@ options(
 
 
 
-## acidverse                                                                {{{1
-## =============================================================================
-
-## Easy read-write into dated subdirectories, for improved data provenance.
-## > options(acid.save.ext = "rds")
-## > options(
-## >     acid.save.dir = file.path(
-## >         getOption("acid.save.ext"),
-## >         Sys.Date()
-## >     )
-## > )
-## > options(acid.load.dir = getOption("acid.save.dir"))
-
-## Enable this for more thorough unit testing.
-## > options(acid.test.extra = TRUE)
-
-## Enable this for more verbose code debugging.
-## > options(
-## >     goalie.traceback = TRUE
-## > )
-
-
-
 ## Interactive                                                              {{{1
 ## =============================================================================
 
-## Assign shortcuts and session information to a hidden environment.
-## Custom functions are to be saved in bb8 package instead of here.
-
 if (interactive()) {
-    ## Load bb8 sidekick package by default.
+    ## Load bb8 functions and reexports by default.
     options(defaultPackages = c(getOption("defaultPackages"), "bb8"))
 
     ## Alternatively, here's how to load bb8 functions into hidden environment.
@@ -101,4 +75,15 @@ if (interactive()) {
     ## >     }
     ## > ))
     ## > rm(envir)
+
+    ## Easy read-write into dated subdirectories, for improved data provenance.
+    options(acid.save.ext = "rds")
+    options(acid.save.dir = file.path(getOption("acid.save.ext"), Sys.Date()))
+    options(acid.load.dir = getOption("acid.save.dir"))
+
+    ## Enable this for more thorough unit testing.
+    options(acid.test.extra = TRUE)
+
+    ## Enable this for more verbose code debugging.
+    options(goalie.traceback = TRUE)
 }
