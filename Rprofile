@@ -1,14 +1,14 @@
 ## Mike's R startup profile
-## Updated 2019-10-20.
+## Updated 2019-10-22.
 
 
 
 ## Load shared profile                                                      {{{1
 ## =============================================================================
 
-## This will be handled automatically when `Rprofile.site` file is installed.
+## This will be handled automatically when 'Rprofile.site' file is installed.
 ## Otherwise, we're providing fall back support here for local installations,
-## when koopa is installed at `~/.local/share/koopa`.
+## when koopa is installed at '~/.local/share/koopa'.
 
 if (!isTRUE(getOption("rprofile.site"))) {
     file <- file.path(
