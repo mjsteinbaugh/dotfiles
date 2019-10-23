@@ -1,5 +1,5 @@
 ## Mike's R startup profile
-## Updated 2019-10-22.
+## Updated 2019-10-23.
 
 
 
@@ -9,6 +9,9 @@
 ## This will be handled automatically when 'Rprofile.site' file is installed.
 ## Otherwise, we're providing fall back support here for local installations,
 ## when koopa is installed at '~/.local/share/koopa'.
+
+## Note that some useful functions and globals (e.g. seed) are defined in a
+## hidden environment named ".env".
 
 if (!isTRUE(getOption("rprofile.site"))) {
     file <- file.path(
@@ -45,45 +48,26 @@ options(
 ## =============================================================================
 
 if (interactive()) {
-    ## Load bb8 functions and reexports by default.
-    options(defaultPackages = c(getOption("defaultPackages"), "bb8"))
+    if (.isInstalled("bb8")) {
+        options(
+            defaultPackages = c(getOption("defaultPackages"), "bb8")
+        )
+    }
 
-    ## Alternatively, here's how to load bb8 functions into hidden environment.
-    ## > stopifnot(isTRUE(".env" %in% search()))
-    ## > envir <- as.environment(".env")
-    ## > x <- utils::read.table(
-    ## >     file = system.file("NAMESPACE", package = "bb8"),
-    ## >     stringsAsFactors = FALSE
-    ## > )
-    ## > x <- sub("^export\\((.+)\\)$", "\\1", x[[1L]])
-    ## > invisible(lapply(
-    ## >     X = x,
-    ## >     FUN = function(x) {
-    ## >         assign(
-    ## >             x = x,
-    ## >             value = function(...) {
-    ## >                 fun <- get(
-    ## >                     x = x,
-    ## >                     envir = asNamespace("bb8"),
-    ## >                     inherits = TRUE
-    ## >                 )
-    ## >                 stopifnot(is.function(fun))
-    ## >                 fun(...)
-    ## >             },
-    ## >             envir = envir
-    ## >         )
-    ## >     }
-    ## > ))
-    ## > rm(envir)
+    if (.isInstalled("basejump")) {
+        options(
+            acid.save.ext = "rds",
+            acid.test.extra = TRUE
+        )
+        options(
+            acid.save.dir = file.path(getOption("acid.save.ext"), Sys.Date())
+        )
+        options(
+            acid.load.dir = getOption("acid.save.dir")
+        )
+    }
 
-    ## Easy read-write into dated subdirectories, for improved data provenance.
-    options(acid.save.ext = "rds")
-    options(acid.save.dir = file.path(getOption("acid.save.ext"), Sys.Date()))
-    options(acid.load.dir = getOption("acid.save.dir"))
-
-    ## Enable this for more thorough unit testing.
-    options(acid.test.extra = TRUE)
-
-    ## Enable this for more verbose code debugging.
-    options(goalie.traceback = TRUE)
+    ## > if (.isInstalled("goalie")) {
+    ## >     options(goalie.traceback = TRUE)
+    ## > }
 }
