@@ -13,3 +13,4 @@ Use the [koopa](https://github.com/acidgenomics/koopa/) shell bootloader to conf
 - [jimhester's dotfiles](https://github.com/jimhester/dotfiles)
 - [vsbuffalo's dotfiles](https://github.com/vsbuffalo/dotfiles)
 - [roryk's dotfiles](https://github.com/roryk/dotfiles)
+- [nsgrantham's dotfiles](https://github.com/nsgrantham/dotfiles)
