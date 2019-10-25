@@ -6,6 +6,16 @@ Configuration files shared between machines.
 
 Use the [koopa](https://github.com/acidgenomics/koopa/) shell bootloader to configure your environment automatically.
 
+```sh
+git clone --recursive git@github.com:mjsteinbaugh/dotfiles.git
+```
+
+Update repo, including submodules:
+
+```sh
+./UPDATE.sh
+```
+
 ## See also
 
 - [Dracula theme](https://draculatheme.com/)
