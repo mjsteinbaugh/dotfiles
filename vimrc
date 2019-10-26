@@ -1,5 +1,5 @@
 " Vim configuration.
-" Updated 2019-10-13.
+" Updated 2019-10-26.
 
 
 
@@ -606,7 +606,7 @@ let g:syntastic_check_on_open=1
 let g:syntastic_check_on_wq=0
 
 " Python
-let g:syntastic_python_checkers=['flake8', 'pylint']
+let g:syntastic_python_checkers=['flake8', 'pyflakes', 'pylint']
 
 " R
 " https://github.com/jimhester/lintr
