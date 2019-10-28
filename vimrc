@@ -1,5 +1,5 @@
 " Vim configuration.
-" Updated 2019-10-26.
+" Updated 2019-10-28.
 
 
 
@@ -164,42 +164,46 @@ set wrapmargin=0
 " https://stackoverflow.com/questions/2182427
 set colorcolumn=80
 
+
 " Spaces and tabs                                                           {{{2
 " ------------------------------------------------------------------------------
 
-" Prefer spaces over tabs. Sorry, Richard Hendricks.
+" Format using spaces instead of tabs.
+
+" Legacy indent approaches:
+" > set autoindent
+" > set smartindent
 
 " See also:
-" - `:help smartindent`
+" - ':help smartindent'
 " - https://stackoverflow.com/questions/234564
 
 " Smart tab mode.
 set smarttab
 
-" Display tab (\t) visually as 4 spaces.
-" Can also set using `ts` instead of `tabstop`.
-set tabstop=4
-
-" When indenting with ">", show as 4 spaces.
-set shiftwidth=4
-
-" Tab columns will display as 4 spaces.
-set softtabstop=4
-
 " Expand (detab) tab to spaces.
 " This can be annoying when working with TSV files.
 set expandtab
 
-" Legacy method (no longer recommended).
-" > set smartindent
-" > set tabstop=4
-" > set shiftwidth=4
-" > set expandtab
+" Display tab (\t) visually as 4 spaces.
+" Can also set using `ts` instead of `tabstop`.
+set tabstop=4
 
-" Alternate detab method.
+" Tab columns will display as 4 spaces.
+set softtabstop=4
+
+" When indenting with '>', shift as 4 spaces.
+set shiftwidth=4
+
+" Entab files.
+" This is often useful for git configuration files.
+" https://stackoverflow.com/questions/9104706
+" > :set noexpandtab tabstop=4 shiftwidth=4
+" > :%retab!
+
+" Detab files.
 " https://stackoverflow.com/a/323014/3911732
-" > set expandtab ts=4 sw=4 ai
-" Replace all the tabs with spaces in the entire file with:
+" > :set expandtab tabstop=4 shiftwidth=4
 " > :%retab
 
 " Whitespace                                                                {{{2
