@@ -1,6 +1,10 @@
 # Global git configuration
 # Updated 2019-10-28.
 
+# See also:
+# - https://github.com/roryk/dotfiles/blob/master/gitconfig
+# - https://github.com/vsbuffalo/dotfiles/blob/master/.gitconfig
+
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
@@ -43,15 +47,19 @@
 [alias]
 	aa = add --all
     br = branch
+    # Using 'i' for interactive here.
     ci = commit
-	cm = commit -m
-    co = checkout
+    # Don't mask 'clean'.
 	cleanup = !git remote prune origin \
         && git gc \
         && git clean -dfx \
         && git stash clear
+	cm = commit -m
+    co = checkout
 	grog = log --graph --abbrev-commit --decorate --all
     last = log -1 HEAD
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	pr = !sh -c 'git fetch origin pull/$1/head:pr$1' -
 	shorty = status --short --branch
 	st = status -sb
