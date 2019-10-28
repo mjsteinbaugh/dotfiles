@@ -1,9 +1,20 @@
 # Global git configuration
 # Updated 2019-10-28.
 
+# oh-my-zsh will fail to clone unless these are set.
+# > git config --global fetch.fsck.zeroPaddedFilemode warn
+# > git config --global receive.fsck.zeroPaddedFilemode warn
+# > git config --global transfer.fsck.zeroPaddedFilemode warn
+# > git config --global fsck.zeroPaddedFilemode warn
+
 # See also:
 # - https://github.com/roryk/dotfiles/blob/master/gitconfig
 # - https://github.com/vsbuffalo/dotfiles/blob/master/.gitconfig
+
+
+
+# Basic																		{{{1
+# ==============================================================================
 
 [core]
 	editor = vim
@@ -11,7 +22,12 @@
 [color]
 	ui = true
 [status]
-    # > submoduleSummary = true
+	# > submoduleSummary = true
+
+
+
+# File transfers															{{{1
+# ==============================================================================
 
 [push]
 	default = simple
@@ -23,12 +39,6 @@
 [transfer]
 	fsckobjects = true
 
-# oh-my-zsh will fail to clone unless these are set.
-# > git config --global fetch.fsck.zeroPaddedFilemode warn
-# > git config --global receive.fsck.zeroPaddedFilemode warn
-# > git config --global transfer.fsck.zeroPaddedFilemode warn
-# > git config --global fsck.zeroPaddedFilemode warn
-
 [fsck]
 	zeroPaddedFilemode = warn
 [fetch "fsck"]
@@ -38,33 +48,51 @@
 [transfer "fsck"]
 	zeroPaddedFilemode = warn
 
+
+
+# Large file storage (LFS)													{{{1
+# ==============================================================================
+
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 
+
+
+# Differences																{{{1
+# ==============================================================================
+
+# This is useful for Jupyter Notebooks.
+[diff "nb2md"]
+	textconv = nb2md
+
+
+
+# Aliases																	{{{1
+# ==============================================================================
+
 [alias]
 	aa = add --all
-    br = branch
-    # Using 'i' for interactive here.
-    ci = commit
-    # Don't mask 'clean'.
+	br = branch
+	# Using 'i' for interactive here.
+	ci = commit
+	# Don't mask 'clean'.
 	cleanup = !git remote prune origin \
-        && git gc \
-        && git clean -dfx \
-        && git stash clear
+		&& git gc \
+		&& git clean -dfx \
+		&& git stash clear
 	cm = commit -m
-    co = checkout
+	co = checkout
 	grog = log --graph --abbrev-commit --decorate --all
-    last = log -1 HEAD
-    lol = log --graph --decorate --pretty=oneline --abbrev-commit
-    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	last = log -1 HEAD
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	pr = !sh -c 'git fetch origin pull/$1/head:pr$1' -
 	shorty = status --short --branch
 	st = status -sb
 	trash = checkout --
-    unstage = reset HEAD --
+	unstage = reset HEAD --
 	up = !sh -c 'git pull --rebase --prune && git log --pretty HEAD@{1}..'
 	who = shortlog -n -s --no-merges
-
