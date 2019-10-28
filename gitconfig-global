@@ -1,6 +1,12 @@
 # Global git configuration
 # Updated 2019-10-28.
 
+# Retab spaces in vim:
+# https://stackoverflow.com/questions/9104706
+# > :set tabstop=4
+# > :set noexpandtab
+# > :%retab!
+
 # oh-my-zsh will fail to clone unless these are set.
 # > git config --global fetch.fsck.zeroPaddedFilemode warn
 # > git config --global receive.fsck.zeroPaddedFilemode warn
