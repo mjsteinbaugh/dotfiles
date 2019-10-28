@@ -1,5 +1,5 @@
 # Global git configuration
-# Updated 2019-06-14.
+# Updated 2019-10-28.
 
 [core]
 	editor = vim
@@ -7,7 +7,7 @@
 [color]
 	ui = true
 [status]
-    # submoduleSummary = true
+    # > submoduleSummary = true
 
 [push]
 	default = simple
@@ -42,13 +42,21 @@
 
 [alias]
 	aa = add --all
+    br = branch
+    ci = commit
 	cm = commit -m
-	cleanup = !git remote prune origin && git gc && git clean -dfx && git stash clear
-	grog = log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\"
+    co = checkout
+	cleanup = !git remote prune origin \
+        && git gc \
+        && git clean -dfx \
+        && git stash clear
+	grog = log --graph --abbrev-commit --decorate --all
+    last = log -1 HEAD
 	pr = !sh -c 'git fetch origin pull/$1/head:pr$1' -
 	shorty = status --short --branch
 	st = status -sb
 	trash = checkout --
+    unstage = reset HEAD --
 	up = !sh -c 'git pull --rebase --prune && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
 	who = shortlog -n -s --no-merges
 
