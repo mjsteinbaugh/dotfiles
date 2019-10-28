@@ -57,6 +57,6 @@
 	st = status -sb
 	trash = checkout --
     unstage = reset HEAD --
-	up = !sh -c 'git pull --rebase --prune && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
+	up = !sh -c 'git pull --rebase --prune && git log --pretty HEAD@{1}..'
 	who = shortlog -n -s --no-merges
 
