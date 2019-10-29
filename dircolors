@@ -6,39 +6,11 @@
 # Copyright (C) 1996-2019 Free Software Foundation, Inc. Copying and
 # distribution of this file, with or without modification, are permitted
 # provided the copyright notice and this notice are preserved.
-
-
-
-# Terminals                                                                 {{{1
-# ==============================================================================
-
-# Below are TERM entries, which can be a glob patterns, to match against the
-# TERM environment variable to determine if it is colorizable.
-
-TERM Eterm
-TERM ansi
-TERM *color*
-TERM con[0-9]*x[0-9]*
-TERM cons25
-TERM console
-TERM cygwin
-TERM dtterm
-TERM gnome
-TERM hurd
-TERM jfbterm
-TERM konsole
-TERM kterm
-TERM linux
-TERM linux-c
-TERM mlterm
-TERM putty
-TERM rxvt*
-TERM screen*
-TERM st
-TERM terminator
-TERM tmux*
-TERM vt100
-TERM xterm*
+#
+# See also:
+# - http://www.bigsoft.co.uk/blog/2008/04/11/configuring-ls_colors
+# - dircolors -p
+# - dircolors -b
 
 
 
@@ -65,4 +37,42 @@ TERM xterm*
 # Below are the color init strings for the basic file types.
 # One can use codes for 256 or more colors supported by modern terminals.
 
-OTHER_WRITABLE 01;31              # dir that is other-writable (o+w) and not sticky
+# | -b | -p                    | description                                   |
+# | -- | --------------------- | --------------------------------------------- |
+# | rs | RESET                 | Reset to "normal" color                       |
+# | no | NORMAL                | Global default                                |
+# | fi | FILE                  | Normal file                                   |
+# | di | DIR                   | Directory                                     |
+# | ln | LINK                  | Symbolic link. Can use 'target'               |
+# | ex | EXEC                  | File (+x)                                     |
+# | ow | OTHER_WRITABLE        | Directory (o+w)                               |
+# | st | STICKY                | Directory (+t)                                |
+# | tw | STICKY_OTHER_WRITABLE | Directory (+t,o+w)                            |
+# | su | SETUID                | File (u+s)                                    |
+# | sg | SETGID                | File (g+s)                                    |
+# | or | ORPHAN                | Symbolic link pointing to a non-existent file |
+# | mi | MISSING               | Non-existent file pointed to by a symlink     |
+# | pi | FIFO                  | Named pipe                                    |
+# | do | DOOR                  | Door                                          |
+# | bd | BLK                   | Block device                                  |
+# | cd | CHR                   | Character device                              |
+# | so | SOCK                  | Socket                                        |
+# | lc | LEFTCODE, LEFT        | Opening terminal code                         |
+# | rc | RIGHTCODE, RIGHT      | Closing terminal code                         |
+# | ec | ENDCODE, END          | Non-filename text                             |
+
+RESET 0
+
+NORMAL 00
+FILE 00
+
+DIR 01;34
+LINK 36
+
+EXEC 01;32
+OTHER_WRITABLE 01;31
+STICKY 01;04;34
+STICKY_OTHER_WRITABLE 01;04;31
+
+ORPHAN 01;31;40
+MISSING 00
