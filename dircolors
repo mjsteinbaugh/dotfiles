@@ -8,13 +8,17 @@
 # provided the copyright notice and this notice are preserved.
 #
 # See also:
-# - http://www.bigsoft.co.uk/blog/2008/04/11/configuring-ls_colors
 # - dircolors -p
 # - dircolors -b
+# - http://www.bigsoft.co.uk/blog/2008/04/11/configuring-ls_colors
+# - https://github.com/arcticicestudio/nord-dircolors/blob/develop/src/dir_colors
+# - https://github.com/joshbenham/linux-dotfiles/blob/master/dircolors/Dracula.dircolors
+# - https://github.com/arcticicestudio/nord-dircolors
+# - https://github.com/seebi/dircolors-solarized
 
 
 
-# 8 color terminal codes                                                    {{{1
+# 8 color codes                                                             {{{1
 # ==============================================================================
 
 # The default color codes use the capabilities of an 8 color terminal with some
@@ -28,6 +32,25 @@
 
 # Background color codes:
 # 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
+
+
+
+# 256 color codes                                                           {{{1
+# ==============================================================================
+
+# See also:
+# - http://www.mail-archive.com/bug-coreutils@gnu.org/msg11030.html
+
+# Run this to get color list:
+# > env TERM=xterm-256color emacs -nw -f list-colors-display
+
+# Text color coding:
+# 38;5;COLOR_NUMBER
+
+# Background color coding:
+# 48;5;COLOR_NUMBER
+
+# COLOR_NUMBER is from 0 to 255.
 
 
 
@@ -61,18 +84,29 @@
 # | rc | RIGHTCODE, RIGHT      | Closing terminal code                         |
 # | ec | ENDCODE, END          | Non-filename text                             |
 
+NORMAL 00
 RESET 0
 
-NORMAL 00
 FILE 00
-
 DIR 01;34
 LINK 36
+MULTIHARDLINK 04;36
 
-EXEC 01;32
-OTHER_WRITABLE 01;31
-STICKY 01;04;34
-STICKY_OTHER_WRITABLE 01;04;31
+FIFO 01;04;36
+SOCK 04;33
+DOOR 01;04;36
+BLK 01;33
+CHR 33
 
-ORPHAN 01;31;40
-MISSING 00
+ORPHAN 31
+MISSING 01;37;41
+
+EXEC 01;36
+
+SETUID 01;04;37
+SETGID 01;04;37
+CAPABILITY 01;37
+
+STICKY_OTHER_WRITABLE 01;37;44
+OTHER_WRITABLE 01;04;34
+STICKY 04;37;44
