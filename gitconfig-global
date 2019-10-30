@@ -91,6 +91,7 @@
 		&& git stash clear
 	cm = commit -m
 	co = checkout
+	glog = log --graph
 	grog = log --graph --abbrev-commit --decorate --all
 	last = log -1 HEAD
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
