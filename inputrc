@@ -1,3 +1,6 @@
 # Disable trailing slash '/' on tab auto-completion of directory names.
-# https://unix.stackexchange.com/questions/25734
+# See also:
+# - https://unix.stackexchange.com/questions/25734
+# - https://askubuntu.com/questions/900923
 set mark-directories off
+set mark-symlinked-directories off
