@@ -1,0 +1,3 @@
+# Disable trailing slash '/' on tab auto-completion of directory names.
+# https://unix.stackexchange.com/questions/25734
+set mark-directories off
