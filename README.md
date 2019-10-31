@@ -21,6 +21,7 @@ Update repo, including submodules:
 - [MikeMcQuaid's dotfiles](https://github.com/MikeMcQuaid/dotfiles)
 - [jimhester's dotfiles](https://github.com/jimhester/dotfiles)
 - [vsbuffalo's dotfiles](https://github.com/vsbuffalo/dotfiles)
+- [caarlos0's dotfiles](https://github.com/caarlos0/dotfiles)
 - [roryk's dotfiles](https://github.com/roryk/dotfiles)
 - [nsgrantham's dotfiles](https://github.com/nsgrantham/dotfiles)
 
