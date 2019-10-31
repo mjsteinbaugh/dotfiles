@@ -1,5 +1,5 @@
 # Git submodules
-# Updated 2019-10-11.
+# Updated 2019-10-31.
 
 # > man git submodule
 # > git submodule add [--force] <REPO> <PATH>
@@ -7,6 +7,19 @@
 
 # Restore git submodules from '.gitmodules' file.
 # https://stackoverflow.com/questions/11258737
+
+
+
+# Emacs                                                                     {{{1
+# ==============================================================================
+
+[submodule "emacs-doom"]
+	path = emacs-doom
+	url = https://github.com/hlissner/doom-emacs
+[submodule "emacs-spacemacs"]
+	path = emacs-spacemacs
+	url = https://github.com/syl20bnr/spacemacs.git
+
 
 
 # Dracula                                                                   {{{1
