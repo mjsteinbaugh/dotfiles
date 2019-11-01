@@ -9,6 +9,20 @@ set -Eeu -o pipefail
 # - https://github.com/git/git/blob/a3fbb2350dcd2d843d1d90b663521222aceb25fe/
 #       git-submodule.sh#L132
 
+# > man git submodule
+# > git submodule add [--force] <REPO> <PATH>
+# > git submodule update --init --recursive
+
+# https://gist.github.com/nicktoumpelis/11214362
+# git clean -dfx
+# git submodule foreach --recursive git clean -dfx
+# git reset --hard
+# git submodule foreach --recursive git reset --hard
+# git submodule update --init --recursive
+
+# Restore git submodules from '.gitmodules' file.
+# https://stackoverflow.com/questions/11258737
+
 mapfile -t path_arr \
     < <(git config -f ".gitmodules" --get-regexp '^submodule\..*\.path$')
 
@@ -17,8 +31,9 @@ echo "${#path_arr[@]} submodules detected."
 for path_key in "${path_arr[@]}"
 do
     path="$(echo "$path_key" | cut -d ' ' -f 2)"
+    echo "$path"
     path_key="$(echo "$path_key" | cut -d ' ' -f 1)"
-    url_key=$(echo $path_key | sed 's/\.path/.url/')
+    url_key="${path_key//\.path/.url}"
     url="$(git config -f ".gitmodules" --get "$url_key")"
     git submodule add --force "$url" "$path"
 done

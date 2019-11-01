@@ -1,23 +1,6 @@
 # Git submodules.
 # Updated 2019-11-01.
 
-# Be sure to entab this file after updating.
-
-# > man git submodule
-# > git submodule add [--force] <REPO> <PATH>
-# > git submodule update --init --recursive
-
-# https://gist.github.com/nicktoumpelis/11214362
-# git clean -dfx
-# git submodule foreach --recursive git clean -dfx
-# git reset --hard
-# git submodule foreach --recursive git reset --hard
-# git submodule update --init --recursive
-
-# Restore git submodules from '.gitmodules' file.
-# https://stackoverflow.com/questions/11258737
-
-
 
 
 # Emacs                                                                     {{{1
@@ -56,9 +39,7 @@
 # - vim-virtualenv
 #   https://github.com/jmcantrell/vim-virtualenv
 
-# FIXME Symlink dracula theme here (dracula-theme)
-# Note that this must be named "dracula-theme", not "dracula".
-# vim/pack/dist/start/dracula-theme
+# Symlink 'dracula-theme' from 'theme/dracula/vim'.
 
 [submodule "app/vim/vim.d/pack/dist/start/Nvim-R"]
 	path = app/vim/vim.d/pack/dist/start/Nvim-R
@@ -78,3 +59,12 @@
 [submodule "app/vim/vim.d/pack/dist/start/syntastic"]
 	path = app/vim/vim.d/pack/dist/start/syntastic
 	url = https://github.com/vim-syntastic/syntastic
+
+
+
+# ZSH plugins                                                               {{{1
+# ==============================================================================
+
+[submodule "shell/zsh/plugins/zsh-autosuggestions"]
+	path = shell/zsh/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
