@@ -6,11 +6,19 @@ Configuration files shared between machines.
 
 Use the [koopa](https://github.com/acidgenomics/koopa/) shell bootloader to configure your environment automatically.
 
+Using koopa:
+
+```sh
+install-dotfiles
+```
+
+Or clone manually:
+
 ```sh
 git clone --recursive git@github.com:mjsteinbaugh/dotfiles.git
 ```
 
-Update repo, including submodules:
+How to update the repo, including submodules:
 
 ```sh
 ./UPDATE.sh
