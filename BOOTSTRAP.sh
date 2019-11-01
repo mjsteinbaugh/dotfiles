@@ -30,3 +30,5 @@ then
 else
     link-dotfile --force app/git/gitconfig
 fi
+
+link-emacs spacemacs
