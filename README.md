@@ -36,7 +36,7 @@ How to update the repo, including submodules:
 ### Color themes
 
 - [Dracula](https://draculatheme.com/)
-- [Nord](https://github.com/arcticicestudio/nord)
+- [Nord](https://www.nordtheme.com/)
 
 ### Emacs
 
