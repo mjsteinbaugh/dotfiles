@@ -1,16 +1,27 @@
 # Git ignore global rules.
-# Updated 2019-10-06.
+# Updated 2019-11-01.
 
 
 
 # Temporary files                                                           {{{1
 # ==============================================================================
 
-._*
-.*~
-*~
-~*
 *.swp
+*~
+.*~
+._*
+~*
+
+
+
+# Secrets                                                                   {{{1
+# ==============================================================================
+
+*.pem
+*_rsa
+.secrets
+secrets
+token.*
 
 
 
@@ -29,18 +40,7 @@ Temporary Items/
 
 
 
-# Codes and keys                                                            {{{1
-# ==============================================================================
-
-*_rsa
-*.pem
-.secrets
-secrets
-token.*
-
-
-
-# Large files                                                               {{{1
+# Binary files                                                              {{{1
 # ==============================================================================
 
 *.RData
@@ -66,6 +66,7 @@ token.*
 *.out
 *.pdf
 *.png
+*.pyc
 *.rda
 *.rdb
 *.rds
@@ -75,6 +76,7 @@ token.*
 *.tsv
 *.xz
 *.zip
+*.zwc
 
 
 
@@ -84,8 +86,8 @@ token.*
 # data/
 annotations/
 bam/
-bcbio/
 bcbio-*/
+bcbio/
 bed/
 bigwig/
 fastq/
@@ -110,7 +112,7 @@ __pycache__/
 
 
 
-# R / RStudio                                                               {{{1
+# R                                                                         {{{1
 # ==============================================================================
 
 *-Ex.R
@@ -145,33 +147,3 @@ vignettes/.build.timestamp
 Gemfile.lock
 _drafts/
 _site/
-
-
-
-# Dot file directories                                                      {{{1
-# ==============================================================================
-
-# > find ~ -maxdepth 1 -name ".*" -type d | sort
-
-.azure/
-.cache/
-.config/
-.emacs.d/
-.ghc/
-.gnupg/
-.gsutil/
-.idlerc/
-.ipython/
-.java/
-.keras/
-.local/
-.oh-my-zsh/
-.perlbrew/
-.pki/
-.R/
-.rstudio/
-.ssh/
-.subversion/
-.systemtap/
-.vscode/
-.virtualenvs/
