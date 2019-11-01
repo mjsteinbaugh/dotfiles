@@ -4,9 +4,9 @@ Configuration files shared between machines.
 
 ## Installation
 
-Use the [koopa](https://github.com/acidgenomics/koopa/) shell bootloader to configure your environment automatically.
+I'm using the [koopa](https://github.com/acidgenomics/koopa/) bootloader to configure my shell automatically.
 
-Using koopa:
+Via koopa:
 
 ```sh
 install-dotfiles
