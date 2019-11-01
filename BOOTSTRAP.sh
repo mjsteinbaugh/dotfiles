@@ -11,6 +11,7 @@ rm -fr ~/.emacs.d
 rm -fr ~/.emacs.d-doom
 rm -fr ~/.emacs.d-spacemacs
 rm -fr ~/.oh-my-zsh
+rm -fr ~/.shrc
 
 link-dotfile --force --config app/emacs/doom/config.d doom
 link-dotfile --force --config app/htop
