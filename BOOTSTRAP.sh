@@ -1,6 +1,8 @@
 rm -fr ~/.config/doom
 rm -fr ~/.config/htop
 rm -fr ~/.config/neofetch
+rm -fr ~/.emacs.d-doom
+rm -fr ~/.emacs.d-spacemacs
 
 link-dotfile --force --config app/emacs/doom/config.d doom
 link-dotfile --force --config app/htop
