@@ -23,6 +23,9 @@ git reset --hard
 git submodule foreach --recursive git reset --hard
 git submodule update --init --recursive
 
+git fetch --all
+git pull
+
 mapfile -t path_arr \
     < <(git config -f ".gitmodules" --get-regexp '^submodule\..*\.path$')
 
