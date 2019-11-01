@@ -1,3 +1,9 @@
+#!/usr/bin/env bash
+set -Eeu -o pipefail
+
+# shellcheck source=/dev/null
+source "$(koopa header bash)"
+
 rm -fr ~/.config/doom
 rm -fr ~/.config/htop
 rm -fr ~/.config/neofetch
@@ -23,7 +29,7 @@ link-dotfile --force shell/bash/bashrc
 link-dotfile --force shell/bash/inputrc
 link-dotfile --force shell/zsh/zshrc
 
-if [ "$(uname -s)" = "Darwin" ]
+if _koopa_is_darwin
 then
     link-dotfile --force --config app/alacritty
     link-dotfile --force os/darwin/app/git/gitconfig
