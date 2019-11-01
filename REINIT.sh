@@ -4,6 +4,8 @@ set -Eeu -o pipefail
 # Reinitialize Git submodules.
 # Updated 2019-11-01.
 
+# Note that this will currently wipe the Emacs installation directories.
+
 # > man git submodule
 # > git submodule add [--force] <REPO> <PATH>
 # > git submodule update --init --recursive
