@@ -1,7 +1,7 @@
 # macOS git configuration
 
 [include]
-    path = ~/.config/koopa/dotfiles/gitconfig
+    path = ~/.config/koopa/dotfiles/app/git/gitconfig
 
 [user]
 	# Public PGP key used for commit signing.
