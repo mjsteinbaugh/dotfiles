@@ -39,3 +39,5 @@ Update repo, including submodules:
 
 - [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
 - [prezto](https://github.com/sorin-ionescu/prezto)
+- [antigen](https://github.com/zsh-users/antigen)
+- [antibody](https://getantibody.github.io/)
