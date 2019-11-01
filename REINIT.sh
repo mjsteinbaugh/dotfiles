@@ -1,27 +1,24 @@
 #!/usr/bin/env bash
 set -Eeu -o pipefail
 
+# > man git submodule
+# > git submodule add [--force] <REPO> <PATH>
+# > git submodule update --init --recursive
 # > git config -f ".gitmodules" --list
 
 # See also:
+# - https://stackoverflow.com/questions/11258737
 # - https://stackoverflow.com/a/11258810/3911732
+# - https://gist.github.com/nicktoumpelis/11214362
 # - https://github.com/git/git/blob/master/git-submodule.sh
 # - https://github.com/git/git/blob/a3fbb2350dcd2d843d1d90b663521222aceb25fe/
 #       git-submodule.sh#L132
 
-# > man git submodule
-# > git submodule add [--force] <REPO> <PATH>
-# > git submodule update --init --recursive
-
-# https://gist.github.com/nicktoumpelis/11214362
-# git clean -dfx
-# git submodule foreach --recursive git clean -dfx
-# git reset --hard
-# git submodule foreach --recursive git reset --hard
-# git submodule update --init --recursive
-
-# Restore git submodules from '.gitmodules' file.
-# https://stackoverflow.com/questions/11258737
+git clean -dfx
+git submodule foreach --recursive git clean -dfx
+git reset --hard
+git submodule foreach --recursive git reset --hard
+git submodule update --init --recursive
 
 mapfile -t path_arr \
     < <(git config -f ".gitmodules" --get-regexp '^submodule\..*\.path$')
