@@ -4,6 +4,8 @@ set -Eeu -o pipefail
 # shellcheck source=/dev/null
 source "$(koopa header bash)"
 
+host_type="$(_koopa_host_type)"
+
 rm -fr ~/.condarc
 rm -fr ~/.config/doom
 rm -fr ~/.config/htop
@@ -42,7 +44,6 @@ else
     link-dotfile --force shell/bash/bash_profile
     link-dotfile --force shell/bash/bashrc
     link-dotfile --force shell/zsh/zshrc
-    host_type="$(_koopa_host_type)"
 fi
 
 if _koopa_is_darwin
