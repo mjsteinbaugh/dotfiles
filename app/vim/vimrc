@@ -1,5 +1,5 @@
 " Vim configuration.
-" Updated 2019-10-28.
+" Updated 2019-11-04.
 
 
 
@@ -57,6 +57,19 @@
 " - http://learnvimscriptthehardway.stevelosh.com/
 " - https://github.com/MikeMcQuaid/dotfiles/blob/master/vimrc
 " - https://gist.github.com/nerdalert/5f80853b4e195204bc6d
+
+
+
+" Pre-flight checks                                                         {{{1
+" ==============================================================================
+
+if v:version < 800
+    :echom "Error: Vim 8+ is required for '~/.vimrc' config."
+    exit
+endif
+
+" Disable vi compatibility mode.
+set nocompatible
 
 
 
