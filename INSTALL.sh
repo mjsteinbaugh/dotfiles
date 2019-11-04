@@ -28,7 +28,6 @@ link-dotfile --force app/tmux/tmux.conf
 link-dotfile --force app/vim/vim.d vim
 link-dotfile --force app/vim/vim.d vim
 link-dotfile --force app/vim/vimrc
-link-dotfile --force r/Rprofile
 link-dotfile --force shell/bash/bash_profile
 link-dotfile --force shell/bash/bashrc
 link-dotfile --force shell/bash/inputrc
@@ -65,6 +64,5 @@ elif [[ "$host_type" == "harvard-odyssey" ]]
 then
     link-dotfile --force "host/harvard-odyssey/Renviron"
 fi
-
 
 link-emacs spacemacs
