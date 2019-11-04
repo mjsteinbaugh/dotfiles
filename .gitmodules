@@ -1,72 +1,70 @@
-# Git submodules
-# Updated 2019-10-11.
-
-# > man git submodule
-# > git submodule add [--force] <REPO> <PATH>
-# > git submodule update --init --recursive
-
-# Restore git submodules from '.gitmodules' file.
-# https://stackoverflow.com/questions/11258737
+# Git submodules.
+# Updated 2019-11-01.
 
 
-# Dracula                                                                   {{{1
+
+# Emacs                                                                     {{{1
 # ==============================================================================
 
-[submodule "dracula/powershell"]
-	# dracula powershell
-	# https://github.com/dracula/powershell
-	path = dracula/powershell
-	url = https://github.com/mjsteinbaugh/dotfiles-dracula-powershell.git
-[submodule "dracula/putty"]
-	# dracula putty
-	# https://github.com/gkroon/dracula-putty
-	path = dracula/putty
-	url = https://github.com/mjsteinbaugh/dotfiles-dracula-putty.git
+[submodule "app/emacs/doom/emacs.d"]
+	path = app/emacs/doom/emacs.d
+	url = https://github.com/hlissner/doom-emacs
+[submodule "app/emacs/spacemacs/emacs.d"]
+	path = app/emacs/spacemacs/emacs.d
+	url = https://github.com/syl20bnr/spacemacs
+
+
+
+# Themes                                                                    {{{1
+# ==============================================================================
+
+[submodule "theme/dracula/powershell"]
+	path = theme/dracula/powershell
+	url = https://github.com/dracula/powershell
+[submodule "theme/dracula/putty"]
+	path = theme/dracula/putty
+	url = https://github.com/gkroon/dracula-putty
+[submodule "theme/dracula/vim"]
+	path = theme/dracula/vim
+	url = https://github.com/dracula/vim
 
 
 
 # Vim plugins                                                               {{{1
 # ==============================================================================
 
-[submodule "vim/pack/dist/start/R"]
-	# Nvim-R
-	# https://github.com/jalvesaq/Nvim-R
-	path = vim/pack/dist/start/R
-	url = https://github.com/mjsteinbaugh/dotfiles-vim-r.git
-[submodule "vim/pack/dist/start/airline"]
-	# vim-airline (powerline)
-	# https://github.com/vim-airline/vim-airline
-	path = vim/pack/dist/start/airline
-	url = https://github.com/mjsteinbaugh/dotfiles-vim-airline.git
-[submodule "vim/pack/dist/start/dracula-theme"]
-	# dracula theme
-	# https://github.com/dracula/vim
-	# Note that this must be named "dracula-theme", not "dracula".
-	path = vim/pack/dist/start/dracula-theme
-	url = https://github.com/mjsteinbaugh/dotfiles-dracula-vim.git
-[submodule "vim/pack/dist/start/fugitive"]
-	# vim-fugitive (git)
-	# https://github.com/tpope/vim-fugitive
-	path = vim/pack/dist/start/fugitive
-	url = https://github.com/mjsteinbaugh/dotfiles-vim-fugitive.git
-[submodule "vim/pack/dist/start/markdown"]
-	# vim-markdown
-	# https://github.com/plasticboy/vim-markdown
-	path = vim/pack/dist/start/markdown
-	url = https://github.com/mjsteinbaugh/dotfiles-vim-markdown.git
-[submodule "vim/pack/dist/start/nerdtree"]
-	# nerdtree (file tree browser)
-	# https://github.com/scrooloose/nerdtree
-	path = vim/pack/dist/start/nerdtree
-	url = https://github.com/mjsteinbaugh/dotfiles-vim-nerdtree.git
-[submodule "vim/pack/dist/start/syntastic"]
-	# syntastic (linter)
-	# https://github.com/vim-syntastic/syntastic.git
-	path = vim/pack/dist/start/syntastic
-    url = https://github.com/mjsteinbaugh/dotfiles-vim-syntastic.git
+# Potentially useful:
+# - jedi-vim
+#   https://github.com/davidhalter/jedi-vim
+# - vim-virtualenv
+#   https://github.com/jmcantrell/vim-virtualenv
 
-# > [submodule "vim/pack/dist/start/virtualenv"]
-# > 	# vim-virtualenv
-# > 	# https://github.com/jmcantrell/vim-virtualenv.git
-# > 	path = vim/pack/dist/start/virtualenv
-# > 	url = https://github.com/mjsteinbaugh/dotfiles-vim-virtualenv.git
+# Symlink 'dracula-theme' from 'theme/dracula/vim'.
+
+[submodule "app/vim/vim.d/pack/dist/start/Nvim-R"]
+	path = app/vim/vim.d/pack/dist/start/Nvim-R
+	url = https://github.com/jalvesaq/Nvim-R
+[submodule "app/vim/vim.d/pack/dist/start/vim-airline"]
+	path = app/vim/vim.d/pack/dist/start/vim-airline
+	url = https://github.com/vim-airline/vim-airline
+[submodule "app/vim/vim.d/pack/dist/start/vim-fugitive"]
+	path = app/vim/vim.d/pack/dist/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "app/vim/vim.d/pack/dist/start/vim-markdown"]
+	path = app/vim/vim.d/pack/dist/start/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown
+[submodule "app/vim/vim.d/pack/dist/start/nerdtree"]
+	path = app/vim/vim.d/pack/dist/start/nerdtree
+	url = https://github.com/scrooloose/nerdtree
+[submodule "app/vim/vim.d/pack/dist/start/syntastic"]
+	path = app/vim/vim.d/pack/dist/start/syntastic
+	url = https://github.com/vim-syntastic/syntastic
+
+
+
+# ZSH plugins                                                               {{{1
+# ==============================================================================
+
+[submodule "shell/zsh/plugins/zsh-autosuggestions"]
+	path = shell/zsh/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions

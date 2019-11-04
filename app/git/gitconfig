@@ -1,8 +1,8 @@
 # Mike's specific git configuration
-# Updated 2019-07-26.
+# Updated 2019-10-31.
 
 [include]
-    path = ~/.config/koopa/dotfiles/gitconfig-global
+    path = ~/.config/koopa/dotfiles/app/git/gitconfig-global
 
 [user]
 	name = Michael Steinbaugh

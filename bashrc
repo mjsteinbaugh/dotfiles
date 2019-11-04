@@ -1,1 +1,1 @@
-shrc
+shell/bash/bashrc

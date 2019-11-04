@@ -1,0 +1,9 @@
+# Readline input configuration (for Bash).
+# Updated 2019-10-31.
+
+# Disable trailing slash '/' on tab auto-completion of directory names.
+# See also:
+# - https://unix.stackexchange.com/questions/25734
+# - https://askubuntu.com/questions/900923
+set mark-directories off
+set mark-symlinked-directories off

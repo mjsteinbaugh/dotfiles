@@ -1,1 +1,1 @@
-bashrc
+shell/bash/bash_profile

@@ -4,13 +4,21 @@ Configuration files shared between machines.
 
 ## Installation
 
-Use the [koopa](https://github.com/acidgenomics/koopa/) shell bootloader to configure your environment automatically.
+I'm using the [koopa](https://github.com/acidgenomics/koopa/) bootloader to configure my shell automatically.
+
+Via koopa:
+
+```sh
+install-dotfiles
+```
+
+Or clone manually:
 
 ```sh
 git clone --recursive git@github.com:mjsteinbaugh/dotfiles.git
 ```
 
-Update repo, including submodules:
+How to update the repo, including submodules:
 
 ```sh
 ./UPDATE.sh
@@ -21,13 +29,14 @@ Update repo, including submodules:
 - [MikeMcQuaid's dotfiles](https://github.com/MikeMcQuaid/dotfiles)
 - [jimhester's dotfiles](https://github.com/jimhester/dotfiles)
 - [vsbuffalo's dotfiles](https://github.com/vsbuffalo/dotfiles)
+- [caarlos0's dotfiles](https://github.com/caarlos0/dotfiles)
 - [roryk's dotfiles](https://github.com/roryk/dotfiles)
 - [nsgrantham's dotfiles](https://github.com/nsgrantham/dotfiles)
 
 ### Color themes
 
 - [Dracula](https://draculatheme.com/)
-- [Nord](https://github.com/arcticicestudio/nord)
+- [Nord](https://www.nordtheme.com/)
 
 ### Emacs
 
@@ -36,5 +45,7 @@ Update repo, including submodules:
 
 ### ZSH
 
-- [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
+- [oh-my-zsh](https://ohmyz.sh/)
 - [prezto](https://github.com/sorin-ionescu/prezto)
+- [antigen](http://antigen.sharats.me/)
+- [antibody](https://getantibody.github.io/)
