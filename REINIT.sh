@@ -23,11 +23,10 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd -P)"
 
 (
     cd "$script_dir" || exit 1
-    # Ensure top-level cruft gets wiped.
-    rm -frv dracula
-    rm -frv vim
-    git clean -dfx
-    git submodule foreach --recursive git clean -dfx
+    git clean -df
+    git clean -fx
+    git submodule foreach --recursive git clean -df
+    git submodule foreach --recursive git clean -fx
     git reset --hard
     git submodule foreach --recursive git reset --hard
     git submodule update --init --recursive
