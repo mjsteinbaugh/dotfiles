@@ -4,12 +4,14 @@ set -Eeu -o pipefail
 # shellcheck source=/dev/null
 source "$(koopa header bash)"
 
+rm -fr ~/.condarc
 rm -fr ~/.config/doom
 rm -fr ~/.config/htop
 rm -fr ~/.config/neofetch
 rm -fr ~/.emacs.d
 rm -fr ~/.emacs.d-doom
 rm -fr ~/.emacs.d-spacemacs
+rm -fr ~/.kshrc
 rm -fr ~/.oh-my-zsh
 rm -fr ~/.shrc
 
@@ -36,7 +38,6 @@ fi
 link-dotfile --force --config app/emacs/doom/config.d doom
 link-dotfile --force --config app/htop
 link-dotfile --force --config app/neofetch
-link-dotfile --force app/conda/condarc
 link-dotfile --force app/emacs/doom/emacs.d emacs.d-doom
 link-dotfile --force app/emacs/spacemacs/emacs.d emacs.d-spacemacs
 link-dotfile --force app/emacs/spacemacs/spacemacs.el spacemacs
