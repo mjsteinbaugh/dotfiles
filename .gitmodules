@@ -1,14 +1,5 @@
 # Git submodules.
-# Updated 2019-11-01.
-
-
-
-# Emacs                                                                     {{{1
-# ==============================================================================
-
-[submodule "app/emacs/spacemacs/emacs.d"]
-	path = app/emacs/spacemacs/emacs.d
-	url = https://github.com/syl20bnr/spacemacs
+# Updated 2019-11-04.
 
 
 
