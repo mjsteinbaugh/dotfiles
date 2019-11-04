@@ -16,8 +16,12 @@ rm -fr ~/.oh-my-zsh
 rm -fr ~/.shrc
 
 # Create local config files.
-if ! koopa_is_shared
+if _koopa_is_shared
 then
+    rm -fr ~/.bash_logout
+    rm -fr ~/.bash_profile
+    rm -fr ~/.bashrc
+else
     link-dotfile --force shell/bash/bash_profile
     link-dotfile --force shell/bash/bashrc
     link-dotfile --force shell/zsh/zshrc
