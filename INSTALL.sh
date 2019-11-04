@@ -15,30 +15,6 @@ rm -fr ~/.kshrc
 rm -fr ~/.oh-my-zsh
 rm -fr ~/.shrc
 
-# Create local config files.
-if _koopa_is_shared
-then
-    rm -fr ~/.bash_logout
-    rm -fr ~/.bash_profile
-    rm -fr ~/.bashrc
-else
-    link-dotfile --force shell/bash/bash_profile
-    link-dotfile --force shell/bash/bashrc
-    link-dotfile --force shell/zsh/zshrc
-    host_type="$(_koopa_host_type)"
-    if _koopa_is_darwin
-    then
-        mkdir -pv "${HOME}/.R"
-        ln -fnsv "${KOOPA_HOME}/os/darwin/etc/R/Makevars" "${HOME}/.R/."
-    elif [[ "$host_type" == "harvard-o2" ]]
-    then
-        link-dotfile --force "host/harvard-o2/Renviron"
-    elif [[ "$host_type" == "harvard-odyssey" ]]
-    then
-        link-dotfile --force "host/harvard-odyssey/Renviron"
-    fi
-fi
-
 link-dotfile --force --config app/emacs/doom/config.d doom
 link-dotfile --force --config app/htop
 link-dotfile --force --config app/neofetch
@@ -52,10 +28,23 @@ link-dotfile --force app/tmux/tmux.conf
 link-dotfile --force app/vim/vim.d vim
 link-dotfile --force app/vim/vim.d vim
 link-dotfile --force app/vim/vimrc
+link-dotfile --force r/Rprofile
 link-dotfile --force shell/bash/bash_profile
 link-dotfile --force shell/bash/bashrc
 link-dotfile --force shell/bash/inputrc
 link-dotfile --force shell/zsh/zshrc
+
+if _koopa_is_linux && _koopa_is_shared
+then
+    rm -fr ~/.bash_logout
+    rm -fr ~/.bash_profile
+    rm -fr ~/.bashrc
+else
+    link-dotfile --force shell/bash/bash_profile
+    link-dotfile --force shell/bash/bashrc
+    link-dotfile --force shell/zsh/zshrc
+    host_type="$(_koopa_host_type)"
+fi
 
 if _koopa_is_darwin
 then
@@ -65,7 +54,17 @@ else
     link-dotfile --force app/git/gitconfig
 fi
 
-if [[ "${mike:-}" -eq 1 ]]
+if _koopa_is_darwin
 then
-    link-dotfile --force r/Rprofile
+    mkdir -pv "${HOME}/.R"
+    ln -fnsv "${KOOPA_HOME}/os/darwin/etc/R/Makevars" "${HOME}/.R/."
+elif [[ "$host_type" == "harvard-o2" ]]
+then
+    link-dotfile --force "host/harvard-o2/Renviron"
+elif [[ "$host_type" == "harvard-odyssey" ]]
+then
+    link-dotfile --force "host/harvard-odyssey/Renviron"
 fi
+
+
+link-emacs spacemacs
