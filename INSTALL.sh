@@ -20,9 +20,6 @@ rm -fr ~/.shrc
 link-dotfile --force --config app/emacs/doom/config.d doom
 link-dotfile --force --config app/htop
 link-dotfile --force --config app/neofetch
-link-dotfile --force app/emacs/doom/emacs.d emacs.d-doom
-link-dotfile --force app/emacs/spacemacs/emacs.d emacs.d-spacemacs
-link-dotfile --force app/emacs/spacemacs/spacemacs.el spacemacs
 link-dotfile --force app/emacs/spacemacs/spacemacs.el spacemacs
 link-dotfile --force app/git/gitignore
 link-dotfile --force app/r/Rprofile
@@ -66,4 +63,4 @@ then
     link-dotfile --force "host/harvard-odyssey/Renviron"
 fi
 
-link-emacs spacemacs
+# > link-emacs spacemacs
