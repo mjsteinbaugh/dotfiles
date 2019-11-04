@@ -10,6 +10,7 @@ rm -fr ~/.condarc
 rm -fr ~/.config/doom
 rm -fr ~/.config/htop
 rm -fr ~/.config/neofetch
+rm -fr ~/.emacs
 rm -fr ~/.emacs.d
 rm -fr ~/.emacs.d-doom
 rm -fr ~/.emacs.d-spacemacs
