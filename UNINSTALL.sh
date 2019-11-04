@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -Eeu -o pipefail
+
+# shellcheck source=/dev/null
+source "$(koopa header bash)"
+
+_koopa_delete_dotfile Renviron
+_koopa_delete_dotfile Rprofile
+_koopa_delete_dotfile bash_profile
+_koopa_delete_dotfile bashrc
+_koopa_delete_dotfile condarc
+_koopa_delete_dotfile forward
+_koopa_delete_dotfile gitconfig
+_koopa_delete_dotfile gitignore
+_koopa_delete_dotfile kshrc
+_koopa_delete_dotfile screenrc
+_koopa_delete_dotfile shrc
+_koopa_delete_dotfile spacemacs
+_koopa_delete_dotfile tmux.conf
+_koopa_delete_dotfile vim
+_koopa_delete_dotfile vimrc
+_koopa_delete_dotfile zshrc
