@@ -17,6 +17,17 @@ rm -fr ~/.kshrc
 rm -fr ~/.oh-my-zsh
 rm -fr ~/.shrc
 
+if _koopa_is_linux && _koopa_is_shared
+then
+    rm -fr ~/.bash_logout
+    rm -fr ~/.bash_profile
+    rm -fr ~/.bashrc
+else
+    link-dotfile --force shell/bash/bash_profile
+    link-dotfile --force shell/bash/bashrc
+    link-dotfile --force shell/zsh/zshrc
+fi
+
 link-dotfile --force --config app/emacs/doom/config.d doom
 link-dotfile --force --config app/htop
 link-dotfile --force --config app/neofetch
@@ -31,17 +42,6 @@ link-dotfile --force shell/bash/bash_profile
 link-dotfile --force shell/bash/bashrc
 link-dotfile --force shell/bash/inputrc
 link-dotfile --force shell/zsh/zshrc
-
-if _koopa_is_linux && _koopa_is_shared
-then
-    rm -fr ~/.bash_logout
-    rm -fr ~/.bash_profile
-    rm -fr ~/.bashrc
-else
-    link-dotfile --force shell/bash/bash_profile
-    link-dotfile --force shell/bash/bashrc
-    link-dotfile --force shell/zsh/zshrc
-fi
 
 if _koopa_is_darwin
 then
