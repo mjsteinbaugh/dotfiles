@@ -6,9 +6,6 @@
 # Emacs                                                                     {{{1
 # ==============================================================================
 
-[submodule "app/emacs/doom/emacs.d"]
-	path = app/emacs/doom/emacs.d
-	url = https://github.com/hlissner/doom-emacs
 [submodule "app/emacs/spacemacs/emacs.d"]
 	path = app/emacs/spacemacs/emacs.d
 	url = https://github.com/syl20bnr/spacemacs
