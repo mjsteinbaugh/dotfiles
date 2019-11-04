@@ -194,7 +194,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(diff-switches "-u")
- '(package-selected-packages (quote (yaml-mode ess)))
+ '(package-selected-packages (quote (markdown-mode yaml-mode ess)))
  '(require-final-newline t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
