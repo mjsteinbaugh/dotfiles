@@ -17,6 +17,7 @@ rm -fr ~/.emacs.d-spacemacs
 rm -fr ~/.kshrc
 rm -fr ~/.oh-my-zsh
 rm -fr ~/.shrc
+rm -fr ~/.zsh_history
 
 if _koopa_is_linux && _koopa_is_shared
 then
