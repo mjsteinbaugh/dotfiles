@@ -1,120 +1,45 @@
-# Configuration file for dircolors, a utility to help you set the LS_COLORS
-# environment variable used by GNU ls with the --color option.
-#
-# Updated 2019-10-30.
-#
-# Copyright (C) 1996-2019 Free Software Foundation, Inc. Copying and
-# distribution of this file, with or without modification, are permitted
-# provided the copyright notice and this notice are preserved.
-#
-# See also:
-# - dircolors -p
-# - dircolors -b
-# - http://www.bigsoft.co.uk/blog/2008/04/11/configuring-ls_colors
-# - https://github.com/arcticicestudio/nord-dircolors/blob/develop/src/
-#       dir_colors
-# - https://github.com/joshbenham/linux-dotfiles/blob/master/dircolors/
-#       Dracula.dircolors
-# - https://github.com/arcticicestudio/nord-dircolors
-# - https://github.com/seebi/dircolors-solarized
+COLOR tty
 
-
-
-# Terminal                                                                  {{{1
-# ==============================================================================
-
-TERM *color*
-TERM Eterm
 TERM ansi
+TERM *color*
 TERM con[0-9]*x[0-9]*
 TERM cons25
 TERM console
 TERM cygwin
 TERM dtterm
+TERM dvtm
+TERM dvtm-256color
+TERM Eterm
+TERM eterm-color
+TERM fbterm
 TERM gnome
+TERM gnome-256color
 TERM hurd
 TERM jfbterm
 TERM konsole
+TERM konsole-256color
 TERM kterm
 TERM linux
 TERM linux-c
 TERM mlterm
 TERM putty
+TERM putty-256color
 TERM rxvt*
+TERM rxvt-unicode
+TERM rxvt-256color
+TERM rxvt-unicode256
 TERM screen*
+TERM screen-256color
 TERM st
+TERM st-256color
 TERM terminator
 TERM tmux*
+TERM tmux-256color
 TERM vt100
 TERM xterm*
-
-
-
-# 8 color codes                                                             {{{1
-# ==============================================================================
-
-# The default color codes use the capabilities of an 8 color terminal with some
-# additional attributes as per the following codes:
-
-# Attribute codes:
-# 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
-
-# Text color codes:
-# 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
-
-# Background color codes:
-# 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
-
-
-
-# 256 color codes                                                           {{{1
-# ==============================================================================
-
-# See also:
-# - http://www.mail-archive.com/bug-coreutils@gnu.org/msg11030.html
-
-# Run this to get color list:
-# > env TERM=xterm-256color emacs -nw -f list-colors-display
-
-# Text color coding:
-# 38;5;COLOR_NUMBER
-
-# Background color coding:
-# 48;5;COLOR_NUMBER
-
-# COLOR_NUMBER is from 0 to 255.
-
-
-
-# Basic file types                                                          {{{1
-# ==============================================================================
-
-# Below are the color init strings for the basic file types.
-# One can use codes for 256 or more colors supported by modern terminals.
-
-# | -b | -p                    | description                                   |
-# | -- | --------------------- | --------------------------------------------- |
-# | rs | RESET                 | Reset to "normal" color                       |
-# | no | NORMAL                | Global default                                |
-# | fi | FILE                  | Normal file                                   |
-# | di | DIR                   | Directory                                     |
-# | ln | LINK                  | Symbolic link. Can use 'target'               |
-# | ex | EXEC                  | File (+x)                                     |
-# | ow | OTHER_WRITABLE        | Directory (o+w)                               |
-# | st | STICKY                | Directory (+t)                                |
-# | tw | STICKY_OTHER_WRITABLE | Directory (+t,o+w)                            |
-# | su | SETUID                | File (u+s)                                    |
-# | sg | SETGID                | File (g+s)                                    |
-# | or | ORPHAN                | Symbolic link pointing to a non-existent file |
-# | mi | MISSING               | Non-existent file pointed to by a symlink     |
-# | pi | FIFO                  | Named pipe                                    |
-# | do | DOOR                  | Door                                          |
-# | bd | BLK                   | Block device                                  |
-# | cd | CHR                   | Character device                              |
-# | so | SOCK                  | Socket                                        |
-# | lc | LEFTCODE, LEFT        | Opening terminal code                         |
-# | rc | RIGHTCODE, RIGHT      | Closing terminal code                         |
-# | ec | ENDCODE, END          | Non-filename text                             |
+TERM xterm-color
+TERM xterm-88color
+TERM xterm-256color
 
 NORMAL 00
 RESET 0

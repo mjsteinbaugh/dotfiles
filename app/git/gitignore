@@ -83,22 +83,28 @@ Temporary Items/
 # Large directories                                                         {{{1
 # ==============================================================================
 
-# data/
 annotations/
+bam-*/
 bam/
 bcbio-*/
 bcbio/
+bed-*/
 bed/
+bigwig-*/
 bigwig/
+fastq-*/
 fastq/
 figures/
 genewiz/
 kallisto/
 links/
+rda-*/
 rda/
+rds-*/
 rds/
 reference/
 salmon/
+sam-*/
 sam/
 tmp/
 tmp_*/
