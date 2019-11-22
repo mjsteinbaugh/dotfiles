@@ -6,6 +6,7 @@ echo "Updating dotfiles."
 
 (
     cd "$script_dir" || exit 1
+    git clean -dfx
     git submodule init
     git fetch --all
     git pull
