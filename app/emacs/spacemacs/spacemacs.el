@@ -455,6 +455,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   ;; Don't warn about PATH in bashrc.
   (setq-default exec-path-from-shell-arguments '("-l"))
+  ;; Magit status fullscreen.
+  ;; > (setq-default git-magit-status-fullscreen t)
   ;; Tramp terminal.
   (setq-default tramp-ssh-controlmaster-options
       "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
@@ -475,6 +477,13 @@ you should place your code here."
   ;; >     (progn
   ;; >       (set-face-attribute 'default nil :family "SF Mono")
   ;; >       (set-face-attribute 'default nil :height 165)))
+
+  ;; Make HOME and END keys work like Vim.
+  ;; https://stackoverflow.com/questions/4614150
+  ;; https://superuser.com/questions/710358
+  ;; (global-set-key (kbd "<home>") 'beginning-of-line)
+  ;; Map the END key to '<select>' instead of '<end>' here.
+  (global-set-key (kbd "<select>") 'end-of-line)
 
   (setq-default
    ;; Indentation.
