@@ -4,7 +4,7 @@ set -Eeu -o pipefail
 # shellcheck source=/dev/null
 source "$(koopa header bash)"
 
-host_type="$(_koopa_host_type)"
+host_id="$(_koopa_host_id)"
 
 rm -fr ~/.condarc
 rm -fr ~/.config/doom
@@ -57,10 +57,10 @@ if _koopa_is_darwin
 then
     mkdir -pv "${HOME}/.R"
     ln -fnsv "${KOOPA_HOME}/os/darwin/etc/R/Makevars" "${HOME}/.R/."
-elif [[ "$host_type" == "harvard-o2" ]]
+elif [[ "$host_id" == "harvard-o2" ]]
 then
     link-dotfile --force "host/harvard-o2/Renviron"
-elif [[ "$host_type" == "harvard-odyssey" ]]
+elif [[ "$host_id" == "harvard-odyssey" ]]
 then
     link-dotfile --force "host/harvard-odyssey/Renviron"
 fi
