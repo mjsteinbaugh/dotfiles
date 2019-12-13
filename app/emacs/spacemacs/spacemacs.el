@@ -1,7 +1,7 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
-;; Updated 2019-10-03.
+;; Updated 2019-12-13.
 ;;
 ;; Spacemacs cheatsheet:
 ;; https://steinbaugh.com/posts/spacemacs.html
@@ -274,11 +274,12 @@ values."
    ;;
    dotspacemacs-themes
    '(
+     spacemacs-dark
+     spacemacs-light
+     ;; > M-x package-install <RET> color-theme-sanityinc-tomorrow
      sanityinc-tomorrow-eighties
      ;; > M-x package-install <RET> dracula-theme
      dracula
-     spacemacs-dark
-     spacemacs-light
      )
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
