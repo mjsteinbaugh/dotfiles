@@ -1,6 +1,1 @@
-# koopa shell
-# https://koopa.acidgenomics.com/
-# > export KOOPA_TEST=1
-# shellcheck source=/dev/null
-XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
-. "${XDG_CONFIG_HOME}/koopa/activate"
+login

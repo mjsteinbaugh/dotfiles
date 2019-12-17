@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# When leaving the console, clear the screen to increase privacy.
+# In POSIX sh, SHLVL is undefined.
+# shellcheck disable=SC2039
+if [ "${SHLVL:-}" = 1 ]
+then
+    [ -x /usr/bin/clear_console ] && /usr/bin/clear_console -q
+fi
