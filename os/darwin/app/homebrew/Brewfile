@@ -64,13 +64,14 @@ brew "md5sha1sum", link: false
 brew "neofetch"
 brew "neovim"
 brew "node"
+brew "numpy"
 brew "pandoc"
 brew "pandoc-citeproc"
 brew "pandoc-crossref"
 brew "parallel"
 brew "pipx"
 brew "pkg-config"
-brew "podofo", link: false
+brew "podofo"
 brew "protobuf"
 brew "pyenv"
 brew "ruby-build"
@@ -114,6 +115,7 @@ cask "calibre"
 cask "carbon-copy-cloner"
 cask "coconutbattery"
 cask "coda"
+cask "deluge"
 cask "docker"
 cask "emacs"
 cask "fiji"
@@ -129,10 +131,13 @@ cask "iterm2"
 cask "java"
 cask "julia"
 cask "keka"
+cask "kid3"
 cask "kitty"
 cask "libreoffice"
 cask "little-snitch"
+cask "makemkv"
 cask "mongodb"
+cask "museeks"
 cask "netnewswire"
 cask "omnidisksweeper"
 cask "onyx"
@@ -156,6 +161,7 @@ cask "xld"
 cask "xquartz"
 mas "Bear", id: 1091189122
 mas "Calca", id: 635758264
+mas "Disk Speed Test", id: 425264550
 mas "EasyFind", id: 411673888
 mas "Gapplin", id: 768053424
 mas "Howler Timer", id: 428846772
@@ -168,6 +174,7 @@ mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Pastebot", id: 1179623856
 mas "Reeder", id: 880001334
+mas "Soulver", id: 413965349
 mas "Spark", id: 1176895641
 mas "The Unarchiver", id: 425424353
 mas "Tweetbot", id: 1384080005
