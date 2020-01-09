@@ -1,4 +1,7 @@
 # macOS git configuration
+# Updated 2020-01-09.
+
+# Keep LFS configuration in 'gitconfig-global' file.
 
 [include]
     path = ~/.config/koopa/dotfiles/app/git/gitconfig
