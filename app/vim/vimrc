@@ -604,6 +604,7 @@ let R_assign=0
 " fzf                                                                       {{{2
 " ------------------------------------------------------------------------------
 
+" If installed using Homebrew (macOS).
 set rtp+=/usr/local/opt/fzf
 
 " python-mode                                                               {{{2
