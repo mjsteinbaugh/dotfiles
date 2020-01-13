@@ -45,18 +45,18 @@ link-dotfile --force shell/bash/bashrc
 link-dotfile --force shell/bash/inputrc
 link-dotfile --force shell/zsh/zshrc
 
-if _koopa_is_darwin
+if _koopa_is_macos
 then
     link-dotfile --force --config app/alacritty
-    link-dotfile --force os/darwin/app/git/gitconfig
+    link-dotfile --force os/macos/app/git/gitconfig
 else
     link-dotfile --force app/git/gitconfig
 fi
 
-if _koopa_is_darwin
+if _koopa_is_macos
 then
     mkdir -pv "${HOME}/.R"
-    ln -fnsv "${KOOPA_HOME}/os/darwin/etc/R/Makevars" "${HOME}/.R/."
+    ln -fnsv "${KOOPA_HOME}/os/macos/etc/R/Makevars" "${HOME}/.R/."
 elif [[ "$host_id" == "harvard-o2" ]]
 then
     link-dotfile --force "host/harvard-o2/Renviron"
