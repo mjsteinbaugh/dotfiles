@@ -1,5 +1,5 @@
 # Git ignore global rules.
-# Updated 2019-11-21.
+# Updated 2020-01-29.
 
 
 
@@ -72,6 +72,7 @@ Temporary Items/
 *.rds
 *.rdx
 *.sam
+*.sqlite
 *.tar
 *.tsv
 *.xz
