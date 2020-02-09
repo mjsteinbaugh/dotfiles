@@ -1,5 +1,5 @@
 " Vim configuration.
-" Updated 2020-01-09.
+" Updated 2020-02-09.
 
 
 
@@ -630,6 +630,12 @@ let g:syntastic_check_on_wq=0
 
 " Python
 let g:syntastic_python_checkers=['flake8', 'pyflakes', 'pylint']
+
+" Enable use of custom '.pylintrc' file.
+" https://groups.google.com/forum/#!topic/vim_use/Gd6lO3ETnl0
+let g:syntastic_python_pylint_args = '--rcfile=~/.pylintrc'
+" For older versions of syntastic:
+" > let g:syntastic_python_pylint_post_args = '--rcfile=~/.pylintrc'
 
 " R
 " https://github.com/jimhester/lintr
