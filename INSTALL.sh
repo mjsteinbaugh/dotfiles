@@ -72,6 +72,7 @@ fi
 if [[ "$private" -eq 1 ]]
 then
     _koopa_h2 "Linking private dotfiles."
+    _koopa_assert_is_github_ssh_enabled
     source_repo="git@github.com:mjsteinbaugh/dotfiles-private.git"
     target_dir="$(_koopa_config_prefix)/dotfiles-private"
     if [[ ! -d "$target_dir" ]]
