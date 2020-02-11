@@ -4,6 +4,21 @@ set -Eeu -o pipefail
 # shellcheck source=/dev/null
 source "$(koopa header bash)"
 
+private=0
+
+while (("$#"))
+do
+    case "$1" in
+        --private)
+            private=1
+            shift 1
+            ;;
+        *)
+            _koopa_invalid_arg "$1"
+            ;;
+    esac
+done
+
 _koopa_h1 "Linking dotfiles."
 
 rm -fr ~/.bash_logout
@@ -52,6 +67,18 @@ if _koopa_is_macos
 then
     mkdir -pv "${HOME}/.R"
     ln -fnsv "${KOOPA_HOME}/os/macos/etc/R/Makevars" "${HOME}/.R/."
+fi
+
+if [[ "$private" -eq 1 ]]
+then
+    _koopa_h2 "Linking private dotfiles."
+    source_repo="git@github.com:mjsteinbaugh/dotfiles-private.git"
+    target_dir="$(_koopa_config_prefix)/dotfiles-private"
+    if [[ ! -d "$target_dir" ]]
+    then
+        git clone --recursive "$source_repo" "$target_dir"
+    fi
+    "${target_dir}/INSTALL.sh"
 fi
 
 _koopa_success "Installation of dotfiles was successful."
