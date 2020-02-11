@@ -9,12 +9,15 @@
 [submodule "theme/dracula/powershell"]
 	path = theme/dracula/powershell
 	url = https://github.com/dracula/powershell
+	branch = master
 [submodule "theme/dracula/putty"]
 	path = theme/dracula/putty
 	url = https://github.com/gkroon/dracula-putty
+	branch = master
 [submodule "theme/dracula/vim"]
 	path = theme/dracula/vim
 	url = https://github.com/dracula/vim
+	branch = master
 
 
 
@@ -32,21 +35,27 @@
 [submodule "app/vim/vim.d/pack/dist/start/Nvim-R"]
 	path = app/vim/vim.d/pack/dist/start/Nvim-R
 	url = https://github.com/jalvesaq/Nvim-R
+	branch = master
 [submodule "app/vim/vim.d/pack/dist/start/vim-airline"]
 	path = app/vim/vim.d/pack/dist/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline
+	branch = master
 [submodule "app/vim/vim.d/pack/dist/start/vim-fugitive"]
 	path = app/vim/vim.d/pack/dist/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
+	branch = master
 [submodule "app/vim/vim.d/pack/dist/start/vim-markdown"]
 	path = app/vim/vim.d/pack/dist/start/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown
+	branch = master
 [submodule "app/vim/vim.d/pack/dist/start/nerdtree"]
 	path = app/vim/vim.d/pack/dist/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree
+	branch = master
 [submodule "app/vim/vim.d/pack/dist/start/syntastic"]
 	path = app/vim/vim.d/pack/dist/start/syntastic
 	url = https://github.com/vim-syntastic/syntastic
+	branch = master
 
 
 
@@ -56,3 +65,4 @@
 [submodule "shell/zsh/plugins/zsh-autosuggestions"]
 	path = shell/zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
+	branch = master
