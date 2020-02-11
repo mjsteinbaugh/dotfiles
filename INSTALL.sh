@@ -4,8 +4,11 @@ set -Eeu -o pipefail
 # shellcheck source=/dev/null
 source "$(koopa header bash)"
 
-host_id="$(_koopa_host_id)"
+_koopa_h1 "Linking dotfiles."
 
+rm -fr ~/.bash_logout
+rm -fr ~/.bash_profile
+rm -fr ~/.bashrc
 rm -fr ~/.condarc
 rm -fr ~/.config/doom
 rm -fr ~/.config/htop
@@ -17,22 +20,14 @@ rm -fr ~/.emacs.d-spacemacs
 rm -fr ~/.kshrc
 rm -fr ~/.oh-my-zsh
 rm -fr ~/.shrc
+rm -fr ~/.zcompdump
 rm -fr ~/.zsh_history
-
-if _koopa_is_linux && _koopa_is_shared
-then
-    rm -fr ~/.bash_logout
-    rm -fr ~/.bash_profile
-    rm -fr ~/.bashrc
-else
-    link-dotfile --force shell/bash/bash_profile
-    link-dotfile --force shell/bash/bashrc
-    link-dotfile --force shell/zsh/zshrc
-fi
+rm -fr ~/.zshrc
 
 link-dotfile --force --config app/emacs/doom/config.d doom
 link-dotfile --force --config app/htop
 link-dotfile --force --config app/neofetch
+
 link-dotfile --force app/emacs/spacemacs/spacemacs.el spacemacs
 link-dotfile --force app/git/gitignore
 link-dotfile --force app/r/Rprofile
@@ -57,12 +52,6 @@ if _koopa_is_macos
 then
     mkdir -pv "${HOME}/.R"
     ln -fnsv "${KOOPA_HOME}/os/macos/etc/R/Makevars" "${HOME}/.R/."
-elif [[ "$host_id" == "harvard-o2" ]]
-then
-    link-dotfile --force "host/harvard-o2/Renviron"
-elif [[ "$host_id" == "harvard-odyssey" ]]
-then
-    link-dotfile --force "host/harvard-odyssey/Renviron"
 fi
 
-# > link-emacs spacemacs
+_koopa_success "Installation of dotfiles was successful."
