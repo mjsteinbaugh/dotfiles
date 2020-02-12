@@ -1,7 +1,9 @@
 #!/bin/sh
 
 # Shared shell configuration file.
-# Updated 2020-01-13.
+# Updated 2020-02-12.
+
+export KOOPA_TEST=1
 
 # koopa shell
 # https://koopa.acidgenomics.com/
