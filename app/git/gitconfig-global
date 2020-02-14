@@ -1,25 +1,21 @@
+# """
 # Global git configuration
-# Updated 2019-10-28.
-
+# Updated 2020-02-14.
+#
 # Retab spaces in vim:
 # https://stackoverflow.com/questions/9104706
 # > :set tabstop=4
 # > :set noexpandtab
 # > :%retab!
-
-# oh-my-zsh will fail to clone unless these are set.
-# > git config --global fetch.fsck.zeroPaddedFilemode warn
-# > git config --global receive.fsck.zeroPaddedFilemode warn
-# > git config --global transfer.fsck.zeroPaddedFilemode warn
-# > git config --global fsck.zeroPaddedFilemode warn
-
+#
 # See also:
 # - https://github.com/roryk/dotfiles/blob/master/gitconfig
 # - https://github.com/vsbuffalo/dotfiles/blob/master/.gitconfig
+# """
 
 
 
-# Basic																		{{{1
+# Basic  {{{1
 # ==============================================================================
 
 [core]
@@ -32,8 +28,32 @@
 
 
 
-# File transfers															{{{1
+# Credential caching  {{{1
 # ==============================================================================
+
+# Particularly useful for commits over HTTPS, on machines where we don't have
+# SSH keys configured for GitHub.
+# 
+# > git config --global credential.helper "cache --timeout=10000000"
+#
+# See also:
+# - https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage
+# - https://happygitwithr.com/credential-caching.html
+# - https://stackoverflow.com/a/5343146/3911732
+
+[credential]
+	helper = cache --timeout=10000000
+
+
+
+# File transfers  {{{1
+# ==============================================================================
+#
+# oh-my-zsh repo can fail to clone unless these are set.
+# > git config --global fetch.fsck.zeroPaddedFilemode warn
+# > git config --global receive.fsck.zeroPaddedFilemode warn
+# > git config --global transfer.fsck.zeroPaddedFilemode warn
+# > git config --global fsck.zeroPaddedFilemode warn
 
 [push]
 	default = simple
@@ -56,7 +76,7 @@
 
 
 
-# Large file storage (LFS)													{{{1
+# Large file storage (LFS)  {{{1
 # ==============================================================================
 
 [filter "lfs"]
@@ -67,7 +87,7 @@
 
 
 
-# Differences																{{{1
+# Differences  {{{1
 # ==============================================================================
 
 # This is useful for Jupyter Notebooks.
@@ -76,7 +96,7 @@
 
 
 
-# Aliases																	{{{1
+# Aliases  {{{1
 # ==============================================================================
 
 [alias]

@@ -1,16 +1,12 @@
+# """
 # Mike's specific git configuration
-# Updated 2019-10-31.
+# Updated 2020-02-14.
+# """
 
 [include]
     path = ~/.config/koopa/dotfiles/app/git/gitconfig-global
-
 [user]
 	name = Michael Steinbaugh
 	email = mike@steinbaugh.com
 [github]
 	user = mjsteinbaugh
-[shell]
-	# Default SSH username.
-	username = mike
-[credential]
-	helper = cache --timeout=10000000
