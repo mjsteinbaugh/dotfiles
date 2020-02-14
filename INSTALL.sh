@@ -31,7 +31,8 @@ link-dotfile --force --config app/neofetch
 link-dotfile --force app/docker/config.json docker/config.json
 link-dotfile --force app/emacs/spacemacs/spacemacs.el spacemacs
 link-dotfile --force app/git/gitignore
-link-dotfile --force app/gnupg/gpg-agent.conf gnupg/gpg-agent.conf
+link-dotfile --force app/gnupg/dirmngr.conf gnupg/dirmngr.conf
+link-dotfile --force app/gnupg/gpg.conf gnupg/gpg.conf
 link-dotfile --force app/r/Rprofile
 link-dotfile --force app/tmux/tmux.conf
 link-dotfile --force app/vim/vim.d vim
@@ -46,10 +47,13 @@ if _koopa_is_macos
 then
     link-dotfile --force --config app/alacritty
     link-dotfile --force os/macos/app/git/gitconfig
+    link-dotfile --force os/macos/app/gnupg/gpg-agent.conf gnupg/gpg-agent.conf
 else
+    link-dotfile --force app/gnupg/gpg-agent.conf gnupg/gpg-agent.conf
     link-dotfile --force app/git/gitconfig
 fi
 
+# macOS-specific R configuration.
 if _koopa_is_macos
 then
     mkdir -pv "${HOME}/.R"
