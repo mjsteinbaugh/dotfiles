@@ -32,7 +32,6 @@ link-dotfile --force app/docker/config.json docker/config.json
 link-dotfile --force app/emacs/spacemacs/spacemacs.el spacemacs
 link-dotfile --force app/git/gitignore
 link-dotfile --force app/gnupg/dirmngr.conf gnupg/dirmngr.conf
-link-dotfile --force app/gnupg/gpg.conf gnupg/gpg.conf
 link-dotfile --force app/r/Rprofile
 link-dotfile --force app/tmux/tmux.conf
 link-dotfile --force app/vim/vim.d vim
