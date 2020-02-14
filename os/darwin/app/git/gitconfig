@@ -6,12 +6,10 @@
 [include]
     path = ~/.config/koopa/dotfiles/app/git/gitconfig
 
-[user]
-	# Public PGP key used for commit signing.
-	signingkey = C1BB2E4A7C4FF992
-
 [commit]
 	gpgsign = true
 [credential]
 	helper = osxkeychain
+[user]
+	signingkey = 6109B434CB2768E54005C990E42BE00B06201DAA
 
