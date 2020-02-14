@@ -28,9 +28,10 @@ link-dotfile --force --config app/emacs/doom/config.d doom
 link-dotfile --force --config app/htop
 link-dotfile --force --config app/neofetch
 
-link-dotfile --force app/docker
+link-dotfile --force app/docker/config.json docker/config.json
 link-dotfile --force app/emacs/spacemacs/spacemacs.el spacemacs
 link-dotfile --force app/git/gitignore
+link-dotfile --force app/gnupg/gpg-agent.conf gnupg/gpg-agent.conf
 link-dotfile --force app/r/Rprofile
 link-dotfile --force app/tmux/tmux.conf
 link-dotfile --force app/vim/vim.d vim
