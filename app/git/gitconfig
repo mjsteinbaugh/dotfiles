@@ -12,3 +12,5 @@
 [shell]
 	# Default SSH username.
 	username = mike
+[credential]
+	helper = cache --timeout=10000000
