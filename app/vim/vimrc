@@ -1,6 +1,7 @@
+"""
 " Vim configuration.
-" Updated 2020-02-09.
-
+" Updated 2020-02-14.
+"""
 
 
 " Notes                                                                     {{{1
@@ -64,7 +65,7 @@
 " ==============================================================================
 
 if v:version < 820
-    :echom "Error: Vim 8.2+ is required for '~/.vimrc' config."
+    :echom "ERROR: Vim 8.2+ is required for '~/.vimrc' config."
     exit
 endif
 
