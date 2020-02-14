@@ -63,8 +63,8 @@
 " Pre-flight checks                                                         {{{1
 " ==============================================================================
 
-if v:version < 800
-    :echom "Error: Vim 8+ is required for '~/.vimrc' config."
+if v:version < 820
+    :echom "Error: Vim 8.2+ is required for '~/.vimrc' config."
     exit
 endif
 
