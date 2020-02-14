@@ -37,6 +37,7 @@
 # > git config --global credential.helper "cache --timeout=10000000"
 #
 # See also:
+# - https://git-scm.com/docs/git-credential-store
 # - https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage
 # - https://happygitwithr.com/credential-caching.html
 # - https://stackoverflow.com/a/5343146/3911732
