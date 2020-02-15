@@ -6,6 +6,8 @@ source "$(koopa header bash)"
 
 _koopa_h1 "Linking dotfiles."
 
+koopa_prefix="$(_koopa_prefix)"
+
 rm -fr ~/.bash_logout
 rm -fr ~/.bash_profile
 rm -fr ~/.bashrc
@@ -56,7 +58,7 @@ fi
 if _koopa_is_macos
 then
     mkdir -pv "${HOME}/.R"
-    ln -fnsv "${KOOPA_HOME}/os/macos/etc/R/Makevars" "${HOME}/.R/."
+    ln -fnsv "${koopa_prefix}/os/macos/etc/R/Makevars" "${HOME}/.R/."
 fi
 
 _koopa_success "Installation of dotfiles was successful."
