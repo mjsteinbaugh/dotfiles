@@ -61,4 +61,8 @@ then
     ln -fnsv "${koopa_prefix}/os/macos/etc/R/Makevars" "${HOME}/.R/."
 fi
 
+# Permission fixes.
+[[ -d ~/.gnupg ]] && chmod 0700 ~/.gnupg
+[[ -d ~/.ssh ]] && chmod 0700 ~/.ssh
+
 _koopa_success "Installation of dotfiles was successful."
