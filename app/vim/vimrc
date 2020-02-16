@@ -70,8 +70,8 @@ if g:is_vim8 && !g:is_nvim && v:version < 802
 endif
 
 " Check that Neovim version matches minimum requirement.
-if g:is_nvim && !has("nvim-0.4.3")
-    :echom "ERROR: nvim 0.4.3+ is required for '~/.vimrc' config."
+if g:is_nvim && !has("nvim-0.4")
+    :echom "ERROR: nvim 0.4+ is required for '~/.vimrc' config."
     " nvim will exit without showing message.
     " > exit
 endif
