@@ -29,6 +29,7 @@ rm -fr ~/.zshrc
 link-dotfile --force --config app/emacs/doom/config.d doom
 link-dotfile --force --config app/htop
 link-dotfile --force --config app/neofetch
+link-dotfile --force --config app/nvim
 
 link-dotfile --force app/docker/config.json docker/config.json
 link-dotfile --force app/emacs/spacemacs/spacemacs.el spacemacs
@@ -60,14 +61,6 @@ then
     mkdir -pv "${HOME}/.R"
     ln -fnsv "${koopa_prefix}/os/macos/etc/R/Makevars" "${HOME}/.R/."
 fi
-
-# Linking Neovim configuration to Vim.
-# https://vi.stackexchange.com/questions/12794
-# https://neovim.io/doc/user/nvim.html#nvim-from-vim
-mkdir -pv ~/.config/nvim
-ln -fnsv ~/.vimrc ~/.config/nvim/init.vim
-mkdir -pv ~/.local/share/nvim
-ln -fnsv ~/.vim ~/.local/share/nvim/site
 
 # Permission fixes.
 [[ -d ~/.gnupg ]] && chmod 0700 ~/.gnupg
