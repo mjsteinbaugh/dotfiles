@@ -70,12 +70,36 @@ set nocompatible
 
 
 
-" 24-bit color support                                                      {{{1
+" Colors                                                                    {{{1
 " ==============================================================================
+"
+" List installed schemes:
+" > :colorscheme then Space followed by TAB.
+" https://stackoverflow.com/questions/7331940
 
+" It's complicated getting 24-bit true color support to work in tmux.
+" See also:
+" - https://tomlankhorst.nl/iterm-tmux-vim-true-color/
+" - https://www.reddit.com/r/vim/comments/5416d0/true_colors_in_vim_under_tmux/
+" - https://gist.github.com/limingjie/4975c36d13d0927613e6
+" - https://github.com/dracula/vim/issues/96
+" - https://superuser.com/questions/399296
+
+" Set Vim-specific sequences for RGB colors.
 if (has("termguicolors"))
     set termguicolors
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
+
+" > if &term == "screen"
+" >     set t_Co=256
+" > endif
+
+set background=dark
+
+packadd! dracula-theme
+colorscheme dracula
 
 
 
@@ -182,7 +206,6 @@ set wrapmargin=0
 " Added in Vim 7.3.
 " https://stackoverflow.com/questions/2182427
 set colorcolumn=80
-
 
 " Spaces and tabs                                                           {{{2
 " ------------------------------------------------------------------------------
@@ -330,24 +353,6 @@ let g:vim_markdown_folding_level=2
 " > set foldmethod=indent
 " > set foldlevel=99
 " > let g:SimpylFold_docstring_preview=1
-
-
-
-" Colors                                                                    {{{1
-" ==============================================================================
-
-packadd! dracula-theme
-colorscheme dracula
-
-" Enable syntax highlighting.
-syntax on
-
-" Enable 256 color support.
-" This is useful when running inside PuTTY.
-" https://gist.github.com/limingjie/4975c36d13d0927613e6
-if &term == "screen"
-    set t_Co=256
-endif
 
 
 
