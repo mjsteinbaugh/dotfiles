@@ -1,6 +1,6 @@
 """
 " Vim configuration.
-" Updated 2020-02-14.
+" Updated 2020-02-15.
 "
 " Useful help:
 " :help myvimrc
@@ -67,6 +67,15 @@ endif
 
 " Disable vi compatibility mode.
 set nocompatible
+
+
+
+" 24-bit color support                                                      {{{1
+" ==============================================================================
+
+if (has("termguicolors"))
+    set termguicolors
+endif
 
 
 
