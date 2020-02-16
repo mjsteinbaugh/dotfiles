@@ -66,12 +66,13 @@ let g:is_vim8 = v:version >= 800 ? 1 : 0
 " Check that Vim version matches minimum requirement.
 if g:is_vim8 && !g:is_nvim && v:version < 802
     :echom "ERROR: Vim 8.2+ is required for '~/.vimrc' config."
-    " > exit
+    exit
 endif
 
 " Check that Neovim version matches minimum requirement.
 if g:is_nvim && !has("nvim-0.4.3")
     :echom "ERROR: nvim 0.4.3+ is required for '~/.vimrc' config."
+    " nvim will exit without showing message.
     " > exit
 endif
 
@@ -98,8 +99,8 @@ set nocompatible
 " Set Vim-specific sequences for RGB colors.
 if (has("termguicolors"))
     set termguicolors
-    " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
 " > if &term == "screen"
