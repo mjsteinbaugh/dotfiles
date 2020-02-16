@@ -95,6 +95,8 @@ set nocompatible
 " - https://gist.github.com/limingjie/4975c36d13d0927613e6
 " - https://github.com/dracula/vim/issues/96
 " - https://superuser.com/questions/399296
+" - https://jdhao.github.io/2018/10/19/tmux_nvim_true_color/
+" - https://stackoverflow.com/questions/15375992
 
 " Set Vim-specific sequences for RGB colors.
 if (has("termguicolors"))
@@ -102,10 +104,6 @@ if (has("termguicolors"))
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
-
-" > if &term == "screen"
-" >     set t_Co=256
-" > endif
 
 set background=dark
 
