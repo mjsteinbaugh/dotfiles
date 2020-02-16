@@ -61,6 +61,14 @@ then
     ln -fnsv "${koopa_prefix}/os/macos/etc/R/Makevars" "${HOME}/.R/."
 fi
 
+# Linking Neovim configuration to Vim.
+# https://vi.stackexchange.com/questions/12794
+# https://neovim.io/doc/user/nvim.html#nvim-from-vim
+mkdir -pv ~/.config/nvim
+ln -fnsv ~/.vimrc ~/.config/nvim/init.vim
+mkdir -pv ~/.local/share/nvim
+ln -fnsv ~/.vim ~/.local/share/nvim/site
+
 # Permission fixes.
 [[ -d ~/.gnupg ]] && chmod 0700 ~/.gnupg
 [[ -d ~/.ssh ]] && chmod 0700 ~/.ssh
