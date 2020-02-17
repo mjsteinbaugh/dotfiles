@@ -66,7 +66,12 @@
 	path = shell/zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
 	branch = master
+
 [submodule "theme/dracula/bbedit"]
 	path = theme/dracula/bbedit
 	url = https://github.com/dracula/bbedit.git
+	branch = master
+[submodule "theme/dracula/visual-studio-code"]
+	path = theme/dracula/visual-studio-code
+	url = https://github.com/dracula/visual-studio-code.git
 	branch = master
