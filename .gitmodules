@@ -1,50 +1,15 @@
 # """
 # Git submodules.
 # Updated 2020-02-17.
-# """
-
-
-
-# Themes                                                                    {{{1
-# ==============================================================================
-
-[submodule "theme/dracula/bbedit"]
-	path = theme/dracula/bbedit
-	url = https://github.com/dracula/bbedit
-	branch = master
-[submodule "theme/dracula/powershell"]
-	path = theme/dracula/powershell
-	url = https://github.com/dracula/powershell
-	branch = master
-[submodule "theme/dracula/putty"]
-	path = theme/dracula/putty
-	url = https://github.com/gkroon/dracula-putty
-	branch = master
-[submodule "theme/dracula/terminal-app"]
-	path = theme/dracula/terminal-app
-	url = https://github.com/dracula/terminal-app
-	branch = master
-[submodule "theme/dracula/vim"]
-	path = theme/dracula/vim
-	url = https://github.com/dracula/vim
-	branch = master
-[submodule "theme/dracula/visual-studio-code"]
-	path = theme/dracula/visual-studio-code
-	url = https://github.com/dracula/visual-studio-code
-	branch = master
-
-
-
-# Vim plugins                                                               {{{1
-# ==============================================================================
-
+#
 # Potentially useful:
 # - jedi-vim
 #   https://github.com/davidhalter/jedi-vim
 # - vim-virtualenv
 #   https://github.com/jmcantrell/vim-virtualenv
-
-# Symlink 'dracula-theme' from 'theme/dracula/vim'.
+#
+# Vim: symlink 'dracula-theme' from 'theme/dracula/vim'.
+# """
 
 [submodule "app/vim/vim.d/pack/dist/start/Nvim-R"]
 	path = app/vim/vim.d/pack/dist/start/Nvim-R
@@ -71,12 +36,32 @@
 	url = https://github.com/vim-syntastic/syntastic
 	branch = master
 
-
-
-# ZSH plugins                                                               {{{1
-# ==============================================================================
-
 [submodule "shell/zsh/plugins/zsh-autosuggestions"]
 	path = shell/zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
+	branch = master
+
+[submodule "theme/dracula/bbedit"]
+	path = theme/dracula/bbedit
+	url = https://github.com/dracula/bbedit
+	branch = master
+[submodule "theme/dracula/powershell"]
+	path = theme/dracula/powershell
+	url = https://github.com/dracula/powershell
+	branch = master
+[submodule "theme/dracula/putty"]
+	path = theme/dracula/putty
+	url = https://github.com/gkroon/dracula-putty
+	branch = master
+[submodule "theme/dracula/terminal-app"]
+	path = theme/dracula/terminal-app
+	url = https://github.com/dracula/terminal-app
+	branch = master
+[submodule "theme/dracula/vim"]
+	path = theme/dracula/vim
+	url = https://github.com/dracula/vim
+	branch = master
+[submodule "theme/dracula/visual-studio-code"]
+	path = theme/dracula/visual-studio-code
+	url = https://github.com/dracula/visual-studio-code
 	branch = master
