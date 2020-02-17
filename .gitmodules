@@ -45,6 +45,22 @@
 	path = theme/dracula/bbedit
 	url = https://github.com/dracula/bbedit
 	branch = master
+[submodule "theme/dracula/emacs"]
+	path = theme/dracula/emacs
+	url = https://github.com/dracula/emacs
+	branch = master
+[submodule "theme/dracula/firefox"]
+	path = theme/dracula/firefox
+	url = https://github.com/dracula/firefox
+	branch = master
+[submodule "theme/dracula/google-chrome"]
+	path = theme/dracula/google-chrome
+	url = https://github.com/dracula/google-chrome
+	branch = master
+[submodule "theme/dracula/jupyterlab"]
+	path = theme/dracula/jupyterlab
+	url = https://github.com/dracula/jupyterlab
+	branch = master
 [submodule "theme/dracula/powershell"]
 	path = theme/dracula/powershell
 	url = https://github.com/dracula/powershell
@@ -64,4 +80,12 @@
 [submodule "theme/dracula/visual-studio-code"]
 	path = theme/dracula/visual-studio-code
 	url = https://github.com/dracula/visual-studio-code
+	branch = master
+[submodule "theme/dracula/xcode"]
+	path = theme/dracula/xcode
+	url = https://github.com/dracula/xcode
+	branch = master
+[submodule "theme/dracula/windows-terminal"]
+	path = theme/dracula/windows-terminal
+	url = https://github.com/dracula/windows-terminal
 	branch = master
