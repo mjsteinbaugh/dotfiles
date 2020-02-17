@@ -10,7 +10,7 @@
 
 [submodule "theme/dracula/bbedit"]
 	path = theme/dracula/bbedit
-	url = https://github.com/dracula/bbedit.git
+	url = https://github.com/dracula/bbedit
 	branch = master
 [submodule "theme/dracula/powershell"]
 	path = theme/dracula/powershell
@@ -20,13 +20,17 @@
 	path = theme/dracula/putty
 	url = https://github.com/gkroon/dracula-putty
 	branch = master
+[submodule "theme/dracula/terminal-app"]
+	path = theme/dracula/terminal-app
+	url = https://github.com/dracula/terminal-app
+	branch = master
 [submodule "theme/dracula/vim"]
 	path = theme/dracula/vim
 	url = https://github.com/dracula/vim
 	branch = master
 [submodule "theme/dracula/visual-studio-code"]
 	path = theme/dracula/visual-studio-code
-	url = https://github.com/dracula/visual-studio-code.git
+	url = https://github.com/dracula/visual-studio-code
 	branch = master
 
 
