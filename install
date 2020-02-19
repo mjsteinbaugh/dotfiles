@@ -47,7 +47,6 @@ link-dotfile --force shell/zsh/zshrc
 if _koopa_is_macos
 then
     link-dotfile --force --config app/alacritty
-    link-dotfile --force os/macos/app/docker/config.json docker/config.json
     link-dotfile --force os/macos/app/git/gitconfig
     link-dotfile --force os/macos/app/gnupg/gpg-agent.conf gnupg/gpg-agent.conf
 else
