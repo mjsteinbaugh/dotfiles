@@ -26,14 +26,10 @@ rm -fr ~/.zcompdump
 rm -fr ~/.zsh_history
 rm -fr ~/.zshrc
 
-link-dotfile --force --config app/emacs/doom/config.d doom
 link-dotfile --force --config app/htop
 link-dotfile --force --config app/neofetch
 link-dotfile --force --config app/nvim
-
-link-dotfile --force app/emacs/spacemacs/spacemacs.el spacemacs
 link-dotfile --force app/git/gitignore
-link-dotfile --force app/gnupg/dirmngr.conf gnupg/dirmngr.conf
 link-dotfile --force app/r/Rprofile
 link-dotfile --force app/tmux/tmux.conf
 link-dotfile --force app/vim/vim.d vim
@@ -44,15 +40,26 @@ link-dotfile --force shell/bash/bashrc
 link-dotfile --force shell/bash/inputrc
 link-dotfile --force shell/zsh/zshrc
 
+link-dotfile --force --config \
+    app/emacs/doom/config.d \
+    doom
+link-dotfile --force \
+    app/emacs/spacemacs/spacemacs.el \
+    spacemacs
+link-dotfile --force \
+    app/gnupg/dirmngr.conf \
+    gnupg/dirmngr.conf
+
 if _koopa_is_macos
 then
     link-dotfile --force --config app/alacritty
-    link-dotfile --force os/macos/app/git/gitconfig
-    link-dotfile --force os/macos/app/gnupg/gpg-agent.conf gnupg/gpg-agent.conf
+    link-dotfile --force \
+        os/macos/app/gnupg/gpg-agent.conf \
+        gnupg/gpg-agent.conf
 else
-    link-dotfile --force app/git/gitconfig
-    link-dotfile --force app/gnupg/gpg-agent.conf gnupg/gpg-agent.conf
-    link-dotfile --force os/linux/app/docker/config.json docker/config.json
+    link-dotfile --force \
+        app/gnupg/gpg-agent.conf \
+        gnupg/gpg-agent.conf
 fi
 
 # macOS-specific R configuration.
