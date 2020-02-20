@@ -23,7 +23,6 @@ link-dotfile --force app/git/gitignore
 link-dotfile --force app/r/Rprofile
 link-dotfile --force app/tmux/tmux.conf
 link-dotfile --force app/vim/vim.d vim
-link-dotfile --force app/vim/vim.d vim
 link-dotfile --force app/vim/vimrc
 link-dotfile --force shell/bash/bash_profile
 link-dotfile --force shell/bash/bash_logout
