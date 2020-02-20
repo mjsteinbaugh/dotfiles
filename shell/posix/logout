@@ -13,5 +13,3 @@ if [ -f "${HISTFILE:-}" ]
 then
     rm "$HISTFILE"
 fi
-
-touch ~/hello-world.txt
