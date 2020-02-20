@@ -7,3 +7,11 @@ if [ "${SHLVL:-}" = 1 ]
 then
     [ -x /usr/bin/clear_console ] && /usr/bin/clear_console -q
 fi
+
+# Delete HISTFILE.
+if [ -f "${HISTFILE:-}" ]
+then
+    rm "$HISTFILE"
+fi
+
+touch ~/hello-world.txt
