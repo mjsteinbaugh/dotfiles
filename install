@@ -43,6 +43,7 @@ link-dotfile --force \
 if _koopa_is_macos
 then
     link-dotfile --force --config app/alacritty
+    link-dotfile --force app/vim/gvimrc
     link-dotfile --force \
         os/macos/app/gnupg/gpg-agent.conf \
         gnupg/gpg-agent.conf

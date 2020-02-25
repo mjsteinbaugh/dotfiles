@@ -64,8 +64,9 @@ let g:is_nvim = has("nvim")
 let g:is_vim8 = v:version >= 800 ? 1 : 0
 
 " Check that Vim version matches minimum requirement.
-if g:is_vim8 && !g:is_nvim && v:version < 802
-    :echom "ERROR: Vim 8.2+ is required for '~/.vimrc' config."
+" Note that MacVim is currently stuck on Vim 8.1, so keep relaxed here.
+if g:is_vim8 && !g:is_nvim && v:version < 801
+    :echom "ERROR: Vim 8.1+ is required for '~/.vimrc' config."
     exit
 endif
 

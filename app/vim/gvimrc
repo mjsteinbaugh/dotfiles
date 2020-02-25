@@ -1,0 +1,13 @@
+"""
+" GUI Vim configuration.
+" Updated 2020-02-25.
+"
+" Intended primarily for MacVim.
+"
+" See also:
+" - https://stackoverflow.com/questions/2886436
+" - https://stackoverflow.com/questions/8483371
+"""
+
+" Use SF Mono, 16 pt by default.
+set guifont=SF\ Mono\ Regular:h16
