@@ -1,6 +1,6 @@
 """
 " Vim configuration.
-" Updated 2020-02-15.
+" Updated 2020-02-25.
 "
 " Useful help:
 " :help myvimrc
@@ -556,7 +556,6 @@ let g:NERDTreeDirArrowCollapsible='▾'
 " -----------------------------------------------------------
 "
 " Edit
-"   . Insert "<-"                                          _
 "   . Complete object name                     CTRL-X CTRL-O
 "   --------------------------------------------------------
 "   . Indent (line)                                       ==
@@ -583,10 +582,25 @@ let g:NERDTreeDirArrowCollapsible='▾'
 " Help (R)                                            :Rhelp
 " -----------------------------------------------------------
 
-" Disable `_` to `<-`, which is ridiculous.
-" > let vimrplugin_assign = 0
-" https://stackoverflow.com/questions/44529713
-let R_assign=0
+" Disable `_` to `<-` conversion, which is madness.
+let r_assign=0
+" If useful, can override the default here.
+let r_assign_map="_"
+
+" Don't apply automatic indentation to comment blocks.
+let r_indent_commented=0
+" Mimic ESS conventions.
+let r_indent_ess_comments=1
+" Use Bioconductor recommended '##' instead of '#' by default.
+let r_rcomment_string='## '
+
+" R console height, when split horizontally.
+let r_rconsole_height=20
+" R console width, when split vertically.
+let r_rconsole_width=80
+
+" Enable the syntax method of folding for R files.
+let r_syntax_folding=1
 
 " airline                                                                   {{{2
 " ------------------------------------------------------------------------------
@@ -624,7 +638,7 @@ set rtp+=/usr/local/opt/fzf
 " python-mode                                                               {{{2
 " ------------------------------------------------------------------------------
 
-let g:pymode_python = 'python3'
+let g:pymode_python='python3'
 
 " syntastic                                                                 {{{2
 " ------------------------------------------------------------------------------
@@ -647,7 +661,7 @@ let g:syntastic_python_checkers=['flake8', 'pyflakes', 'pylint']
 
 " Enable use of custom '.pylintrc' file.
 " https://groups.google.com/forum/#!topic/vim_use/Gd6lO3ETnl0
-let g:syntastic_python_pylint_args = '--rcfile=~/.pylintrc'
+let g:syntastic_python_pylint_args='--rcfile=~/.pylintrc'
 
 " R
 " https://github.com/jimhester/lintr
