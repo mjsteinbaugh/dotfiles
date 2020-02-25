@@ -2,57 +2,8 @@
 " Vim configuration.
 " Updated 2020-02-25.
 "
-" Useful help:
-" :help myvimrc
-" :help local-options
-" :help setlocal
-" :help map-local
-"
-" Vim calls the "prefix" key the "leader".
-"
-" Vim has a second "leader" key called "local leader". This is meant to be a
-" prefix for mappings that only take effect for certain types of files, like
-" Python files or HTML files.
-"
-" You can be more specific about when you want mappings to apply by using nmap,
-" vmap, and imap. These tell Vim to only use the mapping in normal, visual, or
-" insert mode respectively.
-"
-" Each of the *map commands has a *noremap counterpart that ignores other
-" mappings: noremap, nnoremap, vnoremap, and inoremap. Always use these
-" nonrecursive variants when defining custom mappings.
-"
-" There are a bunch of keys that you don't normally need in normal mode:
-" * -
-" * <bs>
-" * <cr>
-" * <space>
-" * H
-" * L
-"
-" Use 'finish' inside if/else conditional to early return.
-"
-" Version specific conditionals:
-" > if v:version >= 800
-" >     set background=dark
-" > else
-" >     set background=light
-" > endif
-"
-" Useful local options:
-" > :setlocal wrap
-" > :setlocal nowrap
-" > :setlocal wrap!
-" > :setlocal number
-" > :setlocal nonumber
-" > :setlocal number!
-"
 " See also:
-" - https://www.vim.org
 " - https://steinbaugh.com/posts/vim.html
-" - http://learnvimscriptthehardway.stevelosh.com/
-" - https://github.com/MikeMcQuaid/dotfiles/blob/master/vimrc
-" - https://gist.github.com/nerdalert/5f80853b4e195204bc6d
 """
 
 
@@ -84,10 +35,6 @@ set nocompatible
 
 " Colors                                                                    {{{1
 " ==============================================================================
-"
-" List installed schemes:
-" > :colorscheme then Space followed by TAB.
-" https://stackoverflow.com/questions/7331940
 
 " Set Vim-specific sequences for RGB colors.
 " This adds nice fallback support for clients and terminal multiplexers that
@@ -383,7 +330,7 @@ syntax on
 
 " See also:
 " - https://realpython.com/vim-and-python-a-match-made-in-heaven/
-" - syntastic
+" - syntastic (see below)
 "   https://github.com/vim-syntastic/syntastici
 " - pylint
 "   https://www.pylint.org/
