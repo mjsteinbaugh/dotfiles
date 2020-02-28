@@ -389,7 +389,7 @@ let g:NERDTreeDirArrowCollapsible='▾'
 " Disable `_` to `<-` conversion, which is madness.
 let r_assign=0
 " If useful, can override the default here.
-let r_assign_map="_"
+" > let r_assign_map="_"
 
 " Don't apply automatic indentation to comment blocks.
 let r_indent_commented=0
