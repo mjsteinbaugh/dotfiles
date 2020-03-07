@@ -71,6 +71,8 @@ endif
 
 set background=dark
 
+" Use Dracula theme.
+" https://draculatheme.com/vim/
 packadd! dracula-theme
 colorscheme dracula
 
