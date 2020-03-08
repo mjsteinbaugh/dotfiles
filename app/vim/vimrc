@@ -179,7 +179,7 @@ set smarttab
 set expandtab
 
 " Display tab (\t) visually as 4 spaces.
-" Can also set using `ts` instead of `tabstop`.
+" Can also set using 'ts' instead of 'tabstop'.
 set tabstop=4
 
 " Tab columns will display as 4 spaces.
@@ -238,7 +238,7 @@ set cursorline
 set showcmd
 
 " Always show status line.
-" Disable with `=0`.
+" Disable with '=0'.
 set laststatus=2
 
 " Always show ruler at bottom.
@@ -275,7 +275,7 @@ set showmatch
 " This doesn't work very well with PuTTY and/or inside tmux, so disabling.
 
 " Enable mouse integration.
-" `a` means all here.
+" 'a' means all here.
 " > set mouse=a
 
 " Disable mouse integration.
@@ -289,7 +289,7 @@ set foldmethod=marker
 
 " Disable collapsed folds by default.
 " https://stackoverflow.com/questions/8316139
-" Restore folds with `zc`.
+" Restore folds with 'zc'.
 set nofoldenable
 
 " Completely disable Markdown-specific code folding.
@@ -310,7 +310,7 @@ let g:vim_markdown_folding_level=2
 " File management                                                           {{{1
 " ==============================================================================
 
-" Disable creation of `foo~` files.
+" Disable creation of 'foo~' files.
 " These are annoying and create file system cruft.
 set nobackup
 
@@ -386,7 +386,7 @@ let g:NERDTreeDirArrowCollapsible='▾'
 " Nvim-R                                                                    {{{2
 " ------------------------------------------------------------------------------
 
-" Disable `_` to `<-` conversion, which is madness.
+" Disable '_' to '<-' conversion, which is madness.
 let r_assign=0
 " If useful, can override the default here.
 " > let r_assign_map="_"
@@ -447,8 +447,8 @@ let g:pymode_python='python3'
 " syntastic                                                                 {{{2
 " ------------------------------------------------------------------------------
 
-" Check which linters are enabled with `:SyntasticInfo`.
-" Check PATH with `:echo syntastic#util#system('echo "$PATH"')`.
+" Check which linters are enabled with ':SyntasticInfo'.
+" Check PATH with ':echo syntastic#util#system('echo "$PATH"')'.
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -481,7 +481,7 @@ let g:syntastic_python_pylint_args='--rcfile=~/.pylintrc'
 
 if has("macunix")
     " Enable copy to clipboard (for macOS).
-    " Now `Vy` will work.
+    " Now 'Vy' will work.
     "
     " > :w !pbcopy
     " https://stackoverflow.com/questions/677986
