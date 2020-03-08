@@ -1,9 +1,9 @@
 """
 " Vim configuration.
-" Updated 2020-02-25.
+" Updated 2020-03-07.
 "
-" See also:
-" - https://steinbaugh.com/posts/vim.html
+" Refer to my cheat sheet for usage details:
+" https://steinbaugh.com/posts/vim.html
 """
 
 
@@ -33,6 +33,28 @@ set nocompatible
 
 
 
+" Highlighting                                                              {{{1
+" ==============================================================================
+
+" Enable syntax highlighting.
+syntax on
+
+" Note that 'colorscheme' definition (e.g. dracula) can clear all user-defined
+" highlight groups. Use ':autocmd ColorScheme' before 'colorscheme' command to
+" ensure that the highlight group gets created and is not cleared by future
+" 'colorscheme' commands. See ':help :colorscheme' for details.
+
+" Highlight TODO or FIXME comments.
+" > highlight Todos cterm=bold ctermbg=red ctermfg=white gui=bold guibg=red guifg=white
+" > :autocmd ColorScheme * highlight Todos cterm=bold ctermbg=red ctermfg=white gui=bold guibg=red guifg=white
+" > :match Todos /\(TODO\|FIXME\)/
+
+" See also:
+" - https://vim.fandom.com/wiki/Highlight_unwanted_spaces
+" - https://github.com/nasamuffin/dotfiles/blob/master/vimrc
+
+
+
 " Colors                                                                    {{{1
 " ==============================================================================
 
@@ -49,6 +71,8 @@ endif
 
 set background=dark
 
+" Use Dracula theme.
+" https://draculatheme.com/vim/
 packadd! dracula-theme
 colorscheme dracula
 
@@ -127,6 +151,11 @@ inoremap <c-d> <esc>ddi
 " Enforce muscle memory of JK exit instead of Esc.
 " > inoremap <esc> <nop>
 
+" Mapping Esc to Caps Lock is a good ergonomic alternative.
+" On macOS: System Preferences > Keyboard > Modifier Keys...
+" Change Caps Lock Key to Escape.
+" Note that Esc will continue to work with this setup.
+
 
 
 " Text formatting                                                           {{{1
@@ -153,10 +182,13 @@ set textwidth=0
 set wrapmargin=0
 
 " Set the right margin color column.
-" Super useful when using soft wrapping.
-" Added in Vim 7.3.
 " https://stackoverflow.com/questions/2182427
-set colorcolumn=80
+"
+" Can define relative to 'textwidth' (hard wrapping) with:
+" > set colorcolumn=+1
+"
+" For 80c width, use 80 + 1.
+set colorcolumn=81
 
 " Spaces and tabs                                                           {{{2
 " ------------------------------------------------------------------------------
@@ -222,6 +254,19 @@ endif
 " Navigation                                                                {{{1
 " ==============================================================================
 
+" Mouse integration                                                         {{{2
+" ------------------------------------------------------------------------------
+
+" This doesn't work very well inside tmux or when using PuTTY, so disabling.
+" Scrolling will continue to work fine inside iTerm2 on macOS.
+
+" Enable mouse integration.
+" 'a' means all here.
+" > set mouse=a
+
+" Disable mouse integration.
+set mouse=
+
 " Window management                                                         {{{2
 " ------------------------------------------------------------------------------
 
@@ -261,13 +306,11 @@ set nonumber
 " Search (matching)                                                         {{{2
 " ------------------------------------------------------------------------------
 
-set ignorecase
-set smartcase
 set hlsearch
+set ignorecase
 set incsearch
-
-" Highlight matches.
 set showmatch
+set smartcase
 
 " Mouse integration                                                         {{{2
 " ------------------------------------------------------------------------------
@@ -281,15 +324,26 @@ set showmatch
 " Disable mouse integration.
 set mouse=
 
+" Use regular expression matching by default.
+" https://github.com/nasamuffin/dotfiles/blob/master/vimrc
+" > :nnoremap / /\v
+" > :cnoremap %s/ %s/\v
+" > :cnoremap s/ s/\v
+" > :xnoremap '<,'>s/ '<,'>s/\v
+" > :xnoremap / /\v
+" > :xnoremap s/ s/\v
+
 " Folding                                                                   {{{2
 " ------------------------------------------------------------------------------
 
-" The alternative 'indent' method creates too many folds by default.
+" foldmethod alternatives: indent, syntax
 set foldmethod=marker
 
 " Disable collapsed folds by default.
+" Restore folds with 'zc'.
 " https://stackoverflow.com/questions/8316139
 " Restore folds with 'zc'.
+set foldlevelstart=99
 set nofoldenable
 
 " Completely disable Markdown-specific code folding.
@@ -302,7 +356,6 @@ let g:vim_markdown_folding_level=2
 " SimpylFold mode (useful for Python IDE).
 " https://github.com/tmhedberg/SimpylFold
 " > set foldmethod=indent
-" > set foldlevel=99
 " > let g:SimpylFold_docstring_preview=1
 
 
@@ -322,8 +375,6 @@ set nobackup
 
 " Languages                                                                 {{{1
 " ==============================================================================
-
-syntax on
 
 " Python                                                                    {{{2
 " ------------------------------------------------------------------------------
