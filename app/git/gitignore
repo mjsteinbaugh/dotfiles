@@ -1,5 +1,7 @@
+# """
 # Git ignore global rules.
-# Updated 2020-01-29.
+# Updated 2020-04-02.
+# """
 
 
 
@@ -76,6 +78,7 @@ Temporary Items/
 *.sqlite
 *.tar
 *.tsv
+*.webloc
 *.xz
 *.zip
 *.zwc
