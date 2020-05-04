@@ -1,6 +1,6 @@
 """
 " Vim configuration.
-" Updated 2020-03-07.
+" Updated 2020-05-04.
 "
 " Refer to my cheat sheet for usage details:
 " https://steinbaugh.com/posts/vim.html
@@ -33,6 +33,18 @@ set nocompatible
 
 
 
+" Global variables                                                          {{{1
+" ==============================================================================
+
+" Refer to ':help expand' for details.
+" Here '<sfile>' refers to sourced script file name, i.e. '~/.vimrc'.
+let user_home = expand('<sfile>:p:h')
+let vim_home = join([user_home, '.vim'], '/')
+let plugins_home = join([vim_home, 'pack', 'dist', 'start'], '/')
+let app_dir = join(['', 'usr', 'local', 'opt'], '/')
+
+
+
 " Highlighting                                                              {{{1
 " ==============================================================================
 
@@ -45,8 +57,10 @@ syntax on
 " 'colorscheme' commands. See ':help :colorscheme' for details.
 
 " Highlight TODO or FIXME comments.
-" > highlight Todos cterm=bold ctermbg=red ctermfg=white gui=bold guibg=red guifg=white
-" > :autocmd ColorScheme * highlight Todos cterm=bold ctermbg=red ctermfg=white gui=bold guibg=red guifg=white
+" > highlight Todos cterm=bold ctermbg=red ctermfg=white gui=bold guibg=red \
+" >     guifg=white
+" > :autocmd ColorScheme * highlight Todos cterm=bold ctermbg=red \
+" >     ctermfg=white gui=bold guibg=red guifg=white
 " > :match Todos /\(TODO\|FIXME\)/
 
 " See also:
@@ -71,10 +85,26 @@ endif
 
 set background=dark
 
+" Dracula                                                                   {{{2
+" ------------------------------------------------------------------------------
+
+" You need a 256-color or truecolor terminal
+" and you may want one that supports xterm sequences for :terminal
+
 " Use Dracula theme.
-" https://draculatheme.com/vim/
-packadd! dracula-theme
-colorscheme dracula
+" - https://draculatheme.com/vim/
+" - https://draculatheme.com/pro/
+
+" Alternatively, consider using 'filereadable' instead here.
+if isdirectory(join([plugins_home, 'dracula_pro', 'autoload'], '/'))
+    " Use Dracula Pro color scheme if symlink exists.
+    packadd! dracula_pro
+    colorscheme dracula_pro
+else
+    " Otherwise fall back to standard Dracula theme.
+    packadd! dracula-theme
+    colorscheme dracula
+endif
 
 
 
@@ -487,8 +517,10 @@ let r_syntax_folding=1
 " fzf                                                                       {{{2
 " ------------------------------------------------------------------------------
 
-" If installed using Homebrew (macOS).
-set rtp+=/usr/local/opt/fzf
+let fzf_dir = join([app_dir, 'fzf'], '/')
+if isdirectory(fzf_dir)
+    set rtp+=fzf_dir
+endif
 
 " python-mode                                                               {{{2
 " ------------------------------------------------------------------------------
