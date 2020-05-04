@@ -15,6 +15,9 @@
 	path = app/rstudio/mojave-dark
 	url = https://github.com/patrickshox/Mojave-Dark-RStudio-Theme
 	branch = master
+[submodule "app/tmux/tmux.d/plugins/tmux"]
+	path = app/tmux/tmux.d/plugins/tmux
+	url = https://github.com/dracula/tmux
 [submodule "app/tmux/tmux.d/plugins/tpm"]
 	path = app/tmux/tmux.d/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
