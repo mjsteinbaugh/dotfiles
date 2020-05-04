@@ -1,6 +1,6 @@
 # """
 # Git submodules.
-# Updated 2020-02-17.
+# Updated 2020-05-04.
 #
 # Potentially useful:
 # - jedi-vim
@@ -93,3 +93,6 @@
 	path = theme/dracula/windows-terminal
 	url = https://github.com/dracula/windows-terminal
 	branch = master
+[submodule "app/tmux/tmux.d/plugins/tpm"]
+	path = app/tmux/tmux.d/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
