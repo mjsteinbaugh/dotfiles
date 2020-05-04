@@ -15,6 +15,9 @@
 	path = app/rstudio/mojave-dark
 	url = https://github.com/patrickshox/Mojave-Dark-RStudio-Theme
 	branch = master
+[submodule "app/tmux/tmux.d/plugins/tpm"]
+	path = app/tmux/tmux.d/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
 [submodule "app/vim/vim.d/pack/dist/start/Nvim-R"]
 	path = app/vim/vim.d/pack/dist/start/Nvim-R
 	url = https://github.com/jalvesaq/Nvim-R
@@ -39,12 +42,10 @@
 	path = app/vim/vim.d/pack/dist/start/syntastic
 	url = https://github.com/vim-syntastic/syntastic
 	branch = master
-
 [submodule "shell/zsh/plugins/zsh-autosuggestions"]
 	path = shell/zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
 	branch = master
-
 [submodule "theme/dracula/bbedit"]
 	path = theme/dracula/bbedit
 	url = https://github.com/dracula/bbedit
@@ -93,6 +94,3 @@
 	path = theme/dracula/windows-terminal
 	url = https://github.com/dracula/windows-terminal
 	branch = master
-[submodule "app/tmux/tmux.d/plugins/tpm"]
-	path = app/tmux/tmux.d/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
