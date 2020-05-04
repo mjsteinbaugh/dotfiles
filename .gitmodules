@@ -17,10 +17,13 @@
 	branch = master
 [submodule "app/tmux/tmux.d/plugins/tmux"]
 	path = app/tmux/tmux.d/plugins/tmux
-	url = https://github.com/dracula/tmux
+    url = https://github.com/dracula/tmux
+    branch = master
 [submodule "app/tmux/tmux.d/plugins/tpm"]
 	path = app/tmux/tmux.d/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
+    url = https://github.com/tmux-plugins/tpm
+    branch = master
+    ignore = dirty
 [submodule "app/vim/vim.d/pack/dist/start/Nvim-R"]
 	path = app/vim/vim.d/pack/dist/start/Nvim-R
 	url = https://github.com/jalvesaq/Nvim-R
