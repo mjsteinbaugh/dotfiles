@@ -11,8 +11,8 @@
 " Pre-flight checks                                                         {{{1
 " ==============================================================================
 
-let g:is_nvim = has("nvim")
-let g:is_vim8 = v:version >= 800 ? 1 : 0
+let g:is_nvim=has("nvim")
+let g:is_vim8=v:version >= 800 ? 1 : 0
 
 " Check that Vim version matches minimum requirement.
 " Note that MacVim is currently stuck on Vim 8.1, so keep relaxed here.
@@ -38,10 +38,10 @@ set nocompatible
 
 " Refer to ':help expand' for details.
 " Here '<sfile>' refers to sourced script file name, i.e. '~/.vimrc'.
-let user_home = expand('<sfile>:p:h')
-let vim_home = join([user_home, '.vim'], '/')
-let plugins_home = join([vim_home, 'pack', 'dist', 'start'], '/')
-let app_dir = join(['', 'usr', 'local', 'opt'], '/')
+let user_home=expand("<sfile>:p:h")
+let vim_home=join([user_home, ".vim"], "/")
+let plugins_home=join([vim_home, "pack", "dist", "start"], "/")
+let app_dir=join(["", "usr", "local", "opt"], "/")
 
 
 
@@ -77,9 +77,9 @@ syntax on
 " don't support true colors yet.
 if (has("termguicolors"))
     set termguicolors
-    if &term =~# '^screen'
-        let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-        let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    if &term =~# "^screen"
+        let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+        let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
     endif
 endif
 
@@ -96,7 +96,7 @@ set background=dark
 " - https://draculatheme.com/pro/
 
 " Alternatively, consider using 'filereadable' instead here.
-if isdirectory(join([plugins_home, 'dracula_pro', 'autoload'], '/'))
+if isdirectory(join([plugins_home, "dracula_pro", "autoload"], "/"))
     " Use Dracula Pro color scheme if symlink exists.
     packadd! dracula_pro
     colorscheme dracula_pro
@@ -111,8 +111,8 @@ endif
 " Key mappings (bindings)                                                   {{{1
 " ==============================================================================
 
-let mapleader = "a"
-let maplocalleader = "\\"
+let mapleader="a"
+let maplocalleader="\\"
 
 " Fix backspace key to work as expected.
 " https://unix.stackexchange.com/a/307974
@@ -461,8 +461,8 @@ autocmd bufenter *
     \ | q | endif
 
 " Set default arrows.
-let g:NERDTreeDirArrowExpandable='▸'
-let g:NERDTreeDirArrowCollapsible='▾'
+let g:NERDTreeDirArrowExpandable="▸"
+let g:NERDTreeDirArrowCollapsible="▾"
 
 " Nvim-R                                                                    {{{2
 " ------------------------------------------------------------------------------
@@ -477,7 +477,7 @@ let r_indent_commented=0
 " Mimic ESS conventions.
 let r_indent_ess_comments=1
 " Use Bioconductor recommended '##' instead of '#' by default.
-let r_rcomment_string='## '
+let r_rcomment_string="## "
 
 " R console height, when split horizontally.
 let r_rconsole_height=20
@@ -495,9 +495,9 @@ let r_syntax_folding=1
 
 " Tab line.
 " > let g:airline#extensions#tabline#enabled=1
-" > let g:airline#extensions#tabline#formatter='default'
-" > let g:airline#extensions#tabline#left_alt_sep='|'
-" > let g:airline#extensions#tabline#left_sep=' '
+" > let g:airline#extensions#tabline#formatter="default"
+" > let g:airline#extensions#tabline#left_alt_sep="|"
+" > let g:airline#extensions#tabline#left_sep=" "
 
 " jedi-vim                                                                  {{{2
 " ------------------------------------------------------------------------------
@@ -517,7 +517,7 @@ let r_syntax_folding=1
 " fzf                                                                       {{{2
 " ------------------------------------------------------------------------------
 
-let fzf_dir = join([app_dir, 'fzf'], '/')
+let fzf_dir=join([app_dir, "fzf"], "/")
 if isdirectory(fzf_dir)
     set rtp+=fzf_dir
 endif
@@ -525,7 +525,7 @@ endif
 " python-mode                                                               {{{2
 " ------------------------------------------------------------------------------
 
-let g:pymode_python='python3'
+let g:pymode_python="python3"
 
 " syntastic                                                                 {{{2
 " ------------------------------------------------------------------------------
@@ -544,17 +544,17 @@ let g:syntastic_check_on_open=1
 let g:syntastic_check_on_wq=0
 
 " Python
-let g:syntastic_python_checkers=['flake8', 'pyflakes', 'pylint']
+let g:syntastic_python_checkers=["flake8", "pyflakes", "pylint"]
 
 " Enable use of custom '.pylintrc' file.
 " https://groups.google.com/forum/#!topic/vim_use/Gd6lO3ETnl0
-let g:syntastic_python_pylint_args='--rcfile=~/.pylintrc'
+let g:syntastic_python_pylint_args="--rcfile=~/.pylintrc"
 
 " R
 " https://github.com/jimhester/lintr
 " This can be slow to load, so disable by default.
 " > let g:syntastic_enable_r_lintr_checker=1
-" > let g:syntastic_r_checkers=['lintr']
+" > let g:syntastic_r_checkers=["lintr"]
 " > let g:syntastic_r_lintr_linters='with_defaults(object_name_linter("camelCase"))'
 
 
