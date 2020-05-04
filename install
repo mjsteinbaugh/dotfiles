@@ -4,7 +4,7 @@ set -Eeu -o pipefail
 # shellcheck source=/dev/null
 source "$(koopa header bash)"
 
-_koopa_h1 "Linking dotfiles."
+_koopa_h1 "Installing dotfiles."
 
 koopa_prefix="$(_koopa_prefix)"
 
