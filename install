@@ -2,7 +2,7 @@
 set -Eeu -o pipefail
 
 # shellcheck source=/dev/null
-source "$(koopa header bash)" --no-header-checks
+checks=0 source "$(koopa header bash)"
 
 _koopa_h1 "Installing dotfiles."
 
