@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -Eeu -o pipefail
 
-set -x
-
 # shellcheck source=/dev/null
 checks=0 source "$(${KOOPA_PREFIX:?}/bin/koopa header bash)"
 
