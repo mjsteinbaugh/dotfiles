@@ -530,6 +530,10 @@ let g:pymode_python="python3"
 " startify {{{2
 " ------------------------------------------------------------------------------
 
+if g:is_nvim
+    let g:startify_disable_at_vimenter=1
+endif
+
 let g:startify_custom_header=""
 
 " syntastic {{{2
