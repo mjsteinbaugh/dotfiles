@@ -1,6 +1,6 @@
 """
 " Vim configuration.
-" Updated 2020-05-04.
+" Updated 2020-06-08.
 "
 " Refer to my cheat sheet for usage details:
 " https://steinbaugh.com/posts/vim.html
@@ -526,6 +526,11 @@ endif
 " ------------------------------------------------------------------------------
 
 let g:pymode_python="python3"
+
+" startify {{{2
+" ------------------------------------------------------------------------------
+
+let g:startify_custom_header=""
 
 " syntastic                                                                 {{{2
 " ------------------------------------------------------------------------------
