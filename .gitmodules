@@ -66,6 +66,11 @@
 	url = https://github.com/mhinz/vim-startify.git
 	branch = master
 	ignore = dirty
+[submodule "app/vim/vim.d/pack/dist/start/vimwiki"]
+	path = app/vim/vim.d/pack/dist/start/vimwiki
+	url = https://github.com/vimwiki/vimwiki.git
+	branch = master
+	ignore = dirty
 [submodule "shell/zsh/plugins/zsh-autosuggestions"]
 	path = shell/zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions

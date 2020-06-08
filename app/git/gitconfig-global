@@ -1,6 +1,6 @@
 # """
 # Global git configuration.
-# Updated 2020-06-03.
+# Updated 2020-06-08.
 #
 # Retab spaces in vim:
 # https://stackoverflow.com/questions/9104706
@@ -71,7 +71,10 @@
 
 # File transfers {{{1
 # ==============================================================================
-#
+
+# Here's how to make Git more relaxed about corrupt repos:
+# https://stackoverflow.com/questions/56507791/
+
 # oh-my-zsh repo can fail to clone unless these are set.
 # > git config --global fetch.fsck.zeroPaddedFilemode warn
 # > git config --global receive.fsck.zeroPaddedFilemode warn
@@ -81,12 +84,12 @@
 [push]
 	default = simple
 [fetch]
-	fsckobjects = true
+	fsckobjects = false
 	zeroPaddedFilemode = ignore
 [receive]
-	fsckobjects = true
+	fsckobjects = false
 [transfer]
-	fsckobjects = true
+	fsckobjects = false
 
 [fsck]
 	zeroPaddedFilemode = warn
