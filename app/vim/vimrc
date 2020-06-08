@@ -672,20 +672,20 @@ let g:syntastic_python_pylint_args="--rcfile=~/.pylintrc"
 
 
 
-" OS-specific {{{1
+" Clipboard / pasteboard {{{1
 " ==============================================================================
 
+" Enable copy to clipboard (for macOS).
+" Now 'Vy' will work.
+"
+" > :w !pbcopy
+" https://stackoverflow.com/questions/677986
+"
+" Note that this won't work for PuTTY on Windows. Instead, hold down SHIFT
+" and then you can highlight with the mouse. Yank doesn't integrate well
+" with the Windows clipboard unless you use X11 forwarding.
+" https://stackoverflow.com/a/4313348
 if has("macunix")
-    " Enable copy to clipboard (for macOS).
-    " Now 'Vy' will work.
-    "
-    " > :w !pbcopy
-    " https://stackoverflow.com/questions/677986
-    "
-    " Note that this won't work for PuTTY on Windows. Instead, hold down SHIFT
-    " and then you can highlight with the mouse. Yank doesn't integrate well
-    " with the Windows clipboard unless you use X11 forwarding.
-    " https://stackoverflow.com/a/4313348
     set clipboard=unnamed
 endif
 
