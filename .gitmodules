@@ -26,21 +26,6 @@
 	url = https://github.com/jalvesaq/Nvim-R
 	branch = master
 	ignore = dirty
-[submodule "app/vim/vim.d/pack/dist/start/vim-airline"]
-	path = app/vim/vim.d/pack/dist/start/vim-airline
-	url = https://github.com/vim-airline/vim-airline
-	branch = master
-	ignore = dirty
-[submodule "app/vim/vim.d/pack/dist/start/vim-fugitive"]
-	path = app/vim/vim.d/pack/dist/start/vim-fugitive
-	url = https://github.com/tpope/vim-fugitive
-	branch = master
-	ignore = dirty
-[submodule "app/vim/vim.d/pack/dist/start/vim-markdown"]
-	path = app/vim/vim.d/pack/dist/start/vim-markdown
-	url = https://github.com/plasticboy/vim-markdown
-	branch = master
-	ignore = dirty
 [submodule "app/vim/vim.d/pack/dist/start/nerdtree"]
 	path = app/vim/vim.d/pack/dist/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree
@@ -51,9 +36,29 @@
 	url = https://github.com/vim-syntastic/syntastic
 	branch = master
 	ignore = dirty
+[submodule "app/vim/vim.d/pack/dist/start/vim-airline"]
+	path = app/vim/vim.d/pack/dist/start/vim-airline
+	url = https://github.com/vim-airline/vim-airline
+	branch = master
+	ignore = dirty
+[submodule "app/vim/vim.d/pack/dist/start/vim-fugitive"]
+	path = app/vim/vim.d/pack/dist/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+	branch = master
+	ignore = dirty
 [submodule "app/vim/vim.d/pack/dist/start/vim-grepper"]
 	path = app/vim/vim.d/pack/dist/start/vim-grepper
 	url = https://github.com/mhinz/vim-grepper.git
+	branch = master
+	ignore = dirty
+[submodule "app/vim/vim.d/pack/dist/start/vim-markdown"]
+	path = app/vim/vim.d/pack/dist/start/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown
+	branch = master
+	ignore = dirty
+[submodule "app/vim/vim.d/pack/dist/start/vim-signify"]
+	path = app/vim/vim.d/pack/dist/start/vim-signify
+	url = https://github.com/mhinz/vim-signify.git
 	branch = master
 	ignore = dirty
 [submodule "shell/zsh/plugins/zsh-autosuggestions"]
