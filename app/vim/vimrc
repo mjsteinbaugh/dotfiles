@@ -8,7 +8,7 @@
 
 
 
-" Pre-flight checks                                                         {{{1
+" Pre-flight checks {{{1
 " ==============================================================================
 
 let g:is_nvim=has("nvim")
@@ -33,7 +33,7 @@ set nocompatible
 
 
 
-" Global variables                                                          {{{1
+" Global variables {{{1
 " ==============================================================================
 
 " Refer to ':help expand' for details.
@@ -45,7 +45,7 @@ let app_dir=join(["", "usr", "local", "opt"], "/")
 
 
 
-" Highlighting                                                              {{{1
+" Highlighting {{{1
 " ==============================================================================
 
 " Enable syntax highlighting.
@@ -69,7 +69,7 @@ syntax on
 
 
 
-" Colors                                                                    {{{1
+" Colors {{{1
 " ==============================================================================
 
 " Set Vim-specific sequences for RGB colors.
@@ -85,7 +85,7 @@ endif
 
 set background=dark
 
-" Dracula                                                                   {{{2
+" Dracula {{{2
 " ------------------------------------------------------------------------------
 
 " You need a 256-color or truecolor terminal
@@ -108,7 +108,7 @@ endif
 
 
 
-" Key mappings (bindings)                                                   {{{1
+" Key mappings (bindings) {{{1
 " ==============================================================================
 
 let mapleader="a"
@@ -118,7 +118,7 @@ let maplocalleader="\\"
 " https://unix.stackexchange.com/a/307974
 set backspace=indent,eol,start
 
-" Normal mode                                                               {{{2
+" Normal mode {{{2
 " ------------------------------------------------------------------------------
 
 " Edit my vimrc file.
@@ -158,7 +158,7 @@ nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
 " Surround current word in double quotes.
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 
-" Insert mode                                                               {{{2
+" Insert mode {{{2
 " ------------------------------------------------------------------------------
 
 " Escape from insert mode without stretching to hit Esc key.
@@ -167,7 +167,7 @@ inoremap jk <esc>
 " Delete line in insert mode using Ctrl+d.
 inoremap <c-d> <esc>ddi
 
-" Muscle memory                                                             {{{2
+" Muscle memory {{{2
 " ------------------------------------------------------------------------------
 
 " Enforce muscle memory of HJKL instead of arrow keys.
@@ -188,13 +188,13 @@ inoremap <c-d> <esc>ddi
 
 
 
-" Text formatting                                                           {{{1
+" Text formatting {{{1
 " ==============================================================================
 
 " Always enforce UTF-8.
 set encoding=utf-8
 
-" Wrapping and margins                                                      {{{2
+" Wrapping and margins {{{2
 " ------------------------------------------------------------------------------
 
 " Enable soft wrapping.
@@ -220,7 +220,7 @@ set wrapmargin=0
 " For 80c width, use 80 + 1.
 set colorcolumn=81
 
-" Spaces and tabs                                                           {{{2
+" Spaces and tabs {{{2
 " ------------------------------------------------------------------------------
 
 " Format using spaces instead of tabs.
@@ -261,7 +261,7 @@ set shiftwidth=4
 " > :set expandtab tabstop=4 shiftwidth=4
 " > :%retab
 
-" Whitespace                                                                {{{2
+" Whitespace {{{2
 " ------------------------------------------------------------------------------
 
 " Enable file-type-specific indentation.
@@ -281,10 +281,10 @@ endif
 
 
 
-" Navigation                                                                {{{1
+" Navigation {{{1
 " ==============================================================================
 
-" Mouse integration                                                         {{{2
+" Mouse integration {{{2
 " ------------------------------------------------------------------------------
 
 " This doesn't work very well inside tmux or when using PuTTY, so disabling.
@@ -297,13 +297,13 @@ endif
 " Disable mouse integration.
 set mouse=
 
-" Window management                                                         {{{2
+" Window management {{{2
 " ------------------------------------------------------------------------------
 
 set splitbelow
 set splitright
 
-" Interface elements                                                        {{{2
+" Interface elements {{{2
 " ------------------------------------------------------------------------------
 
 " Highlight current line.
@@ -323,7 +323,7 @@ set ruler
 set wildmenu
 set wildmode=list:longest,full
 
-" Line numbers                                                              {{{2
+" Line numbers {{{2
 " ------------------------------------------------------------------------------
 
 " Enable line numbers.
@@ -333,7 +333,7 @@ set wildmode=list:longest,full
 " Using this currently because it's easier to paste on Windows with tmux.
 set nonumber
 
-" Search (matching)                                                         {{{2
+" Search (matching) {{{2
 " ------------------------------------------------------------------------------
 
 set hlsearch
@@ -342,7 +342,7 @@ set incsearch
 set showmatch
 set smartcase
 
-" Mouse integration                                                         {{{2
+" Mouse integration {{{2
 " ------------------------------------------------------------------------------
 
 " This doesn't work very well with PuTTY and/or inside tmux, so disabling.
@@ -363,7 +363,7 @@ set mouse=
 " > :xnoremap / /\v
 " > :xnoremap s/ s/\v
 
-" Folding                                                                   {{{2
+" Folding {{{2
 " ------------------------------------------------------------------------------
 
 " foldmethod alternatives: indent, syntax
@@ -390,7 +390,7 @@ let g:vim_markdown_folding_level=2
 
 
 
-" File management                                                           {{{1
+" File management {{{1
 " ==============================================================================
 
 " Disable creation of 'foo~' files.
@@ -403,10 +403,10 @@ set nobackup
 
 
 
-" Languages                                                                 {{{1
+" Languages {{{1
 " ==============================================================================
 
-" Python                                                                    {{{2
+" Python {{{2
 " ------------------------------------------------------------------------------
 
 " See also:
@@ -426,10 +426,10 @@ let python_highlight_all=1
 
 
 
-" Plugins                                                                   {{{1
+" Plugins {{{1
 " ==============================================================================
 
-" NERDTree                                                                  {{{2
+" NERDTree {{{2
 " ------------------------------------------------------------------------------
 
 " Consider using nerdtree-git-plugin.
@@ -464,7 +464,7 @@ autocmd bufenter *
 let g:NERDTreeDirArrowExpandable="▸"
 let g:NERDTreeDirArrowCollapsible="▾"
 
-" Nvim-R                                                                    {{{2
+" Nvim-R {{{2
 " ------------------------------------------------------------------------------
 
 " Disable '_' to '<-' conversion, which is madness.
@@ -487,7 +487,7 @@ let r_rconsole_width=80
 " Enable the syntax method of folding for R files.
 let r_syntax_folding=1
 
-" airline                                                                   {{{2
+" airline {{{2
 " ------------------------------------------------------------------------------
 
 " Consider adding tmuxline integration.
@@ -499,7 +499,7 @@ let r_syntax_folding=1
 " > let g:airline#extensions#tabline#left_alt_sep="|"
 " > let g:airline#extensions#tabline#left_sep=" "
 
-" jedi-vim                                                                  {{{2
+" jedi-vim {{{2
 " ------------------------------------------------------------------------------
 
 " This plugin freaks out in an active conda environment.
@@ -514,7 +514,7 @@ let r_syntax_folding=1
 " > let g:jedi#use_splits_not_buffers="left"
 " > let g:jedi#use_tabs_not_buffers=1
 
-" fzf                                                                       {{{2
+" fzf {{{2
 " ------------------------------------------------------------------------------
 
 let fzf_dir=join([app_dir, "fzf"], "/")
@@ -522,7 +522,7 @@ if isdirectory(fzf_dir)
     set rtp+=fzf_dir
 endif
 
-" python-mode                                                               {{{2
+" python-mode {{{2
 " ------------------------------------------------------------------------------
 
 let g:pymode_python="python3"
@@ -532,7 +532,7 @@ let g:pymode_python="python3"
 
 let g:startify_custom_header=""
 
-" syntastic                                                                 {{{2
+" syntastic {{{2
 " ------------------------------------------------------------------------------
 
 " Check which linters are enabled with ':SyntasticInfo'.
@@ -564,7 +564,7 @@ let g:syntastic_python_pylint_args="--rcfile=~/.pylintrc"
 
 
 
-" OS-specific                                                               {{{1
+" OS-specific {{{1
 " ==============================================================================
 
 if has("macunix")
@@ -583,7 +583,7 @@ endif
 
 
 
-" Security                                                                  {{{1
+" Security {{{1
 " ==============================================================================
 
 " Disable modeline.
