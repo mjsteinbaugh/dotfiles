@@ -342,18 +342,6 @@ set incsearch
 set showmatch
 set smartcase
 
-" Mouse integration {{{2
-" ------------------------------------------------------------------------------
-
-" This doesn't work very well with PuTTY and/or inside tmux, so disabling.
-
-" Enable mouse integration.
-" 'a' means all here.
-" > set mouse=a
-
-" Disable mouse integration.
-set mouse=
-
 " Use regular expression matching by default.
 " https://github.com/nasamuffin/dotfiles/blob/master/vimrc
 " > :nnoremap / /\v
@@ -362,6 +350,18 @@ set mouse=
 " > :xnoremap '<,'>s/ '<,'>s/\v
 " > :xnoremap / /\v
 " > :xnoremap s/ s/\v
+
+" Mouse integration {{{2
+" ------------------------------------------------------------------------------
+
+" Enable mouse integration.
+" 'a' means all here.
+" This doesn't work very well inside PuTTY and/or tmux.
+if has("macunix") && empty($TMUX)
+    set mouse=a
+else
+    set mouse=
+endif
 
 " Folding {{{2
 " ------------------------------------------------------------------------------
@@ -400,6 +400,111 @@ set nobackup
 " Disable the swap file, if desired.
 " This also creates FS cruft but is useful for recovery.
 " > set noswapfile
+
+
+
+" vim-galore tips {{{1
+" ==============================================================================
+
+" Some fantastic usability vips from the 'vim-galore' guide.
+" Refer to https://github.com/mhinz/vim-galore for details.
+
+" Disable audible and visual bells {{{2
+" ------------------------------------------------------------------------------
+
+" This is often annoying when scrolling inside a document using mouse or
+" trackpad input instead of the keyboard.
+
+set noerrorbells
+set novisualbell
+set t_vb=
+
+" Don't lose selection when shifting sidewards {{{2
+" ------------------------------------------------------------------------------
+
+" If you select one or more lines, you can use `<` and `>` for shifting them
+" sidewards. Unfortunately you immediately lose the selection afterwards.
+"
+" You can use `gv` to reselect the last selection (see `:h gv`), thus you can
+" work around it like this:
+
+xnoremap <  <gv
+xnoremap >  >gv
+
+" Now you can use `>>>>>` on your visual selection without any problems.
+"
+" NOTE: The same can be achieved using `.`, which repeats the last change.
+
+" Quickly move current line {{{2
+" ------------------------------------------------------------------------------
+
+" These mappings also take a count, so 2]e moves the current line 2 lines below.
+
+nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
+nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
+
+" Quickly add empty lines {{{2
+" ------------------------------------------------------------------------------
+
+" Now 5[<space> inserts 5 blank lines above the current line.
+
+nnoremap [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
+nnoremap ]<space>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
+
+" Saner behavior of n and N {{{2
+" ------------------------------------------------------------------------------
+
+" The direction of n and N depends on whether / or ? was used for searching
+" forward or backward respectively. This is pretty confusing to me.
+"
+" If you want n to always search forward and N backward, use this:
+
+nnoremap <expr> n  'Nn'[v:searchforward]
+xnoremap <expr> n  'Nn'[v:searchforward]
+onoremap <expr> n  'Nn'[v:searchforward]
+
+nnoremap <expr> N  'nN'[v:searchforward]
+xnoremap <expr> N  'nN'[v:searchforward]
+onoremap <expr> N  'nN'[v:searchforward]
+
+" Smarter cursorline {{{2
+" ------------------------------------------------------------------------------
+
+" I love the cursorline, but I only want to use it in the current window and not
+" when being in insert mode:
+
+autocmd InsertLeave,WinEnter * set cursorline
+autocmd InsertEnter,WinLeave * set nocursorline
+
+" Change cursor style dependent on mode {{{2
+" ------------------------------------------------------------------------------
+
+" I like to use a block cursor in normal mode, i-beam cursor in insert mode, and
+" underline cursor in replace mode.
+
+if has("macunix")
+    if empty($TMUX)
+        let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+        let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+        let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+    else
+        let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+        let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+        let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+    endif
+endif
+
+" This simply tells Vim to print a certain sequence of characters (escape
+" sequence) when entering/leaving insert mode. The underlying terminal, or
+" programs like tmux that sit between Vim and the terminal, will process and
+" evaluate it.
+"
+" There's one drawback though: there are many terminal emulator
+" implementations and not all use the same sequences for doing the same things.
+" The sequences used above might not work with your implementation. Your
+" implementation might not even support different cursor styles.
+"
+" The example above works with iTerm2.
 
 
 
