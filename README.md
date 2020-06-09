@@ -12,16 +12,11 @@ Via koopa:
 install-dotfiles
 ```
 
-Or clone manually:
+Or clone and install manually:
 
 ```sh
 git clone --recursive git@github.com:mjsteinbaugh/dotfiles.git
-```
-
-How to update the repo, including submodules:
-
-```sh
-./UPDATE.sh
+./install
 ```
 
 ## See also
