@@ -15,8 +15,10 @@ install-dotfiles
 Or clone and install manually:
 
 ```sh
-git clone --recursive git@github.com:mjsteinbaugh/dotfiles.git
-./install
+# Clone into ~/.config/dotfiles and symlink.
+dotfiles_dir="${XDG_CONFIG_HOME:-${HOME}/config}/dotfiles"
+git clone --recursive git@github.com:mjsteinbaugh/dotfiles.git "$dotfiles_dir"
+"${dotfiles_dir}/install"
 ```
 
 ## See also
