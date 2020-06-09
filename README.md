@@ -4,7 +4,7 @@ Configuration files shared between machines.
 
 ## Installation
 
-I'm using the [koopa](https://github.com/acidgenomics/koopa/) bootloader to configure my shell automatically.
+I use the [koopa](https://github.com/acidgenomics/koopa/) bootloader to configure my shell automatically.
 
 Via koopa:
 
