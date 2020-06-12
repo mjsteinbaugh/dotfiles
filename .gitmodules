@@ -1,6 +1,6 @@
 # """
 # Git submodules.
-# Updated 2020-06-08.
+# Updated 2020-06-12.
 #
 # Potentially useful:
 # - jedi-vim
@@ -14,6 +14,16 @@
 [submodule "app/rstudio/mojave-dark"]
 	path = app/rstudio/mojave-dark
 	url = https://github.com/patrickshox/Mojave-Dark-RStudio-Theme
+	branch = master
+	ignore = dirty
+[submodule "app/rstudio/night-owlish"]
+	path = app/rstudio/night-owlish
+	url = https://github.com/batpigandme/night-owlish.git
+	branch = master
+	ignore = dirty
+[submodule "app/rstudio/oceanic-eighties"]
+	path = app/rstudio/oceanic-eighties
+	url = https://github.com/gadenbuie/oceanic-eighties.git
 	branch = master
 	ignore = dirty
 [submodule "app/tmux/tmux.d/plugins/tpm"]
