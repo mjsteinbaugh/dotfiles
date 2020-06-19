@@ -1,1 +1,7 @@
-../posix/shrc
+#!/usr/bin/env zsh
+
+# """
+# .zshrc: Always read for an interactive shell, whether it's a login one or not.
+# """
+
+source "${HOME}/.shrc"

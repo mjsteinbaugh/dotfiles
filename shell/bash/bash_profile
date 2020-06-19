@@ -1,7 +1,20 @@
 #!/usr/bin/env bash
 
-if [[ -n "${PS1:-}" ]]
-then
-    # shellcheck source=/dev/null
-    source "${HOME}/.bashrc"
-fi
+# """
+# .bash_profile: The personal initialization file, executed for login shells.
+#
+# If you’ve already logged into your machine and open a new terminal window
+# (xterm) then '.bashrc' is executed before the window command prompt. It is
+# also run when you start a new bash instance in the terminal.
+#
+# Note that this file loads before '.bashrc' on macOS.
+#
+# On macOS, the terminal by default runs a login shell every time, so this is a
+# little different to most other systems, but you can configure that in the
+# preferences.
+#
+# See 'man bash' for details.
+# """
+
+# shellcheck source=/dev/null
+source "${HOME}/.bashrc"

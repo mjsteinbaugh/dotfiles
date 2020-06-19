@@ -1,1 +1,51 @@
-../posix/shrc
+#!/usr/bin/env bash
+
+# """
+# .bashrc: The individual per-interactive-shell startup file.
+#
+# Only read by a shell that's both interactive and non-login.
+#
+# When you log in (type username and password) via console, either sitting at
+# the machine, or remotely via ssh, '.bash_profile' is executed to configure
+# your shell before the initial command prompt.
+# 
+# See 'man bash' for details.
+# """
+
+# Load shared shell configuration.
+# shellcheck source=/dev/null
+source "${HOME}/.shrc"
+
+# Easier navigation (e.g. '**/qux' will enter './foo/bar/baz/qux').
+shopt -s autocd
+
+# Correct minor directory changing spelling mistakes (i.e. for 'cd').
+shopt -s cdspell
+
+# Check the window size after each command and if necessary, update the values
+# of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# Save multiline commands.
+shopt -s cmdhist
+
+# Recursive globbing (e.g. 'echo **/*.txt'). If set, the pattern "**" used in a
+# pathname expansion context will match all files and zero or more directories
+# and subdirectories.
+shopt -s globstar
+
+# Append to the history file, don't overwrite it.
+shopt -s histappend
+
+# Case-insensitive globbing (used in pathname expansion).
+shopt -s nocaseglob
+
+# Map key bindings to default editor. Bash currently uses Emacs by default.
+case "${EDITOR:-}" in
+    emacs)
+        set -o emacs
+        ;;
+    vi|vim)
+        set -o vi
+        ;;
+esac
