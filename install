@@ -17,6 +17,7 @@ _koopa_assert_are_identical \
 
 # > rm -frv ~/.zcompdump
 rm -frv ~/.*-history
+rm -frv ~/.R/Makevars
 rm -frv ~/.kshrc
 rm -frv ~/.oh-my-zsh
 rm -frv ~/.profile
