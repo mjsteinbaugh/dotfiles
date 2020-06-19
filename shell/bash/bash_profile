@@ -1,1 +1,7 @@
-bashrc
+#!/usr/bin/env bash
+
+if [[ -n "$PS1" ]]
+then
+    # shellcheck source=/dev/null
+    source "${HOME}/.bashrc"
+fi
