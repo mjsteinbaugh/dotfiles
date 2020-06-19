@@ -3,10 +3,17 @@ set -Eeu -o pipefail
 
 # shellcheck source=/dev/null
 checks=0 source "$(koopa header bash)"
+prefix="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd -P)"
 
-_koopa_h1 "Installing dotfiles."
+name_fancy="dotfiles"
 
-koopa_prefix="$(_koopa_prefix)"
+_koopa_install_start "$name_fancy"
+
+# Check that the prefix matches what koopa is expecting.
+expected_prefix="$(_koopa_dotfiles_prefix)"
+_koopa_assert_are_identical \
+    "$(realpath "$prefix")" \
+    "$(realpath "$expected_prefix")"
 
 # > rm -frv ~/.zcompdump
 rm -frv ~/.*-history
@@ -53,15 +60,8 @@ else
     link-dotfile --force app/gnupg/gpg-agent.conf gnupg/gpg-agent.conf
 fi
 
-# macOS-specific R configuration.
-if _koopa_is_macos
-then
-    mkdir -pv "${HOME}/.R"
-    ln -fnsv "${koopa_prefix}/os/macos/etc/R/Makevars" "${HOME}/.R/."
-fi
-
 # Permission fixes.
 [[ -d ~/.gnupg ]] && chmod 0700 ~/.gnupg
 [[ -d ~/.ssh ]] && chmod 0700 ~/.ssh
 
-_koopa_success "Installation of dotfiles was successful."
+_koopa_install_success "$name_fancy"
