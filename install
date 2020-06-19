@@ -16,7 +16,10 @@ rm -frv ~/.profile
 rm -frv ~/.shrc
 rm -frv ~/.zprofile
 
+# Placeholder for using "main" instead of "master" for default git branch.
+# Inspired by https://github.com/mathiasbynens/dotfiles
 # > link-dotfile --force --config app/git/template git/template
+
 link-dotfile --force --config app/emacs/doom/config.d doom
 link-dotfile --force --config app/htop
 link-dotfile --force --config app/neofetch
