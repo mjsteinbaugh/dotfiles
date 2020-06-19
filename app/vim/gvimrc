@@ -12,11 +12,12 @@
 " Ensure dark mode is enabled by default.
 set background=dark
 
-" Use SF Mono, 16 pt by default.
-set guifont=SF\ Mono\ Regular:h16
+" Set default font.
+set guifont=JetBrains\ Mono\ Regular:h16
+" > set guifont=SF\ Mono\ Regular:h16
 
 " Don’t blink cursor in normal mode.
 set guicursor=n:blinkon0
 
 " Better line-height.
-set linespace=8
+" > set linespace=8
