@@ -38,6 +38,7 @@ link-dotfile --force app/editorconfig/editorconfig
 link-dotfile --force app/emacs/spacemacs/spacemacs.el spacemacs
 link-dotfile --force app/git/gitignore
 link-dotfile --force app/gnupg/dirmngr.conf gnupg/dirmngr.conf
+link-dotfile --force app/python/pylintrc
 link-dotfile --force app/screen/screenrc
 link-dotfile --force app/tmux/tmux.conf
 link-dotfile --force app/tmux/tmux.d tmux
