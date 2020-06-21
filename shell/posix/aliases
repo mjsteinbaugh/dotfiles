@@ -86,6 +86,7 @@ alias week="date '+%V'"
 if _koopa_is_macos
 then
     alias dl="cd ~/Downloads"
+    alias docs="cd ~/Documents"
     alias finder-hide="setfile -a V"
     alias icloud-status="brctl log --wait --shorten"
     alias locate="mdfind -name"
