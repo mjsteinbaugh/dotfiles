@@ -1,6 +1,6 @@
 # """
 # Git submodules.
-# Updated 2020-06-12.
+# Updated 2020-06-21.
 #
 # Potentially useful:
 # - jedi-vim
@@ -96,6 +96,10 @@
 	url = https://github.com/dracula/firefox
 	branch = master
 	ignore = dirty
+[submodule "theme/dracula/fish"]
+	path = theme/dracula/fish
+	url = https://github.com/dracula/fish.git
+	branch = master
 [submodule "theme/dracula/google-chrome"]
 	path = theme/dracula/google-chrome
 	url = https://github.com/dracula/google-chrome
