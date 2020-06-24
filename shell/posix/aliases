@@ -11,14 +11,14 @@
 # Shortcuts {{{1
 # ==============================================================================
 
-alias bucket="cd ~/bucket"
+alias bucket="cd ~/today; l"
 alias c='clear'
 # shellcheck disable=SC2153
-alias dots='cd "${DOTFILES:?}"'
+alias dots='cd "${DOTFILES:?}"; l'
 alias e='exit'
 alias h='history'
 # shellcheck disable=SC2153
-alias k='cd "${KOOPA_PREFIX:?}"'
+alias k='cd "${KOOPA_PREFIX:?}"; l'
 alias ku='koopa update'
 
 # Listing files {{{1
@@ -62,8 +62,8 @@ alias u='clear; cd ../; pwd; l'
 alias d='clear; cd -; l'
 
 # Navigation shortcuts.
-alias ~='cd ~'
-alias -- -='cd -'
+alias ~="cd ~; l"
+alias -- -="cd -; l"
 
 # Programs {{{1
 # ==============================================================================
@@ -92,8 +92,8 @@ alias week="date '+%V'"
 
 if _koopa_is_macos
 then
-    alias dl="cd ~/Downloads"
-    alias docs="cd ~/Documents"
+    alias dl="cd ~/Downloads; l"
+    alias docs="cd ~/Documents; l"
     alias finder-hide="setfile -a V"
     alias icloud-status="brctl log --wait --shorten"
     alias locate="mdfind -name"
