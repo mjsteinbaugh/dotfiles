@@ -40,6 +40,7 @@ link-dotfile --force app/git/gitignore
 link-dotfile --force app/gnupg/dirmngr.conf gnupg/dirmngr.conf
 link-dotfile --force app/python/pylintrc
 link-dotfile --force app/screen/screenrc
+link-dotfile --force app/terminfo/terminfo.d terminfo
 link-dotfile --force app/tmux/tmux.conf
 link-dotfile --force app/tmux/tmux.d tmux
 link-dotfile --force app/vim/vim.d vim
