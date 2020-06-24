@@ -9,7 +9,7 @@ I use the [koopa](https://github.com/acidgenomics/koopa/) bootloader to configur
 Via koopa:
 
 ```sh
-install-dotfiles
+koopa install-dotfiles
 ```
 
 Or clone and install manually:
