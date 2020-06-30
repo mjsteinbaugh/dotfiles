@@ -11,11 +11,6 @@
 # Vim: symlink 'dracula-theme' from 'theme/dracula/vim'.
 # """
 
-[submodule "app/rstudio/mojave-dark"]
-	path = app/rstudio/mojave-dark
-	url = https://github.com/patrickshox/Mojave-Dark-RStudio-Theme
-	branch = master
-	ignore = dirty
 [submodule "app/rstudio/night-owlish"]
 	path = app/rstudio/night-owlish
 	url = https://github.com/batpigandme/night-owlish.git
