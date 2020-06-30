@@ -26,6 +26,7 @@ git clone --recursive git@github.com:mjsteinbaugh/dotfiles.git "$dotfiles_dir"
 
 - [mathiasbynens's dotfiles](https://github.com/mathiasbynens/dotfiles)
 - [MikeMcQuaid's dotfiles](https://github.com/MikeMcQuaid/dotfiles)
+- [thoughtbot's dotfiles](https://github.com/thoughtbot/dotfiles)
 - [jimhester's dotfiles](https://github.com/jimhester/dotfiles)
 - [vsbuffalo's dotfiles](https://github.com/vsbuffalo/dotfiles)
 - [caarlos0's dotfiles](https://github.com/caarlos0/dotfiles)
