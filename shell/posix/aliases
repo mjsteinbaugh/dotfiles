@@ -2,7 +2,7 @@
 
 # """
 # POSIX aliases.
-# @note Updated 2020-06-21.
+# @note Updated 2020-07-02.
 #
 # @seealso
 # - mathiasbynens/dotfiles
@@ -78,6 +78,9 @@ then
 else
     alias emacs="emacs --no-window-system"
 fi
+alias emacs-vanilla="emacs --no-init-file --no-window-system"
+alias nvim-vanilla="nvim -u NONE"
+alias vim-vanilla="vim -i NONE -u NONE -U NONE"
 
 # One-liners {{{1
 # ==============================================================================
