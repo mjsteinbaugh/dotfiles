@@ -24,7 +24,7 @@ alias ku='koopa update'
 # Listing files {{{1
 # ==============================================================================
 
-if _koopa_is_installed exa
+if koopa::is_installed exa
 then
     alias l='exa -F'
     alias la='exa -Fal --group'
@@ -48,7 +48,7 @@ alias cls='clear; l'
 # ==============================================================================
 
 # Navigate up parent directories without 'cd'.
-if ! _koopa_is_installed autojump
+if ! koopa::is_installed autojump
 then
     alias ..='cd ..'
     alias ...='cd ../../'
@@ -93,7 +93,7 @@ alias week="date '+%V'"
 # macOS {{{1
 # ==============================================================================
 
-if _koopa_is_macos
+if koopa::is_macos
 then
     alias dl="cd ~/Downloads; l"
     alias docs="cd ~/Documents; l"

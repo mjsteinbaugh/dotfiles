@@ -327,11 +327,11 @@ set wildmode=list:longest,full
 " ------------------------------------------------------------------------------
 
 " Enable line numbers.
-" > set number
+set number
 
 " Disable line numbers.
 " Using this currently because it's easier to paste on Windows with tmux.
-set nonumber
+" > set nonumber
 
 " Search (matching) {{{2
 " ------------------------------------------------------------------------------
