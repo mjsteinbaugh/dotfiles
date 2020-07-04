@@ -2,10 +2,7 @@
 
 # """
 # POSIX aliases.
-# @note Updated 2020-07-02.
-#
-# @seealso
-# - mathiasbynens/dotfiles
+# @note Updated 2020-07-04.
 # """
 
 # Shortcuts {{{1
@@ -62,60 +59,53 @@ alias u='clear; cd ../; pwd; l'
 alias d='clear; cd -; l'
 
 # Navigation shortcuts.
-alias ~="cd ~; l"
-alias -- -="cd -; l"
+alias ~='cd ~; l'
+alias -- -='cd -; l'
 
 # Programs {{{1
 # ==============================================================================
 
-alias R="R --no-restore --no-save --quiet"
+alias R='R --no-restore --no-save --quiet'
 # Note that 79 characters conforms to PEP8 (see flake8 for details).
-alias black="black --line-length=79"
-
+alias black='black --line-length=79'
 if [ -f "${HOME}/.terminfo/78/xterm-24bit" ]
 then
-    alias emacs="TERM=xterm-24bit emacs --no-window-system"
+    alias emacs='TERM=xterm-24bit emacs --no-window-system'
 else
-    alias emacs="emacs --no-window-system"
+    alias emacs='emacs --no-window-system'
 fi
-alias emacs-vanilla="emacs --no-init-file --no-window-system"
-alias nvim-vanilla="nvim -u NONE"
-alias vim-vanilla="vim -i NONE -u NONE -U NONE"
+alias emacs-vanilla='emacs --no-init-file --no-window-system'
+alias nvim-vanilla='nvim -u NONE'
+alias vim-vanilla='vim -i NONE -u NONE -U NONE'
 
 # One-liners {{{1
 # ==============================================================================
 
-alias today="date '+%Y-%m-%d'"
-alias week="date '+%V'"
-# Enable aliases to be sudo'ed.
-# > alias sudo="sudo "
+alias today='date "+%Y-%m-%d"'
+alias week='date "+%V"'
 
 # macOS {{{1
 # ==============================================================================
 
 if koopa::is_macos
 then
-    alias dl="cd ~/Downloads; l"
-    alias docs="cd ~/Documents; l"
-    alias finder-hide="setfile -a V"
-    alias icloud-status="brctl log --wait --shorten"
-    alias locate="mdfind -name"
-    alias reload-mounts="sudo automount -vc"
-    alias rstudio="open -a rstudio"
-
-    alias firefox="open '/Applications/Firefox.app'"
-    alias safari="open '/Applications/Safari.app'"
-    alias chrome="open '/Applications/Google Chrome.app'"
-    alias canary="open '/Applications/Google Chrome Canary.app'"
-
+    alias dl='cd ~/Downloads; l'
+    alias docs='cd ~/Documents; l'
+    alias finder-hide='setfile -a V'
+    alias icloud-status='brctl log --wait --shorten'
+    alias locate='mdfind -name'
+    alias reload-mounts='sudo automount -vc'
+    # GUI applications.
+    alias canary='open -a "google chrome canary"'
+    alias chrome='open -a "google chrome"'
+    alias firefox='open -a firefox'
+    alias rstudio='open -a rstudio'
+    alias safari='open -a safari'
     # PlistBuddy alias, because sometimes 'defaults' just doesn’t cut it.
-    alias plistbuddy="/usr/libexec/PlistBuddy"
-
+    alias plistbuddy='/usr/libexec/PlistBuddy'
     # Volume control, because of http://xkcd.com/530/
-    alias stfu="osascript -e 'set volume output muted true'"
-    alias pump-it-up="osascript -e 'set volume output volume 100'"
-
+    alias stfu='osascript -e "set volume output muted true"'
+    alias pump-it-up='osascript -e "set volume output volume 100"'
     # Lock the screen (when going AFK).
-    alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/\
-    Resources/CGSession -suspend"
+    alias afk='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
 fi
