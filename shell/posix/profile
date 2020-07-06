@@ -17,6 +17,6 @@ XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 if [ -f "${XDG_CONFIG_HOME}/koopa/activate" ]
 then
     # > export KOOPA_TEST=1
-    # shellcheck disable=SC1090
+    # shellcheck source=/dev/null
     . "${XDG_CONFIG_HOME}/koopa/activate"
 fi
