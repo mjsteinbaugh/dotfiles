@@ -2,7 +2,7 @@
 
 # """
 # POSIX aliases.
-# @note Updated 2020-07-04.
+# @note Updated 2020-07-06.
 # """
 
 # Shortcuts {{{1
@@ -21,7 +21,7 @@ alias ku='koopa update'
 # Listing files {{{1
 # ==============================================================================
 
-if koopa::is_installed exa
+if _koopa_is_installed exa
 then
     alias l='exa -F'
     alias la='exa -Fal --group'
@@ -45,7 +45,7 @@ alias cls='clear; l'
 # ==============================================================================
 
 # Navigate up parent directories without 'cd'.
-if ! koopa::is_installed autojump
+if ! _koopa_is_installed autojump
 then
     alias ..='cd ..'
     alias ...='cd ../../'
@@ -77,6 +77,8 @@ fi
 alias emacs-vanilla='emacs --no-init-file --no-window-system'
 alias nvim-vanilla='nvim -u NONE'
 alias vim-vanilla='vim -i NONE -u NONE -U NONE'
+alias tar-c='tar -czvf'
+alias tar-x='tar -xzvf'
 
 # One-liners {{{1
 # ==============================================================================
@@ -87,7 +89,7 @@ alias week='date "+%V"'
 # macOS {{{1
 # ==============================================================================
 
-if koopa::is_macos
+if _koopa_is_macos
 then
     alias dl='cd ~/Downloads; l'
     alias docs='cd ~/Documents; l'
