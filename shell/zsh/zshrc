@@ -16,7 +16,7 @@
 # - https://github.com/robbyrussell/oh-my-zsh/blob/master/lib/completion.zsh
 # """
 
-source "${HOME}/.shrc"
+source "${HOME}/.profile"
 
 setopt_array=(
     # auto_menu                 # completion

@@ -5,67 +5,60 @@ set -Eeu -o pipefail
 checks=0 source "$(koopa header bash)"
 prefix="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd -P)"
 
-name_fancy="dotfiles"
+link() {
+    koopa::link_dotfile "$@"
+}
 
-_koopa_install_start "$name_fancy"
+install() {
+    name_fancy='dotfiles'
+    koopa::install_start "$name_fancy"
+    # Check that the prefix matches what koopa is expecting.
+    expected_prefix="$(_koopa_dotfiles_prefix)"
+    koopa::assert_are_identical \
+        "$(realpath "$prefix")" \
+        "$(realpath "$expected_prefix")"
+    rm -frv "${HOME}/."{'R/Makevars','kshrc','oh-my-zsh','shrc','zprofile'}
+    link --force --config 'app/emacs/doom/config.d' 'doom'
+    link --force --config 'app/htop'
+    link --force --config 'app/neofetch'
+    link --force --config 'app/nvim'
+    link --force --config 'shell/fish'
+    link --force 'app/curl/curlrc'
+    link --force 'app/editorconfig/editorconfig'
+    link --force 'app/emacs/spacemacs/spacemacs.el' 'spacemacs'
+    link --force 'app/git/gitignore'
+    link --force 'app/gnupg/dirmngr.conf' 'gnupg/dirmngr.conf'
+    link --force 'app/python/pylintrc'
+    link --force 'app/screen/screenrc'
+    link --force 'app/terminfo/terminfo.d' 'terminfo'
+    link --force 'app/tmux/tmux.conf'
+    link --force 'app/tmux/tmux.d' 'tmux'
+    link --force 'app/vim/vim.d' 'vim'
+    link --force 'app/vim/vimrc'
+    link --force 'app/wget/wgetrc'
+    link --force 'shell/bash/bash_logout'
+    link --force 'shell/bash/bash_profile'
+    link --force 'shell/bash/bashrc'
+    link --force 'shell/bash/inputrc'
+    link --force 'shell/posix/aliases'
+    link --force 'shell/posix/profile'
+    link --force 'shell/zsh/zlogout'
+    link --force 'shell/zsh/zshrc'
+    # Placeholder for using "main" instead of "master" for default git branch.
+    # Inspired by https://github.com/mathiasbynens/dotfiles
+    # > link --force --config 'app/git/template' 'git/template'
+    if koopa::is_macos
+    then
+        link --force --config 'app/alacritty'
+        link --force 'app/vim/gvimrc'
+        link --force 'os/macos/app/gnupg/gpg-agent.conf' 'gnupg/gpg-agent.conf'
+    else
+        link --force 'app/gnupg/gpg-agent.conf' 'gnupg/gpg-agent.conf'
+    fi
+    [[ -d "${HOME}/.gnupg" ]] && chmod 0700 "${HOME}/.gnupg"
+    [[ -d "${HOME}/.ssh" ]] && chmod 0700 "${HOME}/.ssh"
+    koopa::install_success "$name_fancy"
+    return 0
+}
 
-# Check that the prefix matches what koopa is expecting.
-expected_prefix="$(_koopa_dotfiles_prefix)"
-_koopa_assert_are_identical \
-    "$(realpath "$prefix")" \
-    "$(realpath "$expected_prefix")"
-
-# > rm -frv ~/.zcompdump
-rm -frv ~/.*-history
-rm -frv ~/.R/Makevars
-rm -frv ~/.kshrc
-rm -frv ~/.oh-my-zsh
-rm -frv ~/.profile
-rm -frv ~/.shrc
-rm -frv ~/.zprofile
-
-# Placeholder for using "main" instead of "master" for default git branch.
-# Inspired by https://github.com/mathiasbynens/dotfiles
-# > link-dotfile --force --config app/git/template git/template
-
-link-dotfile --force --config app/emacs/doom/config.d doom
-link-dotfile --force --config app/htop
-link-dotfile --force --config app/neofetch
-link-dotfile --force --config app/nvim
-link-dotfile --force --config shell/fish
-link-dotfile --force app/curl/curlrc
-link-dotfile --force app/editorconfig/editorconfig
-link-dotfile --force app/emacs/spacemacs/spacemacs.el spacemacs
-link-dotfile --force app/git/gitignore
-link-dotfile --force app/gnupg/dirmngr.conf gnupg/dirmngr.conf
-link-dotfile --force app/python/pylintrc
-link-dotfile --force app/screen/screenrc
-link-dotfile --force app/terminfo/terminfo.d terminfo
-link-dotfile --force app/tmux/tmux.conf
-link-dotfile --force app/tmux/tmux.d tmux
-link-dotfile --force app/vim/vim.d vim
-link-dotfile --force app/vim/vimrc
-link-dotfile --force app/wget/wgetrc
-link-dotfile --force shell/bash/bash_logout
-link-dotfile --force shell/bash/bash_profile
-link-dotfile --force shell/bash/bashrc
-link-dotfile --force shell/bash/inputrc
-link-dotfile --force shell/posix/aliases
-link-dotfile --force shell/posix/shrc
-link-dotfile --force shell/zsh/zlogout
-link-dotfile --force shell/zsh/zshrc
-
-if _koopa_is_macos
-then
-    link-dotfile --force --config app/alacritty
-    link-dotfile --force app/vim/gvimrc
-    link-dotfile --force os/macos/app/gnupg/gpg-agent.conf gnupg/gpg-agent.conf
-else
-    link-dotfile --force app/gnupg/gpg-agent.conf gnupg/gpg-agent.conf
-fi
-
-# Permission fixes.
-[[ -d ~/.gnupg ]] && chmod 0700 ~/.gnupg
-[[ -d ~/.ssh ]] && chmod 0700 ~/.ssh
-
-_koopa_install_success "$name_fancy"
+install "$@"
