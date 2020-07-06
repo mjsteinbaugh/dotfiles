@@ -58,10 +58,6 @@ fi
 alias u='clear; cd ../; pwd; l'
 alias d='clear; cd -; l'
 
-# Navigation shortcuts.
-alias ~='cd ~; l'
-alias -- -='cd -; l'
-
 # Programs {{{1
 # ==============================================================================
 
