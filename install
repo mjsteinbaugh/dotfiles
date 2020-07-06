@@ -10,9 +10,9 @@ link() {
 }
 
 install() {
+    local name_fancy
     name_fancy='dotfiles'
     koopa::install_start "$name_fancy"
-    # Check that the prefix matches what koopa is expecting.
     expected_prefix="$(_koopa_dotfiles_prefix)"
     koopa::assert_are_identical \
         "$(realpath "$prefix")" \
