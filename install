@@ -17,6 +17,7 @@ install() {
     koopa::assert_are_identical \
         "$(realpath "$prefix")" \
         "$(realpath "$expected_prefix")"
+    koopa::add_config_link "$prefix"
     rm -frv "${HOME}/."{'R/Makevars','kshrc','oh-my-zsh','shrc','zprofile'}
     link --force --config 'app/emacs/doom/config.d' 'doom'
     link --force --config 'app/htop'
