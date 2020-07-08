@@ -2,7 +2,7 @@
 
 # """
 # POSIX aliases.
-# @note Updated 2020-07-02.
+# @note Updated 2020-07-04.
 #
 # @seealso
 # - mathiasbynens/dotfiles
@@ -13,8 +13,6 @@
 
 alias bucket="cd ~/today; l"
 alias c='clear'
-# shellcheck disable=SC2153
-alias dots='cd "${DOTFILES:?}"; l'
 alias e='exit'
 alias h='history'
 # shellcheck disable=SC2153
