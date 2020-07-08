@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -Eeu -o pipefail
 
+# FIXME
+set -x
+
 # shellcheck source=/dev/null
 checks=0 source "$(koopa header bash)"
 prefix="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd -P)"
