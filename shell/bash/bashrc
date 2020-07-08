@@ -14,7 +14,7 @@
 
 # Load shared shell configuration.
 # shellcheck source=/dev/null
-source "${HOME}/.shrc"
+source "${HOME}/.profile"
 
 # Easier navigation (e.g. '**/qux' will enter './foo/bar/baz/qux').
 shopt -s autocd
