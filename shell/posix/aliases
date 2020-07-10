@@ -10,8 +10,6 @@
 
 alias bucket="cd ~/today; l"
 alias c='clear'
-# shellcheck disable=SC2153
-alias dots='cd "${DOTFILES:?}"; l'
 alias e='exit'
 alias h='history'
 # shellcheck disable=SC2153
