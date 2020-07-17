@@ -658,10 +658,11 @@ let g:syntastic_check_on_wq=0
 
 " Python
 let g:syntastic_python_checkers=["flake8", "pyflakes", "pylint"]
-
+let g:syntastic_python_flake8_args="--ignore=E402,W503"
 " Enable use of custom '.pylintrc' file.
 " https://groups.google.com/forum/#!topic/vim_use/Gd6lO3ETnl0
 let g:syntastic_python_pylint_args="--rcfile=~/.pylintrc"
+
 
 " R
 " https://github.com/jimhester/lintr
