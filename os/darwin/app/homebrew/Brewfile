@@ -2,6 +2,24 @@
 # Homebrew Bundle Brewfile.
 # Updated 2020-07-17.
 #
+# LLVM:
+# LLVM takes up 4 GB of disk space but is required for some Python packages.
+# In particular, if we want to install umap-learn, this is now required.
+#
+# Little Snitch:
+# 'little-snitch' cask currently requires manual follow-up installation:
+# /usr/local/Caskroom/little-snitch/*/LittleSnitch-*.dmg
+#
+# PROJ/GDAL:
+# Consider using 'osgeo-gdal' instead of regular 'gdal' brew. This one gets
+# updated more regularly. However, I've found that the newer version can
+# cause some R packages to fail to build from source.
+#
+# Rust:
+# Use cargo to manage packages instead.
+# Use the 'install-rust' script instead of Homebrew 'rustup-init'.
+# Don't install 'rust' alongside 'rustup-init'.
+#
 # See also:
 # - https://github.com/Homebrew/homebrew-bundle
 # - https://www.caseyliss.com/2019/10/8/brew-bundle
@@ -21,35 +39,20 @@ tap "vitorgalvao/tiny-scripts"
 # Casks {{{1
 # ==============================================================================
 
-# 'foobar2000' cask was removed due to url protection.
-# 'macvim' cask overwrites 'vim' binary, so install manually instead.
-# 'skype-for-business' is potentially useful but starts up at login.
-
-# Requires authentication in 'Security & Privacy':
-# - box-drive
-# - virtualbox
-
 # Consider:
 # - fiji  # latest
 # - onyx
 # - oracle-jdk
 # - wine-stable
-
-# Casks that don't auto-update correctly:
-# - bibdesk
-# - firefox
-# - tunnelblick
-# - visual-studio-code
-# - iterm
-
-# Priority {{{2
-# ------------------------------------------------------------------------------
-
-cask "osxfuse"
-cask "xquartz"
-
-# Alphabetical {{{1
-# ------------------------------------------------------------------------------
+#
+# Requires authentication in 'Security & Privacy':
+# - box-drive
+# - virtualbox
+#
+# Removals:
+# - 'foobar2000' cask was removed due to url protection.
+# - 'macvim' cask overwrites 'vim' binary, so install manually instead.
+# - 'skype-for-business' is potentially useful but starts up at login.
 
 cask "1password"
 cask "adobe-acrobat-reader"
@@ -92,6 +95,7 @@ cask "makemkv"
 cask "museeks"
 cask "netnewswire"
 cask "omnidisksweeper"
+cask "osxfuse"
 cask "pacifist"
 cask "photosweeper-x"
 cask "powershell"
@@ -115,45 +119,11 @@ cask "virtualbox"
 cask "visual-studio-code"
 cask "vlc"
 cask "xld"
+cask "xquartz"
 cask "zoomus"
 
 # Brews {{{1
 # ==============================================================================
-
-# Rust: Use cargo to manage packages instead: broot, exa, fd, ripgrep, xsv.
-
-# Shells {{{2
-# ------------------------------------------------------------------------------
-
-brew "bash"
-brew "dash"
-brew "fish"
-brew "ksh"
-brew "tcsh"
-brew "zsh"
-
-# Priority {{{2
-# ------------------------------------------------------------------------------
-
-brew "python@3.8"
-
-brew "libssh2"
-brew "libtool"
-brew "libxml2"
-
-brew "gcc"
-brew "open-mpi"
-brew "openblas"
-brew "hdf5"
-brew "sqlite"
-brew "tcl-tk"
-brew "tesseract"
-
-brew "proj"
-brew "gdal"
-
-# Alphabetical {{{2
-# ------------------------------------------------------------------------------
 
 brew "ack"
 brew "autoconf"
@@ -161,6 +131,7 @@ brew "autojump"
 brew "automake"
 brew "awscli"
 brew "azure-cli"
+brew "bash"
 brew "bash-completion"
 brew "bfg"
 brew "binutils"
@@ -171,12 +142,16 @@ brew "cmake"
 brew "convmv"
 brew "coreutils"
 brew "curl"
+brew "dash"
 brew "exiftool"
 brew "ffmpeg"
 brew "findutils"
+brew "fish"
 brew "flac"
 brew "fzf"
 brew "gawk"
+brew "gcc"
+brew "gdal"
 brew "git"
 brew "git-lfs"
 brew "gnu-sed"
@@ -189,12 +164,14 @@ brew "gpatch"
 brew "grep"
 brew "groff"
 brew "gsl"
+brew "hdf5"
 brew "htop"
 brew "httpd"
 brew "hub"
 brew "igraph"
 brew "imagemagick"
 brew "jq"
+brew "ksh"
 brew "lame"
 brew "lapack"
 brew "leiningen"
@@ -205,6 +182,9 @@ brew "libiconv"
 brew "libomp"
 brew "libressl"
 brew "librsvg"
+brew "libssh2"
+brew "libtool"
+brew "libxml2"
 brew "libxslt"
 brew "llvm"
 brew "lua"
@@ -219,6 +199,8 @@ brew "neofetch"
 brew "neovim"
 brew "nmap"
 brew "node"
+brew "open-mpi"
+brew "openblas"
 brew "openssh"
 brew "pandoc"
 brew "pandoc-citeproc"
@@ -228,7 +210,9 @@ brew "pass"
 brew "php"
 brew "pkg-config"
 brew "podofo"
+brew "proj"
 brew "protobuf"
+brew "python@3.8"
 brew "rename"
 brew "rsync"
 brew "ruby"
@@ -237,9 +221,13 @@ brew "shellcheck"
 brew "shellharden"
 brew "shunit2"
 brew "sox"
+brew "sqlite"
 brew "sshfs"
 brew "subversion"
 brew "taglib"
+brew "tcl-tk"
+brew "tcsh"
+brew "tesseract"
 brew "texinfo"
 brew "the_silver_searcher"
 brew "tmux"
@@ -250,6 +238,7 @@ brew "vim"
 brew "wget"
 brew "youtube-dl"
 brew "zlib"
+brew "zsh"
 
 # External brews {{{2
 # ------------------------------------------------------------------------------
