@@ -42,8 +42,8 @@ git clone --recursive git@github.com:mjsteinbaugh/dotfiles.git "$dotfiles_dir"
 
 ### Emacs
 
-- [spacemacs](http://spacemacs.org/)
-- [doom-emacs](https://github.com/hlissner/doom-emacs)
+- [Spacemacs](http://spacemacs.org/)
+- [Doom Emacs](https://github.com/hlissner/doom-emacs)
 
 ### ZSH
 
