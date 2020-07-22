@@ -34,6 +34,7 @@ git clone --recursive git@github.com:mjsteinbaugh/dotfiles.git "$dotfiles_dir"
 - [roryk's dotfiles](https://github.com/roryk/dotfiles)
 - [nsgrantham's dotfiles](https://github.com/nsgrantham/dotfiles)
 - [rajshekhar26's dotfiles](https://github.com/rajshekhar26/dotfiles)
+- [Mofiqul's dotfiles](https://github.com/Mofiqul/Dotfiles)
 
 ### Color themes
 
