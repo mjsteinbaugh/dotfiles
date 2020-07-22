@@ -572,25 +572,18 @@ let g:NERDTreeDirArrowCollapsible="▾"
 " Nvim-R {{{2
 " ------------------------------------------------------------------------------
 
-" Disable '_' to '<-' conversion, which is madness.
-let r_assign=0
-" If useful, can override the default here.
-" > let r_assign_map="_"
+" Documentation details:
+" https://raw.githubusercontent.com/jalvesaq/Nvim-R/master/doc/Nvim-R.txt
 
-" Don't apply automatic indentation to comment blocks.
-let r_indent_commented=0
-" Mimic ESS conventions.
-let r_indent_ess_comments=1
-" Use Bioconductor recommended '##' instead of '#' by default.
-let r_rcomment_string="## "
-
-" R console height, when split horizontally.
-let r_rconsole_height=20
-" R console width, when split vertically.
-let r_rconsole_width=80
-
-" Enable the syntax method of folding for R files.
-let r_syntax_folding=1
+let R_assign=0
+let R_indent_commented=0
+let R_indent_ess_comments=1
+let R_min_editor_width=80
+let R_notmuxconf=1
+let R_rcomment_string="## "
+let R_rconsole_height=20
+let R_rconsole_width=80
+let R_syntax_folding=1
 
 " airline {{{2
 " ------------------------------------------------------------------------------
