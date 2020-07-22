@@ -47,7 +47,7 @@ git clone --recursive git@github.com:mjsteinbaugh/dotfiles.git "$dotfiles_dir"
 
 ### ZSH
 
-- [oh-my-zsh](https://ohmyz.sh/)
-- [prezto](https://github.com/sorin-ionescu/prezto)
-- [antigen](http://antigen.sharats.me/)
-- [antibody](https://getantibody.github.io/)
+- [Oh My Zsh](https://ohmyz.sh/)
+- [Prezto](https://github.com/sorin-ionescu/prezto)
+- [Antigen](http://antigen.sharats.me/)
+- [Antibody](https://getantibody.github.io/)
