@@ -24,6 +24,7 @@ git clone --recursive git@github.com:mjsteinbaugh/dotfiles.git "$dotfiles_dir"
 
 ## See also
 
+- [GitHub does dotfiles](https://dotfiles.github.io/)
 - [mathiasbynens's dotfiles](https://github.com/mathiasbynens/dotfiles)
 - [MikeMcQuaid's dotfiles](https://github.com/MikeMcQuaid/dotfiles)
 - [thoughtbot's dotfiles](https://github.com/thoughtbot/dotfiles)
@@ -32,7 +33,7 @@ git clone --recursive git@github.com:mjsteinbaugh/dotfiles.git "$dotfiles_dir"
 - [caarlos0's dotfiles](https://github.com/caarlos0/dotfiles)
 - [roryk's dotfiles](https://github.com/roryk/dotfiles)
 - [nsgrantham's dotfiles](https://github.com/nsgrantham/dotfiles)
-- [GitHub does dotfiles](https://dotfiles.github.io/)
+- [rajshekhar26's dotfiles](https://github.com/rajshekhar26/dotfiles)
 
 ### Color themes
 
@@ -41,12 +42,12 @@ git clone --recursive git@github.com:mjsteinbaugh/dotfiles.git "$dotfiles_dir"
 
 ### Emacs
 
-- [spacemacs](http://spacemacs.org/)
-- [doom-emacs](https://github.com/hlissner/doom-emacs)
+- [Spacemacs](http://spacemacs.org/)
+- [Doom Emacs](https://github.com/hlissner/doom-emacs)
 
 ### ZSH
 
-- [oh-my-zsh](https://ohmyz.sh/)
-- [prezto](https://github.com/sorin-ionescu/prezto)
-- [antigen](http://antigen.sharats.me/)
-- [antibody](https://getantibody.github.io/)
+- [Oh My Zsh](https://ohmyz.sh/)
+- [Prezto](https://github.com/sorin-ionescu/prezto)
+- [Antigen](http://antigen.sharats.me/)
+- [Antibody](https://getantibody.github.io/)
