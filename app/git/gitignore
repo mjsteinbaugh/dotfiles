@@ -48,7 +48,6 @@ Temporary Items/
 *.bam
 *.bed
 *.bz2
-*.csv
 *.db
 *.err
 *.fa
