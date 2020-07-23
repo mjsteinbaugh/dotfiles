@@ -2,7 +2,7 @@
 
 # """
 # POSIX aliases.
-# @note Updated 2020-07-22.
+# @note Updated 2020-07-23.
 # """
 
 # Shortcuts {{{1
@@ -15,6 +15,16 @@ alias h='history'
 # shellcheck disable=SC2153
 alias k='cd "${KOOPA_PREFIX:?}"; l'
 alias ku='koopa update'
+
+jo() {
+    # """
+    # Autojump and open.
+    # @note Updated 2020-07-23.
+    # """
+    j "${1:?}"
+    open .
+    return 0
+}
 
 # Listing files {{{1
 # ==============================================================================
