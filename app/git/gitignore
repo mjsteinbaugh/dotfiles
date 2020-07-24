@@ -60,7 +60,6 @@ Temporary Items/
 *.gz
 *.gz.*
 *.h5
-*.html
 *.idx
 *.mtx
 *.out
