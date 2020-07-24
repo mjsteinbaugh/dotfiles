@@ -159,3 +159,8 @@ vignettes/.build.timestamp
 Gemfile.lock
 _drafts/
 _site/
+
+# Nextflow {{{1
+# ==============================================================================
+
+.nextflow.log
