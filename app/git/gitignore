@@ -1,6 +1,6 @@
 # """
 # Git ignore global rules.
-# Updated 2020-07-21.
+# Updated 2020-07-24.
 # """
 
 # Temporary files {{{1
@@ -84,6 +84,7 @@ Temporary Items/
 # Large directories {{{1
 # ==============================================================================
 
+.nextflow/
 annotations/
 bam-*/
 bam/
@@ -99,6 +100,8 @@ figures/
 genewiz/
 kallisto/
 links/
+nextflow-*/
+nextflow/
 rda-*/
 rda/
 rds-*/
@@ -109,8 +112,8 @@ salmon/
 sam-*/
 sam/
 star/
-tmp/
 tmp*/
+tmp/
 
 # Genomes {{{2
 # ------------------------------------------------------------------------------
