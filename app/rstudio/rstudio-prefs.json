@@ -66,5 +66,6 @@
     "highlight_code_chunks": false,
     "show_rmd_render_command": true,
     "auto_run_setup_chunk": false,
-    "doc_outline_show": "sections_and_chunks"
+    "doc_outline_show": "sections_and_chunks",
+    "source_with_echo": true
 }
