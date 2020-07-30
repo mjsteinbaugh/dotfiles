@@ -1,7 +1,7 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
-;; Updated 2020-04-07.
+;; Updated 2020-07-30.
 ;;
 ;; Spacemacs cheatsheet:
 ;; https://steinbaugh.com/posts/spacemacs.html
@@ -12,8 +12,6 @@
 ;; | SPC q q         | Quit                        |
 ;; | SPC f e R       | Reload config               |
 ;; | SPC f e D       | Diff config against default |
-
-
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
@@ -49,30 +47,25 @@ values."
      ivy
      ;; > (auto-completion :variables
      ;; >                  auto-completion-enable-sort-by-usage t)
-
      ;; ui:
      ;; > emoji
      ;; > (unicode-fonts :variables
      ;; >                unicode-fonts-force-multi-color-on-mac t)
-
      ;; editor:
      ;; > copy-as-format
      ;; > multiple-cursors
      ;; > spell-checking
-
      ;; emacs:
      better-defaults
      evil-commentary
      syntax-checking
      version-control
-
      ;; tools:
      csv
      docker
      git
      ipython-notebook
      osx
-
      ;; lang:
      emacs-lisp
      (ess :variables
@@ -286,7 +279,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    ;; Fira Code, Source Code Pro, SF Mono are good defaults.
-   dotspacemacs-default-font '("SF Mono"
+   dotspacemacs-default-font '("JetBrains Mono"
                                :size 16
                                :weight normal
                                :width normal
@@ -522,9 +515,15 @@ you should place your code here."
   ;; > (add-to-list 'tramp-remote-process-environment
   ;; >              (format "DISPLAY=%s" (getenv "DISPLAY")))
 
+  ;; Enable Markdown syntax highlighting for RONN files.
+  ;; https://github.com/rtomayko/ronn
+  ;; https://gist.github.com/perusio/1087950
+  (add-to-list 'auto-mode-alist '("\\.ronn$" . poly-markdown-mode))
+
   ;; ESS -----------------------------------------------------------------------
   (require 'ess-site)
   ;; Also using polymodes for R.
+  ;; https://polymode.github.io/installation/
   ;; https://github.com/polymode/poly-R
   (require 'poly-R)
   (require 'poly-markdown)
@@ -533,6 +532,8 @@ you should place your code here."
     (setq ess-language "R")
     )
   (add-hook 'ess-post-run-hook 'ess-set-language t)
+  ;; This may need an update to work properly.
+  ;; https://www.reddit.com/r/spacemacs/comments/9ciefe/polymode_for_rmd/
   (add-to-list 'auto-mode-alist '("\\.Rmd$" . poly-markdown+R-mode))
   ;; > (add-to-list 'auto-mode-alist '("\\.R$" . R-mode))
   ;; > (autoload 'R-mode "ess-site.el" "ESS" t)
