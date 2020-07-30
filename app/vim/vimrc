@@ -1,6 +1,6 @@
 """
 " Vim configuration.
-" Updated 2020-06-08.
+" Updated 2020-07-30.
 "
 " Refer to my cheat sheet for usage details:
 " https://steinbaugh.com/posts/vim.html
@@ -376,18 +376,6 @@ set foldmethod=marker
 set foldlevelstart=99
 set nofoldenable
 
-" Completely disable Markdown-specific code folding.
-" > let g:vim_markdown_folding_disabled=1
-" Potentially useful:
-" > let g:vim_markdown_folding_style_pythonic=1
-" > let g:vim_markdown_override_foldtext=0
-let g:vim_markdown_folding_level=2
-
-" SimpylFold mode (useful for Python IDE).
-" https://github.com/tmhedberg/SimpylFold
-" > set foldmethod=indent
-" > let g:SimpylFold_docstring_preview=1
-
 
 
 " File management {{{1
@@ -585,6 +573,14 @@ let R_rconsole_height=20
 let R_rconsole_width=80
 let R_syntax_folding=1
 
+" SimpylFold {{{2
+" ------------------------------------------------------------------------------
+
+" Useful for Python IDE.
+" https://github.com/tmhedberg/SimpylFold
+" > set foldmethod=indent
+" > let g:SimpylFold_docstring_preview=1
+
 " airline {{{2
 " ------------------------------------------------------------------------------
 
@@ -656,13 +652,26 @@ let g:syntastic_python_flake8_args="--ignore=E402,W503"
 " https://groups.google.com/forum/#!topic/vim_use/Gd6lO3ETnl0
 let g:syntastic_python_pylint_args="--rcfile=~/.pylintrc"
 
-
 " R
 " https://github.com/jimhester/lintr
 " This can be slow to load, so disable by default.
 " > let g:syntastic_enable_r_lintr_checker=1
 " > let g:syntastic_r_checkers=["lintr"]
 " > let g:syntastic_r_lintr_linters='with_defaults(object_name_linter("camelCase"))'
+
+" vim-markdown {{{2
+" ------------------------------------------------------------------------------
+
+au BufNewFile,BufFilePre,BufRead *.ronn set filetype=markdown
+
+" Completely disable Markdown-specific code folding.
+" > let g:vim_markdown_folding_disabled=1
+
+" Potentially useful:
+" > let g:vim_markdown_folding_style_pythonic=1
+" > let g:vim_markdown_override_foldtext=0
+
+let g:vim_markdown_folding_level=2
 
 
 
