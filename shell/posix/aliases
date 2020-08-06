@@ -2,7 +2,7 @@
 
 # """
 # POSIX aliases.
-# @note Updated 2020-07-29.
+# @note Updated 2020-08-06.
 # """
 
 # Shortcuts {{{1
@@ -80,6 +80,7 @@ else
 fi
 alias emacs-vanilla='emacs --no-init-file --no-window-system'
 alias nvim-vanilla='nvim -u NONE'
+alias python='python3'
 alias rgs='rg --pretty --sort path'
 alias ronn='ronn --roff'
 alias sha256='shasum -a 256'
