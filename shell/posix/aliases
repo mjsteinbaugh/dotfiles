@@ -80,6 +80,7 @@ else
 fi
 alias emacs-vanilla='emacs --no-init-file --no-window-system'
 alias nvim-vanilla='nvim -u NONE'
+alias pylint='pylint --rcfile=~/.pylintrc'
 alias python='python3'
 alias rgs='rg --pretty --sort path'
 alias ronn='ronn --roff'
