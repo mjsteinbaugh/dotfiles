@@ -12,7 +12,10 @@
 
 [MESSAGES CONTROL]
 
-disable=bad-continuation,too-many-arguments,too-many-branches,too-many-locals
+disable=bad-continuation,
+        too-many-arguments,
+        too-many-branches,
+        too-many-locals
 
 
 [BASIC]
