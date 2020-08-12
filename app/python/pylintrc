@@ -12,7 +12,7 @@
 
 [MESSAGES CONTROL]
 
-disable=bad-continuation
+disable=bad-continuation,too-many-arguments
 
 
 [BASIC]
