@@ -6,7 +6,7 @@
 
 We use the [koopa][] bootloader to configure the shell automatically.
 
-Via koopa:
+Install via koopa:
 
 ```sh
 koopa install-dotfiles
