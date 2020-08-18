@@ -1,4 +1,4 @@
-# Dot files
+# Dotfiles
 
 [Acid Genomics][] configuration files shared between machines.
 
