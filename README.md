@@ -15,10 +15,11 @@ koopa install-dotfiles
 Or clone and install manually:
 
 ```sh
-# Clone into ~/.config/dotfiles and symlink.
+# Clone into '~/.config/dotfiles' and symlink.
+repo='https://github.com/acidgenomics/dotfiles.git'
 dotfiles_dir="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
 mkdir -pv "$dotfiles_dir"
-git clone --recursive https://github.com/acidgenomics/dotfiles.git "$dotfiles_dir"
+git clone --recursive "$repo" "$dotfiles_dir"
 "${dotfiles_dir}/install"
 ```
 
