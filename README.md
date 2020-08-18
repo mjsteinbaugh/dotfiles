@@ -44,12 +44,12 @@ git clone --recursive "$repo" "$dotfiles_dir"
 - [Dracula](https://draculatheme.com/)
 - [Nord](https://www.nordtheme.com/)
 
-### Emacs
+### Emacs configuration
 
 - [Spacemacs](http://spacemacs.org/)
 - [Doom Emacs](https://github.com/hlissner/doom-emacs)
 
-### ZSH
+### ZSH configuration
 
 - [Oh My Zsh](https://ohmyz.sh/)
 - [Prezto](https://github.com/sorin-ionescu/prezto)
