@@ -25,6 +25,8 @@ git clone --recursive "$repo" "$dotfiles_dir"
 
 ## See also
 
+### Example dotfiles
+
 - [GitHub does dotfiles](https://dotfiles.github.io/)
 - [mathiasbynens's dotfiles](https://github.com/mathiasbynens/dotfiles)
 - [MikeMcQuaid's dotfiles](https://github.com/MikeMcQuaid/dotfiles)
