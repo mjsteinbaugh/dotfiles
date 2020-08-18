@@ -18,7 +18,7 @@ Or clone and install manually:
 # Clone into ~/.config/dotfiles and symlink.
 dotfiles_dir="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
 mkdir -pv "$dotfiles_dir"
-git clone --recursive git@github.com:acidgenomics/dotfiles.git "$dotfiles_dir"
+git clone --recursive https://github.com/acidgenomics/dotfiles.git "$dotfiles_dir"
 "${dotfiles_dir}/install"
 ```
 
