@@ -1,10 +1,10 @@
 # Dot files
 
-Configuration files shared between machines.
+[Acid Genomics][] configuration files shared between machines.
 
 ## Installation
 
-We use the [koopa](https://github.com/acidgenomics/koopa/) bootloader to configure the shell automatically.
+We use the [koopa][] bootloader to configure the shell automatically.
 
 Via koopa:
 
@@ -53,3 +53,6 @@ git clone --recursive "$repo" "$dotfiles_dir"
 - [Prezto](https://github.com/sorin-ionescu/prezto)
 - [Antigen](http://antigen.sharats.me/)
 - [Antibody](https://getantibody.github.io/)
+
+[acid genomics]: https://acidgenomics.com/
+[koopa]: https://koopa.acidgenomics.com/
