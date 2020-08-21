@@ -9,7 +9,7 @@ We use the [koopa][] bootloader to configure the shell automatically.
 Install via koopa:
 
 ```sh
-koopa install-dotfiles
+koopa install dotfiles
 ```
 
 Or clone and install manually:
