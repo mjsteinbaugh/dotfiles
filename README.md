@@ -30,6 +30,7 @@ git clone --recursive "$repo" "$dotfiles_dir"
 - [GitHub does dotfiles](https://dotfiles.github.io/)
 - [mathiasbynens's dotfiles](https://github.com/mathiasbynens/dotfiles)
 - [MikeMcQuaid's dotfiles](https://github.com/MikeMcQuaid/dotfiles)
+- [holman's dotfiles](https://github.com/holman/dotfiles)
 - [thoughtbot's dotfiles](https://github.com/thoughtbot/dotfiles)
 - [jimhester's dotfiles](https://github.com/jimhester/dotfiles)
 - [vsbuffalo's dotfiles](https://github.com/vsbuffalo/dotfiles)
