@@ -28,17 +28,18 @@ git clone --recursive "$repo" "$dotfiles_dir"
 ### Example dotfiles
 
 - [GitHub does dotfiles](https://dotfiles.github.io/)
-- [mathiasbynens's dotfiles](https://github.com/mathiasbynens/dotfiles)
-- [MikeMcQuaid's dotfiles](https://github.com/MikeMcQuaid/dotfiles)
-- [holman's dotfiles](https://github.com/holman/dotfiles)
-- [thoughtbot's dotfiles](https://github.com/thoughtbot/dotfiles)
-- [jimhester's dotfiles](https://github.com/jimhester/dotfiles)
-- [vsbuffalo's dotfiles](https://github.com/vsbuffalo/dotfiles)
-- [caarlos0's dotfiles](https://github.com/caarlos0/dotfiles)
-- [roryk's dotfiles](https://github.com/roryk/dotfiles)
-- [nsgrantham's dotfiles](https://github.com/nsgrantham/dotfiles)
-- [rajshekhar26's dotfiles](https://github.com/rajshekhar26/dotfiles)
-- [Mofiqul's dotfiles](https://github.com/Mofiqul/Dotfiles)
+- [mathiasbynens](https://github.com/mathiasbynens/dotfiles)
+- [MikeMcQuaid](https://github.com/MikeMcQuaid/dotfiles)
+- [jimhester](https://github.com/jimhester/dotfiles)
+- [holman](https://github.com/holman/dotfiles)
+- [thoughtbot](https://github.com/thoughtbot/dotfiles)
+- [ryanb](https://github.com/ryanb/dotfiles)
+- [vsbuffalo](https://github.com/vsbuffalo/dotfiles)
+- [caarlos0](https://github.com/caarlos0/dotfiles)
+- [roryk](https://github.com/roryk/dotfiles)
+- [nsgrantham](https://github.com/nsgrantham/dotfiles)
+- [rajshekhar26](https://github.com/rajshekhar26/dotfiles)
+- [Mofiqul](https://github.com/Mofiqul/Dotfiles)
 
 ### Color themes
 
