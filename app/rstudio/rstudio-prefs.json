@@ -28,7 +28,7 @@
     "restore_source_documents": false,
     "restore_last_project": false,
     "pdf_previewer": "none",
-    "posix_terminal_shell": "zsh",
+    "posix_terminal_shell": "custom",
     "auto_expand_error_tracebacks": true,
     "help_font_size_points": 11,
     "save_workspace": "never",
@@ -67,5 +67,7 @@
     "show_rmd_render_command": true,
     "auto_run_setup_chunk": false,
     "doc_outline_show": "sections_and_chunks",
-    "source_with_echo": true
+    "source_with_echo": true,
+    "custom_shell_command": "/usr/local/bin/zsh",
+    "terminal_bell_style": "none"
 }
