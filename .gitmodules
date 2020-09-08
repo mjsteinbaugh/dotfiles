@@ -1,6 +1,6 @@
 # """
 # Git submodules.
-# Updated 2020-07-31.
+# Updated 2020-09-08.
 #
 # Potentially useful:
 # - jedi-vim
@@ -36,6 +36,10 @@
 	url = https://github.com/vim-airline/vim-airline.git
 	branch = master
 	ignore = dirty
+[submodule "app/vim/vim.d/pack/dist/start/vim-commentary"]
+	path = app/vim/vim.d/pack/dist/start/vim-commentary
+	url = https://github.com/tpope/vim-commentary.git
+	branch = master
 [submodule "app/vim/vim.d/pack/dist/start/vim-fugitive"]
 	path = app/vim/vim.d/pack/dist/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
@@ -61,6 +65,10 @@
 	url = https://github.com/mhinz/vim-startify.git
 	branch = master
 	ignore = dirty
+[submodule "app/vim/vim.d/pack/dist/start/vim-surround"]
+	path = app/vim/vim.d/pack/dist/start/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+	branch = master
 [submodule "shell/zsh/plugins/zsh-autosuggestions"]
 	path = shell/zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
