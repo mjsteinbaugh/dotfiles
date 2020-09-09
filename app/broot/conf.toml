@@ -19,7 +19,7 @@
 # if you don't want the hidden files you can launch `br -H`)
 # A popular flag is the `g` one which displays git related info.
 #
-default_flags = ""
+default_flags = "ghip"
 
 ###############################################################
 # Special paths
@@ -37,12 +37,12 @@ default_flags = ""
 # following line and change it according to
 # https://docs.rs/chrono/0.4.11/chrono/format/strftime/index.html
 #
-# date_time_format = "%Y/%m/%d %R"
+date_time_format = "%Y-%m-%d %R"
 
 ###############################################################
 # Whether to mark the selected line with a triangle
 #
-# show_selection_mark = true
+show_selection_mark = true
 
 ###############################################################
 # Column order
@@ -95,34 +95,34 @@ default_flags = ""
 # Example:
 #  execution = "/usr/bin/nvim +{line} {file}"
 
-[[verbs]]
-invocation = "edit"
-key = "F2"
-shortcut = "e"
-execution = "$EDITOR {file}"
-leave_broot = false
+# [[verbs]]
+# invocation = "edit"
+# key = "F2"
+# shortcut = "e"
+# execution = "$EDITOR {file}"
+# leave_broot = false
 
-[[verbs]]
-invocation = "create {subpath}"
-execution = "$EDITOR {directory}/{subpath}"
-leave_broot = false
+# [[verbs]]
+# invocation = "create {subpath}"
+# execution = "$EDITOR {directory}/{subpath}"
+# leave_broot = false
 
-[[verbs]]
-invocation = "git_diff"
-shortcut = "gd"
-leave_broot = false
-execution = "git difftool -y {file}"
+# [[verbs]]
+# invocation = "git_diff"
+# shortcut = "gd"
+# leave_broot = false
+# execution = "git difftool -y {file}"
 
 # If $PAGER isn't set on your computer, you should either set it
 #  or just replace it with your viewer of choice in the 'execution'
 #  pattern.
 # Example:
 #  execution = "less {file}"
-[[verbs]]
-name = "view"
-invocation = "view"
-execution = "$PAGER {file}"
-leave_broot = false
+# [[verbs]]
+# name = "view"
+# invocation = "view"
+# execution = "$PAGER {file}"
+# leave_broot = false
 
 # uncomment if you want to launch a terminal on ctrl-T
 # (on exit you'll be back in broot)
@@ -172,7 +172,6 @@ leave_broot = false
 # [[verbs]]
 # key = "F6"
 # execution = ":move_to_panel"
-
 
 ###############################################################
 # Skin
@@ -246,7 +245,6 @@ leave_broot = false
 #  https://dystroy.org/broot/skins
 # for example a skin suitable for white backgrounds
 
-
 ###############################################################
 # File Extension Colors
 #
@@ -256,5 +254,3 @@ leave_broot = false
 # [ext-colors]
 # png = "rgb(255, 128, 75)"
 # rs = "yellow"
-
-
