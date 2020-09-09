@@ -19,6 +19,7 @@ install() {
         "$(realpath "$expected_prefix")"
     koopa::add_config_link "$prefix"
     rm -frv "${HOME}/."{'R/Makevars','kshrc','oh-my-zsh','shrc','zprofile'}
+    link --force --config 'app/broot'
     link --force --config 'app/emacs/doom/config.d' 'doom'
     link --force --config 'app/htop'
     link --force --config 'app/neofetch'
