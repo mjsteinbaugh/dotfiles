@@ -1,6 +1,6 @@
 # """
 # Homebrew Bundle Brewfile.
-# Updated 2020-09-08.
+# Updated 2020-09-16.
 #
 # LLVM:
 # LLVM takes up 4 GB of disk space but is required for some Python packages.
@@ -141,6 +141,7 @@ brew "ccache"
 brew "checkbashisms"
 brew "circleci"
 brew "cmake"
+brew "cmus"
 brew "convmv"
 brew "coreutils"
 brew "curl"
