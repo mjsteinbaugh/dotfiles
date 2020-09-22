@@ -43,6 +43,7 @@ git clone --recursive "$repo" "$dotfiles_dir"
 - [nsgrantham](https://github.com/nsgrantham/dotfiles)
 - [rajshekhar26](https://github.com/rajshekhar26/dotfiles)
 - [Mofiqul](https://github.com/Mofiqul/Dotfiles)
+- [naggie](https://github.com/naggie/dotfiles)
 
 ### Color themes
 
