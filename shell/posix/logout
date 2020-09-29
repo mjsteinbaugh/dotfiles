@@ -1,15 +1,20 @@
 #!/bin/sh
 
-# When leaving the console, clear the screen to increase privacy.
+# """
+# Scripts to run when logging out of current session.
+# Updated 2020-09-29.
+# """
+
 # In POSIX sh, SHLVL is undefined.
 # shellcheck disable=SC2039
-if [ "${SHLVL:-}" = 1 ]
+if [ "${SHLVL:-0}" -eq 1 ]
 then
-    [ -x /usr/bin/clear_console ] && /usr/bin/clear_console -q
-fi
+    # When leaving the console, clear the screen to increase privacy.
+    [ -x '/usr/bin/clear_console' ] && '/usr/bin/clear_console' -q
 
-# Delete HISTFILE.
-if [ -f "${HISTFILE:-}" ]
-then
-    rm "$HISTFILE"
+    # Delete HISTFILE.
+    # > if [ -f "${HISTFILE:-}" ]
+    # > then
+    # >     rm "$HISTFILE"
+    # > fi
 fi
