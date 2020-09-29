@@ -1,6 +1,6 @@
 # """
 # Homebrew Bundle Brewfile.
-# Updated 2020-09-16.
+# Updated 2020-09-29.
 #
 # LLVM:
 # LLVM takes up 4 GB of disk space but is required for some Python packages.
@@ -133,6 +133,7 @@ brew "autojump"
 brew "automake"
 brew "awscli"
 brew "azure-cli"
+brew "bandcamp-dl"
 brew "bash"
 brew "bash-completion"
 brew "bfg"
