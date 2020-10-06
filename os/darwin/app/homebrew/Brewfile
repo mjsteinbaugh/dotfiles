@@ -1,6 +1,6 @@
 # """
 # Homebrew Bundle Brewfile.
-# Updated 2020-09-29.
+# Updated 2020-10-06.
 #
 # LLVM:
 # LLVM takes up 4 GB of disk space but is required for some Python packages.
@@ -212,12 +212,14 @@ brew "pandoc-citeproc"
 brew "pandoc-crossref"
 brew "parallel"
 brew "pass"
+brew "pcre"
 brew "php"
 brew "pkg-config"
 brew "podofo"
 brew "proj"
 brew "protobuf"
-brew "python@3.8"
+brew "python@3.8", link: false
+brew "python@3.9", link: false
 brew "rename"
 brew "rsync"
 brew "ruby"
