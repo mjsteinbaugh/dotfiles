@@ -134,6 +134,7 @@ brew "python@3.9", link: false
 brew "numpy", link: false  # gdal dependency
 
 brew "ack"
+brew "armadillo"
 brew "autoconf"
 brew "autojump"
 brew "automake"
