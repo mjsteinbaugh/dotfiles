@@ -127,6 +127,12 @@ cask "zoomus"
 # Brews {{{1
 # ==============================================================================
 
+# Python: Use official Framework binary install instead of Homebrew.
+# Use 'install-python-framework' from koopa to install.
+brew "python@3.8", link: false
+brew "python@3.9", link: false
+brew "numpy", link: false  # gdal dependency
+
 brew "ack"
 brew "autoconf"
 brew "autojump"
@@ -221,10 +227,6 @@ brew "pkg-config"
 brew "podofo"
 brew "proj"
 brew "protobuf"
-# Python: Use official Framework binary install instead of Homebrew.
-# Use 'install-python-framework' from koopa to install.
-brew "python@3.8", link: false
-brew "python@3.9", link: false
 brew "rename"
 brew "rsync"
 brew "ruby"
