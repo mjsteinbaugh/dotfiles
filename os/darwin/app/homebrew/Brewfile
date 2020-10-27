@@ -1,6 +1,6 @@
 # """
 # Homebrew Bundle Brewfile.
-# Updated 2020-10-23.
+# Updated 2020-10-27.
 #
 # LLVM:
 # LLVM takes up 4 GB of disk space but is required for some Python packages.
@@ -128,11 +128,10 @@ cask "zoomus"
 # Brews {{{1
 # ==============================================================================
 
-# Python: Use official Framework binary install instead of Homebrew.
+# Python: Can use official Framework binary install instead of Homebrew.
 # Use 'install-python-framework' from koopa to install.
-brew "python@3.8", link: false
-brew "python@3.9", link: false
-brew "numpy", link: false  # gdal dependency
+brew "python@3.9"
+# > brew "numpy", link: false  # gdal dependency
 
 brew "ack"
 brew "armadillo"
