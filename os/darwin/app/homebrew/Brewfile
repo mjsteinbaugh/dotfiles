@@ -130,8 +130,8 @@ cask "zoomus"
 
 # Python: Can use official Framework binary install instead of Homebrew.
 # Use 'install-python-framework' from koopa to install.
-brew "python@3.9"
-brew "numpy"  # gdal dependency
+brew "python@3.8", link: false
+brew "python@3.9", link: false
 
 brew "ack"
 brew "armadillo"
