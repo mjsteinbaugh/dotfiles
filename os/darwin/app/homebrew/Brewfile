@@ -1,6 +1,6 @@
 # """
 # Homebrew Bundle Brewfile.
-# Updated 2020-10-27.
+# Updated 2020-11-01.
 #
 # LLVM:
 # LLVM takes up 4 GB of disk space but is required for some Python packages.
@@ -259,6 +259,7 @@ brew "zsh"
 # ------------------------------------------------------------------------------
 
 brew "mongodb/brew/mongodb-community"
+brew "muesli/tap/duf"
 brew "vitorgalvao/tiny-scripts/cask-repair"
 
 # Mac App Store {{{1
