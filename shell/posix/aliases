@@ -2,7 +2,7 @@
 
 # """
 # POSIX aliases.
-# @note Updated 2020-09-16.
+# @note Updated 2020-10-02.
 # """
 
 # Shortcuts {{{1
@@ -117,6 +117,7 @@ then
     alias canary='open -a "google chrome canary"'
     alias chrome='open -a "google chrome"'
     alias firefox='open -a firefox'
+    alias homebrew-core='cd "$(brew --repo homebrew/core)"'
     alias rstudio='open -a rstudio'
     alias safari='open -a safari'
     # PlistBuddy alias, because sometimes 'defaults' just doesn’t cut it.

@@ -60,11 +60,6 @@
 	url = https://github.com/mhinz/vim-signify.git
 	branch = master
 	ignore = dirty
-[submodule "app/vim/vim.d/pack/dist/start/vim-startify"]
-	path = app/vim/vim.d/pack/dist/start/vim-startify
-	url = https://github.com/mhinz/vim-startify.git
-	branch = master
-	ignore = dirty
 [submodule "app/vim/vim.d/pack/dist/start/vim-surround"]
 	path = app/vim/vim.d/pack/dist/start/vim-surround
 	url = https://github.com/tpope/vim-surround.git
