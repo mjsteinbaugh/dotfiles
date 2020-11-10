@@ -244,8 +244,8 @@ brew "rename"
 brew "ripgrep"  # rust
 brew "rsync"
 brew "ruby"
-brew "rust"
-brew "rustup-init"  # rust
+## > brew "rust"
+## > brew "rustup-init"  # rust
 brew "screen"
 brew "shellcheck"
 brew "shellharden"
