@@ -143,8 +143,11 @@ brew "azure-cli"
 brew "bandcamp-dl"
 brew "bash"
 brew "bash-completion"
+brew "bat"  # rust
 brew "bfg"
 brew "binutils"
+brew "black"  # python
+brew "broot"  # rust
 brew "ccache"
 brew "checkbashisms"
 brew "circleci"
@@ -155,11 +158,15 @@ brew "coreutils"
 brew "curl"
 brew "dash"
 brew "dog"  # rust
+brew "dust"  # rust
+brew "exa"  # rust
 brew "exiftool"
+brew "fd"  # rust
 brew "ffmpeg"
 brew "findutils"
 brew "fish"
 brew "flac"
+brew "flake8"  # python
 brew "fzf"
 brew "gawk"
 brew "gcc"
@@ -180,6 +187,7 @@ brew "hdf5"
 brew "htop"
 brew "httpd"
 brew "hub"
+brew "hyperfine"
 brew "igraph"
 brew "imagemagick"
 brew "jq"
@@ -227,9 +235,13 @@ brew "pcre"
 brew "php"
 brew "pkg-config"
 brew "podofo"
+brew "procs"  # rust
 brew "proj"
 brew "protobuf"
+brew "pylint"  # python
+brew "ranger"  # python
 brew "rename"
+brew "ripgrep"  # rust
 brew "rsync"
 brew "ruby"
 brew "screen"
@@ -248,13 +260,16 @@ brew "tesseract"
 brew "texinfo"
 brew "the_silver_searcher"
 brew "tmux"
+brew "tokei"  # rust
 brew "trash"
 brew "udunits"
 brew "v8"
 brew "vim"
 brew "wget"
+brew "xsv"  # rust
 brew "youtube-dl"
 brew "zlib"
+brew "zoxide"  # rust
 brew "zsh"
 
 # External brews {{{2
