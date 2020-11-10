@@ -3,21 +3,17 @@
 # Updated 2020-11-10.
 # """
 
-# Brews {{{1
-# ==============================================================================
+# Problematic:
+# brew "armadillo"
 
-# Python: Can use official Framework binary install instead of Homebrew.
-# Use 'install-python-framework' from koopa to install.
 brew "python@3.9", link: false
 
 brew "ack"
-brew "armadillo"
 brew "autoconf"
 brew "autojump"
 brew "automake"
 brew "awscli"
 brew "azure-cli"
-brew "bandcamp-dl"
 brew "bash"
 brew "bash-completion"
 brew "bat"  # rust
@@ -37,12 +33,9 @@ brew "dash"
 brew "dog"  # rust
 brew "dust"  # rust
 brew "exa"  # rust
-brew "exiftool"
 brew "fd"  # rust
-brew "ffmpeg"
 brew "findutils"
 brew "fish"
-brew "flac"
 brew "flake8"  # python
 brew "fzf"
 brew "gawk"
@@ -62,14 +55,9 @@ brew "groff"
 brew "gsl"
 brew "hdf5"
 brew "htop"
-brew "httpd"
-brew "hub"
-brew "hyperfine"
 brew "igraph"
 brew "imagemagick"
 brew "jq"
-brew "ksh"
-brew "lame"
 brew "lapack"
 brew "leiningen"
 brew "lesspipe"
@@ -89,11 +77,7 @@ brew "luarocks"
 brew "make"
 brew "man-db"
 brew "mariadb-connector-c"
-brew "mas"
 brew "mkvtoolnix"
-brew "mp4v2"
-brew "mpc"
-brew "mpd"
 brew "ncmpcpp"
 brew "neofetch"
 brew "neovim"
@@ -102,7 +86,6 @@ brew "node"
 brew "open-mpi"
 brew "openblas"
 brew "openssh"
-brew "osx-cpu-temp"
 brew "pandoc"
 brew "pandoc-citeproc"
 brew "pandoc-crossref"
@@ -121,8 +104,6 @@ brew "rename"
 brew "ripgrep"  # rust
 brew "rsync"
 brew "ruby"
-## > brew "rust"
-## > brew "rustup-init"  # rust
 brew "screen"
 brew "shellcheck"
 brew "shellharden"
@@ -146,7 +127,6 @@ brew "v8"
 brew "vim"
 brew "wget"
 brew "xsv"  # rust
-brew "youtube-dl"
 brew "zlib"
 brew "zoxide"  # rust
 brew "zsh"
