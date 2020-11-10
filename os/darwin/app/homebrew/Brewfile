@@ -239,6 +239,7 @@ brew "shunit2"
 brew "sox"
 brew "sqlite"
 brew "sshfs"
+brew "starship"  # rust
 brew "subversion"
 brew "taglib"
 brew "tcl-tk"
