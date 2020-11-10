@@ -1,3 +1,7 @@
+# starship prompt configuration
+# Updated 2020-11-10.
+# https://starship.rs/config/
+
 add_newline = true
 
 [aws]
@@ -6,10 +10,17 @@ disabled = true
 [cmd_duration]
 disabled = true
 
-[gcloud]
-disabled = true
+[character]
+success_symbol = "[❯](bold green) "
+error_symbol = "[✗](bold red) "
 
-[package]
+[directory]
+style = "bold cyan"
+truncate_to_repo = true
+truncation_length = 4
+truncation_symbol = ""
+
+[gcloud]
 disabled = true
 
 [python]
