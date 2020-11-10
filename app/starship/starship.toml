@@ -1,6 +1,24 @@
+# """
 # starship prompt configuration
 # Updated 2020-11-10.
-# https://starship.rs/config/
+#
+# Allowed standard colors:
+# - black
+# - blue
+# - cyan
+# - green
+# - purple
+# - red
+# - white
+# - yellow
+#
+# Note that magenta is not currently supported!
+# Colors are documented in the advanced configuration section.
+#
+# See also:
+# - https://starship.rs/config/
+# - https://starship.rs/advanced-config/
+# """
 
 add_newline = true
 
@@ -11,11 +29,12 @@ disabled = true
 disabled = true
 
 [character]
-success_symbol = "[❯](bold green)"
-error_symbol = "[✗](bold red)"
+# > success_symbol = "[❯](bold green)"
+# > error_symbol = "[✗](bold red)"
 
 [directory]
-style = "bold cyan"
+# > style = "bold cyan"
+read_only = ""
 truncate_to_repo = true
 truncation_length = 4
 truncation_symbol = ""
