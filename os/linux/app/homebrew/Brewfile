@@ -3,8 +3,12 @@
 # Updated 2020-11-10.
 # """
 
-# Problematic:
-# brew "armadillo"
+# Problematic formulas:
+# - armadillo
+
+# Large/CPU-intensive formulas:
+# - gcc
+# - llvm
 
 brew "python@3.9", link: false
 
@@ -39,7 +43,6 @@ brew "fish"
 brew "flake8"  # python
 brew "fzf"
 brew "gawk"
-brew "gcc"
 brew "gdal"
 brew "git"
 brew "git-lfs"
@@ -71,18 +74,15 @@ brew "libssh2"
 brew "libtool"
 brew "libxml2"
 brew "libxslt"
-brew "llvm"
 brew "lua"
 brew "luarocks"
 brew "make"
 brew "man-db"
 brew "mariadb-connector-c"
-brew "mkvtoolnix"
 brew "ncmpcpp"
 brew "neofetch"
 brew "neovim"
 brew "nmap"
-brew "node"
 brew "open-mpi"
 brew "openblas"
 brew "openssh"
@@ -92,7 +92,6 @@ brew "pandoc-crossref"
 brew "parallel"
 brew "pass"
 brew "pcre"
-brew "php"
 brew "pkg-config"
 brew "podofo"
 brew "procs"  # rust
@@ -108,9 +107,7 @@ brew "screen"
 brew "shellcheck"
 brew "shellharden"
 brew "shunit2"
-brew "sox"
 brew "sqlite"
-brew "sshfs"
 brew "starship"  # rust
 brew "subversion"
 brew "taglib"
@@ -118,7 +115,6 @@ brew "tcl-tk"
 brew "tcsh"
 brew "tesseract"
 brew "texinfo"
-brew "the_silver_searcher"
 brew "tmux"
 brew "tokei"  # rust
 brew "trash"
