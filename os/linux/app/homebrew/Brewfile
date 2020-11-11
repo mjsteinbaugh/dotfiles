@@ -16,6 +16,7 @@
 # Formula without bottles:
 # - gdal
 # - mariadb-connector-c
+# - openssh
 # """
 
 brew "python@3.9", link: false
@@ -75,10 +76,8 @@ brew "make"
 brew "man-db"
 brew "neofetch"
 brew "neovim"
-brew "nmap"
 brew "open-mpi"
 brew "openblas"
-brew "openssh"
 brew "pandoc"
 brew "pandoc-citeproc"
 brew "pandoc-crossref"
