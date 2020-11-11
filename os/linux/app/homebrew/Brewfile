@@ -17,6 +17,9 @@
 # - gdal
 # - mariadb-connector-c
 # - openssh
+#
+# Deprecated:
+# - pandoc-citeproc
 # """
 
 brew "python@3.9", link: false
@@ -79,8 +82,6 @@ brew "neovim"
 brew "open-mpi"
 brew "openblas"
 brew "pandoc"
-brew "pandoc-citeproc"
-brew "pandoc-crossref"
 brew "parallel"
 brew "pass"
 brew "pcre"
