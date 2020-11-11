@@ -14,12 +14,16 @@
 # - llvm (use LLVM's Debian APT instead)
 #
 # Formula without bottles:
+# - proj?
 # - gdal
 # - mariadb-connector-c
 # - openssh
 #
 # Deprecated:
 # - pandoc-citeproc
+#
+# GCC warnings:
+# - protobuf
 # """
 
 brew "python@3.9", link: false
@@ -48,6 +52,7 @@ brew "curl"
 brew "dash"
 brew "dog"  # rust
 brew "dust"  # rust
+brew "emacs"
 brew "exa"  # rust
 brew "fd"  # rust
 brew "findutils"
@@ -67,6 +72,7 @@ brew "gpatch"
 brew "grep"
 brew "groff"
 brew "gsl"
+brew "gnupg"
 brew "hdf5"
 brew "htop"
 brew "igraph"
@@ -88,8 +94,6 @@ brew "pcre"
 brew "pkg-config"
 brew "podofo"
 brew "procs"  # rust
-brew "proj"
-brew "protobuf"
 brew "pylint"  # python
 brew "ranger"  # python
 brew "rename"
@@ -105,14 +109,11 @@ brew "starship"  # rust
 brew "subversion"
 brew "taglib"
 brew "tcl-tk"
-brew "tcsh"
 brew "tesseract"
 brew "texinfo"
 brew "tmux"
 brew "tokei"  # rust
-brew "trash"
 brew "udunits"
-brew "v8"
 brew "vim"
 brew "wget"
 brew "xsv"  # rust
