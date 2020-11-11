@@ -15,6 +15,7 @@
 #
 # Formula without bottles:
 # - gdal
+# - mariadb-connector-c
 # """
 
 brew "python@3.9", link: false
@@ -72,7 +73,6 @@ brew "lua"
 brew "luarocks"
 brew "make"
 brew "man-db"
-brew "mariadb-connector-c"
 brew "ncmpcpp"
 brew "neofetch"
 brew "neovim"
