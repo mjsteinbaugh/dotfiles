@@ -263,7 +263,6 @@ brew "texinfo"
 brew "the_silver_searcher"
 brew "tmux"
 brew "tokei"  # rust
-brew "trash"
 brew "udunits"
 brew "v8"
 brew "vim"
