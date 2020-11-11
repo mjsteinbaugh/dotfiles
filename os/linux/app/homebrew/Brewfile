@@ -1,14 +1,20 @@
 # """
 # Homebrew Bundle Brewfile.
 # Updated 2020-11-10.
-# """
-
+#
 # Problematic formulas:
 # - armadillo
-
+# - imagemagick
+# - lapack
+#
 # Large/CPU-intensive formulas:
 # - gcc
-# - llvm
+# - llvm (use LLVM's Debian APT instead)
+#
+# Formula without bottles:
+# - gdal
+# """
+
 
 brew "python@3.9", link: false
 
@@ -43,7 +49,6 @@ brew "fish"
 brew "flake8"  # python
 brew "fzf"
 brew "gawk"
-# > brew "gdal"  # no bottle
 brew "git"
 brew "git-lfs"
 brew "gnu-sed"
@@ -59,12 +64,9 @@ brew "gsl"
 brew "hdf5"
 brew "htop"
 brew "igraph"
-brew "imagemagick"
 brew "jq"
-brew "lapack"
 brew "leiningen"
 brew "lesspipe"
-brew "libav"
 brew "libgit2"
 brew "libiconv"
 brew "libomp"
