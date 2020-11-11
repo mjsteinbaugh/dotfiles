@@ -6,6 +6,8 @@
 # - armadillo
 # - imagemagick
 # - lapack
+# - libiconv
+# - libressl
 #
 # Large/CPU-intensive formulas:
 # - gcc
@@ -14,7 +16,6 @@
 # Formula without bottles:
 # - gdal
 # """
-
 
 brew "python@3.9", link: false
 
@@ -67,15 +68,6 @@ brew "igraph"
 brew "jq"
 brew "leiningen"
 brew "lesspipe"
-brew "libgit2"
-brew "libiconv"
-brew "libomp"
-brew "libressl"
-brew "librsvg"
-brew "libssh2"
-brew "libtool"
-brew "libxml2"
-brew "libxslt"
 brew "lua"
 brew "luarocks"
 brew "make"
