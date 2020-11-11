@@ -43,7 +43,7 @@ brew "fish"
 brew "flake8"  # python
 brew "fzf"
 brew "gawk"
-brew "gdal"
+# > brew "gdal"  # no bottle
 brew "git"
 brew "git-lfs"
 brew "gnu-sed"
