@@ -14,6 +14,7 @@
 # - llvm (use LLVM's Debian APT instead)
 #
 # Formula without bottles:
+# - emacs
 # - proj?
 # - gdal
 # - mariadb-connector-c
@@ -24,6 +25,9 @@
 #
 # GCC warnings:
 # - protobuf
+#
+# Maybe include:
+# - podofo
 # """
 
 brew "python@3.9", link: false
@@ -52,7 +56,6 @@ brew "curl"
 brew "dash"
 brew "dog"  # rust
 brew "dust"  # rust
-brew "emacs"
 brew "exa"  # rust
 brew "fd"  # rust
 brew "findutils"
@@ -92,7 +95,6 @@ brew "parallel"
 brew "pass"
 brew "pcre"
 brew "pkg-config"
-brew "podofo"
 brew "procs"  # rust
 brew "pylint"  # python
 brew "ranger"  # python
