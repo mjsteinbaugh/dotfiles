@@ -277,7 +277,7 @@ brew "zsh"
 # ------------------------------------------------------------------------------
 
 brew "mongodb/brew/mongodb-community"
-brew "muesli/tap/duf"
+# > brew "muesli/tap/duf"
 brew "vitorgalvao/tiny-scripts/cask-repair"
 
 # Mac App Store {{{1
