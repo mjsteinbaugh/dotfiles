@@ -9,7 +9,7 @@
 # - libiconv
 # - libressl
 #
-# Large/CPU-intensive formulas:
+# Large formulas:
 # - gcc
 # - llvm (use LLVM's Debian APT instead)
 #
