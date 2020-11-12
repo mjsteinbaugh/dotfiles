@@ -225,6 +225,7 @@ brew "node"
 brew "open-mpi"
 brew "openblas"
 brew "openssh"
+brew "openssl@1.1"
 brew "osx-cpu-temp"
 brew "pandoc"
 brew "pandoc-citeproc"
@@ -277,7 +278,7 @@ brew "zsh"
 # ------------------------------------------------------------------------------
 
 brew "mongodb/brew/mongodb-community"
-brew "muesli/tap/duf"
+# > brew "muesli/tap/duf"
 brew "vitorgalvao/tiny-scripts/cask-repair"
 
 # Mac App Store {{{1
