@@ -2,7 +2,7 @@
 
 # """
 # POSIX aliases.
-# @note Updated 2020-10-02.
+# @note Updated 2020-11-12.
 # """
 
 # Shortcuts {{{1
@@ -88,6 +88,7 @@ alias ronn='ronn --roff'
 alias sha256='shasum -a 256'
 alias tar-c='tar -czvf'
 alias tar-x='tar -xzvf'
+alias vi='vim'
 alias vim-vanilla='vim -i NONE -u NONE -U NONE'
 
 # git {{{2
