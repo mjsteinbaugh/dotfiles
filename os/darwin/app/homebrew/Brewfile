@@ -77,7 +77,6 @@ cask "emacs"
 cask "firefox"
 cask "github"
 cask "google-chrome"
-cask "google-chrome-canary"
 cask "google-cloud-sdk"  # latest
 cask "google-drive-file-stream"  # latest
 cask "gpg-suite"
