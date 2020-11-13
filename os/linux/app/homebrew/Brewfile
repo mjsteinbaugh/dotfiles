@@ -1,6 +1,6 @@
 # """
 # Homebrew Bundle Brewfile.
-# Updated 2020-11-10.
+# Updated 2020-11-13.
 #
 # Problematic formulas:
 # - armadillo
@@ -70,12 +70,13 @@ brew "gnu-tar"
 brew "gnu-time"
 brew "gnu-units"
 brew "gnu-which"
+brew "gnupg"
 brew "go"
 brew "gpatch"
 brew "grep"
 brew "groff"
 brew "gsl"
-brew "gnupg"
+brew "hadolint"
 brew "hdf5"
 brew "htop"
 brew "igraph"

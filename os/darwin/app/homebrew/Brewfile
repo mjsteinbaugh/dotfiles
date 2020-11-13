@@ -1,6 +1,6 @@
 # """
 # Homebrew Bundle Brewfile.
-# Updated 2020-11-10.
+# Updated 2020-11-13.
 #
 # LLVM:
 # LLVM takes up 4 GB of disk space but is required for some Python packages.
@@ -129,9 +129,10 @@ cask "zoomus"
 
 # Python: Can use official Framework binary install instead of Homebrew.
 # Use 'install-python-framework' from koopa to install.
-brew "python@3.8", link: false
 brew "python@3.9", link: false
 
+## > brew "rust"
+## > brew "rustup-init"  # rust
 brew "ack"
 brew "armadillo"
 brew "autoconf"
@@ -182,6 +183,7 @@ brew "gpatch"
 brew "grep"
 brew "groff"
 brew "gsl"
+brew "hadolint"
 brew "hdf5"
 brew "htop"
 brew "httpd"
@@ -224,7 +226,6 @@ brew "node"
 brew "open-mpi"
 brew "openblas"
 brew "openssh"
-brew "openssl@1.1"
 brew "osx-cpu-temp"
 brew "pandoc"
 brew "pandoc-citeproc"
@@ -244,8 +245,6 @@ brew "rename"
 brew "ripgrep"  # rust
 brew "rsync"
 brew "ruby"
-## > brew "rust"
-## > brew "rustup-init"  # rust
 brew "screen"
 brew "shellcheck"
 brew "shellharden"
