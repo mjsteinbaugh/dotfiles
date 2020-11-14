@@ -1,6 +1,6 @@
 # """
 # starship prompt configuration
-# Updated 2020-11-10.
+# Updated 2020-11-14.
 #
 # Allowed standard colors:
 # - black
@@ -41,6 +41,11 @@ truncation_symbol = ""
 
 [gcloud]
 disabled = true
+
+# Note that this will activate when calling 'bash -il' inside Zsh.
+[jobs]
+symbol = "+"
+threshold = 1
 
 [python]
 python_binary = "python3"
