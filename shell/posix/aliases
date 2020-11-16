@@ -2,7 +2,7 @@
 
 # """
 # POSIX aliases.
-# @note Updated 2020-11-12.
+# @note Updated 2020-11-16.
 # """
 
 # Shortcuts {{{1
@@ -15,16 +15,11 @@ alias h='history'
 # shellcheck disable=SC2153
 alias k='cd "${KOOPA_PREFIX:?}"; l'
 alias ku='koopa update'
-
-jo() {
-    # """
-    # Autojump and open.
-    # @note Updated 2020-07-23.
-    # """
-    j "${1:?}"
-    open .
-    return 0
-}
+# Fix for autojump muscle memory, using zoxide.
+if _koopa_is_installed zoxide && ! _koopa_is_installed autojump
+then
+    alias j='z'
+fi
 
 # Listing files {{{1
 # ==============================================================================

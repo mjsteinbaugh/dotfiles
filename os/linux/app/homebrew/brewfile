@@ -1,6 +1,6 @@
 # """
 # Homebrew Bundle Brewfile.
-# Updated 2020-11-13.
+# Updated 2020-11-16.
 #
 # Problematic formulas:
 # - armadillo
@@ -34,7 +34,6 @@ brew "python@3.9", link: false
 
 brew "ack"
 brew "autoconf"
-brew "autojump"
 brew "automake"
 brew "awscli"
 brew "azure-cli"

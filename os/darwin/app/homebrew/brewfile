@@ -134,7 +134,6 @@ brew "python@3.9", link: false
 brew "ack"
 brew "armadillo"
 brew "autoconf"
-brew "autojump"
 brew "automake"
 brew "awscli"
 brew "azure-cli"
