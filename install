@@ -18,9 +18,14 @@ install() {
         "$(realpath "$prefix")" \
         "$(realpath "$expected_prefix")"
     koopa::add_config_link "$prefix"
-    rm -frv "${HOME}/."{'R/Makevars','kshrc','oh-my-zsh','shrc','zprofile'}
+    koopa::rm \
+        "${HOME}/.R/Makevars" \
+        "${HOME}/.config/doom"
+        "${HOME}/.kshrc" \
+        "${HOME}/.oh-my-zsh" \
+        "${HOME}/.shrc" \
+        "${HOME}/.zprofile" \
     link --force --config 'app/broot'
-    link --force --config 'app/emacs/doom/config.d' 'doom'
     link --force --config 'app/htop'
     link --force --config 'app/neofetch'
     link --force --config 'app/nvim'
@@ -30,6 +35,7 @@ install() {
     link --force --config 'app/starship/starship.toml' 'starship.toml'
     link --force 'app/curl/curlrc'
     link --force 'app/editorconfig/editorconfig'
+    link --force 'app/emacs/doom' 'doom.d'
     link --force 'app/emacs/spacemacs/spacemacs.el' 'spacemacs'
     link --force 'app/git/gitignore'
     link --force 'app/gnupg/dirmngr.conf' 'gnupg/dirmngr.conf'
