@@ -20,11 +20,11 @@ install() {
     koopa::add_config_link "$prefix"
     koopa::rm \
         "${HOME}/.R/Makevars" \
-        "${HOME}/.config/doom"
+        "${HOME}/.config/doom" \
         "${HOME}/.kshrc" \
         "${HOME}/.oh-my-zsh" \
         "${HOME}/.shrc" \
-        "${HOME}/.zprofile" \
+        "${HOME}/.zprofile"
     link --force --config 'app/broot'
     link --force --config 'app/htop'
     link --force --config 'app/neofetch'
