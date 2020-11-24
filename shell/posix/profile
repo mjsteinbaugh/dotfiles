@@ -2,7 +2,7 @@
 
 # """
 # Shared shell configuration file.
-# Updated 2020-11-10.
+# Updated 2020-11-24.
 #
 # Please do not modify this file on a shared server.
 # 
@@ -15,8 +15,6 @@
 XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 if [ -f "${XDG_CONFIG_HOME}/koopa/activate" ]
 then
-    # > export KOOPA_MINIMAL=1
-    # > export KOOPA_TEST=1
     # shellcheck source=/dev/null
     . "${XDG_CONFIG_HOME}/koopa/activate"
 fi
