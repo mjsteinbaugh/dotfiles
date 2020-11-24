@@ -1,7 +1,7 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
-;; Updated 2020-07-30.
+;; Updated 2020-11-24.
 ;;
 ;; Spacemacs cheatsheet:
 ;; https://steinbaugh.com/posts/spacemacs.html
@@ -43,7 +43,6 @@ values."
    dotspacemacs-configuration-layers
    '(
      ;; completion:
-     ;; Use either `ivy' or `helm'.
      ivy
      ;; > (auto-completion :variables
      ;; >                  auto-completion-enable-sort-by-usage t)
@@ -54,7 +53,6 @@ values."
      ;; editor:
      ;; > copy-as-format
      ;; > multiple-cursors
-     ;; > spell-checking
      ;; emacs:
      better-defaults
      evil-commentary
