@@ -78,7 +78,7 @@
        (:if IS-MAC macos)
 
        :lang
-       clojure
+       ;;clojure
        data
        emacs-lisp
        ess
@@ -87,14 +87,14 @@
        json
        ;;(java +meghanada)
        ;;javascript
-       julia
+       ;;julia
        latex
        markdown
        org
        ;;php
        python
        (ruby +rails)
-       rust
+       ;;rust
        sh
        ;;swift
        yaml
