@@ -2,7 +2,7 @@
 
 # """
 # POSIX aliases.
-# @note Updated 2020-11-16.
+# @note Updated 2020-12-04.
 # """
 
 # Shortcuts {{{1
@@ -26,13 +26,15 @@ fi
 
 if _koopa_is_installed exa
 then
-    alias l='exa -F'
+    # > alias l='exa -F'
+    alias l='exa -Fl --group'
     alias la='exa -Fal --group'
-    alias ll='exa -Fl --group'
+    alias ll='l'
 else
-    alias l='ls -F'
+    # > alias l='ls -F'
+    alias l='ls -BFhl'
     alias la='ls -Fahl'
-    alias ll='ls -BFhl'
+    alias ll='l'
 fi
 alias l.='l -d .*'
 alias l1='ls -1'
