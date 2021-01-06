@@ -26,15 +26,43 @@ fi
 
 if _koopa_is_installed exa
 then
-    # > alias l='exa -F'
-    alias l='exa -Fl --group'
-    alias la='exa -Fal --group'
-    alias ll='l'
+    # Use exa instead of ls, when possible.
+    # https://the.exa.website/docs/command-line-options
+    #
+    # Useful exa flags:
+    # * -F, --classify
+    #         Displays file type indicators by file names.
+    # * -a, --all
+    #         Shows hidden and ‘dot’ files.
+    #         Use this twice to also show the . and .. directories.
+    # * -g, --group
+    #         Lists each file’s group.
+    # * -l, --long
+    #         Displays files in a table along with their metadata.
+    # * -s, --sort=SORT_FIELD
+    #         Configures which field to sort by.
+    # *     --git-ignore
+    #         Ignores files mentioned in .gitignore.
+    # *     --group-directories-first
+    #         Lists directories before other files when sorting.
+    alias l="exa  --classify --group --group-directories-first --sort='Name'"
+    alias la='l --all'
+    alias ll='la --long'
 else
-    # > alias l='ls -F'
-    alias l='ls -BFhl'
-    alias la='ls -Fahl'
-    alias ll='l'
+    # Otherwise fall back to system ls.
+    #
+    # Note that note all versions of ls support long flags.
+    #
+    # Useful ls flags:
+    # * -B, --ignore-backups
+    #         do not list implied entries ending with ~
+    # * -F, --classify
+    #         append indicator (one of */=>@|) to entries
+    # * -h, --human-readable
+    #         with -l and -s, print sizes like 1K 234M 2G etc.
+    alias l='ls -BFh'
+    alias la='l -a'
+    alias ll='la -l'
 fi
 alias l.='l -d .*'
 alias l1='ls -1'
