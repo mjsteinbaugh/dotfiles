@@ -3,127 +3,127 @@
 # Updated 2021-01-07.
 # """
 
-*-Ex.R                                                  # r
-*.RData                                                 # large
-*.Rcheck/                                               # r
-*.apk                                                   # large
-*.bam                                                   # large
-*.bed                                                   # large
-*.bz2                                                   # large
-*.db                                                    # large
-*.dpkg-old                                              # linux
-*.err                                                   # large
-*.fa                                                    # large
-*.fasta                                                 # large
-*.fastq                                                 # large
-*.fq                                                    # large
-*.gff                                                   # large
-*.gff3                                                  # large
-*.gtf                                                   # large
-*.gz                                                    # large
-*.gz.*                                                  # large
-*.h5                                                    # large
-*.idx                                                   # large
-*.knit.md                                               # r
-*.mtx                                                   # large
-*.out                                                   # large
-*.pdf                                                   # large
-*.pem                                                   # secrets
-*.png                                                   # large
-*.pyc                                                   # large
-*.rda                                                   # large
-*.rdb                                                   # large
-*.rds                                                   # large
-*.rdx                                                   # large
-*.sam                                                   # large
-*.sqlite                                                # large
-*.sra                                                   # large
-*.swp                                                   # tmp
-*.tar                                                   # large
-*.tsv                                                   # large
-*.ucf-dist                                              # linux
-*.utf8.md                                               # r
-*.webloc                                                # large
-*.xz                                                    # large
-*.zip                                                   # large
-*.zwc                                                   # large
-*_cache/                                                # r
-*_draft.Rmd                                             # r
-*_files/                                                # r
-*_rsa                                                   # secrets
-*~                                                      # tmp
-.*~                                                     # tmp
-.AppleDB/                                               # macos
-.AppleDesktop/                                          # macos
-.AppleDouble                                            # macos
-.DS_Store                                               # macos
-.LSOverride                                             # macos
-.RData                                                  # r
-.Rapp.history                                           # r
-.Rcheck                                                 # r
-.Rhistory                                               # r
-.Rproj.user                                             # r
-._*                                                     # tmp
-.apdisk/                                                # macos
-.httr-oauth                                             # secrets
-.jekyll-metadata                                        # jekyll
-.nextflow.log*                                          # nextflow
-.nextflow/                                              # large
-.sass-cache                                             # jekyll
-.secrets                                                # secrets
-Gemfile.lock                                            # ruby
-Icon                                                    # macos
-Network Trash Folder/                                   # macos
-Temporary Items/                                        # macos
-__pycache__/                                            # python
-_drafts/                                                # jekyll
-_site/                                                  # jekyll
-annotations/                                            # large
-bam-*/                                                  # large
-bam/                                                    # large
-bcbio-*/                                                # large
-bcbio/                                                  # large
-bed-*/                                                  # large
-bed/                                                    # large
-bigwig-*/                                               # large
-bigwig/                                                 # large
-cache/                                                  # r
-doc/                                                    # r
-fastq-*/                                                # large
-fastq/                                                  # large
-figures/                                                # large
-genewiz/                                                # large
-hisat/                                                  # large
-hisat2/                                                 # large
-homo-sapiens-*/                                         # large
-illumina/                                               # large
-kallisto/                                               # large
-links/                                                  # large
-mus-musculus-*/                                         # large
-nextflow-*/                                             # large
-nextflow/                                               # large
-qiagen/                                                 # large
-quartz/                                                 # large
-rda-*/                                                  # large
-rda/                                                    # large
-rds-*/                                                  # large
-rds/                                                    # large
-refdata/                                                # large
-reference/                                              # large
-reports/                                                # r
-results/                                                # large
-revdep/                                                 # r
-rnaedit/                                                # large
-salmon/                                                 # large
-sam-*/                                                  # large
-sam/                                                    # large
-secrets                                                 # secrets
-star/                                                   # large
-tmp*/                                                   # large
-tmp/                                                    # large
-token.*                                                 # secrets
-vendor/                                                 # large
-vignettes/*.html                                        # r
-vignettes/*.pdf                                         # r
-vignettes/.build.timestamp                              # r
-~*                                                      # tmp
+*-Ex.R
+*.RData
+*.Rcheck/
+*.apk
+*.bam
+*.bed
+*.bz2
+*.db
+*.dpkg-old
+*.err
+*.fa
+*.fasta
+*.fastq
+*.fq
+*.gff
+*.gff3
+*.gtf
+*.gz
+*.gz.*
+*.h5
+*.idx
+*.knit.md
+*.mtx
+*.out
+*.pdf
+*.pem
+*.png
+*.pyc
+*.rda
+*.rdb
+*.rds
+*.rdx
+*.sam
+*.sqlite
+*.sra
+*.swp
+*.tar
+*.tsv
+*.ucf-dist
+*.utf8.md
+*.webloc
+*.xz
+*.zip
+*.zwc
+*_cache/
+*_draft.Rmd
+*_files/
+*_rsa
+*~
+.*~
+.AppleDB/
+.AppleDesktop/
+.AppleDouble
+.DS_Store
+.LSOverride
+.RData
+.Rapp.history
+.Rcheck
+.Rhistory
+.Rproj.user
+._*
+.apdisk/
+.httr-oauth
+.jekyll-metadata
+.nextflow.log*
+.nextflow/
+.sass-cache
+.secrets
+Gemfile.lock
+Icon
+Network Trash Folder/
+Temporary Items/
+__pycache__/
+_drafts/
+_site/
+annotations/
+bam-*/
+bam/
+bcbio-*/
+bcbio/
+bed-*/
+bed/
+bigwig-*/
+bigwig/
+cache/
+doc/
+fastq-*/
+fastq/
+figures/
+genewiz/
+hisat/
+hisat2/
+homo-sapiens-*/
+illumina/
+kallisto/
+links/
+mus-musculus-*/
+nextflow-*/
+nextflow/
+qiagen/
+quartz/
+rda-*/
+rda/
+rds-*/
+rds/
+refdata/
+reference/
+reports/
+results/
+revdep/
+rnaedit/
+salmon/
+sam-*/
+sam/
+secrets
+star/
+tmp*/
+tmp/
+token.*
+vendor/
+vignettes/*.html
+vignettes/*.pdf
+vignettes/.build.timestamp
+~*
