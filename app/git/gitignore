@@ -88,6 +88,8 @@ bed/
 bigwig-*/
 bigwig/
 cache/
+data-raw/
+data/
 doc/
 fastq-*/
 fastq/
