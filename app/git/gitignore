@@ -19,11 +19,14 @@
 *.fq
 *.gff
 *.gff3
+*.gif
 *.gtf
 *.gz
 *.gz.*
 *.h5
 *.idx
+*.jpeg
+*.jpg
 *.knit.md
 *.mtx
 *.out
