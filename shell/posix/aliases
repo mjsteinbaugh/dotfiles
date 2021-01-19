@@ -2,24 +2,25 @@
 
 # """
 # POSIX aliases.
-# @note Updated 2020-12-04.
+# @note Updated 2021-01-19.
 # """
 
 # Shortcuts {{{1
 # ==============================================================================
 
-alias bucket="cd ~/today; l"
 alias c='clear'
 alias e='exit'
 alias h='history'
 # shellcheck disable=SC2153
 alias k='cd "${KOOPA_PREFIX:?}"; l'
 alias ku='koopa update'
-# Fix for autojump muscle memory, using zoxide.
-if _koopa_is_installed zoxide && ! _koopa_is_installed autojump
-then
-    alias j='z'
-fi
+
+# Productivity {{{1
+# ==============================================================================
+
+[ -d "${HOME}/today" ] && alias bucket="cd ~/today; l"
+alias today='date "+%Y-%m-%d"'
+alias week='date "+%V"'
 
 # Listing files {{{1
 # ==============================================================================
@@ -94,39 +95,118 @@ alias d='clear; cd -; l'
 # Programs {{{1
 # ==============================================================================
 
-alias R='R --no-restore --no-save --quiet'
-# Note that 79 characters conforms to PEP8 (see flake8 for details).
-alias black='black --line-length=79'
-alias cmus='cmus --listen 127.0.0.1'
-if [ -f "${HOME}/.terminfo/78/xterm-24bit" ]
-then
-    alias emacs='TERM=xterm-24bit emacs --no-window-system'
-else
-    alias emacs='emacs --no-window-system'
-fi
-alias emacs-vanilla='emacs --no-init-file --no-window-system'
-alias nvim-vanilla='nvim -u NONE'
-# > alias pylint='pylint --rcfile=~/.pylintrc'
-alias python='python3'
-alias rgs='rg --pretty --sort path'
-alias ronn='ronn --roff'
-alias sha256='shasum -a 256'
-alias tar-c='tar -czvf'
-alias tar-x='tar -xzvf'
-alias vi='vim'
-alias vim-vanilla='vim -i NONE -u NONE -U NONE'
-
-# git {{{2
+# black {{{2
 # ------------------------------------------------------------------------------
 
-alias develop='git fetch; git checkout develop'
-alias master='git fetch; git checkout master'
+if _koopa_is_installed black
+then
+    # Note that 79 characters conforms to PEP8 (see flake8 for details).
+    alias black='black --line-length=79'
+fi
 
-# One-liners {{{1
-# ==============================================================================
+# cmus {{{2
+# ------------------------------------------------------------------------------
 
-alias today='date "+%Y-%m-%d"'
-alias week='date "+%V"'
+if _koopa_is_installed cmus
+then
+    alias cmus='cmus --listen 127.0.0.1'
+fi
+
+# Emacs {{{2
+# ------------------------------------------------------------------------------
+
+if _koopa_is_installed emacs
+then
+    if [ -f "${HOME}/.terminfo/78/xterm-24bit" ]
+    then
+        alias emacs='TERM=xterm-24bit emacs --no-window-system'
+    else
+        alias emacs='emacs --no-window-system'
+    fi
+    alias emacs-vanilla='emacs --no-init-file --no-window-system'
+fi
+
+# Git {{{2
+# ------------------------------------------------------------------------------
+
+if _koopa_is_installed git
+then
+    alias develop='git fetch; git checkout develop; git branch -vv'
+    alias main='git fetch; git checkout main; git branch -vv'
+    alias master='git fetch; git checkout master; git branch -vv'
+fi
+
+# Python {{{2
+# ------------------------------------------------------------------------------
+
+if _koopa_is_installed python3
+then
+    alias python='python3'
+fi
+
+# R {{{2
+# ------------------------------------------------------------------------------
+
+if _koopa_is_installed R
+then
+    alias R='R --no-restore --no-save --quiet'
+fi
+
+# ripgrep {{{2
+# ------------------------------------------------------------------------------
+
+if _koopa_is_installed rg
+then
+    alias rgs='rg --pretty --sort path'
+fi
+
+# ronn {{{2
+# ------------------------------------------------------------------------------
+
+if _koopa_is_installed ronn
+then
+    alias ronn='ronn --roff'
+fi
+
+# shasum {{{2
+# ------------------------------------------------------------------------------
+
+if _koopa_is_installed shasum
+then
+    alias sha256='shasum -a 256'
+fi
+
+# tar {{{2
+# ------------------------------------------------------------------------------
+
+if _koopa_is_installed tar
+then
+    alias tar-c='tar -czvf'
+    alias tar-x='tar -xzvf'
+fi
+
+# Vim {{{2
+# ------------------------------------------------------------------------------
+
+if _koopa_is_installed nvim
+then
+    alias nvim-vanilla='unalias nvim; nvim -u NONE'
+    alias vim='nvim'
+fi
+if _koopa_is_installed vim
+then
+    alias vim-vanilla='unalias vim; vim -i NONE -u NONE -U NONE'
+    alias vi='vim'
+fi
+
+# zoxide {{{2
+# ------------------------------------------------------------------------------
+
+# Fix for autojump muscle memory, using zoxide.
+if _koopa_is_installed zoxide && ! _koopa_is_installed autojump
+then
+    alias j='z'
+fi
 
 # macOS {{{1
 # ==============================================================================
