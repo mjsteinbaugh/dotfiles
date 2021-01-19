@@ -191,7 +191,8 @@ fi
 if _koopa_is_installed nvim
 then
     alias nvim-vanilla='unalias nvim; nvim -u NONE'
-    alias vim='nvim'
+    # vert term is currently wonky in neovim.
+    # > alias vim='nvim'
 fi
 if _koopa_is_installed vim
 then
