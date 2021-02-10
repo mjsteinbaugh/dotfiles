@@ -138,3 +138,7 @@
 	url = https://github.com/dracula/windows-terminal.git
 	branch = master
 	ignore = dirty
+[submodule "theme/dracula/libreoffice"]
+	path = theme/dracula/libreoffice
+	url = https://github.com/dracula/libreoffice.git
+	branch = master
