@@ -28,6 +28,12 @@ shopt -u parse_equals
 # https://www.oilshell.org/blog/2020/11/more-syntax.html
 shopt -u simple_test_builtin
 
+# NOTE Oil shell is erroring on 'set -o errexit'.
+# Not sure how to resolve this.
+# https://github.com/oilshell/oil/search?q=errexit
+# This doesn't work:
+# > shopt -u strict_errexit
+
 # Load shared shell configuration.
 # shellcheck source=/dev/null
 . "${HOME}/.profile"
