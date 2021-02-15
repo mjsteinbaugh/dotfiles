@@ -1,0 +1,7 @@
+exit
+exit
+set -x
+set -o
+set -u
+exit
+exit
