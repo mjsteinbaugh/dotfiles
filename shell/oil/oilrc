@@ -9,6 +9,9 @@
 # - https://github.com/oilshell/oil/wiki/How-To-Test-OSH
 # """
 
+# Oil shell is currently erroring with 'invalid locale for LC_CTYPE' for
+# Homebrew binarary on macOS.
+
 # oil doesn't allow for simple 'var=value' definitions, which is POSIX.
 #
 # You'll see this kind of error unless we unset 'parse_equals':
