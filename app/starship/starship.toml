@@ -2,17 +2,8 @@
 # starship prompt configuration
 # Updated 2021-02-15.
 #
-# Allowed standard colors:
-# - black
-# - blue
-# - cyan
-# - green
-# - purple
-# - red
-# - white
-# - yellow
-#
-# Note that magenta is not currently supported!
+# Allowed colors: black, blue, cyan, green, purple, red, white, yellow.
+# Note that magenta is not currently supported.
 # Colors are documented in the advanced configuration section.
 #
 # See also:
@@ -21,6 +12,7 @@
 # """
 
 add_newline = true
+# > format = "$all"
 
 [aws]
 disabled = true
@@ -28,19 +20,27 @@ disabled = true
 [cmd_duration]
 disabled = true
 
-[character]
-# > success_symbol = "[❯](bold green)"
+# > [character]
 # > error_symbol = "[✗](bold red)"
+# > success_symbol = "[❯](bold green)"
 
 [directory]
 # > style = "bold cyan"
 read_only = ""
+read_only_style = "yellow"
+style = "blue"
 truncate_to_repo = false
 truncation_length = 0  # no truncation
 truncation_symbol = ""
 
 [gcloud]
 disabled = true
+
+[hostname]
+format = "[$hostname]($style)\n"
+ssh_only = false
+style = "cyan"
+trim_at = "."
 
 # Note that this will activate when calling 'bash -il' inside Zsh.
 [jobs]
@@ -49,3 +49,9 @@ threshold = 1
 
 [python]
 python_binary = "python3"
+
+[username]
+format = "[$user]($style)[@](cyan)"
+show_always = true
+style_root = "bold yellow"
+style_user = "cyan"
