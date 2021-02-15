@@ -3,7 +3,7 @@
 # Updated 2021-02-15.
 #
 # Allowed colors: black, blue, cyan, green, purple, red, white, yellow.
-# Note that magenta is not currently supported.
+# Note that "magenta" maps to "purple" here.
 # Colors are documented in the advanced configuration section.
 #
 # See also:
@@ -20,9 +20,9 @@ disabled = true
 [cmd_duration]
 disabled = true
 
-# > [character]
-# > error_symbol = "[✗](bold red)"
-# > success_symbol = "[❯](bold green)"
+[character]
+error_symbol = "[✗](bold red)"
+success_symbol = "[❯](purple)"
 
 [directory]
 # > style = "bold cyan"
@@ -35,6 +35,14 @@ truncation_symbol = ""
 
 [gcloud]
 disabled = true
+
+[git_branch]
+always_show_remote = false
+format = "[$branch]($style) "
+style = "green"
+
+[git_status]
+style = "bold red"
 
 [hostname]
 format = "[$hostname]($style)\n"
