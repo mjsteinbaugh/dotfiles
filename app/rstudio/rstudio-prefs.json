@@ -72,5 +72,6 @@
     "terminal_bell_style": "none",
     "initial_working_directory": "~",
     "rainbow_parentheses": true,
-    "graphics_backend": "ragg"
+    "graphics_backend": "ragg",
+    "auto_detect_indentation": false
 }
