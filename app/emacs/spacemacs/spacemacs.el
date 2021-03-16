@@ -1,7 +1,7 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
-;; Updated 2020-11-24.
+;; Updated 2021-03-16.
 ;;
 ;; Spacemacs cheatsheet:
 ;; https://steinbaugh.com/posts/spacemacs.html
@@ -497,7 +497,10 @@ you should place your code here."
   (show-paren-mode 1)
 
   ;; Use magit for git commits.
-  (global-git-commit-mode t)
+  ;; This has been removed / renamed as of 2021-03-16.
+  ;; See related:
+  ;; - https://github.com/syl20bnr/spacemacs/issues/8294
+  ;; (global-git-commit-mode t)
 
   ;; Fix for mouse mode with Magic Trackpad on macOS.
   ;; https://github.com/syl20bnr/spacemacs/issues/4591
