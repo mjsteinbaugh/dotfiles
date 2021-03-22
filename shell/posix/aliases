@@ -2,7 +2,7 @@
 
 # """
 # POSIX aliases.
-# @note Updated 2021-01-19.
+# @note Updated 2021-03-22.
 # """
 
 # Shortcuts {{{1
@@ -214,24 +214,49 @@ fi
 
 if _koopa_is_macos
 then
+    # Lock the screen (when going AFK).
+    alias afk='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
+    # Hide a file or folder from appearing in the Finder.
+    alias finder-hide='setfile -a V'
+    # Check iCloud sync status.
+    alias icloud-status='brctl log --wait --shorten'
+    # Search using Spotlight index, instead of GNU find.
+    alias locate='mdfind -name'
+    # Often PlistBuddy is more useful than 'defaults'.
+    alias plistbuddy='/usr/libexec/PlistBuddy'
+    # Reload autofs mounts defined in '/etc/auto_master' (and '/etc/auto_nfs').
+    alias reload-mounts='sudo automount -vc'
+
+    # Navigation shortcuts {{{2
+    # --------------------------------------------------------------------------
     alias dl='cd ~/Downloads; l'
     alias docs='cd ~/Documents; l'
-    alias finder-hide='setfile -a V'
-    alias icloud-status='brctl log --wait --shorten'
-    alias locate='mdfind -name'
-    alias reload-mounts='sudo automount -vc'
-    # GUI applications.
+
+    # GUI applications {{{2
+    # --------------------------------------------------------------------------
     alias canary='open -a "google chrome canary"'
     alias chrome='open -a "google chrome"'
     alias firefox='open -a firefox'
+    alias homebrew-cask='cd "$(brew --repo homebrew/cask)"'
     alias homebrew-core='cd "$(brew --repo homebrew/core)"'
     alias rstudio='open -a rstudio'
     alias safari='open -a safari'
-    # PlistBuddy alias, because sometimes 'defaults' just doesn’t cut it.
-    alias plistbuddy='/usr/libexec/PlistBuddy'
-    # Volume control, because of http://xkcd.com/530/
-    alias stfu='osascript -e "set volume output muted true"'
-    alias pump-it-up='osascript -e "set volume output volume 100"'
-    # Lock the screen (when going AFK).
-    alias afk='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
+
+    # Volume control {{{2
+    # --------------------------------------------------------------------------
+    # Because of http://xkcd.com/530/
+    # > alias pump-it-up='osascript -e "set volume output volume 100"'
+    # > alias stfu='osascript -e "set volume output muted true"'
+
+    # BSD coreutils aliases {{{2
+    # --------------------------------------------------------------------------
+    if _koopa_is_installed brew
+    then
+        alias bchmod='/bin/chmod'
+        alias bchown='/usr/sbin/chown'
+        alias bcp='/bin/cp'
+        alias bdu='/usr/bin/du'
+        alias bmkdir='/bin/mkdir'
+        alias brm='/bin/rm'
+    fi
 fi
