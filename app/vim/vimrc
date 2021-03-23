@@ -1,9 +1,11 @@
 """
 " Vim configuration.
-" Updated 2020-07-30.
+" Updated 2021-03-23.
 "
 " Refer to my cheat sheet for usage details:
 " https://steinbaugh.com/posts/vim.html
+"
+" Consider adding support for emmet-vim in a future update.
 """
 
 
