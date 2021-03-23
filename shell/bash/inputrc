@@ -1,8 +1,21 @@
 # """
 # Readline input configuration (for Bash).
-# Updated 2020-06-18.
+# Updated 2021-03-23.
+# 
+# See also:
+# - http://ss64.com/bash/syntax-inputrc.html
+# - https://github.com/alrra/dotfiles/blob/main/src/shell/inputrc
 # """
-#
+
+# If there are multiple matches for completion, make Tab cycle through them.
+TAB: menu-complete
+
+# Disable beeping and window flashing.
+set bell-style none
+
+# Use the `vi` set of key bindings (default is `emacs`).
+set editing-mode vi
+
 # Disable trailing slash '/' on tab auto-completion of directory names.
 # See also:
 # - https://unix.stackexchange.com/questions/25734
@@ -13,11 +26,15 @@ set mark-symlinked-directories off
 # Make Tab autocomplete regardless of filename case.
 set completion-ignore-case on
 
+# Perform partial completion on the first Tab press, and only start cycling full
+# results on the second Tab press.
+set menu-complete-display-prefix on
+
 # List all matches in case multiple possible completions are possible.
 set show-all-if-ambiguous on
 
 # Use the text that has already been typed as the prefix for searching through
-# commands (i.e. more intelligent Up/Down behavior)
+# commands (i.e. more intelligent Up/Down behavior). Partial matching.
 "\e[B": history-search-forward
 "\e[A": history-search-backward
 
