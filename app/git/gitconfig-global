@@ -1,6 +1,6 @@
 # """
 # Global git configuration.
-# Updated 2020-06-08.
+# Updated 2021-03-23.
 #
 # Retab spaces in vim:
 # https://stackoverflow.com/questions/9104706
@@ -8,144 +8,205 @@
 # > :set noexpandtab
 # > :%retab!
 #
-# See also:
-# - https://github.com/roryk/dotfiles/blob/master/gitconfig
-# - https://github.com/vsbuffalo/dotfiles/blob/master/.gitconfig
-# """
-
-
-
-# Basic {{{1
-# ==============================================================================
-
-[core]
-	editor = vim
-	excludesfile = ~/.gitignore
-[color]
-	ui = true
-[status]
-	# > submoduleSummary = true
-
-
-
-# Pull handling {{{1
-# ==============================================================================
-
-# Changed in git 2.27.0:
+# Do not store sensitive information such as the Git user credentials
+# (`name` / `email`), or things such as the `signingkey` in this file.
+# Add them in `~/.gitconfig.local` instead.
 #
-# warning: Pulling without specifying how to reconcile divergent branches is
-# discouraged. You can squelch this message by running one of the following
-# commands sometime before your next pull:
-#
-#	git config pull.rebase false  # merge (the default strategy)
-#	git config pull.rebase true   # rebase
-#	git config pull.ff only		  # fast-forward only
-#
-# You can replace "git config" with "git config --global" to set a default
-# preference for all repositories. You can also pass --rebase, --no-rebase,
-# or --ff-only on the command line to override the configured default per
-# invocation.
-[pull]
-	rebase = false
-
-
-
-# Credential caching {{{1
-# ==============================================================================
-
-# Particularly useful for commits over HTTPS, on machines where we don't have
-# SSH keys configured for GitHub.
-# 
-# > git config --global credential.helper "cache --timeout=10000000"
-#
-# See also:
-# - https://git-scm.com/docs/git-credential-store
-# - https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage
-# - https://happygitwithr.com/credential-caching.html
-# - https://stackoverflow.com/a/5343146/3911732
-
-[credential]
-	helper = cache --timeout=10000000
-
-
-
-# File transfers {{{1
-# ==============================================================================
-
 # Here's how to make Git more relaxed about corrupt repos:
 # https://stackoverflow.com/questions/56507791/
-
+#
 # oh-my-zsh repo can fail to clone unless these are set.
 # > git config --global fetch.fsck.zeroPaddedFilemode warn
 # > git config --global receive.fsck.zeroPaddedFilemode warn
 # > git config --global transfer.fsck.zeroPaddedFilemode warn
 # > git config --global fsck.zeroPaddedFilemode warn
+#
+# See also:
+# - https://github.com/alrra/dotfiles/blob/main/src/git/gitconfig
+# - https://github.com/roryk/dotfiles/blob/master/gitconfig
+# - https://github.com/vsbuffalo/dotfiles/blob/master/.gitconfig
+# """
 
-[push]
-	default = simple
-[fetch]
-	fsckobjects = false
-	zeroPaddedFilemode = ignore
-[receive]
-	fsckobjects = false
-[transfer]
-	fsckobjects = false
+[alias]  # {{{1
+    a = add
+    aa = add --all
+    br = branch
+    # Assume we want interactive commit by default.
+    c = commit
+    # Commit all changes.
+    ca = !git add --all && git commit
+    # Using 'i' for interactive here.
+    ci = commit
+    # Don't mask 'clean'.
+    cleanup = !git remote prune origin \
+        && git gc \
+        && git clean -dfx \
+        && git stash clear
+    cm = commit -m
+    co = checkout
+    # Find commits by source code.
+    find = "!f() { \
+        git log --date=short --decorate --pretty=custom -S\"$1\"; \
+    }; f"
+    # Find commits by commit message.
+    find-msg = "!f() { \
+        git log --date=short --decorate --pretty=custom --grep=\"$1\"; \
+    }; f"
+    cp = cherry-pick
+    glog = log --graph
+    grog = log --graph --abbrev-commit --decorate --all
+    last = log -1 HEAD
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    p = push
+    pr = !sh -c 'git fetch origin pull/$1/head:pr$1' -
+    r = rebase
+    s = status
+    shorty = status --short --branch
+    st = status -sb
+    trash = checkout --
+    unstage = reset HEAD --
+    up = !sh -c 'git pull --rebase --prune && git log --pretty HEAD@{1}..'
+    # Start web-based visualizer.
+    w = instaweb --httpd=webrick
+    who = shortlog -n -s --no-merges
 
-[fsck]
-	zeroPaddedFilemode = warn
-[fetch "fsck"]
-	zeroPaddedFilemode = warn
-[receive "fsck"]
-	zeroPaddedFilemode = warn
-[transfer "fsck"]
-	zeroPaddedFilemode = warn
+[color]  # {{{1
+    ui = true
+[color "branch"]
+    current = green bold
+    local = green
+    remote = yellow
+[color "diff"]
+    frag = magenta
+    meta = yellow
+    new = green
+    newMoved = cyan
+    old = red
+    oldMoved = blue
+[color "status"]
+    added = green reverse
+    changed = yellow reverse
+    untracked = red reverse
 
+[core]  # {{{1
+    abbrev = 12
+    attributesFile = ~/.gitattributes
+    autocrlf = input
+    editor = vim
+    excludesfile = ~/.gitignore
 
+[credential]  # {{{1
+    # Enable credential caching.
+    #
+    # Particularly useful for commits over HTTPS, on machines where we don't
+    # have SSH keys configured for GitHub.
+    # 
+    # > git config --global credential.helper "cache --timeout=10000000"
+    #
+    # See also:
+    # - https://git-scm.com/docs/git-credential-store
+    # - https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage
+    # - https://happygitwithr.com/credential-caching.html
+    # - https://stackoverflow.com/a/5343146/3911732
+    helper = cache --timeout=10000000
 
-# Large file storage (LFS) {{{1
-# ==============================================================================
-
-[filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-
-
-
-# Differences {{{1
-# ==============================================================================
-
-# This is useful for Jupyter Notebooks.
+[diff]  # {{{1
+    # Show blocks of moved text of at least 20 alphanumeric characters
+    # differently than adds/deletes.
+    # https://git-scm.com/docs/git-diff#git-diff-zebra
+    colorMoved = zebra
+[diff "bin"]
+    # Use `hexdump` to diff binary files.
+    textconv = hexdump --canonical --no-squeezing
 [diff "nb2md"]
-	textconv = nb2md
+    # Diff Jupyter Notebooks as Markdown.
+    textconv = nb2md
 
+[fetch]  # {{{1
+    fsckobjects = false
+    zeroPaddedFilemode = ignore
+[fetch "fsck"]
+    zeroPaddedFilemode = warn
 
+[filter "lfs"]  # {{{1
+    # Large file storage (LFS).
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
 
-# Aliases {{{1
-# ==============================================================================
+[fsck]  # {{{1
+    zeroPaddedFilemode = warn
 
-[alias]
-	aa = add --all
-	br = branch
-	# Using 'i' for interactive here.
-	ci = commit
-	# Don't mask 'clean'.
-	cleanup = !git remote prune origin \
-		&& git gc \
-		&& git clean -dfx \
-		&& git stash clear
-	cm = commit -m
-	co = checkout
-	glog = log --graph
-	grog = log --graph --abbrev-commit --decorate --all
-	last = log -1 HEAD
-	lol = log --graph --decorate --pretty=oneline --abbrev-commit
-	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-	pr = !sh -c 'git fetch origin pull/$1/head:pr$1' -
-	shorty = status --short --branch
-	st = status -sb
-	trash = checkout --
-	unstage = reset HEAD --
-	up = !sh -c 'git pull --rebase --prune && git log --pretty HEAD@{1}..'
-	who = shortlog -n -s --no-merges
+[help]  # {{{1
+    # If a command is mistyped, make Git automatically run the command it thinks
+    # the user wanted to type while also giving the user some time to prevent it
+    # from doing so.
+    #
+    # https://git-scm.com/book/en/v2/
+    #     Customizing-Git-Git-Configuration#_help_autocorrect
+    #
+    # This can be a bit dangerous, so disabled for now.
+    # > autocorrect = 20
+
+[init]  # {{{1
+    # GitHub recommending 'main' instead of 'master' as of 2020.
+    defaultBranch = main
+
+[pull]  # {{{1
+    # Changed in git 2.27.0:
+    #
+    # warning: Pulling without specifying how to reconcile divergent branches is
+    # discouraged. You can squelch this message by running one of the following
+    # commands sometime before your next pull:
+    #
+    #   git config pull.rebase false  # merge (the default strategy)
+    #   git config pull.rebase true   # rebase
+    #   git config pull.ff only       # fast-forward only
+    #
+    # You can replace "git config" with "git config --global" to set a default
+    # preference for all repositories. You can also pass --rebase, --no-rebase,
+    # or --ff-only on the command line to override the configured default per
+    # invocation.
+    rebase = false
+
+[pretty]  # {{{1
+    custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
+    #                     │        │            │            │             └─ author name
+    #                     │        │            │            └─ message
+    #                     │        │            └─ date (relative)
+    #                     │        └─ decorations (branch, heads or tags)
+    #                     └─ hash (abbreviated)
+
+[push]  # {{{1
+    default = simple
+    # Make `git push` automatically push relevant annotated tags when pushing
+    # branches out.
+    followTags = true
+
+[receive]  # {{{1
+    fsckobjects = false
+[receive "fsck"]
+    zeroPaddedFilemode = warn
+
+[status]  # {{{1
+    # Show summary for all git submodules, which can be slow.
+    # > submoduleSummary = true
+
+[transfer]  # {{{1
+    fsckobjects = false
+[transfer "fsck"]
+    zeroPaddedFilemode = warn
+
+[user]  # {{{1
+    # Do not guess the user's identity.
+    useConfigOnly = true
+
+# The following needs to remain at the end of this file in order to allow
+# any of the above configs to be overwritten by the local ones.
+
+[include]  # {{{1
+    # Load local configs.
+    # https://git-scm.com/docs/git-config#_includes
+    path = ~/.gitconfig.local
