@@ -2,7 +2,7 @@
 
 # """
 # POSIX aliases.
-# @note Updated 2021-03-23.
+# @note Updated 2021-03-24.
 # """
 
 # Shortcuts {{{1
@@ -254,11 +254,11 @@ then
     # --------------------------------------------------------------------------
     if _koopa_is_installed brew
     then
-        alias bchmod='/bin/chmod'
-        alias bchown='/usr/sbin/chown'
-        alias bcp='/bin/cp'
-        alias bdu='/usr/bin/du'
-        alias bmkdir='/bin/mkdir'
-        alias brm='/bin/rm'
+        alias bsdchmod='/bin/chmod'
+        alias bsdchown='/usr/sbin/chown'
+        alias bsdcp='/bin/cp'
+        alias bsddu='/usr/bin/du'
+        alias bsdmkdir='/bin/mkdir'
+        alias bsdrm='/bin/rm'
     fi
 fi
