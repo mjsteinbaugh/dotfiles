@@ -1,0 +1,7 @@
+# https://github.com/hadolint/hadolint
+
+ignored:
+  - DL3007
+
+trustedRegistries:
+  - docker.io
