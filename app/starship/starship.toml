@@ -1,6 +1,6 @@
 # """
 # starship prompt configuration
-# Updated 2021-02-15.
+# Updated 2021-03-25.
 #
 # Allowed colors: black, blue, cyan, green, purple, red, white, yellow.
 # Note that "magenta" maps to "purple" here.
@@ -21,6 +21,7 @@ disabled = true
 disabled = true
 
 [character]
+disabled = false
 error_symbol = "[✗](bold red)"
 success_symbol = "[❯](purple)"
 
@@ -57,6 +58,13 @@ threshold = 1
 
 [python]
 python_binary = "python3"
+
+# Assuming Zsh is default shell.
+[shell]
+bash_indicator = "bash "
+disabled = false
+format = "$indicator"
+zsh_indicator = ""
 
 [username]
 format = "[$user]($style)[@](cyan)"

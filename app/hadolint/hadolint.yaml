@@ -2,6 +2,9 @@
 
 ignored:
   - DL3007
+  - DL3018
+  - DL3033
 
 trustedRegistries:
   - docker.io
+  - registry.access.redhat.com
