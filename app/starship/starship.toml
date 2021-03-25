@@ -61,7 +61,7 @@ python_binary = "python3"
 
 # Assuming Zsh is default shell.
 [shell]
-bash_indicator = "bash "
+bash_indicator = "\\$ "
 disabled = false
 format = "$indicator"
 zsh_indicator = ""
