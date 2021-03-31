@@ -73,6 +73,5 @@
     "initial_working_directory": "~",
     "rainbow_parentheses": true,
     "graphics_backend": "ragg",
-    "auto_detect_indentation": false,
-    "show_margin": false
+    "auto_detect_indentation": false
 }
