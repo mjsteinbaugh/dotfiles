@@ -1,6 +1,6 @@
 # """
 # Global git configuration.
-# Updated 2021-03-23.
+# Updated 2021-04-01.
 #
 # Retab spaces in vim:
 # https://stackoverflow.com/questions/9104706
@@ -33,7 +33,7 @@
     # Add all unstaged changes.
     aa = add --all
 
-    br = branch
+    br = branch -vv
 
     # Assume we want an interactive commit by default.
     c = commit
