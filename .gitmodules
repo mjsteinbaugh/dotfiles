@@ -142,11 +142,19 @@
 	path = theme/dracula/libreoffice
 	url = https://github.com/dracula/libreoffice.git
 	branch = master
+[submodule "theme/nord/alacritty"]
+	path = theme/nord/alacritty
+	url = https://github.com/arcticicestudio/nord-alacritty.git
+	branch = master
 [submodule "theme/nord/iterm2"]
 	path = theme/nord/iterm2
 	url = https://github.com/arcticicestudio/nord-iterm2.git
 	branch = master
-[submodule "theme/nord/alacritty"]
-	path = theme/nord/alacritty
-	url = https://github.com/arcticicestudio/nord-alacritty.git
+[submodule "theme/nord/tmux"]
+	path = theme/nord/tmux
+	url = https://github.com/arcticicestudio/nord-tmux.git
+	branch = master
+[submodule "theme/nord/vim"]
+	path = theme/nord/vim
+	url = https://github.com/arcticicestudio/nord-vim.git
 	branch = master
