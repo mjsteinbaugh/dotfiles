@@ -142,3 +142,7 @@
 	path = theme/dracula/libreoffice
 	url = https://github.com/dracula/libreoffice.git
 	branch = master
+[submodule "theme/nord/iterm2"]
+	path = theme/nord/iterm2
+	url = https://github.com/arcticicestudio/nord-iterm2.git
+	branch = master
