@@ -146,3 +146,7 @@
 	path = theme/nord/iterm2
 	url = https://github.com/arcticicestudio/nord-iterm2.git
 	branch = master
+[submodule "theme/nord/alacritty"]
+	path = theme/nord/alacritty
+	url = https://github.com/arcticicestudio/nord-alacritty.git
+	branch = master
