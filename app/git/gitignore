@@ -1,6 +1,6 @@
 # """
 # Git ignore global rules.
-# Updated 2021-01-07.
+# Updated 2021-04-08.
 # """
 
 *-Ex.R
@@ -119,6 +119,7 @@ reports/
 results/
 revdep/
 rnaedit/
+rsconnect/
 salmon/
 sam-*/
 sam/
