@@ -35,6 +35,12 @@ git branch -u origin/main main
 git remote set-head origin -a
 ```
 
+## Update submodules
+
+```sh
+git submodule update --init --recursive --remote
+```
+
 ## See also
 
 ### What are dotfiles?
