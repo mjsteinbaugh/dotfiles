@@ -23,6 +23,18 @@ git clone --recursive "$repo" "$dotfiles_dir"
 "${dotfiles_dir}/install"
 ```
 
+## `main` branch rename
+
+We renamed the default branch from `master` to `main` on 2021-04-08.
+If you have installed koopa preivously, run this code to update the default branch:
+
+```sh
+git branch -m master main
+git fetch origin
+git branch -u origin/main main
+git remote set-head origin -a
+```
+
 ## See also
 
 ### What are dotfiles?
