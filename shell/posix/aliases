@@ -2,7 +2,7 @@
 
 # """
 # POSIX aliases.
-# @note Updated 2021-03-24.
+# @note Updated 2021-04-09.
 # """
 
 # Shortcuts {{{1
@@ -246,19 +246,6 @@ then
 
     # Volume control {{{2
     # --------------------------------------------------------------------------
-    # Because of http://xkcd.com/530/
-    # > alias pump-it-up='osascript -e "set volume output volume 100"'
-    # > alias stfu='osascript -e "set volume output muted true"'
-
-    # BSD coreutils aliases {{{2
-    # --------------------------------------------------------------------------
-    if _koopa_is_installed brew
-    then
-        alias bsdchmod='/bin/chmod'
-        alias bsdchown='/usr/sbin/chown'
-        alias bsdcp='/bin/cp'
-        alias bsddu='/usr/bin/du'
-        alias bsdmkdir='/bin/mkdir'
-        alias bsdrm='/bin/rm'
-    fi
+    # > alias vol100='osascript -e "set volume output volume 100"'
+    alias mute='osascript -e "set volume output muted true"'
 fi
