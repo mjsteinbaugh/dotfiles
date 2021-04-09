@@ -1,6 +1,6 @@
 # """
 # Git submodules.
-# Updated 2021-04-05.
+# Updated 2021-04-09.
 #
 # Potentially useful:
 # - jedi-vim
@@ -45,6 +45,7 @@
 	path = app/vim/vim.d/pack/dist/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
 	branch = master
+	ignore = dirty
 [submodule "app/vim/vim.d/pack/dist/start/vim-fugitive"]
 	path = app/vim/vim.d/pack/dist/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
@@ -93,6 +94,7 @@
 	path = theme/dracula/fish
 	url = https://github.com/dracula/fish.git
 	branch = master
+	ignore = dirty
 [submodule "theme/dracula/google-chrome"]
 	path = theme/dracula/google-chrome
 	url = https://github.com/dracula/google-chrome.git
@@ -142,23 +144,29 @@
 	path = theme/dracula/libreoffice
 	url = https://github.com/dracula/libreoffice.git
 	branch = master
+	ignore = dirty
 [submodule "theme/nord/alacritty"]
 	path = theme/nord/alacritty
 	url = https://github.com/arcticicestudio/nord-alacritty.git
 	branch = master
+	ignore = dirty
 [submodule "theme/nord/iterm2"]
 	path = theme/nord/iterm2
 	url = https://github.com/arcticicestudio/nord-iterm2.git
 	branch = master
+	ignore = dirty
 [submodule "theme/nord/tmux"]
 	path = theme/nord/tmux
 	url = https://github.com/arcticicestudio/nord-tmux.git
 	branch = master
+	ignore = dirty
 [submodule "theme/nord/vim"]
 	path = theme/nord/vim
 	url = https://github.com/arcticicestudio/nord-vim.git
 	branch = master
+	ignore = dirty
 [submodule "theme/dracula/tmux"]
 	path = theme/dracula/tmux
 	url = https://github.com/dracula/tmux.git
 	branch = master
+	ignore = dirty
