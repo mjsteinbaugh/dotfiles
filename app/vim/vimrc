@@ -613,6 +613,8 @@ let R_syntax_folding=1
 " fzf {{{2
 " ------------------------------------------------------------------------------
 
+" https://github.com/junegunn/fzf/blob/master/README-VIM.md
+
 let fzf_dir=join([app_dir, "fzf"], "/")
 if isdirectory(fzf_dir)
     set rtp+=fzf_dir
