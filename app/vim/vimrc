@@ -616,6 +616,15 @@ let R_syntax_folding=1
 " fzf {{{2
 " ------------------------------------------------------------------------------
 
+" This configuration is intended for Homebrew install, and works with the
+" Vim 8 package manager.
+"
+" How to update rtp with variable in path:
+" - https://vi.stackexchange.com/questions/11601/
+" - https://superuser.com/questions/806595/
+"
+" Check that configuration is enabled with ':Files' command.
+"
 " See also:
 " - https://github.com/junegunn/fzf/blob/master/README-VIM.md
 " - https://github.com/junegunn/fzf.vim#commands
@@ -623,19 +632,13 @@ let R_syntax_folding=1
 " - https://www.reddit.com/r/vim/comments/ifegzw/
 "     how_do_i_add_fzf_using_vim_8_packages/
 
-" How to update rtp with variable in path:
-" - https://vi.stackexchange.com/questions/11601/
-" - https://superuser.com/questions/806595/
-
-" Check that configuration is enabled with ':Files' command.
-
-" This configuration is intended to work with Homebrew.
 let fzf_dir=join([app_dir, "fzf"], "/")
 if isdirectory(fzf_dir)
-    " This approach with 'set rtp+=' only works with a hard-coded path, and
-    " does not support variables.
+    " The 'set rtp+=' approach only works for a hard-coded path, and does not
+    " support variables, unfortunately.
     " > set rtp+=/usr/local/opt/fzf
-    " For variables, we have to use 'let &rtp' instead.
+    " For variables, we have to use 'let &rtp' instead. The comma is necessary
+    " here to deliniate the directory in the path string.
     let &rtp.=','.fzf_dir
 endif
 
