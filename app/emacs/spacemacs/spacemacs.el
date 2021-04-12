@@ -42,7 +42,8 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     ;; completion:
+     ;; completion (pick one; kind of like fzf for Emacs):
+     ;; > helm
      ivy
      ;; > (auto-completion :variables
      ;; >                  auto-completion-enable-sort-by-usage t)
