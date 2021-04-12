@@ -170,3 +170,7 @@
 	url = https://github.com/dracula/tmux.git
 	branch = master
 	ignore = dirty
+[submodule "app/vim/vim.d/pack/dist/start/fzf.vim"]
+	path = app/vim/vim.d/pack/dist/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git
+	branch = master
