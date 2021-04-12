@@ -613,8 +613,11 @@ let R_syntax_folding=1
 " fzf {{{2
 " ------------------------------------------------------------------------------
 
-" https://github.com/junegunn/fzf/blob/master/README-VIM.md
+" See also:
+" - https://github.com/junegunn/fzf/blob/master/README-VIM.md
+" - https://github.com/junegunn/fzf.vim#commands
 
+" This should enable Homebrew installation.
 let fzf_dir=join([app_dir, "fzf"], "/")
 if isdirectory(fzf_dir)
     set rtp+=fzf_dir
