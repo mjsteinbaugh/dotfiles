@@ -1,6 +1,6 @@
 """
 " Vim configuration.
-" Updated 2021-04-12.
+" Updated 2021-04-13.
 "
 " Refer to my cheat sheet for usage details:
 " https://steinbaugh.com/posts/vim.html
@@ -46,7 +46,26 @@ set nocompatible
 let user_home=expand("<sfile>:p:h")
 let vim_home=join([user_home, ".vim"], "/")
 let plugins_home=join([vim_home, "pack", "dist", "start"], "/")
-let app_dir=join(["", "usr", "local", "opt"], "/")
+
+" Homebrew opt directory.
+if has("macunix")
+    " macOS default paths:
+    " - M1/ARM (arm64): /opt/homebrew/opt
+    " - Intel x86 (amd64): /usr/local/opt
+    " See also:
+    " - https://vi.stackexchange.com/questions/2572/
+    "     detect-os-in-vimscript/2577#2577
+    let arch=substitute(system('uname -m'), '\n', '', '')
+    if arch == "x86_64"
+        let homebrew_opt_dir="/usr/local/opt"
+    elseif arch == "arm64"
+        let homebrew_opt_dir="/opt/homebrew/opt"
+    endif
+elseif has("unix")
+    " Linuxbrew installs into 'linuxbrew' user by default.
+    " https://docs.brew.sh/Homebrew-on-Linux
+    homebrew_opt_dir="/home/linuxbrew/.linuxbrew/opt"
+endif
 
 
 
@@ -632,7 +651,7 @@ let R_syntax_folding=1
 " - https://www.reddit.com/r/vim/comments/ifegzw/
 "     how_do_i_add_fzf_using_vim_8_packages/
 
-let fzf_dir=join([app_dir, "fzf"], "/")
+let fzf_dir=join([homebrew_opt_dir, "fzf"], "/")
 if isdirectory(fzf_dir)
     " The 'set rtp+=' approach only works for a hard-coded path, and does not
     " support variables, unfortunately.
