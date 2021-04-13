@@ -659,6 +659,9 @@ if isdirectory(fzf_dir)
     " For variables, we have to use 'let &rtp' instead. The comma is necessary
     " here to deliniate the directory in the path string.
     let &rtp.=','.fzf_dir
+    " Ensure we can use ':fzf' and ':Fzf' aliases in addition to ':FZF'.
+    cnoreabbrev fzf FZF
+    command Fzf FZF
 endif
 
 " python-mode {{{2
