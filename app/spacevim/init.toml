@@ -1,0 +1,48 @@
+#=============================================================================
+# dark_powered.toml --- dark powered configuration example for SpaceVim
+# Copyright (c) 2016-2020 Wang Shidong & Contributors
+# Author: Wang Shidong < wsdjeg at 163.com >
+# URL: https://spacevim.org
+# License: GPLv3
+#=============================================================================
+
+# Well-supported color schemes are documented here:
+# https://spacevim.org/layers/colorscheme/
+# Note that statusline support for Dracula is currently missing.
+
+# All SpaceVim option below [option] section
+[options]
+    buffer_index_type = 4
+    colorscheme = "nord"
+    colorscheme_bg = "dark"
+    enable_guicolors = true
+    enable_statusline_mode = false
+    enable_tabline_filetype_icon = true
+    guifont = "JetBrains Mono Regular Nerd Font Mono:h16"
+    relativenumber = false
+    statusline_iseparator = "arrow"
+    statusline_separator = "arrow"
+
+# Here's how to enable Dracula theme.
+# However this doesn't support statusline currently, so disabled.currently
+# https://draculatheme.com/vim
+# https://github.com/dracula/vim/issues/190
+# > [[custom_plugins]]
+# >     repo = "dracula/vim"
+# >     name = "dracula"
+# >     merged = false
+
+# Enable autocomplete layer
+[[layers]]
+    name = "autocomplete"
+    auto_completion_return_key_behavior = "complete"
+    auto_completion_tab_key_behavior = "smart"
+
+# This is required to enable other themes.
+[[layers]]
+    name = "colorscheme"
+
+[[layers]]
+    name = "shell"
+    default_position = "right"
+    default_height = 30
