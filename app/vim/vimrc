@@ -75,8 +75,9 @@ set nocompatible
 " Here '<sfile>' refers to sourced script file name, i.e. '~/.vimrc'.
 let user_home=expand("<sfile>:p:h")
 let vim_home=join([user_home, ".vim"], "/")
-" This variable refers to Vim 8 package manager.
+
 let plugins_home=join([vim_home, "pack", "dist", "start"], "/")
+let themes_home=join([vim_home, "pack", "theme", "start"], "/")
 
 " Homebrew opt directory.
 if has("macunix")
@@ -193,19 +194,22 @@ set background=dark
 " You need a 256-color or truecolor terminal
 " and you may want one that supports xterm sequences for :terminal
 
-" Use Dracula theme.
+" Use Dracula theme by default.
 " - https://draculatheme.com/vim/
 " - https://draculatheme.com/pro/
 
-" Alternatively, consider using 'filereadable' instead here.
-if isdirectory(join([plugins_home, "dracula_pro", "autoload"], "/"))
+" Alternatively, can use 'filereadable' instead here.
+if isdirectory(join([themes_home, "dracula_pro", "autoload"], "/"))
     " Use Dracula Pro color scheme if symlink exists.
     packadd! dracula_pro
     colorscheme dracula_pro
 else
     " Otherwise fall back to standard Dracula theme.
-    packadd! dracula-theme
+    packadd! dracula
     colorscheme dracula
+    " Alternatively, here's how to enable Nord theme.
+    " > packadd! nord
+    " > colorscheme nord
 endif
 
 
