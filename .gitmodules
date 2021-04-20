@@ -1,20 +1,18 @@
 # """
 # Git submodules.
-# Updated 2021-04-09.
+# Updated 2021-04-20.
 #
-# Potentially useful:
+# Potentially useful plugins:
 # - jedi-vim
 #   https://github.com/davidhalter/jedi-vim
 # - vim-virtualenv
 #   https://github.com/jmcantrell/vim-virtualenv
-#
-# Vim: symlink 'dracula-theme' from 'theme/dracula/vim'.
 # """
 
 [submodule "app/tmux/tmux.d/plugins/tpm"]
 	path = app/tmux/tmux.d/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm.git
-	branch = master
+    branch = master
 [submodule "app/vim/vim.d/pack/dist/start/Nvim-R"]
 	path = app/vim/vim.d/pack/dist/start/Nvim-R
 	url = https://github.com/jalvesaq/Nvim-R.git

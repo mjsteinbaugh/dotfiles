@@ -103,52 +103,47 @@ endif
 " Plugins {{{1
 " ==============================================================================
 
-" Plugins here are managed by vim-plug.
-" https://github.com/junegunn/vim-plug
-
+" Plugins declared here are managed by vim-plug instead of the default
+" Vim package manager.
+"
 " Useful commands:
 " - ':PlugInstall' to install plugins.
 " - ':PlugUpdate' to update plugins.
-
-" Specify a directory for plugins.
-" - For Neovim, can use 'stdpath("data")' instead of 'vim_home' here.
+"
+" How to specifc target directory for plugins:
+" - For Neovim, can use 'stdpath("data")' instead of 'vim_home'.
 " - Avoid using standard Vim directory names like 'plugin'.
-let vim_plug_home=join([vim_home, "plugged"], "/")
-call plug#begin(vim_plug_home)
-
-" Make sure to use single quotes in the 'Plug' calls here.
-
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+"
+" Make sure to use single quotes in 'Plug' calls.
+"
+" Plugin installation/configuration examples:
+" Shorthand notation; fetches 'https://github.com/junegunn/vim-easy-align'.
 " > Plug 'junegunn/vim-easy-align'
-
-" Any valid git URL is allowed
+" Any valid Git URL is allowed.
 " > Plug 'https://github.com/junegunn/vim-github-dashboard.git'
-
-" Multiple Plug commands can be written in a single line using | separators
+" Multiple Plug commands can be written in a single line using '|' separators.
 " > Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-
-" On-demand loading
+" On-demand loading.
 " > Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " > Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-
-" Using a non-default branch
+" Using a non-default branch.
 " > Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-
-" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
+" Using a tagged release; wildcard allowed (requires git 1.9.2 or above).
 " > Plug 'fatih/vim-go', { 'tag': '*' }
-
-" Plugin options
+" Plugin options.
 " > Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-
-" Plugin outside ~/.vim/plugged with post-update hook
+" Plugin outside '~/.vim/plugged' with post-update hook.
 " > Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Unmanaged plugin (manually installed and updated).
+" > Plug '~/my-prototype-plugin'
+"
+" See also:
+" - https://github.com/junegunn/vim-plug
 
-" Unmanaged plugin (manually installed and updated)
-"> Plug '~/my-prototype-plugin'
-
-Plug 'jalvesaq/Nvim-R'
-
-call plug#end()
+" > let vim_plug_home=join([vim_home, "plugged"], "/")
+" > call plug#begin(vim_plug_home)
+" > Plug 'jalvesaq/Nvim-R'
+" > call plug#end()
 
 
 
