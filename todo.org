@@ -1,0 +1,15 @@
+#+TITLE: Dotfiles
+#+STARTUP: content
+* Vim
+** TODO Consider adding support for emmet-vim in a future update.
+** TODO Consider improving R IDE support.
+        R IDE guides:
+            https://www.freecodecamp.org/news/turning-vim-into-an-r-ide-cd9602e8c217/
+        For completion:
+            https://github.com/ncm2/ncm2
+            https://github.com/gaalcaras/ncm-R
+            https://github.com/rizzatti/dash.vim (Mac only)
+        For linting:
+            https://github.com/dense-analysis/ale
+        Language server:
+            https://github.com/REditorSupport/languageserver

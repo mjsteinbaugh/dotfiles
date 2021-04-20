@@ -15,12 +15,10 @@
 	path = app/tmux/tmux.d/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm.git
 	branch = master
-	ignore = dirty
 [submodule "app/vim/vim.d/pack/dist/start/Nvim-R"]
 	path = app/vim/vim.d/pack/dist/start/Nvim-R
 	url = https://github.com/jalvesaq/Nvim-R.git
 	branch = master
-	ignore = dirty
 [submodule "app/vim/vim.d/pack/dist/start/fzf.vim"]
 	path = app/vim/vim.d/pack/dist/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
@@ -29,47 +27,38 @@
 	path = app/vim/vim.d/pack/dist/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
 	branch = master
-	ignore = dirty
 [submodule "app/vim/vim.d/pack/dist/start/rust.vim"]
 	path = app/vim/vim.d/pack/dist/start/rust.vim
 	url = https://github.com/rust-lang/rust.vim
     branch = master
-    ignore = dirty
 [submodule "app/vim/vim.d/pack/dist/start/syntastic"]
 	path = app/vim/vim.d/pack/dist/start/syntastic
 	url = https://github.com/vim-syntastic/syntastic.git
 	branch = master
-	ignore = dirty
 [submodule "app/vim/vim.d/pack/dist/start/vim-airline"]
 	path = app/vim/vim.d/pack/dist/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
 	branch = master
-	ignore = dirty
 [submodule "app/vim/vim.d/pack/dist/start/vim-commentary"]
 	path = app/vim/vim.d/pack/dist/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
 	branch = master
-	ignore = dirty
 [submodule "app/vim/vim.d/pack/dist/start/vim-fugitive"]
 	path = app/vim/vim.d/pack/dist/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
 	branch = master
-	ignore = dirty
 [submodule "app/vim/vim.d/pack/dist/start/vim-grepper"]
 	path = app/vim/vim.d/pack/dist/start/vim-grepper
 	url = https://github.com/mhinz/vim-grepper.git
 	branch = master
-	ignore = dirty
 [submodule "app/vim/vim.d/pack/dist/start/vim-markdown"]
 	path = app/vim/vim.d/pack/dist/start/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
 	branch = master
-	ignore = dirty
 [submodule "app/vim/vim.d/pack/dist/start/vim-signify"]
 	path = app/vim/vim.d/pack/dist/start/vim-signify
 	url = https://github.com/mhinz/vim-signify.git
 	branch = master
-	ignore = dirty
 [submodule "app/vim/vim.d/pack/dist/start/vim-surround"]
 	path = app/vim/vim.d/pack/dist/start/vim-surround
 	url = https://github.com/tpope/vim-surround.git
@@ -78,99 +67,79 @@
 	path = shell/zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
 	branch = master
-	ignore = dirty
 [submodule "theme/dracula/bbedit"]
 	path = theme/dracula/bbedit
 	url = https://github.com/dracula/bbedit.git
 	branch = master
-	ignore = dirty
 [submodule "theme/dracula/emacs"]
 	path = theme/dracula/emacs
 	url = https://github.com/dracula/emacs.git
 	branch = master
-	ignore = dirty
 [submodule "theme/dracula/firefox"]
 	path = theme/dracula/firefox
 	url = https://github.com/dracula/firefox.git
 	branch = master
-	ignore = dirty
 [submodule "theme/dracula/fish"]
 	path = theme/dracula/fish
 	url = https://github.com/dracula/fish.git
 	branch = master
-	ignore = dirty
 [submodule "theme/dracula/google-chrome"]
 	path = theme/dracula/google-chrome
 	url = https://github.com/dracula/google-chrome.git
 	branch = master
-	ignore = dirty
 [submodule "theme/dracula/jupyterlab"]
 	path = theme/dracula/jupyterlab
 	url = https://github.com/dracula/jupyterlab.git
 	branch = master
-	ignore = dirty
 [submodule "theme/dracula/powershell"]
 	path = theme/dracula/powershell
 	url = https://github.com/dracula/powershell.git
 	branch = master
-	ignore = dirty
 [submodule "theme/dracula/putty"]
 	path = theme/dracula/putty
 	url = https://github.com/gkroon/dracula-putty.git
 	branch = master
-	ignore = dirty
 [submodule "theme/dracula/terminal-app"]
 	path = theme/dracula/terminal-app
 	url = https://github.com/dracula/terminal-app.git
 	branch = master
-	ignore = dirty
 [submodule "theme/dracula/vim"]
 	path = theme/dracula/vim
 	url = https://github.com/dracula/vim.git
 	branch = master
-	ignore = dirty
 [submodule "theme/dracula/visual-studio-code"]
 	path = theme/dracula/visual-studio-code
 	url = https://github.com/dracula/visual-studio-code.git
 	branch = master
-	ignore = dirty
 [submodule "theme/dracula/xcode"]
 	path = theme/dracula/xcode
 	url = https://github.com/dracula/xcode.git
 	branch = master
-	ignore = dirty
 [submodule "theme/dracula/windows-terminal"]
 	path = theme/dracula/windows-terminal
 	url = https://github.com/dracula/windows-terminal.git
 	branch = master
-	ignore = dirty
 [submodule "theme/dracula/libreoffice"]
 	path = theme/dracula/libreoffice
 	url = https://github.com/dracula/libreoffice.git
 	branch = master
-	ignore = dirty
 [submodule "theme/nord/alacritty"]
 	path = theme/nord/alacritty
 	url = https://github.com/arcticicestudio/nord-alacritty.git
 	branch = master
-	ignore = dirty
 [submodule "theme/nord/iterm2"]
 	path = theme/nord/iterm2
 	url = https://github.com/arcticicestudio/nord-iterm2.git
 	branch = master
-	ignore = dirty
 [submodule "theme/nord/tmux"]
 	path = theme/nord/tmux
 	url = https://github.com/arcticicestudio/nord-tmux.git
 	branch = master
-	ignore = dirty
 [submodule "theme/nord/vim"]
 	path = theme/nord/vim
 	url = https://github.com/arcticicestudio/nord-vim.git
 	branch = master
-	ignore = dirty
 [submodule "theme/dracula/tmux"]
 	path = theme/dracula/tmux
 	url = https://github.com/dracula/tmux.git
 	branch = master
-	ignore = dirty

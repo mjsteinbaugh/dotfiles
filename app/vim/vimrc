@@ -11,32 +11,7 @@
 " Notes {{{1
 " ==============================================================================
 "
-" Neovim-specific commands {{{2
-" ------------------------------------------------------------------------------
-" - ':vs|:te': Vertically split a terminal (like ':vert term' in Vim).
-"   https://github.com/neovim/neovim/issues/3192
-"
-" TODO list {{{2
-" ------------------------------------------------------------------------------
-"
-" - Consider adding support for emmet-vim in a future update.
-" - Consider improving R IDE support.
-"   - R IDE guides:
-"     https://www.freecodecamp.org/news/turning-vim-into-an-r-ide-cd9602e8c217/
-"   - For completion:
-"     https://github.com/ncm2/ncm2
-"     https://github.com/gaalcaras/ncm-R
-"     https://github.com/rizzatti/dash.vim (Mac only)
-"   - For linting:
-"     https://github.com/dense-analysis/ale
-"   - Language server:
-"     https://github.com/REditorSupport/languageserver
-"
-" Runtimepath {{{2
-" ------------------------------------------------------------------------------
-"
-" Check runtimepath (rtp) configuration with ':set runtimepath?' or
-" ':echo $VIMRUNTIME'.
+" Consider moving useful notes documented here to the main Vim cheatsheet.
 "
 " Vim package manager {{{2
 " ------------------------------------------------------------------------------
@@ -54,6 +29,17 @@
 " See also:
 " - https://shapeshed.com/vim-packages/
 " - https://hackingcpp.com/dev/vim_plugins.html
+"
+" Runtimepath {{{2
+" ------------------------------------------------------------------------------
+"
+" Check runtimepath (rtp) configuration with ':set runtimepath?' or
+" ':echo $VIMRUNTIME'.
+"
+" Neovim-specific commands {{{2
+" ------------------------------------------------------------------------------
+" - ':vs|:te': Vertically split a terminal (like ':vert term' in Vim).
+"   https://github.com/neovim/neovim/issues/3192
 
 
 
@@ -120,11 +106,17 @@ endif
 " Plugins here are managed by vim-plug.
 " https://github.com/junegunn/vim-plug
 
+" Useful commands:
+" - ':PlugInstall' to install plugins.
+" - ':PlugUpdate' to update plugins.
+
 " Specify a directory for plugins.
 " - For Neovim, can use 'stdpath("data")' instead of 'vim_home' here.
 " - Avoid using standard Vim directory names like 'plugin'.
+let vim_plug_home=join([vim_home, "plugged"], "/")
+call plug#begin(vim_plug_home)
 
-" Make sure you use single quotes in the 'Plug' calls here.
+" Make sure to use single quotes in the 'Plug' calls here.
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 " > Plug 'junegunn/vim-easy-align'
@@ -154,14 +146,8 @@ endif
 " Unmanaged plugin (manually installed and updated)
 "> Plug '~/my-prototype-plugin'
 
-" Useful commands:
-" - ':PlugInstall' to install plugins.
-" - ':PlugUpdate' to update plugins.
-
-let vim_plug_home=join([vim_home, "plugged"], "/")
-call plug#begin(vim_plug_home)
-" > call plug#begin('~/.vim/plugged')
 Plug 'jalvesaq/Nvim-R'
+
 call plug#end()
 
 
