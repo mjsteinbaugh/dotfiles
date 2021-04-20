@@ -38,7 +38,9 @@ git remote set-head origin -a
 ## Update submodules
 
 ```sh
-git submodule update --init --recursive --remote
+# The '--recursive' flag is problematic if submodules also contain
+# additional modules.
+git submodule update --init --merge --remote
 ```
 
 ## See also
