@@ -1,6 +1,8 @@
 #+TITLE: Dotfiles
 #+STARTUP: content
 * Vim
+** TODO Consider taking a look at spacevim again for configuration.
+        https://spacevim.org
 ** TODO Work on reconfiguring jedi-vim support for Python autocompletion.
 ** TODO Consider adding support for emmet-vim in a future update.
 ** TODO Consider improving R IDE support.
