@@ -43,6 +43,21 @@ git remote set-head origin -a
 git submodule update --init --merge --remote
 ```
 
+## Revert changes on submodules
+
+```sh
+# https://stackoverflow.com/questions/10906554/
+git submodule foreach --recursive git reset --hard
+```
+
+## Fix a problematic submodule
+
+```sh
+# https://stackoverflow.com/questions/10906554/
+git submodule deinit -f .
+git submodule update --init
+```
+
 ## See also
 
 ### What are dotfiles?
