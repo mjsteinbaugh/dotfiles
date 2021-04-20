@@ -21,6 +21,10 @@
 	url = https://github.com/jalvesaq/Nvim-R.git
 	branch = master
 	ignore = dirty
+[submodule "app/vim/vim.d/pack/dist/start/fzf.vim"]
+	path = app/vim/vim.d/pack/dist/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git
+	branch = master
 [submodule "app/vim/vim.d/pack/dist/start/nerdtree"]
 	path = app/vim/vim.d/pack/dist/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
@@ -170,7 +174,3 @@
 	url = https://github.com/dracula/tmux.git
 	branch = master
 	ignore = dirty
-[submodule "app/vim/vim.d/pack/dist/start/fzf.vim"]
-	path = app/vim/vim.d/pack/dist/start/fzf.vim
-	url = https://github.com/junegunn/fzf.vim.git
-	branch = master

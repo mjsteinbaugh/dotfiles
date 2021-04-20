@@ -1,15 +1,59 @@
 """
 " Vim configuration.
-" Updated 2021-04-13.
+" Updated 2021-04-20.
 "
 " Refer to my cheat sheet for usage details:
 " https://steinbaugh.com/posts/vim.html
+"""
+
+
+
+" Notes {{{1
+" ==============================================================================
 "
-" Consider adding support for emmet-vim in a future update.
+" Neovim-specific commands {{{2
+" ------------------------------------------------------------------------------
+" - ':vs|:te': Vertically split a terminal (like ':vert term' in Vim).
+"   https://github.com/neovim/neovim/issues/3192
+"
+" TODO list {{{2
+" ------------------------------------------------------------------------------
+"
+" - Consider adding support for emmet-vim in a future update.
+" - Consider improving R IDE support.
+"   - R IDE guides:
+"     https://www.freecodecamp.org/news/turning-vim-into-an-r-ide-cd9602e8c217/
+"   - For completion:
+"     https://github.com/ncm2/ncm2
+"     https://github.com/gaalcaras/ncm-R
+"     https://github.com/rizzatti/dash.vim (Mac only)
+"   - For linting:
+"     https://github.com/dense-analysis/ale
+"   - Language server:
+"     https://github.com/REditorSupport/languageserver
+"
+" Runtimepath {{{2
+" ------------------------------------------------------------------------------
 "
 " Check runtimepath (rtp) configuration with ':set runtimepath?' or
 " ':echo $VIMRUNTIME'.
-"""
+"
+" Vim package manager {{{2
+" ------------------------------------------------------------------------------
+"
+" Create a folder named 'pack' inside your '.vim' configuration folder. Direct
+" subfolders of 'pack' can be used to organize packages/plugins into
+" collections.
+"
+" Put plugins that should be loaded at startup into:
+"   .vim/pack/<collection>/start/<plugin>
+"
+" Put plugins that should be added on demand with ':packadd' into:
+"   .vim/pack/<collection>/opt/<plugin>
+"
+" See also:
+" - https://shapeshed.com/vim-packages/
+" - https://hackingcpp.com/dev/vim_plugins.html
 
 
 
@@ -45,6 +89,7 @@ set nocompatible
 " Here '<sfile>' refers to sourced script file name, i.e. '~/.vimrc'.
 let user_home=expand("<sfile>:p:h")
 let vim_home=join([user_home, ".vim"], "/")
+" This variable refers to Vim 8 package manager.
 let plugins_home=join([vim_home, "pack", "dist", "start"], "/")
 
 " Homebrew opt directory.
@@ -66,6 +111,58 @@ elseif has("unix")
     " https://docs.brew.sh/Homebrew-on-Linux
     homebrew_opt_dir="/home/linuxbrew/.linuxbrew/opt"
 endif
+
+
+
+" Plugins {{{1
+" ==============================================================================
+
+" Plugins here are managed by vim-plug.
+" https://github.com/junegunn/vim-plug
+
+" Specify a directory for plugins.
+" - For Neovim, can use 'stdpath("data")' instead of 'vim_home' here.
+" - Avoid using standard Vim directory names like 'plugin'.
+
+" Make sure you use single quotes in the 'Plug' calls here.
+
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+" > Plug 'junegunn/vim-easy-align'
+
+" Any valid git URL is allowed
+" > Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+
+" Multiple Plug commands can be written in a single line using | separators
+" > Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
+" On-demand loading
+" > Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" > Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+
+" Using a non-default branch
+" > Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+
+" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
+" > Plug 'fatih/vim-go', { 'tag': '*' }
+
+" Plugin options
+" > Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+
+" Plugin outside ~/.vim/plugged with post-update hook
+" > Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+" Unmanaged plugin (manually installed and updated)
+"> Plug '~/my-prototype-plugin'
+
+" Useful commands:
+" - ':PlugInstall' to install plugins.
+" - ':PlugUpdate' to update plugins.
+
+let vim_plug_home=join([vim_home, "plugged"], "/")
+call plug#begin(vim_plug_home)
+" > call plug#begin('~/.vim/plugged')
+Plug 'jalvesaq/Nvim-R'
+call plug#end()
 
 
 
