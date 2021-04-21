@@ -90,10 +90,7 @@ This function should only modify configuration layer settings."
      org
      (python :variables
              python-test-runner 'pytest)
-     (ruby :variables
-           ruby-backend 'lsp
-           ruby-test-runner 'rspec
-           ruby-version-manager 'rbenv)
+     ruby
      rust
      (shell :variables
             ;; Assuming widescreen window configuration.
@@ -323,9 +320,14 @@ It should only modify the values of Spacemacs settings."
    ;;
    dotspacemacs-themes
    '(
-     ;; > M-x package-install <RET> dracula-theme
-     dracula
+     ;; Here's how to install themes manually, if necessary:
      ;; > M-x package-install <RET> color-theme-sanityinc-tomorrow
+     ;; > M-x package-install <RET> dracula-theme
+     ;; > M-x package-install <RET> nord-theme
+     ;; Note that dracula currently has poor color support in the integrated
+     ;; terminal, so disabled by default.
+     nord
+     ;; > dracula
      ;; > sanityinc-tomorrow-eighties
      spacemacs-dark
      spacemacs-light
@@ -473,7 +475,7 @@ It should only modify the values of Spacemacs settings."
    ;;   :size-limit-kb 1000)
    ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers t
    ;; Code folding method. Possible values are `evil', `origami' and `vimish'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -601,18 +603,10 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  ;; Bug fix for small font in Emacs GUI on retina macOS display.
-  ;; Remove any default values in custom-set-faces, if necessary.
-  ;; https://github.com/syl20bnr/spacemacs/issues/3477
-  ;; > (if (eq system-type 'darwin)
-  ;; >     (progn
-  ;; >       (set-face-attribute 'default nil :family "SF Mono")
-  ;; >       (set-face-attribute 'default nil :height 165)))
-
   ;; Make HOME and END keys work like Vim.
   ;; https://stackoverflow.com/questions/4614150
   ;; https://superuser.com/questions/710358
-  ;; (global-set-key (kbd "<home>") 'beginning-of-line)
+  ;; > (global-set-key (kbd "<home>") 'beginning-of-line)
   ;; Map the END key to '<select>' instead of '<end>' here.
   (global-set-key (kbd "<select>") 'end-of-line)
 
@@ -625,9 +619,6 @@ before packages are loaded."
    fill-column 80
    ;; Matching pairs.
    show-paren-delay 0
-   ;; Powerline doesn't render correctly on systems without custom font.
-   ;; (default 'arrow)
-   powerline-default-separator nil
    ;; SSH via TRAMP in terminal.
    tramp-default-method "ssh"
    )
@@ -635,21 +626,9 @@ before packages are loaded."
   ;; See matching pairs of parentheses and other characters.
   (show-paren-mode 1)
 
-  ;; Use magit for git commits.
-  ;; This has been removed / renamed as of 2021-03-16.
-  ;; See related:
-  ;; - https://github.com/syl20bnr/spacemacs/issues/8294
-  ;; (global-git-commit-mode t)
-
   ;; Fix for mouse mode with Magic Trackpad on macOS.
   ;; https://github.com/syl20bnr/spacemacs/issues/4591
   (xterm-mouse-mode -1)
-
-  ;; Customize autofill and column fill (margin) indicator.
-  ;; > (add-hook 'markdown-mode-hook '(auto-fill-mode turn-on-fci-mode))
-  ;; > (add-hook 'prog-mode-hook 'turn-on-fci-mode)
-  ;; > (add-hook 'text-mode-hook 'turn-on-fci-mode)
-  (spacemacs/add-to-hooks 'turn-on-fci-mode '(prog-mode-hook text-mode-hook))
 
   ;; TRAMP X11 support.
   ;; > (add-to-list 'tramp-remote-process-environment
