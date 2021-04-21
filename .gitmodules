@@ -1,6 +1,6 @@
 # """
 # Git submodules.
-# Updated 2021-04-20.
+# Updated 2021-04-21.
 #
 # Potentially useful plugins:
 # - jedi-vim
@@ -9,10 +9,6 @@
 #   https://github.com/jmcantrell/vim-virtualenv
 # """
 
-[submodule "app/tmux/tmux.d/plugins/tpm"]
-	path = app/tmux/tmux.d/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm.git
-    branch = master
 [submodule "app/vim/vim.d/pack/dist/start/Nvim-R"]
 	path = app/vim/vim.d/pack/dist/start/Nvim-R
 	url = https://github.com/jalvesaq/Nvim-R.git
