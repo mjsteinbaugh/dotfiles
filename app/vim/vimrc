@@ -106,42 +106,12 @@ endif
 " Plugins {{{1
 " ==============================================================================
 
-" Plugins declared here are managed by vim-plug instead of the default
-" Vim package manager.
+" Plugins declared here are managed by vim-plug.
+" https://github.com/junegunn/vim-plug
 "
 " Useful commands:
 " - ':PlugInstall' to install plugins.
 " - ':PlugUpdate' to update plugins.
-"
-" How to specifc target directory for plugins:
-" - For Neovim, can use 'stdpath("data")' instead of 'vim_home'.
-" - Avoid using standard Vim directory names like 'plugin'.
-"
-" Make sure to use single quotes in 'Plug' calls.
-"
-" Plugin installation/configuration examples:
-" Shorthand notation; fetches 'https://github.com/junegunn/vim-easy-align'.
-" > Plug 'junegunn/vim-easy-align'
-" Any valid Git URL is allowed.
-" > Plug 'https://github.com/junegunn/vim-github-dashboard.git'
-" Multiple Plug commands can be written in a single line using '|' separators.
-" > Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-" On-demand loading.
-" > Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-" > Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-" Using a non-default branch.
-" > Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-" Using a tagged release; wildcard allowed (requires git 1.9.2 or above).
-" > Plug 'fatih/vim-go', { 'tag': '*' }
-" Plugin options.
-" > Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-" Plugin outside '~/.vim/plugged' with post-update hook.
-" > Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Unmanaged plugin (manually installed and updated).
-" > Plug '~/my-prototype-plugin'
-"
-" See also:
-" - https://github.com/junegunn/vim-plug
 
 call plug#begin(vim_plug_home)
 " > Plug 'arcticicestudio/nord-vim', { 'as': 'nord' }
