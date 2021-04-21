@@ -1,4 +1,5 @@
 """
+
 " Vim configuration.
 " Updated 2021-04-21.
 "
@@ -143,23 +144,29 @@ endif
 " - https://github.com/junegunn/vim-plug
 
 call plug#begin(vim_plug_home)
+" > Plug 'arcticicestudio/nord-vim', { 'as': 'nord' }
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'jalvesaq/Nvim-R'
 Plug 'junegunn/fzf.vim'
-
-"	url = https://github.com/scrooloose/nerdtree.git
-"	url = https://github.com/rust-lang/rust.vim
-"	url = https://github.com/vim-syntastic/syntastic.git
-"	url = https://github.com/vim-airline/vim-airline.git
-"	url = https://github.com/tpope/vim-commentary.git
-"	url = https://github.com/tpope/vim-fugitive.git
-"	url = https://github.com/mhinz/vim-grepper.git
-"	url = https://github.com/plasticboy/vim-markdown.git
-"	url = https://github.com/mhinz/vim-signify.git
-"	url = https://github.com/tpope/vim-surround.git
-"	url = https://github.com/arcticicestudio/nord-vim.git
-"	url = https://github.com/dracula/vim.git
-
+Plug 'mhinz/vim-grepper'
+Plug 'mhinz/vim-signify'
+Plug 'plasticboy/vim-markdown'
+Plug 'rust-lang/rust.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-syntastic/syntastic'
 call plug#end()
+
+" Automatically install missing plugins on startup.
+" https://github.com/junegunn/vim-plug/wiki/
+"     extra#automatically-install-missing-plugins-on-startup
+autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
 
 
 
@@ -187,44 +194,28 @@ syntax on
 
 
 
-" Colors {{{1
+" Colors (theme) {{{1
 " ==============================================================================
 
-" Set Vim-specific sequences for RGB colors.
-" This adds nice fallback support for clients and terminal multiplexers that
-" don't support true colors yet.
+set background=dark
+
+if isdirectory(join([themes_home, "dracula_pro"], "/"))
+    packadd! dracula_pro
+    colorscheme dracula_pro
+elseif isdirectory(join([vim_plug_home, "dracula"], "/"))
+    colorscheme dracula
+elseif isdirectory(join([vim_plug_home, "nord"], "/"))
+    colorscheme nord
+endif
+
+" Set Vim-specific sequences for RGB colors. This adds nice fallback support for
+" clients and terminal multiplexers that don't support true colors yet.
 if (has("termguicolors"))
     set termguicolors
     if &term =~# "^screen"
         let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
         let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
     endif
-endif
-
-set background=dark
-
-" Dracula {{{2
-" ------------------------------------------------------------------------------
-
-" You need a 256-color or truecolor terminal
-" and you may want one that supports xterm sequences for :terminal
-
-" Use Dracula theme by default.
-" - https://draculatheme.com/vim/
-" - https://draculatheme.com/pro/
-
-" Alternatively, can use 'filereadable' instead here.
-if isdirectory(join([themes_home, "dracula_pro", "autoload"], "/"))
-    " Use Dracula Pro color scheme if symlink exists.
-    packadd! dracula_pro
-    colorscheme dracula_pro
-else
-    " Otherwise fall back to standard Dracula theme.
-    packadd! dracula
-    colorscheme dracula
-    " Alternatively, here's how to enable Nord theme.
-    " > packadd! nord
-    " > colorscheme nord
 endif
 
 
@@ -781,9 +772,10 @@ let g:startify_custom_header=""
 " Check PATH with ':echo syntastic#util#system('echo "$PATH"')'.
 " Refer to ':help syntastic-checkers' for more details.
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" NOTE This step will error if syntastic is not installed.
+" > set statusline+=%#warningmsg#
+" > set statusline+=%{SyntasticStatuslineFlag()}
+" > set statusline+=%*
 
 " > let g:syntastic_aggregate_errors=1
 let g:syntastic_always_populate_loc_list=1
