@@ -9,54 +9,6 @@
 #   https://github.com/jmcantrell/vim-virtualenv
 # """
 
-[submodule "app/vim/vim.d/pack/dist/start/Nvim-R"]
-	path = app/vim/vim.d/pack/dist/start/Nvim-R
-	url = https://github.com/jalvesaq/Nvim-R.git
-	branch = master
-[submodule "app/vim/vim.d/pack/dist/start/fzf.vim"]
-	path = app/vim/vim.d/pack/dist/start/fzf.vim
-	url = https://github.com/junegunn/fzf.vim.git
-	branch = master
-[submodule "app/vim/vim.d/pack/dist/start/nerdtree"]
-	path = app/vim/vim.d/pack/dist/start/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
-	branch = master
-[submodule "app/vim/vim.d/pack/dist/start/rust.vim"]
-	path = app/vim/vim.d/pack/dist/start/rust.vim
-	url = https://github.com/rust-lang/rust.vim
-    branch = master
-[submodule "app/vim/vim.d/pack/dist/start/syntastic"]
-	path = app/vim/vim.d/pack/dist/start/syntastic
-	url = https://github.com/vim-syntastic/syntastic.git
-	branch = master
-[submodule "app/vim/vim.d/pack/dist/start/vim-airline"]
-	path = app/vim/vim.d/pack/dist/start/vim-airline
-	url = https://github.com/vim-airline/vim-airline.git
-	branch = master
-[submodule "app/vim/vim.d/pack/dist/start/vim-commentary"]
-	path = app/vim/vim.d/pack/dist/start/vim-commentary
-	url = https://github.com/tpope/vim-commentary.git
-	branch = master
-[submodule "app/vim/vim.d/pack/dist/start/vim-fugitive"]
-	path = app/vim/vim.d/pack/dist/start/vim-fugitive
-	url = https://github.com/tpope/vim-fugitive.git
-	branch = master
-[submodule "app/vim/vim.d/pack/dist/start/vim-grepper"]
-	path = app/vim/vim.d/pack/dist/start/vim-grepper
-	url = https://github.com/mhinz/vim-grepper.git
-	branch = master
-[submodule "app/vim/vim.d/pack/dist/start/vim-markdown"]
-	path = app/vim/vim.d/pack/dist/start/vim-markdown
-	url = https://github.com/plasticboy/vim-markdown.git
-	branch = master
-[submodule "app/vim/vim.d/pack/dist/start/vim-signify"]
-	path = app/vim/vim.d/pack/dist/start/vim-signify
-	url = https://github.com/mhinz/vim-signify.git
-	branch = master
-[submodule "app/vim/vim.d/pack/dist/start/vim-surround"]
-	path = app/vim/vim.d/pack/dist/start/vim-surround
-	url = https://github.com/tpope/vim-surround.git
-	branch = master
 [submodule "shell/zsh/plugins/zsh-autosuggestions"]
 	path = shell/zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
@@ -64,10 +16,6 @@
 [submodule "theme/dracula/bbedit"]
 	path = theme/dracula/bbedit
 	url = https://github.com/dracula/bbedit.git
-	branch = master
-[submodule "theme/dracula/emacs"]
-	path = theme/dracula/emacs
-	url = https://github.com/dracula/emacs.git
 	branch = master
 [submodule "theme/dracula/firefox"]
 	path = theme/dracula/firefox
@@ -97,10 +45,6 @@
 	path = theme/dracula/terminal-app
 	url = https://github.com/dracula/terminal-app.git
 	branch = master
-[submodule "theme/dracula/vim"]
-	path = theme/dracula/vim
-	url = https://github.com/dracula/vim.git
-	branch = master
 [submodule "theme/dracula/visual-studio-code"]
 	path = theme/dracula/visual-studio-code
 	url = https://github.com/dracula/visual-studio-code.git
@@ -124,16 +68,4 @@
 [submodule "theme/nord/iterm2"]
 	path = theme/nord/iterm2
 	url = https://github.com/arcticicestudio/nord-iterm2.git
-	branch = master
-[submodule "theme/nord/tmux"]
-	path = theme/nord/tmux
-	url = https://github.com/arcticicestudio/nord-tmux.git
-	branch = master
-[submodule "theme/nord/vim"]
-	path = theme/nord/vim
-	url = https://github.com/arcticicestudio/nord-vim.git
-	branch = master
-[submodule "theme/dracula/tmux"]
-	path = theme/dracula/tmux
-	url = https://github.com/dracula/tmux.git
 	branch = master

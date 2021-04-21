@@ -1,6 +1,6 @@
 """
 " Vim configuration.
-" Updated 2021-04-20.
+" Updated 2021-04-21.
 "
 " Refer to my cheat sheet for usage details:
 " https://steinbaugh.com/posts/vim.html
@@ -78,6 +78,7 @@ let vim_home=join([user_home, ".vim"], "/")
 
 let plugins_home=join([vim_home, "pack", "dist", "start"], "/")
 let themes_home=join([vim_home, "pack", "theme", "start"], "/")
+let vim_plug_home=join([vim_home, "plugged"], "/")
 
 " Homebrew opt directory.
 if has("macunix")
@@ -141,10 +142,24 @@ endif
 " See also:
 " - https://github.com/junegunn/vim-plug
 
-" > let vim_plug_home=join([vim_home, "plugged"], "/")
-" > call plug#begin(vim_plug_home)
-" > Plug 'jalvesaq/Nvim-R'
-" > call plug#end()
+call plug#begin(vim_plug_home)
+Plug 'jalvesaq/Nvim-R'
+Plug 'junegunn/fzf.vim'
+
+"	url = https://github.com/scrooloose/nerdtree.git
+"	url = https://github.com/rust-lang/rust.vim
+"	url = https://github.com/vim-syntastic/syntastic.git
+"	url = https://github.com/vim-airline/vim-airline.git
+"	url = https://github.com/tpope/vim-commentary.git
+"	url = https://github.com/tpope/vim-fugitive.git
+"	url = https://github.com/mhinz/vim-grepper.git
+"	url = https://github.com/plasticboy/vim-markdown.git
+"	url = https://github.com/mhinz/vim-signify.git
+"	url = https://github.com/tpope/vim-surround.git
+"	url = https://github.com/arcticicestudio/nord-vim.git
+"	url = https://github.com/dracula/vim.git
+
+call plug#end()
 
 
 
