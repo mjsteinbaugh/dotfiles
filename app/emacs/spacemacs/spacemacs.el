@@ -326,7 +326,7 @@ It should only modify the values of Spacemacs settings."
      ;; > M-x package-install <RET> dracula-theme
      dracula
      ;; > M-x package-install <RET> color-theme-sanityinc-tomorrow
-     sanityinc-tomorrow-eighties
+     ;; > sanityinc-tomorrow-eighties
      spacemacs-dark
      spacemacs-light
      )
