@@ -581,15 +581,7 @@ See the header of this file for more information."
 This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
-If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  ;; Don't warn about PATH in bashrc.
-  (setq-default exec-path-from-shell-arguments '("-l"))
-  ;; Magit status fullscreen.
-  ;; > (setq-default git-magit-status-fullscreen t)
-  ;; Tramp terminal.
-  (setq-default tramp-ssh-controlmaster-options
-      "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
-  )
+If you are unsure, try setting them in `dotspacemacs/user-config' first.")
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
@@ -603,13 +595,6 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  ;; Make HOME and END keys work like Vim.
-  ;; https://stackoverflow.com/questions/4614150
-  ;; https://superuser.com/questions/710358
-  ;; > (global-set-key (kbd "<home>") 'beginning-of-line)
-  ;; Map the END key to '<select>' instead of '<end>' here.
-  (global-set-key (kbd "<select>") 'end-of-line)
-
   (setq-default
    ;; Indentation.
    standard-indent 4
@@ -622,6 +607,13 @@ before packages are loaded."
    ;; SSH via TRAMP in terminal.
    tramp-default-method "ssh"
    )
+
+  ;; Make HOME and END keys work like Vim, moving to start/end of line.
+  ;; See also:
+  ;; - https://stackoverflow.com/questions/4614150
+  ;; - https://superuser.com/questions/710358
+  (global-set-key (kbd "<home>") 'beginning-of-line)
+  (global-set-key (kbd "<select>") 'end-of-line)
 
   ;; See matching pairs of parentheses and other characters.
   (show-paren-mode 1)
