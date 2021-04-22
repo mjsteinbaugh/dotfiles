@@ -318,16 +318,16 @@ It should only modify the values of Spacemacs settings."
    ;; - base16-onedark
    ;; - base16-nord
    ;;
+   ;; Here's how to install themes manually, if necessary:
+   ;; > M-x package-install <RET> color-theme-sanityinc-tomorrow
+   ;; > M-x package-install <RET> dracula-theme
+   ;; > M-x package-install <RET> nord-theme
+   ;;
+   ;; Note that dracula currently has color issues for the integrated terminal.
    dotspacemacs-themes
    '(
-     ;; Here's how to install themes manually, if necessary:
-     ;; > M-x package-install <RET> color-theme-sanityinc-tomorrow
-     ;; > M-x package-install <RET> dracula-theme
-     ;; > M-x package-install <RET> nord-theme
-     ;; Note that dracula currently has poor color support in the integrated
-     ;; terminal, so disabled by default.
+     dracula
      nord
-     ;; > dracula
      ;; > sanityinc-tomorrow-eighties
      spacemacs-dark
      spacemacs-light
@@ -702,7 +702,7 @@ before packages are loaded."
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (kubernetes anaphora dracula-theme doom-dracula-theme yapfify yaml-mode xterm-color ws-butler winum which-key wgrep web-mode volatile-highlights vimrc-mode vi-tilde-fringe uuidgen use-package unfill tramp-term toml-mode toc-org tagedit spaceline powerline smex smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restart-emacs rbenv rake rainbow-delimiters racer pyvenv pytest pyenv-mode py-isort pug-mode popwin poly-R poly-noweb poly-markdown pip-requirements persp-mode pcre2el pbcopy paradox spinner osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-plus-contrib org-mime org-download org-bullets open-junk-file neotree mwim multi-term move-text mmm-mode minitest markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint launchctl ivy-hydra indent-guide hydra lv hy-mode dash-functional hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-make haml-mode google-translate golden-ratio gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md flycheck-rust flycheck-pos-tip pos-tip flycheck flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-mc evil-matchit evil-magit magit transient git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-commentary evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu ess-smart-equals ess-R-data-view ctable ess julia-mode eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav ein skewer-mode polymode deferred request auto-complete websocket js2-mode simple-httpd dumb-jump popup dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat diminish diff-hl dactyl-mode cython-mode csv-mode counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode chruby cargo markdown-mode rust-mode bundler inf-ruby bind-map bind-key auto-highlight-symbol auto-compile packed async anaconda-mode pythonic f dash s aggressive-indent adaptive-wrap ace-window ace-link avy))))
+    (kubernetes anaphora dracula-theme doom-dracula-theme yapfify yaml-mode xterm-color ws-butler winum which-key wgrep web-mode volatile-highlights vimrc-mode vi-tilde-fringe uuidgen use-package unfill tramp-term toml-mode toc-org tagedit spaceline powerline smex smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restart-emacs rbenv rake rainbow-delimiters racer pyvenv pytest pyenv-mode py-isort pug-mode popwin poly-R poly-noweb poly-markdown pip-requirements persp-mode pcre2el pbcopy paradox spinner osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-plus-contrib org-mime org-download org-bullets open-junk-file neotree mwim multi-term move-text mmm-mode minitest markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint launchctl ivy-hydra indent-guide hydra lv hy-mode dash-functional hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-make haml-mode google-translate golden-ratio gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md flycheck-rust flycheck-pos-tip pos-tip flycheck flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-mc evil-matchit magit transient git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-commentary evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu ess-smart-equals ess-R-data-view ctable ess julia-mode eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav ein skewer-mode polymode deferred request auto-complete websocket js2-mode simple-httpd dumb-jump popup dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat diminish diff-hl dactyl-mode cython-mode csv-mode counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode chruby cargo markdown-mode rust-mode bundler inf-ruby bind-map bind-key auto-highlight-symbol auto-compile packed async anaconda-mode pythonic f dash s aggressive-indent adaptive-wrap ace-window ace-link avy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
