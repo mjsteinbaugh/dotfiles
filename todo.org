@@ -1,6 +1,7 @@
 #+TITLE: Dotfiles
 #+STARTUP: content
 * Vim
+** TODO Consider reorganizing doom and spacemacs into top level at app?
 ** TODO Consider taking a look at spacevim again for configuration.
         https://spacevim.org
 ** TODO Work on reconfiguring jedi-vim support for Python autocompletion.
