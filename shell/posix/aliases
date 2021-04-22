@@ -2,7 +2,7 @@
 
 # """
 # POSIX aliases.
-# @note Updated 2021-04-09.
+# @note Updated 2021-04-22.
 # """
 
 # Shortcuts {{{1
@@ -193,8 +193,7 @@ fi
 if _koopa_is_installed nvim
 then
     alias nvim-vanilla='unalias nvim; nvim -u NONE'
-    # vert term is currently wonky in neovim.
-    # > alias vim='nvim'
+    # > alias {vi,vim}='nvim'
 fi
 if _koopa_is_installed vim
 then
