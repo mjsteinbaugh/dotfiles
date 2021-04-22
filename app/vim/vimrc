@@ -1,5 +1,4 @@
 """
-
 " Vim configuration.
 " Updated 2021-04-21.
 "
@@ -682,7 +681,6 @@ let R_syntax_folding=1
 
 " > let g:jedi#auto_initialization=0
 " > let g:jedi#auto_vim_configuration=1
-
 " > let g:jedi#completions_enabled=0
 " > let g:jedi#popup_on_dot=0
 " > let g:jedi#popup_select_first=1
@@ -769,6 +767,13 @@ let g:syntastic_python_pylint_args="--rcfile=~/.pylintrc"
 " > let g:syntastic_enable_r_lintr_checker=1
 " > let g:syntastic_r_checkers=["lintr"]
 " > let g:syntastic_r_lintr_linters='with_defaults(object_name_linter("camelCase"))'
+
+" ShellCheck
+" How to set global ignores:
+" - https://github.com/koalaman/shellcheck/issues/323
+" - https://github.com/koalaman/shellcheck/wiki/
+"     Ignore#ignoring-all-instances-in-a-file-044
+let g:syntastic_sh_shellcheck_args="-e SC2120,SC3040,SC3043"
 
 " vim-markdown {{{2
 " ------------------------------------------------------------------------------
