@@ -97,8 +97,12 @@ This function should only modify configuration layer settings."
             ;; readjust to get a compact terminal to appear at the bottom.
             ;; > shell-default-position 'bottom
             ;; > shell-default-height 30
+            ;; Alternatively, consider using `multi-term' here instead.
+            ;; Seems to be a bit more buggy than default ansi-term.
+            ;; > multi-term-program "/usr/local/bin/bash"
             shell-default-shell 'ansi-term
-            ;; Zsh doesn't currently work well inside the Emacs GUI terminal.
+            ;; Zsh doesn't currently work well inside the Emacs GUI terminal
+            ;; (at least on macOS), so using Bash by default.
             shell-default-term-shell "/usr/local/bin/bash"
             shell-default-position 'right
             shell-default-width 80)
