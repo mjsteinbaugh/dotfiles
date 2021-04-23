@@ -773,7 +773,7 @@ let g:syntastic_python_pylint_args="--rcfile=~/.pylintrc"
 " - https://github.com/koalaman/shellcheck/issues/323
 " - https://github.com/koalaman/shellcheck/wiki/
 "     Ignore#ignoring-all-instances-in-a-file-044
-let g:syntastic_sh_shellcheck_args="-e SC2120,SC3040,SC3043"
+let g:syntastic_sh_shellcheck_args="-e SC2119,SC2120,SC3040,SC3043"
 
 " vim-markdown {{{2
 " ------------------------------------------------------------------------------
