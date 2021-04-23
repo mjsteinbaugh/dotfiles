@@ -2,7 +2,7 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 ;;
-;; Updated 2021-04-21.
+;; Updated 2021-04-22.
 ;;
 ;; Spacemacs cheatsheet:
 ;; https://steinbaugh.com/posts/spacemacs.html
@@ -326,8 +326,8 @@ It should only modify the values of Spacemacs settings."
    ;; Note that dracula currently has color issues for the integrated terminal.
    dotspacemacs-themes
    '(
-     dracula
      nord
+     dracula
      ;; > sanityinc-tomorrow-eighties
      spacemacs-dark
      spacemacs-light
