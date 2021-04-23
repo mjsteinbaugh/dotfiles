@@ -1,6 +1,6 @@
 """
 " GUI Vim configuration.
-" Updated 2020-06-18.
+" Updated 2021-04-23.
 "
 " Intended primarily for MacVim.
 "
@@ -9,15 +9,13 @@
 " - https://stackoverflow.com/questions/8483371
 """
 
-" Ensure dark mode is enabled by default.
-set background=dark
-
-" Set default font.
-set guifont=JetBrains\ Mono\ Regular:h16
-" > set guifont=SF\ Mono\ Regular:h16
-
 " Don’t blink cursor in normal mode.
 set guicursor=n:blinkon0
 
-" Better line-height.
+" Set default font.
+set guifont=JetBrains\ Mono\ Regular:h16
+
+" Customize the line height.
 " > set linespace=8
+
+set shell=/usr/local/bin/zsh
