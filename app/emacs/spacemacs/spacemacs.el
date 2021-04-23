@@ -2,7 +2,7 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 ;;
-;; Updated 2021-04-21.
+;; Updated 2021-04-23.
 ;;
 ;; Spacemacs cheatsheet:
 ;; https://steinbaugh.com/posts/spacemacs.html
@@ -93,9 +93,17 @@ This function should only modify configuration layer settings."
      ruby
      rust
      (shell :variables
-            ;; Assuming widescreen window configuration.
+            ;; Assuming a widescreen window configuration. Here's how to
+            ;; readjust to get a compact terminal to appear at the bottom.
             ;; > shell-default-position 'bottom
             ;; > shell-default-height 30
+            ;; Alternatively, consider using `multi-term' here instead.
+            ;; Seems to be a bit more buggy than default ansi-term.
+            ;; > multi-term-program "/usr/local/bin/bash"
+            shell-default-shell 'ansi-term
+            ;; Zsh doesn't currently work well inside the Emacs GUI terminal
+            ;; (at least on macOS), so using Bash by default.
+            shell-default-term-shell "/usr/local/bin/bash"
             shell-default-position 'right
             shell-default-width 80)
      vimscript
@@ -326,8 +334,8 @@ It should only modify the values of Spacemacs settings."
    ;; Note that dracula currently has color issues for the integrated terminal.
    dotspacemacs-themes
    '(
-     dracula
      nord
+     dracula
      ;; > sanityinc-tomorrow-eighties
      spacemacs-dark
      spacemacs-light
