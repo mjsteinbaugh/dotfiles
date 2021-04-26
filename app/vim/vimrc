@@ -1,6 +1,6 @@
 """
 " Vim configuration.
-" Updated 2021-04-23.
+" Updated 2021-04-26.
 "
 " Refer to my cheat sheet for usage details:
 " https://steinbaugh.com/posts/vim.html
@@ -97,7 +97,7 @@ if has("macunix")
 elseif has("unix")
     " Linuxbrew installs into 'linuxbrew' user by default.
     " https://docs.brew.sh/Homebrew-on-Linux
-    homebrew_opt_dir="/home/linuxbrew/.linuxbrew/opt"
+    let homebrew_opt_dir="/home/linuxbrew/.linuxbrew/opt"
 endif
 
 
