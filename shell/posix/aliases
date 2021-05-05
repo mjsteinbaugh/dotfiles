@@ -159,6 +159,7 @@ fi
 
 if _koopa_is_installed rg
 then
+    alias fixme="rg -il 'FIXME' | sort"
     alias rgs='rg --pretty --sort path'
 fi
 
