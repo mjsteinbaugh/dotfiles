@@ -740,11 +740,6 @@ let g:startify_custom_header=""
 " Check PATH with ':echo syntastic#util#system('echo "$PATH"')'.
 " Refer to ':help syntastic-checkers' for more details.
 
-" NOTE This step will error if syntastic is not installed.
-" > set statusline+=%#warningmsg#
-" > set statusline+=%{SyntasticStatuslineFlag()}
-" > set statusline+=%*
-
 " > let g:syntastic_aggregate_errors=1
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_loc_list=1
@@ -752,13 +747,11 @@ let g:syntastic_check_on_open=1
 let g:syntastic_check_on_wq=0
 
 " Dockerfile
-let g:syntastic_dockerfile_checkers=["hadolint"]
+let g:syntastic_dockerfile_checkers=["dockerfile_lint", "hadolint"]
 
 " Python
-let g:syntastic_python_checkers=["flake8", "pyflakes", "pylint"]
+let g:syntastic_python_checkers=["python", "flake8", "pyflakes", "pylint"]
 let g:syntastic_python_flake8_args="--ignore=E402,W503"
-" Enable use of custom '.pylintrc' file.
-" https://groups.google.com/forum/#!topic/vim_use/Gd6lO3ETnl0
 let g:syntastic_python_pylint_args="--rcfile=~/.pylintrc"
 
 " R
@@ -768,11 +761,10 @@ let g:syntastic_python_pylint_args="--rcfile=~/.pylintrc"
 " > let g:syntastic_r_checkers=["lintr"]
 " > let g:syntastic_r_lintr_linters='with_defaults(object_name_linter("camelCase"))'
 
-" ShellCheck
-" How to set global ignores:
-" - https://github.com/koalaman/shellcheck/issues/323
-" - https://github.com/koalaman/shellcheck/wiki/
-"     Ignore#ignoring-all-instances-in-a-file-044
+" Shell (POSIX)
+" NOTE 'checkbashisms' is also supported but tends to return too many false
+" positives that cannot be easily ignored.
+let g:syntastic_sh_checkers=["sh", "shellcheck"]
 let g:syntastic_sh_shellcheck_args="--exclude=SC2119,SC2120,SC3040,SC3043"
 
 " vim-markdown {{{2

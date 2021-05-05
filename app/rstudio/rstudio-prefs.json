@@ -22,8 +22,10 @@
             "Tutorial",
             "Viewer"
         ],
+        "hiddenTabSet": [],
         "console_left_on_top": false,
-        "console_right_on_top": true
+        "console_right_on_top": true,
+        "additional_source_columns": 0
     },
     "restore_source_documents": false,
     "restore_last_project": false,
