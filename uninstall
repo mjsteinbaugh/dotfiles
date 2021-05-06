@@ -8,7 +8,6 @@ _koopa_delete_dotfile Renviron
 _koopa_delete_dotfile Rprofile
 _koopa_delete_dotfile bash_profile
 _koopa_delete_dotfile bashrc
-_koopa_delete_dotfile condarc
 _koopa_delete_dotfile forward
 _koopa_delete_dotfile gitconfig
 _koopa_delete_dotfile gitignore

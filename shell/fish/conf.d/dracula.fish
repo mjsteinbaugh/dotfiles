@@ -1,1 +1,0 @@
-../../../theme/dracula/fish/conf.d/dracula.fish
