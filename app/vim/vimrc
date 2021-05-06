@@ -112,15 +112,18 @@ endif
 " - ':PlugInstall' to install plugins.
 " - ':PlugUpdate' to update plugins.
 
-call plug#begin(vim_plug_home)
+" Additional useful color schemes:
+" > Plug 'altercation/vim-colors-solarized'
 " > Plug 'arcticicestudio/nord-vim', { 'as': 'nord' }
-Plug 'altercation/vim-colors-solarized'
+
+call plug#begin(vim_plug_home)
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'jalvesaq/Nvim-R'
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
 Plug 'mhinz/vim-signify'
 Plug 'plasticboy/vim-markdown'
+Plug 'rakr/vim-one'
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
@@ -179,10 +182,18 @@ if koopa_color_mode == "dark"
         colorscheme dracula
     elseif isdirectory(join([vim_plug_home, "nord"], "/"))
         colorscheme nord
+    elseif isdirectory(join([vim_plug_home, "vim-one"], "/"))
+        colorscheme one
+    elseif isdirectory(join([vim_plug_home, "vim-colors-solarized"], "/"))
+        colorscheme solarized
     endif
 elseif koopa_color_mode == "light"
     set background=light
-    colorscheme solarized
+    if isdirectory(join([vim_plug_home, "vim-one"], "/"))
+        colorscheme one
+    elseif isdirectory(join([vim_plug_home, "vim-colors-solarized"], "/"))
+        colorscheme solarized
+    endif
 else
     " Assume we want basic dark mode by default.
     set background=dark
