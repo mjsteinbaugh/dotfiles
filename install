@@ -28,7 +28,6 @@ install() {
     link --force --config 'app/broot'
     link --force --config 'app/hadolint/hadolint.yaml' 'hadolint.yaml'
     link --force --config 'app/htop'
-    link --force --config 'app/libreoffice'
     link --force --config 'app/neofetch'
     link --force --config 'app/nvim'
     link --force --config 'app/pip'
