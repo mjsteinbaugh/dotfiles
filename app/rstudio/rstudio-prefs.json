@@ -62,7 +62,7 @@
     "insert_numbered_latex_sections": true,
     "use_tinytex": true,
     "reduced_motion": true,
-    "editor_theme": "Xcode",
+    "editor_theme": "Dracula",
     "real_time_spellchecking": false,
     "show_doc_outline_rmd": true,
     "highlight_code_chunks": false,
