@@ -288,6 +288,9 @@ It should only modify the values of Spacemacs settings."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    ;;
+   ;; Consider taking a look at auto-dark-emacs for automatic configuration.
+   ;; https://github.com/LionyxML/auto-dark-emacs
+   ;;
    ;; Core themes should work without layers.
    ;; https://github.com/syl20bnr/spacemacs/blob/master/core/
    ;;   core-themes-support.el
