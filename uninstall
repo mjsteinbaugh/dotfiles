@@ -4,6 +4,8 @@ set -Eeu -o pipefail
 # shellcheck source=/dev/null
 source "$(koopa header bash)"
 
+# FIXME Need to clean up symlinks in ~/.config (e.g. libreoffice).
+
 _koopa_delete_dotfile Renviron
 _koopa_delete_dotfile Rprofile
 _koopa_delete_dotfile bash_profile
