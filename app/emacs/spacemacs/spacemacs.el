@@ -2,7 +2,7 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 ;;
-;; Updated 2021-04-23.
+;; Updated 2021-05-06.
 ;;
 ;; Spacemacs cheatsheet:
 ;; https://steinbaugh.com/posts/spacemacs.html
@@ -289,7 +289,8 @@ It should only modify the values of Spacemacs settings."
    ;; with 2 themes variants, one dark and one light)
    ;;
    ;; Core themes should work without layers.
-   ;; https://github.com/syl20bnr/spacemacs/blob/master/core/core-themes-support.el
+   ;; https://github.com/syl20bnr/spacemacs/blob/master/core/
+   ;;   core-themes-support.el
    ;;
    ;; Note that Dracula requires 24-bit true color terminal support.
    ;; https://github.com/dracula/emacs/issues/52
@@ -331,12 +332,13 @@ It should only modify the values of Spacemacs settings."
    ;; > M-x package-install <RET> dracula-theme
    ;; > M-x package-install <RET> nord-theme
    ;;
-   ;; Note that dracula currently has color issues for the integrated terminal.
+   ;; Dracula currently has color issues with the integrated terminal.
    dotspacemacs-themes
    '(
      nord
      dracula
-     ;; > sanityinc-tomorrow-eighties
+     solarized-dark
+     solarized-light
      spacemacs-dark
      spacemacs-light
      )
