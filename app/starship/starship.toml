@@ -34,14 +34,11 @@ truncate_to_repo = false
 truncation_length = 0  # no truncation
 truncation_symbol = ""
 
-# Conditional format strings:
-# https://starship.rs/config/#conditional-format-strings
-
-[env_var]
-disabled = false
-format = "[\\[subshell\\]]($style) "
-style = "bold white"
-variable = "KOOPA_SUBSHELL"
+# [env_var]
+# disabled = false
+# format = "[subshell]($style) "
+# style = "yellow"
+# variable = "KOOPA_SUBSHELL"
 
 [gcloud]
 disabled = true
