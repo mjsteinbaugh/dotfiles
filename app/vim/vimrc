@@ -1,6 +1,6 @@
 """
 " Vim configuration.
-" Updated 2021-05-06.
+" Updated 2021-05-07.
 "
 " Refer to my cheat sheet for usage details:
 " https://steinbaugh.com/posts/vim.html
@@ -190,7 +190,19 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 " Dynamically set dark/light mode, if supported.
 " https://apas.gr/2018/11/dark-mode-macos-safari-iterm-vim/
-if koopa_color_mode == "dark"
+if koopa_color_mode == "light"
+    set background=light
+    if isdirectory(join([vim_plug_home, "vim-solarized8"], "/"))
+        colorscheme solarized8
+        let g:airline_theme="solarized"
+    " Additional themes to consider:
+    " > elseif isdirectory(join([vim_plug_home, "vim-colors-solarized"], "/"))
+    " >     colorscheme solarized
+    " >     let g:airline_theme="solarized"
+    " > elseif isdirectory(join([vim_plug_home, "vim-one"], "/"))
+    " >     colorscheme one
+    endif
+else
     set background=dark
     if isdirectory(join([themes_home, "dracula_pro"], "/"))
         packadd! dracula_pro
@@ -209,21 +221,6 @@ if koopa_color_mode == "dark"
     " > elseif isdirectory(join([vim_plug_home, "vim-one"], "/"))
     " > colorscheme one
     endif
-elseif koopa_color_mode == "light"
-    set background=light
-    if isdirectory(join([vim_plug_home, "vim-solarized8"], "/"))
-        colorscheme solarized8
-        let g:airline_theme="solarized"
-    " Additional themes to consider:
-    " > elseif isdirectory(join([vim_plug_home, "vim-colors-solarized"], "/"))
-    " >     colorscheme solarized
-    " >     let g:airline_theme="solarized"
-    " > elseif isdirectory(join([vim_plug_home, "vim-one"], "/"))
-    " >     colorscheme one
-    endif
-else
-    " Otherwise, assume we want a basic dark mode by default.
-    set background=dark
 endif
 
 
