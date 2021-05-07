@@ -1,6 +1,6 @@
 # """
 # starship prompt configuration
-# Updated 2021-05-06.
+# Updated 2021-05-07.
 #
 # Allowed colors: black, blue, cyan, green, purple, red, white, yellow.
 # Note that "magenta" maps to "purple" here.
@@ -61,6 +61,12 @@ trim_at = "."
 [jobs]
 symbol = "+"
 threshold = 1
+
+[prompt]
+# The default of 500ms sometimes generates warnings with large Git repos.
+add_newline = true
+command_timeout = 1000
+scan_timeout = 30
 
 [python]
 python_binary = "python3"
