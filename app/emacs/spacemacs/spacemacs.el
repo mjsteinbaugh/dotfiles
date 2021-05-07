@@ -302,6 +302,8 @@ It should only modify the values of Spacemacs settings."
    ;; Note that Dracula requires 24-bit true color terminal support.
    ;; https://github.com/dracula/emacs/issues/52
    ;;
+   ;; `leuven-theme' is recommended for Org mode.
+   ;;
    ;; default:
    ;; - spacemacs-dark
    ;; - spacemacs-light
