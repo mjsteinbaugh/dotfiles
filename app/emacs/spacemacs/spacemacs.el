@@ -344,7 +344,7 @@ It should only modify the values of Spacemacs settings."
    ;; `dracula' currently has color issues with the integrated terminal.
    dotspacemacs-themes
    '(
-     nord               ;; preferred dark
+     solarized-dark     ;; preferred dark
      solarized-light    ;; preferred light
      spacemacs-dark     ;; default dark
      spacemacs-light    ;; default light
