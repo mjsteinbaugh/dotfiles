@@ -117,6 +117,7 @@ endif
 " Additional useful color schemes:
 " > Plug 'altercation/vim-colors-solarized'
 " > Plug 'arcticicestudio/nord-vim', { 'as': 'nord' }
+" > Plug 'overcache/NeoSolarized'  " better truecolor support?
 " > Plug 'rakr/vim-one'
 
 call plug#begin(vim_plug_home)
