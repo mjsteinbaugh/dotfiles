@@ -2,7 +2,11 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 ;;
-;; Updated 2021-05-06.
+;; Updated 2021-05-07.
+;;
+;; Homebrew Emacs Plus supports automatic dark/light mode detection for macOS,
+;; but this currently only works in the GUI app and not the TTY.
+;; https://github.com/d12frosted/homebrew-emacs-plus#system-appearance-change
 ;;
 ;; Spacemacs cheatsheet:
 ;; https://steinbaugh.com/posts/spacemacs.html
@@ -335,15 +339,13 @@ It should only modify the values of Spacemacs settings."
    ;; > M-x package-install <RET> dracula-theme
    ;; > M-x package-install <RET> nord-theme
    ;;
-   ;; Dracula currently has color issues with the integrated terminal.
+   ;; `dracula' currently has color issues with the integrated terminal.
    dotspacemacs-themes
    '(
-     nord
-     dracula
-     solarized-dark
-     solarized-light
-     spacemacs-dark
-     spacemacs-light
+     nord               ;; preferred dark
+     solarized-light    ;; preferred light
+     spacemacs-dark     ;; default dark
+     spacemacs-light    ;; default light
      )
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
