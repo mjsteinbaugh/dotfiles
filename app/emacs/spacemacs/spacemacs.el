@@ -337,17 +337,11 @@ It should only modify the values of Spacemacs settings."
    ;; - base16-nord
    ;;
    ;; Here's how to install themes manually, if necessary:
-   ;; > M-x package-install <RET> color-theme-sanityinc-tomorrow
    ;; > M-x package-install <RET> dracula-theme
-   ;; > M-x package-install <RET> nord-theme
-   ;;
-   ;; `dracula' currently has color issues with the integrated terminal.
    dotspacemacs-themes
    '(
-     solarized-dark     ;; preferred dark
-     solarized-light    ;; preferred light
-     spacemacs-dark     ;; default dark
-     spacemacs-light    ;; default light
+     dracula
+     solarized-light
      )
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
