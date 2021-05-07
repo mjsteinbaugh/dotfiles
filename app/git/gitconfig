@@ -1,6 +1,6 @@
 # """
 # Global git configuration.
-# Updated 2021-04-01.
+# Updated 2021-05-07.
 #
 # Retab spaces in vim:
 # https://stackoverflow.com/questions/9104706
@@ -26,6 +26,9 @@
 # - https://github.com/roryk/dotfiles/blob/master/gitconfig
 # - https://github.com/vsbuffalo/dotfiles/blob/master/.gitconfig
 # """
+
+[advice]
+    detachedHead = false
 
 [alias]  # {{{1
     a = add
