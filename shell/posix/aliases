@@ -8,6 +8,7 @@
 # Shortcuts {{{1
 # ==============================================================================
 
+alias :q='exit'  # vim reflex
 alias c='clear'
 alias e='exit'
 alias h='history'
@@ -15,7 +16,6 @@ alias h='history'
 alias k='cd "${KOOPA_PREFIX:?}"; l'
 alias ku='koopa update'
 alias q='exit'
-# > alias :q='exit'  # vim reflex
 
 # Productivity {{{1
 # ==============================================================================
@@ -207,23 +207,15 @@ fi
 
 if _koopa_is_macos
 then
-    # Lock the screen (when going AFK).
-    alias afk='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
-    # Hide a file or folder from appearing in the Finder.
-    alias finder-hide='setfile -a V'
-    # Check iCloud sync status.
-    alias icloud-status='brctl log --wait --shorten'
-    # Search using Spotlight index, instead of GNU find.
-    alias locate='mdfind -name'
-    # Often PlistBuddy is more useful than 'defaults'.
-    alias plistbuddy='/usr/libexec/PlistBuddy'
-    # Reload autofs mounts defined in '/etc/auto_master' (and '/etc/auto_nfs').
-    alias reload-mounts='sudo automount -vc'
-
     # Navigation shortcuts {{{2
     # --------------------------------------------------------------------------
     alias dl='cd ~/Downloads; l'
     alias docs='cd ~/Documents; l'
+
+    # Terminal applications {{{2
+    # --------------------------------------------------------------------------
+    # PlistBuddy is often more useful than 'defaults'.
+    alias plistbuddy='/usr/libexec/PlistBuddy'
 
     # GUI applications {{{2
     # --------------------------------------------------------------------------
@@ -234,9 +226,4 @@ then
     alias homebrew-core='cd "$(brew --repo homebrew/core)"'
     alias rstudio='open -a rstudio'
     alias safari='open -a safari'
-
-    # Volume control {{{2
-    # --------------------------------------------------------------------------
-    # > alias vol100='osascript -e "set volume output volume 100"'
-    alias mute='osascript -e "set volume output muted true"'
 fi
