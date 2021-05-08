@@ -2,7 +2,7 @@
 
 # """
 # POSIX aliases.
-# @note Updated 2021-04-22.
+# @note Updated 2021-05-08.
 # """
 
 # Shortcuts {{{1
@@ -159,8 +159,8 @@ fi
 
 if _koopa_is_installed rg
 then
-    alias fixme="rg -il 'FIXME' | sort"
-    alias rgs='rg --pretty --sort path'
+    alias rg-fixme="rg -il 'FIXME' | sort"
+    alias rg-sort='rg --pretty --sort path'
 fi
 
 # ronn {{{2
