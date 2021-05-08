@@ -154,15 +154,6 @@ then
     alias R='R --no-restore --no-save --quiet'
 fi
 
-# ripgrep {{{2
-# ------------------------------------------------------------------------------
-
-if _koopa_is_installed rg
-then
-    alias rg-fixme="rg -il 'FIXME' | sort"
-    alias rg-sort='rg --pretty --sort path'
-fi
-
 # ronn {{{2
 # ------------------------------------------------------------------------------
 
