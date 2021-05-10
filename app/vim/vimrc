@@ -146,10 +146,10 @@ if has("gui_running") && has("macunix")
 endif
 
 " Color scheme plugins:
-if koopa_color_mode == "dark"
-    Plug 'dracula/vim', { 'as': 'dracula' }
-else
+if (has("gui_running") && has("macunix")) || koopa_color_mode == "light"
     Plug 'lifepillar/vim-solarized8'
+else
+    Plug 'dracula/vim', { 'as': 'dracula' }
 endif
 
 call plug#end()
