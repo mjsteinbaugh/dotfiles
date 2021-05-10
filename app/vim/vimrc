@@ -1,6 +1,6 @@
 """
 " Vim configuration.
-" Updated 2021-05-07.
+" Updated 2021-05-10.
 "
 " Refer to my cheat sheet for usage details:
 " https://steinbaugh.com/posts/vim.html
@@ -122,6 +122,7 @@ endif
 
 call plug#begin(vim_plug_home)
 
+Plug 'airblade/vim-gitgutter'
 Plug 'jalvesaq/Nvim-R'
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
