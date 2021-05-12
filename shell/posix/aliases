@@ -106,6 +106,14 @@ then
     alias black='black --line-length=79'
 fi
 
+# broot {{{2
+# ------------------------------------------------------------------------------
+
+if _koopa_is_installed broot
+then
+    alias br-size='br --sort-by-size'
+fi
+
 # cmus {{{2
 # ------------------------------------------------------------------------------
 
