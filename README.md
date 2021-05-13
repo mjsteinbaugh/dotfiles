@@ -97,5 +97,10 @@ git submodule update --init
 - [Antigen](http://antigen.sharats.me/)
 - [Antibody](https://getantibody.github.io/)
 
+### Alternate approaches
+
+- [GNU stow](https://www.gnu.org/software/stow/)
+- [Bare git repo](https://www.atlassian.com/git/tutorials/dotfiles)
+
 [acid genomics]: https://acidgenomics.com/
 [koopa]: https://koopa.acidgenomics.com/
