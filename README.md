@@ -84,6 +84,7 @@ git submodule update --init
 
 - [Dracula](https://draculatheme.com/)
 - [Nord](https://www.nordtheme.com/)
+- [Solarized](https://ethanschoonover.com/solarized/)
 
 ### Emacs configuration
 
