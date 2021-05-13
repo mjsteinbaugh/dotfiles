@@ -26,7 +26,7 @@ git clone --recursive "$repo" "$dotfiles_dir"
 ## `main` branch rename
 
 We renamed the default branch from `master` to `main` on 2021-04-08.
-If you have installed koopa preivously, run this code to update the default branch:
+If you have installed koopa preivously, run either `git-rename-master-to-main` or this code to update the default branch:
 
 ```sh
 git branch -m master main
