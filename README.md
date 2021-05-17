@@ -26,7 +26,7 @@ git clone --recursive "$repo" "$dotfiles_dir"
 ## `main` branch rename
 
 We renamed the default branch from `master` to `main` on 2021-04-08.
-If you have installed koopa preivously, run this code to update the default branch:
+If you have installed koopa preivously, run either `git-rename-master-to-main` or this code to update the default branch:
 
 ```sh
 git branch -m master main
@@ -84,6 +84,7 @@ git submodule update --init
 
 - [Dracula](https://draculatheme.com/)
 - [Nord](https://www.nordtheme.com/)
+- [Solarized](https://ethanschoonover.com/solarized/)
 
 ### Emacs configuration
 
@@ -96,6 +97,11 @@ git submodule update --init
 - [Prezto](https://github.com/sorin-ionescu/prezto)
 - [Antigen](http://antigen.sharats.me/)
 - [Antibody](https://getantibody.github.io/)
+
+### Alternate approaches
+
+- [GNU stow](https://www.gnu.org/software/stow/)
+- [Bare git repo](https://www.atlassian.com/git/tutorials/dotfiles)
 
 [acid genomics]: https://acidgenomics.com/
 [koopa]: https://koopa.acidgenomics.com/
