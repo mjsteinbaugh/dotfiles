@@ -1,18 +1,16 @@
 #!/usr/bin/env oil
 
 # """
-# .oilrc: The individual per-interactive-shell startup file.
-
+# Oil shell configuration.
+# Updated 2021-05-17.
+#
 # See also:
 # - http://www.oilshell.org/
 # - https://github.com/oilshell/oil/
 # - https://github.com/oilshell/oil/wiki/How-To-Test-OSH
 # """
 
-# Oil shell is currently erroring with 'invalid locale for LC_CTYPE' for
-# Homebrew binarary on macOS.
-
-# oil doesn't allow for simple 'var=value' definitions, which is POSIX.
+# Oil doesn't allow for simple 'var=value' definitions, which is POSIX.
 #
 # You'll see this kind of error unless we unset 'parse_equals':
 #     name=val isn't allowed when shopt 'parse_equals' is on.
@@ -21,22 +19,14 @@
 # See also:
 # http://www.oilshell.org/preview/doc/deprecations.html
 #     #shell-assignment-and-env-bindings-cant-be-used-shopt-s-parse_equals
-shopt -u parse_equals
+#
+# > shopt -u parse_equals
 
-# oil is opinionated about using 'test' instead of '[' by default.
+# Oil is opinionated about using 'test' instead of '[' by default.
 #
 # '[' should be invoked as 'test' (simple_test_builtin)
 #
 # See also:
 # https://www.oilshell.org/blog/2020/11/more-syntax.html
-shopt -u simple_test_builtin
-
-# NOTE Oil shell is erroring on 'set -o errexit'.
-# Not sure how to resolve this.
-# https://github.com/oilshell/oil/search?q=errexit
-# This doesn't work:
-# > shopt -u strict_errexit
-
-# Load shared shell configuration.
-# shellcheck source=/dev/null
-. "${HOME}/.profile"
+#
+# > shopt -u simple_test_builtin
