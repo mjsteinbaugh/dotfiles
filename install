@@ -24,6 +24,7 @@ install() {
         "${HOME}/.kshrc" \
         "${HOME}/.oh-my-zsh" \
         "${HOME}/.shrc" \
+        "${HOME}/.tmux" \
         "${HOME}/.zprofile"
     link --force --config 'app/broot'
     link --force --config 'app/hadolint/hadolint.yaml' 'hadolint.yaml'

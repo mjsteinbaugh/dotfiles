@@ -120,10 +120,12 @@ endif
 " > Plug 'overcache/NeoSolarized'  " better truecolor support?
 " > Plug 'rakr/vim-one'
 
+" Disabled until fix for R 4.1.
+" > Plug 'jalvesaq/Nvim-R'
+
 call plug#begin(vim_plug_home)
 
 Plug 'airblade/vim-gitgutter'
-Plug 'jalvesaq/Nvim-R'
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
 Plug 'mhinz/vim-signify'
