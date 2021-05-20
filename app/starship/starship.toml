@@ -14,7 +14,7 @@
 add_newline = true
 # > format = "$all"
 # The default of 500ms sometimes generates warnings with large Git repos.
-command_timeout = 1000
+command_timeout = 2000
 scan_timeout = 30
 
 [aws]
