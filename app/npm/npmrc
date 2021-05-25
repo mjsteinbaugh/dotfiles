@@ -3,7 +3,7 @@
 # @note Updated 2021-05-25.
 #
 # @section Current variables:
-
+#
 # Run 'npm config ls -l' to see a set of configuration parameters that are
 # internal to npm, and are defaults if nothing else is specified.
 #
@@ -16,10 +16,15 @@
 # of true. Config values are case-insensitive, so 'NPM_CONFIG_FOO=bar' will work
 # the same.
 #
+# @section Installing packages (modules):
+#
+# > npm install --global pure-prompt
+#
 # @seealso
 # - https://docs.npmjs.com/cli/v7/using-npm/config
 # - https://gist.github.com/DanHerbert/9520689
 # - https://docs.brew.sh/Node-for-Formula-Authors
 # """
 
+# Set the installation prefix for NPM packages.
 # > prefix=/opt/koopa/opt/node-packages/latest
