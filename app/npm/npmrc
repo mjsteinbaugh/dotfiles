@@ -1,0 +1,25 @@
+# """
+# NPM configuration for Node.js
+# @note Updated 2021-05-25.
+#
+# @section Current variables:
+
+# Run 'npm config ls -l' to see a set of configuration parameters that are
+# internal to npm, and are defaults if nothing else is specified.
+#
+# @section Environment variables:
+#
+# Any environment variables that start with 'npm_config_' will be interpreted as
+# a configuration parameter. For example, putting 'npm_config_foo=bar' in your
+# environment will set the 'foo' configuration parameter to 'bar'. Any
+# environment configurations that are not given a value will be given the value
+# of true. Config values are case-insensitive, so 'NPM_CONFIG_FOO=bar' will work
+# the same.
+#
+# @seealso
+# - https://docs.npmjs.com/cli/v7/using-npm/config
+# - https://gist.github.com/DanHerbert/9520689
+# - https://docs.brew.sh/Node-for-Formula-Authors
+# """
+
+# > prefix=/opt/koopa/opt/node-packages/latest
