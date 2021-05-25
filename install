@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 set -Eeu -o pipefail
 
+export KOOPA_CHECKS=0
 # shellcheck source=/dev/null
-checks=0 source "$(koopa header bash)"
+source "$(koopa header bash)"
 prefix="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd -P)"
 
 link() {
@@ -13,11 +14,11 @@ install() {
     local name_fancy
     name_fancy='dotfiles'
     koopa::install_start "$name_fancy"
-    expected_prefix="$(_koopa_dotfiles_prefix)"
+    expected_prefix="$(koopa::dotfiles_prefix)"
     koopa::assert_are_identical \
-        "$(realpath "$prefix")" \
-        "$(realpath "$expected_prefix")"
-    koopa::add_config_link "$prefix"
+        "$(koopa::realpath "$prefix")" \
+        "$(koopa::realpath "$expected_prefix")"
+    koopa::add_config_link "$prefix" 'dotfiles'
     koopa::rm \
         "${HOME}/.R/Makevars" \
         "${HOME}/.config/doom" \
@@ -71,8 +72,14 @@ install() {
     else
         link --force 'app/gnupg/gpg-agent.conf' 'gnupg/gpg-agent.conf'
     fi
-    [[ -d "${HOME}/.gnupg" ]] && chmod 0700 "${HOME}/.gnupg"
-    [[ -d "${HOME}/.ssh" ]] && chmod 0700 "${HOME}/.ssh"
+    if [[ -d "${HOME}/.gnupg" ]]
+    then
+        koopa::chmod 0700 "${HOME}/.gnupg"
+    fi
+    if [[ -d "${HOME}/.ssh" ]]
+    then
+        koopa::chmod 0700 "${HOME}/.ssh"
+    fi
     koopa::install_success "$name_fancy"
     return 0
 }
