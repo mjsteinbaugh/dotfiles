@@ -11,6 +11,7 @@ __koopa_activate_user_profile() { # {{{1
     then
         # > export KOOPA_MINIMAL=1
         # > export KOOPA_TEST=1
+        # > export KOOPA_USERS_SKIP='mike'
         # shellcheck source=/dev/null
         . "${XDG_CONFIG_HOME}/koopa/activate"
     fi
