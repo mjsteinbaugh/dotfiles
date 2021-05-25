@@ -44,6 +44,7 @@ install() {
     link --force 'app/emacs/spacemacs/spacemacs.el' 'spacemacs'
     link --force 'app/git/gitignore'
     link --force 'app/gnupg/dirmngr.conf' 'gnupg/dirmngr.conf'
+    link --force 'app/npm/npmrc'
     link --force 'app/pylint/pylintrc'
     link --force 'app/python/pyrc'
     link --force 'app/screen/screenrc'
