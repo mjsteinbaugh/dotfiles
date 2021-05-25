@@ -22,6 +22,7 @@ install() {
     koopa::rm \
         "${HOME}/.R/Makevars" \
         "${HOME}/.config/doom" \
+        "${HOME}/.config/libreoffice" \
         "${HOME}/.kshrc" \
         "${HOME}/.oh-my-zsh" \
         "${HOME}/.shrc" \
