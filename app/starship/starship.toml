@@ -65,6 +65,9 @@ trim_at = "."
 symbol = "+"
 threshold = 1
 
+[lua]
+disabled = true
+
 [python]
 python_binary = "python3"
 
