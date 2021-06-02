@@ -234,6 +234,9 @@ set backspace=indent,eol,start
 " Normal mode {{{2
 " ------------------------------------------------------------------------------
 
+" 'w!' still failed? Try 'w!!' to write as root.
+cmap w!! w !sudo tee >/dev/null %
+
 " Edit my vimrc file.
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
