@@ -39,6 +39,7 @@ install() {
     link --force --config 'app/starship/starship.toml' 'starship.toml'
     link --force --config 'shell/fish'
     link --force --config 'shell/oil'
+    link --force 'app/ack/ackrc'
     link --force 'app/curl/curlrc'
     link --force 'app/editorconfig/editorconfig'
     link --force 'app/emacs/doom' 'doom.d'

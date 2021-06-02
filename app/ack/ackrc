@@ -1,0 +1,6 @@
+# """
+# ack grep-like source code search tool.
+# Updated 2021-06-02.
+# """
+
+--nocolor
