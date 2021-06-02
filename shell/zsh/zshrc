@@ -2,6 +2,7 @@
 
 # """
 # .zshrc: Always read for an interactive shell, whether it's a login one or not.
+# Updated 2021-06-02.
 #
 # Debug with:
 # - bindkey
@@ -15,6 +16,12 @@
 # - http://zsh.sourceforge.net/Guide/zshguide06.html
 # - https://github.com/robbyrussell/oh-my-zsh/blob/master/lib/completion.zsh
 # """
+
+# Exit in non-interactive shell.
+if [[ ! -o interactive ]]
+then
+    return 0
+fi
 
 source "${HOME}/.profile"
 
