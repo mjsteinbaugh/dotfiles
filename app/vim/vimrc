@@ -1,6 +1,6 @@
 """
 " Vim configuration.
-" Updated 2021-05-10.
+" Updated 2021-06-02.
 "
 " Refer to my cheat sheet for usage details:
 " https://steinbaugh.com/posts/vim.html
@@ -669,9 +669,15 @@ autocmd bufenter *
     \ if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree())
     \ | q | endif
 
-" Set default arrows.
-let g:NERDTreeDirArrowExpandable="▸"
 let g:NERDTreeDirArrowCollapsible="▾"
+let g:NERDTreeDirArrowExpandable="▸"
+let g:NERDTreeMapCloseChildren="-"
+let g:NERDTreeMapOpenRecursively="+"
+let g:NERDTreeMinimalUI=1
+let g:NERDTreeWinSize=24
+
+" Leave 80 chars for editing.
+" > let g:NERDTreeWinSize=str2nr(system('expr $COLUMNS - 81'))
 
 " Nvim-R {{{2
 " ------------------------------------------------------------------------------
