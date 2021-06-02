@@ -1,6 +1,6 @@
 # """
 # Global git configuration.
-# Updated 2021-05-07.
+# Updated 2021-06-02.
 #
 # Retab spaces in vim:
 # https://stackoverflow.com/questions/9104706
@@ -44,6 +44,8 @@
     # Commit all unstaged changes, interactively.
     ca = !git add --all && git commit
 
+    catchup = !git fetch upstream && git rebase upstream/main
+
     # Using 'i' for interactive here.
     ci = commit
 
@@ -69,7 +71,11 @@
         ':!*package-lock.json' \
         ':!*yarn.lock'
 
+    diff-remote = diff origin..main
+
     f = fetch
+
+    ff = pull --ff-only
 
     # Find commits by source code.
     find = "!f() { \
@@ -165,6 +171,8 @@
 
     st = status -sb
 
+    touch = commit --amend --reset-author --no-edit
+
     trash = checkout --
 
     # Update the content of the last commit by including all staged changes.
@@ -213,6 +221,9 @@
     added = green reverse
     changed = yellow reverse
     untracked = red reverse
+
+[commit]
+    verbose = true
 
 [core]  # {{{1
     abbrev = 12
@@ -309,6 +320,9 @@
     # Make `git push` automatically push relevant annotated tags when pushing
     # branches out.
     followTags = true
+
+[rebase]
+    autostash = true
 
 [receive]  # {{{1
     fsckobjects = false
