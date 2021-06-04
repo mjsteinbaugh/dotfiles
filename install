@@ -11,6 +11,10 @@ link() {
 }
 
 install() {
+    # """
+    # Install dotfiles.
+    # @note Updated 2021-06-03.
+    # """
     local name_fancy
     name_fancy='dotfiles'
     koopa::install_start "$name_fancy"

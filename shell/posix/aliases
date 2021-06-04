@@ -117,10 +117,10 @@ fi
 # cmus {{{2
 # ------------------------------------------------------------------------------
 
-if _koopa_is_installed cmus
-then
-    alias cmus='cmus --listen 127.0.0.1'
-fi
+# > if _koopa_is_installed cmus
+# > then
+# >     alias cmus='cmus --listen 127.0.0.1'
+# > fi
 
 # Emacs {{{2
 # ------------------------------------------------------------------------------

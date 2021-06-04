@@ -75,5 +75,6 @@
     "initial_working_directory": "~",
     "rainbow_parentheses": true,
     "auto_detect_indentation": false,
-    "check_for_updates": false
+    "check_for_updates": false,
+    "insert_native_pipe_operator": true
 }

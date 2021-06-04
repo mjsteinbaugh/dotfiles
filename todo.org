@@ -1,6 +1,8 @@
 #+TITLE: Dotfiles
 #+STARTUP: content
 * Vim
+** TODO Configure to put swp and bak files in ~/.vim instead of polluting
+        current working directory.
 ** TODO Consider reorganizing doom and spacemacs into top level at app?
 ** TODO Consider taking a look at spacevim again for configuration.
         https://spacevim.org
