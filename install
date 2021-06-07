@@ -44,6 +44,7 @@ install() {
     link --config 'app/starship/starship.toml' 'starship.toml'
     link --config 'shell/fish'
     link --config 'shell/oil'
+    link --opt 'chemacs' 'emacs.d'
     link 'app/ack/ackrc'
     link 'app/chemacs/emacs-profiles.el'
     link 'app/curl/curlrc'
@@ -69,9 +70,6 @@ install() {
     link 'shell/posix/profile'
     link 'shell/zsh/zlogout'
     link 'shell/zsh/zshrc'
-    # Placeholder for using "main" instead of "master" for default git branch.
-    # Inspired by https://github.com/mathiasbynens/dotfiles
-    # > link --config 'app/git/template' 'git/template'
     if koopa::is_macos
     then
         link --config 'app/alacritty'
