@@ -57,6 +57,7 @@ install() {
     link 'app/python/pyrc'
     link 'app/screen/screenrc'
     link 'app/spacemacs/spacemacs.el' 'spacemacs'
+    link 'app/spacevim' 'SpaceVim.d'
     link 'app/terminfo/terminfo.d' 'terminfo'
     link 'app/tmux/tmux.conf'
     link 'app/vim/vim.d' 'vim'
