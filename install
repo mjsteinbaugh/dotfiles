@@ -45,7 +45,7 @@ install() {
     link --config 'shell/fish'
     link --config 'shell/oil'
     link 'app/ack/ackrc'
-    link 'app/chemacs2/emacs-profiles.el'
+    link 'app/chemacs/emacs-profiles.el'
     link 'app/curl/curlrc'
     link 'app/doom' 'doom.d'
     link 'app/editorconfig/editorconfig'
