@@ -7,13 +7,13 @@ source "$(koopa header bash)"
 prefix="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd -P)"
 
 link() {
-    koopa::link_dotfile "$@"
+    koopa::link_dotfile --force "$@"
 }
 
 install() {
     # """
     # Install dotfiles.
-    # @note Updated 2021-06-03.
+    # @note Updated 2021-06-07.
     # """
     local name_fancy
     name_fancy='dotfiles'
@@ -32,57 +32,57 @@ install() {
         "${HOME}/.shrc" \
         "${HOME}/.tmux" \
         "${HOME}/.zprofile"
-    link --force --config 'app/broot'
-    link --force --config 'app/hadolint/hadolint.yaml' 'hadolint.yaml'
-    link --force --config 'app/htop'
-    link --force --config 'app/kakoune' 'kak'
-    link --force --config 'app/neofetch'
-    link --force --config 'app/nvim'
-    link --force --config 'app/pip'
-    link --force --config 'app/ranger'
-    link --force --config 'app/rstudio'
-    link --force --config 'app/starship/starship.toml' 'starship.toml'
-    link --force --config 'shell/fish'
-    link --force --config 'shell/oil'
-    link --force 'app/ack/ackrc'
-    link --force 'app/curl/curlrc'
-    link --force 'app/editorconfig/editorconfig'
-    link --force 'app/emacs/doom' 'doom.d'
-    link --force 'app/emacs/spacemacs/spacemacs.el' 'spacemacs'
-    link --force 'app/git/gitignore'
-    link --force 'app/gnupg/dirmngr.conf' 'gnupg/dirmngr.conf'
-    link --force 'app/npm/npmrc'
-    link --force 'app/pylint/pylintrc'
-    link --force 'app/python/pyrc'
-    link --force 'app/screen/screenrc'
-    link --force 'app/terminfo/terminfo.d' 'terminfo'
-    link --force 'app/tmux/tmux.conf'
-    # > link --force 'app/tmux/tmux.d' 'tmux'
-    link --force 'app/vim/vim.d' 'vim'
-    link --force 'app/vim/vimrc'
-    link --force 'app/wget/wgetrc'
-    link --force 'shell/bash/bash_logout'
-    link --force 'shell/bash/bash_profile'
-    link --force 'shell/bash/bashrc'
-    link --force 'shell/bash/inputrc'
-    link --force 'shell/posix/aliases'
-    link --force 'shell/posix/profile'
-    link --force 'shell/zsh/zlogout'
-    link --force 'shell/zsh/zshrc'
+    link --config 'app/broot'
+    link --config 'app/hadolint/hadolint.yaml' 'hadolint.yaml'
+    link --config 'app/htop'
+    link --config 'app/kakoune' 'kak'
+    link --config 'app/neofetch'
+    link --config 'app/nvim'
+    link --config 'app/pip'
+    link --config 'app/ranger'
+    link --config 'app/rstudio'
+    link --config 'app/starship/starship.toml' 'starship.toml'
+    link --config 'shell/fish'
+    link --config 'shell/oil'
+    link 'app/ack/ackrc'
+    link 'app/chemacs2/emacs-profiles.el'
+    link 'app/curl/curlrc'
+    link 'app/doom' 'doom.d'
+    link 'app/editorconfig/editorconfig'
+    link 'app/git/gitignore'
+    link 'app/gnupg/dirmngr.conf' 'gnupg/dirmngr.conf'
+    link 'app/npm/npmrc'
+    link 'app/pylint/pylintrc'
+    link 'app/python/pyrc'
+    link 'app/screen/screenrc'
+    link 'app/spacemacs/spacemacs.el' 'spacemacs'
+    link 'app/terminfo/terminfo.d' 'terminfo'
+    link 'app/tmux/tmux.conf'
+    link 'app/vim/vim.d' 'vim'
+    link 'app/vim/vimrc'
+    link 'app/wget/wgetrc'
+    link 'shell/bash/bash_logout'
+    link 'shell/bash/bash_profile'
+    link 'shell/bash/bashrc'
+    link 'shell/bash/inputrc'
+    link 'shell/posix/aliases'
+    link 'shell/posix/profile'
+    link 'shell/zsh/zlogout'
+    link 'shell/zsh/zshrc'
     # Placeholder for using "main" instead of "master" for default git branch.
     # Inspired by https://github.com/mathiasbynens/dotfiles
-    # > link --force --config 'app/git/template' 'git/template'
+    # > link --config 'app/git/template' 'git/template'
     if koopa::is_macos
     then
-        link --force --config 'app/alacritty'
-        link --force 'app/vim/gvimrc'
-        link --force 'os/macos/app/gnupg/gpg-agent.conf' 'gnupg/gpg-agent.conf'
+        link --config 'app/alacritty'
+        link 'app/vim/gvimrc'
+        link 'os/macos/app/gnupg/gpg-agent.conf' 'gnupg/gpg-agent.conf'
     elif koopa::is_linux
     then
-        link --force 'app/gnupg/gpg-agent.conf' 'gnupg/gpg-agent.conf'
+        link 'app/gnupg/gpg-agent.conf' 'gnupg/gpg-agent.conf'
         if koopa::is_ubuntu
         then
-            link --force 'os/linux/distro/ubuntu/hushlogin'
+            link 'os/linux/distro/ubuntu/hushlogin'
         fi
     fi
     if [[ -d "${HOME}/.gnupg" ]]
