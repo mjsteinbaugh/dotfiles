@@ -1,6 +1,6 @@
 """
 " GUI Vim configuration.
-" Updated 2021-04-23.
+" Updated 2021-06-08.
 "
 " Intended primarily for MacVim.
 "
@@ -8,6 +8,10 @@
 " - https://stackoverflow.com/questions/2886436
 " - https://stackoverflow.com/questions/8483371
 """
+
+" Maximize the window by default.
+set columns=9999
+set lines=999
 
 " Don’t blink cursor in normal mode.
 set guicursor=n:blinkon0
