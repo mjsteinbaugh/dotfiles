@@ -6,3 +6,7 @@
 (setq display-line-numbers-type t)
 (setq make-backup-files nil)
 (setq org-directory "~/org/")
+
+;; Start Doom maximized.
+;; https://github.com/hlissner/doom-emacs/issues/397
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
