@@ -2,32 +2,22 @@
 
 # """
 # POSIX aliases.
-# @note Updated 2021-06-07.
+# @note Updated 2021-06-08.
 # """
 
 # Shortcuts {{{1
 # ==============================================================================
 
-alias :q='exit'  # vim reflex
+alias :q='exit'
 alias c='clear'
 alias e='exit'
 alias h='history'
-# shellcheck disable=SC2153
-alias k='cd "${KOOPA_PREFIX:?}"; l'
-alias ku='koopa update'
 alias q='exit'
-
-# Productivity {{{1
-# ==============================================================================
-
-[ -d "${HOME}/today" ] && alias bucket="cd ~/today; l"
-alias today='date "+%Y-%m-%d"'
-alias week='date "+%V"'
 
 # Listing files {{{1
 # ==============================================================================
 
-if _koopa_is_installed exa
+if _koopa_is_installed 'exa'
 then
     # Use exa instead of ls, when possible.
     # https://the.exa.website/docs/command-line-options
@@ -74,21 +64,15 @@ alias l1='ls -1'
 alias lh='l | head'
 alias lt='l | tail'
 
-# Clear then list.
-alias cls='clear; l'
-
 # Navigation {{{1
 # ==============================================================================
 
 # Navigate up parent directories without 'cd'.
-if ! _koopa_is_installed autojump
-then
-    alias ..='cd ..'
-    alias ...='cd ../../'
-    alias ....='cd ../../../'
-    alias .....='cd ../../../../'
-    alias ......='cd ../../../../../'
-fi
+alias ..='cd ..'
+alias ...='cd ../../'
+alias ....='cd ../../../'
+alias .....='cd ../../../../'
+alias ......='cd ../../../../../'
 
 # Browse up and down.
 alias u='clear; cd ../; pwd; l'
@@ -100,7 +84,7 @@ alias d='clear; cd -; l'
 # black {{{2
 # ------------------------------------------------------------------------------
 
-if _koopa_is_installed black
+if _koopa_is_installed 'black'
 then
     # Note that 79 characters conforms to PEP8 (see flake8 for details).
     alias black='black --line-length=79'
@@ -109,50 +93,15 @@ fi
 # broot {{{2
 # ------------------------------------------------------------------------------
 
-if _koopa_is_installed broot
+if _koopa_is_installed 'broot'
 then
     alias br-size='br --sort-by-size'
-fi
-
-# cmus {{{2
-# ------------------------------------------------------------------------------
-
-# > if _koopa_is_installed cmus
-# > then
-# >     alias cmus='cmus --listen 127.0.0.1'
-# > fi
-
-# Emacs {{{2
-# ------------------------------------------------------------------------------
-
-if _koopa_is_installed emacs
-then
-    if [ -f "${HOME}/.terminfo/78/xterm-24bit" ]
-    then
-        alias emacs='TERM=xterm-24bit emacs --no-window-system'
-    else
-        alias emacs='emacs --no-window-system'
-    fi
-    alias emacs-vanilla='emacs --no-init-file --no-window-system'
-    # These aliases assume that chemacs2 is installed at '~/.emacs.d'.
-    alias doom-emacs='emacs --with-profile doom'
-    alias spacemacs='emacs --with-profile spacemacs'
-fi
-
-# Git {{{2
-# ------------------------------------------------------------------------------
-
-if _koopa_is_installed git
-then
-    alias develop='git fetch; git checkout develop; git branch -vv'
-    alias main='git fetch; git checkout main; git branch -vv'
-    alias master='git fetch; git checkout master; git branch -vv'
 fi
 
 # Python {{{2
 # ------------------------------------------------------------------------------
 
-if _koopa_is_installed python3
+if _koopa_is_installed 'python3'
 then
     alias python='python3'
 fi
@@ -160,7 +109,7 @@ fi
 # R {{{2
 # ------------------------------------------------------------------------------
 
-if _koopa_is_installed R
+if _koopa_is_installed 'R'
 then
     alias R='R --no-restore --no-save --quiet'
 fi
@@ -168,75 +117,7 @@ fi
 # ronn {{{2
 # ------------------------------------------------------------------------------
 
-if _koopa_is_installed ronn
+if _koopa_is_installed 'ronn'
 then
     alias ronn='ronn --roff'
-fi
-
-# shasum {{{2
-# ------------------------------------------------------------------------------
-
-if _koopa_is_installed shasum
-then
-    alias sha256='shasum -a 256'
-fi
-
-# tar {{{2
-# ------------------------------------------------------------------------------
-
-if _koopa_is_installed tar
-then
-    alias tar-c='tar -czvf'
-    alias tar-x='tar -xzvf'
-fi
-
-# Vim {{{2
-# ------------------------------------------------------------------------------
-
-if _koopa_is_installed nvim
-then
-    # > alias {vi,vim}='nvim'
-    alias nvim-fzf='nvim "$(fzf)"'
-    alias nvim-vanilla='unalias nvim; nvim -u NONE'
-fi
-if _koopa_is_installed vim
-then
-    alias vi='vim'
-    alias vim-fzf='vim "$(fzf)"'
-    alias vim-vanilla='unalias vim; vim -i NONE -u NONE -U NONE'
-fi
-
-# zoxide {{{2
-# ------------------------------------------------------------------------------
-
-# Fix for autojump muscle memory, using zoxide.
-if _koopa_is_installed zoxide && ! _koopa_is_installed autojump
-then
-    alias j='z'
-fi
-
-# macOS {{{1
-# ==============================================================================
-
-if _koopa_is_macos
-then
-    # Navigation shortcuts {{{2
-    # --------------------------------------------------------------------------
-    alias dl='cd ~/Downloads; l'
-    alias docs='cd ~/Documents; l'
-
-    # Terminal applications {{{2
-    # --------------------------------------------------------------------------
-    # PlistBuddy is often more useful than 'defaults'.
-    alias plistbuddy='/usr/libexec/PlistBuddy'
-
-    # GUI applications {{{2
-    # --------------------------------------------------------------------------
-    alias canary='open -a "google chrome canary"'
-    alias chrome='open -a "google chrome"'
-    alias firefox='open -a firefox'
-    alias homebrew-cask='cd "$(brew --repo homebrew/cask)"'
-    alias homebrew-core='cd "$(brew --repo homebrew/core)"'
-    alias rstudio='open -a rstudio'
-    alias safari='open -a safari'
 fi
