@@ -17,7 +17,7 @@ set lines=999
 set guicursor=n:blinkon0
 
 " Set default font.
-set guifont=JetBrains\ Mono\ Regular:h16
+set guifont=JetBrains\ Mono\ Regular\ Nerd\ Font\ Complete:h16
 
 " Customize the line height.
 " > set linespace=8
