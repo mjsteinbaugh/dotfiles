@@ -32,6 +32,7 @@ install() {
         "${HOME}/.shrc" \
         "${HOME}/.tmux" \
         "${HOME}/.zprofile"
+    link --config 'app/bpytop'
     link --config 'app/broot'
     link --config 'app/hadolint/hadolint.yaml' 'hadolint.yaml'
     link --config 'app/htop'
