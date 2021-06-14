@@ -39,14 +39,15 @@ install() {
     # Install dotfiles.
     # @note Updated 2021-06-14.
     # """
-    local koopa_prefix name name_fancy prefix
+    local koopa koopa_prefix name name_fancy prefix
+    koopa='koopa'
     name='dotfiles'
     name_fancy='dotfiles'
     prefix="$( \
         cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && \
         pwd -P \
     )"
-    if ! is_installed 'koopa'
+    if ! is_installed "$koopa"
     then
         # By default, expected to be installed at 'app/dotfiles/rolling'
         # inside of koopa.
@@ -60,12 +61,11 @@ install() {
             printf "Failed to locate '%s' at '%s'.\n" 'koopa' "$prefix" >&2
             return 1
         fi
-        add_to_path_start "${koopa_prefix}/bin"
     fi
     export KOOPA_CHECKS=0
     # FIXME This is failing because of unbound variable argh...
     # shellcheck source=/dev/null
-    source "$(koopa header bash)"
+    source "$("$koopa" header bash)"
     koopa::install_start "$name_fancy" "$prefix"
     koopa::add_koopa_config_link "$prefix" "$name"
     koopa::rm \
