@@ -63,7 +63,7 @@ install() {
     fi
 
     echo 'FIXME 1'
-    exit 0
+    exit 1
 
     export KOOPA_CHECKS=0
     # shellcheck source=/dev/null
