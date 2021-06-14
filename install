@@ -63,6 +63,7 @@ install() {
         add_to_path_start "${koopa_prefix}/bin"
     fi
     export KOOPA_CHECKS=0
+    # FIXME This is failing because of unbound variable argh...
     # shellcheck source=/dev/null
     source "$(koopa header bash)"
     koopa::install_start "$name_fancy" "$prefix"
