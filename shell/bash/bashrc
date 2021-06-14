@@ -24,7 +24,7 @@ source "${HOME}/.profile"
 shopt -s cdspell
 
 # Check the window size after each command and if necessary, update the values
-# of LINES and COLUMNS.
+# of 'LINES' and 'COLUMNS'.
 shopt -s checkwinsize
 
 # Save multiline commands.
