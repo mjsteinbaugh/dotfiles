@@ -58,12 +58,11 @@ install() {
         koopa="${koopa_prefix}/bin/koopa"
         if [[ ! -x "$koopa" ]]
         then
-            printf "Failed to locate '%s' at '%s'.\n" 'koopa' "$prefix" >&2
+            printf "Failed to locate '%s'.\n" "$koopa" >&2
             return 1
         fi
     fi
     export KOOPA_CHECKS=0
-    # FIXME This is failing because of unbound variable argh...
     # shellcheck source=/dev/null
     source "$("$koopa" header bash)"
     koopa::install_start "$name_fancy" "$prefix"
