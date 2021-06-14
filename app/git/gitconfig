@@ -1,6 +1,6 @@
 # """
 # Global git configuration.
-# Updated 2021-06-02.
+# Updated 2021-06-14.
 #
 # Retab spaces in vim:
 # https://stackoverflow.com/questions/9104706
@@ -332,6 +332,9 @@
 [status]  # {{{1
     # Show summary for all git submodules, which can be slow.
     # > submoduleSummary = true
+
+[submodule]
+    recurse = true
 
 [transfer]  # {{{1
     fsckobjects = false
