@@ -39,9 +39,9 @@ install() {
     # Install dotfiles.
     # @note Updated 2021-06-14.
     # """
-    local koopa koopa_prefix name_fancy prefix
+    local koopa_prefix name name_fancy prefix
+    name='dotfiles'
     name_fancy='dotfiles'
-    koopa='koopa'
     prefix="$( \
         cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && \
         pwd -P \
@@ -60,16 +60,13 @@ install() {
             printf "Failed to locate '%s' at '%s'.\n" 'koopa' "$prefix" >&2
             return 1
         fi
+        add_to_path_start "${koopa_prefix}/bin"
     fi
-
-    echo 'FIXME 1'
-    exit 1
-
     export KOOPA_CHECKS=0
     # shellcheck source=/dev/null
-    source "$("$koopa" header bash)"
+    source "$(koopa header bash)"
     koopa::install_start "$name_fancy" "$prefix"
-    koopa::add_koopa_config_link "$prefix" 'dotfiles'
+    koopa::add_koopa_config_link "$prefix" "$name"
     koopa::rm \
         "${HOME}/.R/Makevars" \
         "${HOME}/.config/doom" \
