@@ -1,6 +1,6 @@
 # """
 # starship prompt configuration
-# Updated 2021-05-07.
+# Updated 2021-06-21.
 #
 # Allowed colors: black, blue, cyan, green, purple, red, white, yellow.
 # Note that "magenta" maps to "purple" here.
@@ -70,6 +70,13 @@ disabled = true
 
 [python]
 python_binary = "python3"
+
+# Don't show the module when '~/.Rprofile' is detected.
+[rlang]
+detect_extensions = ["R", "Rd", "Rmd", "Rproj"]
+detect_files = [""]
+detect_folders = [".Rproj.user"]
+symbol = "R"
 
 # Assuming Zsh is default shell.
 [shell]
